@@ -1,0 +1,360 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Línea de Tiempo (Horizontal): De la Programación Manual a la Era Digital Móvil</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body{font-family:'Inter',sans-serif}
+
+    /* ===== Animaciones y efectos ===== */
+    .timeline-item{opacity:0;transform:translateY(30px);transition:all .6s ease}
+    .timeline-item.animate{opacity:1;transform:translateY(0)}
+    .timeline-dot{transition:transform .3s ease, box-shadow .3s ease}
+    .timeline-card{transition:transform .3s ease, box-shadow .3s ease}
+    .timeline-item:hover .timeline-dot{transform:scale(1.15);box-shadow:0 0 20px rgba(59,130,246,.6)}
+    .timeline-item:hover .timeline-card{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 28px rgba(0,0,0,.35)}
+
+    .timeline-line-gradient{background:linear-gradient(90deg,#1e40af,#3b82f6,#06b6d4,#10b981,#f59e0b,#ef4444,#8b5cf6,#ec4899)}
+    .decade-badge{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}
+    .tech-tag{background:rgba(59,130,246,.18);border:1px solid rgba(59,130,246,.32)}
+    .pulse{animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.75}}
+
+    /* Snap nicer on small screens */
+    .snap-always{scroll-snap-align:center}
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 min-h-screen">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-10">
+    <!-- Header -->
+    <header class="text-center mb-10 lg:mb-14">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">📜 Línea de Tiempo</h1>
+      <p class="text-lg md:text-2xl text-blue-200">De la programación manual a la era digital móvil</p>
+      <div class="w-28 md:w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto mt-5 rounded-full"></div>
+    </header>
+
+    <!-- Controles superiores -->
+    <div class="flex items-center justify-between gap-4 mb-6">
+      <div class="hidden md:flex items-center gap-2 text-blue-200/80 text-sm">
+        <span class="inline-flex items-center gap-2"><span class="w-3 h-1 rounded-full block bg-blue-400"></span> 1940s</span>
+        <span class="inline-flex items-center gap-2"><span class="w-3 h-1 rounded-full block bg-cyan-400"></span> 1950s</span>
+        <span class="inline-flex items-center gap-2"><span class="w-3 h-1 rounded-full block bg-green-400"></span> 1960s</span>
+        <span class="inline-flex items-center gap-2"><span class="w-3 h-1 rounded-full block bg-yellow-400"></span> 1970s</span>
+        <span class="inline-flex items-center gap-2"><span class="w-3 h-1 rounded-full block bg-red-400"></span> 1980s</span>
+        <span class="inline-flex items-center gap-2"><span class="w-3 h-1 rounded-full block bg-purple-400"></span> 1990s</span>
+        <span class="inline-flex items-center gap-2"><span class="w-3 h-1 rounded-full block bg-pink-400"></span> 2000s</span>
+        <span class="inline-flex items-center gap-2"><span class="w-3 h-1 rounded-full block bg-indigo-400"></span> 2010s</span>
+        <span class="inline-flex items-center gap-2"><span class="w-3 h-1 rounded-full block bg-fuchsia-400"></span> 2020s</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="btnLeft" class="rounded-full bg-white/10 border border-white/20 px-3 py-2 text-white hover:bg-white/15 focus:outline-none" title="Desplazar a la izquierda">◀</button>
+        <button id="animateBtn" class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-semibold py-2.5 px-5 rounded-full transition-all">🚀 Animar</button>
+        <button id="btnRight" class="rounded-full bg-white/10 border border-white/20 px-3 py-2 text-white hover:bg-white/15 focus:outline-none" title="Desplazar a la derecha">▶</button>
+      </div>
+    </div>
+
+    <!-- Timeline HORIZONTAL -->
+    <section class="relative">
+      <!-- Línea base -->
+      <div class="timeline-line-gradient absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 rounded-full opacity-70"></div>
+
+      <!-- Carril de tarjetas -->
+      <div id="rail" class="relative overflow-x-auto overflow-y-visible snap-x snap-mandatory scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-white/10">
+        <ol class="flex items-stretch gap-8 md:gap-12 lg:gap-16 px-1 pb-10 pt-10 min-w-full">
+
+          <!-- Helper: plantilla de ítem (usa min-width para snap) -->
+          
+          <!-- 1940s -->
+          <li class="timeline-item snap-always min-w-[20rem] md:min-w-[24rem] lg:min-w-[26rem] relative">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full border-4 border-white bg-blue-600 shadow-xl timeline-dot flex items-center justify-center">
+              <span class="text-white text-[10px] md:text-xs font-bold">40</span>
+            </div>
+            <article class="timeline-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mt-6">
+              <span class="decade-badge inline-block px-3 py-1.5 rounded-full text-white font-bold text-xs md:text-sm mb-3">1940s – Programación manual</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🔧 Los Pioneros</h3>
+              <p class="text-gray-200 mb-3">Computadoras con interruptores físicos, cables y tarjetas perforadas. Programación mediante conexiones manuales y configuración de hardware.</p>
+              <ul class="text-gray-300 text-sm mb-3 space-y-1 list-disc list-inside">
+                <li>ENIAC: 30 toneladas, 18,000 tubos de vacío</li>
+                <li>Colossus: descifraba códigos alemanes</li>
+                <li>Programación: <em>rewiring</em> físico</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-tag px-3 py-1 rounded-full text-blue-300 text-xs">ENIAC</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-blue-300 text-xs">Colossus</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-blue-300 text-xs">Tubos de Vacío</span>
+              </div>
+            </article>
+          </li>
+
+          <!-- 1950s -->
+          <li class="timeline-item snap-always min-w-[20rem] md:min-w-[24rem] lg:min-w-[26rem] relative">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full border-4 border-white bg-cyan-600 shadow-xl timeline-dot flex items-center justify-center">
+              <span class="text-white text-[10px] md:text-xs font-bold">50</span>
+            </div>
+            <article class="timeline-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mt-6">
+              <span class="decade-badge inline-block px-3 py-1.5 rounded-full text-white font-bold text-xs md:text-sm mb-3">1950s – Lenguajes de bajo nivel</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-3">💻 Primeros Lenguajes</h3>
+              <p class="text-gray-200 mb-3">Surge el ensamblador y los primeros lenguajes de alto nivel. Transición de programación manual a código escrito.</p>
+              <ul class="text-gray-300 text-sm mb-3 space-y-1 list-disc list-inside">
+                <li>Fortran: cálculos científicos e ingeniería</li>
+                <li>COBOL: aplicaciones comerciales</li>
+                <li>Transistores reemplazan tubos de vacío</li>
+                <li>Primeros compiladores automáticos</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-tag px-3 py-1 rounded-full text-cyan-300 text-xs">Fortran (1957)</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-cyan-300 text-xs">COBOL (1959)</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-cyan-300 text-xs">Transistores</span>
+              </div>
+            </article>
+          </li>
+
+          <!-- 1960s -->
+          <li class="timeline-item snap-always min-w-[20rem] md:min-w-[24rem] lg:min-w-[26rem] relative">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full border-4 border-white bg-green-600 shadow-xl timeline-dot flex items-center justify-center">
+              <span class="text-white text-[10px] md:text-xs font-bold">60</span>
+            </div>
+            <article class="timeline-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mt-6">
+              <span class="decade-badge inline-block px-3 py-1.5 rounded-full text-white font-bold text-xs md:text-sm mb-3">1960s – Sistemas operativos iniciales</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🖥️ Era de los Mainframes</h3>
+              <p class="text-gray-200 mb-3">Primeros mainframes multitarea y bases de la programación estructurada. Computadoras más pequeñas y eficientes.</p>
+              <ul class="text-gray-300 text-sm mb-3 space-y-1 list-disc list-inside">
+                <li>IBM System/360: arquitectura estándar</li>
+                <li>Circuitos integrados reducen tamaño</li>
+                <li>Time-sharing: múltiples usuarios</li>
+                <li>Primeros sistemas operativos básicos</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-tag px-3 py-1 rounded-full text-green-300 text-xs">IBM System/360</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-green-300 text-xs">Time-sharing</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-green-300 text-xs">Circuitos Integrados</span>
+              </div>
+            </article>
+          </li>
+
+          <!-- 1970s -->
+          <li class="timeline-item snap-always min-w-[20rem] md:min-w-[24rem] lg:min-w-[26rem] relative">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full border-4 border-white bg-yellow-600 shadow-xl timeline-dot flex items-center justify-center">
+              <span class="text-white text-[10px] md:text-xs font-bold">70</span>
+            </div>
+            <article class="timeline-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mt-6">
+              <span class="decade-badge inline-block px-3 py-1.5 rounded-full text-white font-bold text-xs md:text-sm mb-3">1970s – Unix y C</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🚀 Revolución Unix</h3>
+              <p class="text-gray-200 mb-3">Nace Unix (1969–1971) y el lenguaje C (1972) aporta portabilidad entre sistemas. Se asientan bases de la computación moderna.</p>
+              <ul class="text-gray-300 text-sm mb-3 space-y-1 list-disc list-inside">
+                <li>Unix: filosofía “todo es archivo”</li>
+                <li>C: lenguaje de sistemas portable</li>
+                <li>Microprocesadores Intel 4004, 8008</li>
+                <li>Ethernet: redes locales (1973)</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-tag px-3 py-1 rounded-full text-yellow-300 text-xs">Unix</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-yellow-300 text-xs">Lenguaje C</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-yellow-300 text-xs">Intel 4004</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-yellow-300 text-xs">Ethernet</span>
+              </div>
+            </article>
+          </li>
+
+          <!-- 1980s -->
+          <li class="timeline-item snap-always min-w-[20rem] md:min-w-[24rem] lg:min-w-[26rem] relative">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full border-4 border-white bg-red-600 shadow-xl timeline-dot flex items-center justify-center">
+              <span class="text-white text-[10px] md:text-xs font-bold">80</span>
+            </div>
+            <article class="timeline-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mt-6">
+              <span class="decade-badge inline-block px-3 py-1.5 rounded-full text-white font-bold text-xs md:text-sm mb-3">1980s – PC y GUI</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🖱️ Era de las PC</h3>
+              <p class="text-gray-200 mb-3">IBM PC (1981) y Apple Macintosh (1984) popularizan la informática personal. Las interfaces gráficas revolucionan la interacción.</p>
+              <ul class="text-gray-300 text-sm mb-3 space-y-1 list-disc list-inside">
+                <li>IBM PC: arquitectura abierta</li>
+                <li>Macintosh: GUI masiva con mouse</li>
+                <li>MS-DOS: sistema dominante</li>
+                <li>C++: orientación a objetos</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-tag px-3 py-1 rounded-full text-red-300 text-xs">IBM PC</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-red-300 text-xs">Macintosh</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-red-300 text-xs">MS-DOS</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-red-300 text-xs">C++</span>
+              </div>
+            </article>
+          </li>
+
+          <!-- 1990s -->
+          <li class="timeline-item snap-always min-w-[20rem] md:min-w-[24rem] lg:min-w-[26rem] relative">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full border-4 border-white bg-purple-600 shadow-xl timeline-dot pulse flex items-center justify-center">
+              <span class="text-white text-[10px] md:text-xs font-bold">90</span>
+            </div>
+            <article class="timeline-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mt-6">
+              <span class="decade-badge inline-block px-3 py-1.5 rounded-full text-white font-bold text-xs md:text-sm mb-3">1990s – Internet y software masivo</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🌐 Revolución de Internet</h3>
+              <p class="text-gray-200 mb-3">La Web conecta el mundo. Los lenguajes web transforman la programación hacia aplicaciones distribuidas.</p>
+              <ul class="text-gray-300 text-sm mb-3 space-y-1 list-disc list-inside">
+                <li>WWW: HTML, HTTP, URLs (T. Berners-Lee)</li>
+                <li>Windows 95: GUI masiva</li>
+                <li>Java: "write once, run anywhere"</li>
+                <li>JavaScript: interactividad en navegadores</li>
+                <li>Linux (1991): Unix libre y OSS</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-tag px-3 py-1 rounded-full text-purple-300 text-xs">WWW</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-purple-300 text-xs">Windows 95</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-purple-300 text-xs">Java</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-purple-300 text-xs">JavaScript</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-purple-300 text-xs">Linux</span>
+              </div>
+            </article>
+          </li>
+
+          <!-- 2000s -->
+          <li class="timeline-item snap-always min-w-[20rem] md:min-w-[24rem] lg:min-w-[26rem] relative">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full border-4 border-white bg-pink-600 shadow-xl timeline-dot flex items-center justify-center">
+              <span class="text-white text-[10px] md:text-xs font-bold">00</span>
+            </div>
+            <article class="timeline-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mt-6">
+              <span class="decade-badge inline-block px-3 py-1.5 rounded-full text-white font-bold text-xs md:text-sm mb-3">2000s – Conectividad global</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-3">📱 Nacimiento del Smartphone</h3>
+              <p class="text-gray-200 mb-3">La banda ancha conecta hogares. Los smartphones llevan la computación al bolsillo.</p>
+              <ul class="text-gray-300 text-sm mb-3 space-y-1 list-disc list-inside">
+                <li>Internet de alta velocidad</li>
+                <li>BlackBerry: email móvil</li>
+                <li>iPhone (2007): touchscreen</li>
+                <li>Android (2008): plataforma abierta</li>
+                <li>Web 2.0: redes sociales</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-tag px-3 py-1 rounded-full text-pink-300 text-xs">Banda Ancha</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-pink-300 text-xs">BlackBerry</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-pink-300 text-xs">iPhone</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-pink-300 text-xs">Android</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-pink-300 text-xs">Web 2.0</span>
+              </div>
+            </article>
+          </li>
+
+          <!-- 2010s -->
+          <li class="timeline-item snap-always min-w-[20rem] md:min-w-[24rem] lg:min-w-[26rem] relative">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full border-4 border-white bg-indigo-600 shadow-xl timeline-dot pulse flex items-center justify-center">
+              <span class="text-white text-[10px] md:text-xs font-bold">10</span>
+            </div>
+            <article class="timeline-card bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mt-6">
+              <span class="decade-badge inline-block px-3 py-1.5 rounded-full text-white font-bold text-xs md:text-sm mb-3">2010s – Era digital móvil</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-3">📲 Dominio de las Apps</h3>
+              <p class="text-gray-200 mb-3">Las apps móviles dominan la interacción. La nube centraliza servicios y datos.</p>
+              <ul class="text-gray-300 text-sm mb-3 space-y-1 list-disc list-inside">
+                <li>App Store / Google Play</li>
+                <li>Instagram, WhatsApp, Uber</li>
+                <li>AWS / Azure: IaaS</li>
+                <li>Responsive design</li>
+                <li>Git & GitHub</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-tag px-3 py-1 rounded-full text-indigo-300 text-xs">App Stores</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-indigo-300 text-xs">Cloud</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-indigo-300 text-xs">GitHub</span>
+              </div>
+            </article>
+          </li>
+
+          <!-- 2020s -->
+          <li class="timeline-item snap-always min-w-[20rem] md:min-w-[24rem] lg:min-w-[26rem] relative">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full border-4 border-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-xl timeline-dot pulse flex items-center justify-center">
+              <span class="text-white text-[10px] md:text-xs font-bold">20</span>
+            </div>
+            <article class="timeline-card bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/30 shadow-2xl mt-6">
+              <span class="decade-badge inline-block px-3 py-1.5 rounded-full text-white font-bold text-xs md:text-sm mb-3">2020s – Era digital avanzada</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🤖 Inteligencia Artificial</h3>
+              <p class="text-gray-200 mb-3">IA generativa, 5G e IoT conectan todo. Paradigmas multiplataforma y descentralización.</p>
+              <ul class="text-gray-300 text-sm mb-3 space-y-1 list-disc list-inside">
+                <li>ChatGPT, Copilot: asistencia a código</li>
+                <li>5G: baja latencia & edge</li>
+                <li>IoT: billones de dispositivos</li>
+                <li>React Native, Flutter</li>
+                <li>Blockchain y NFTs</li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-tag px-3 py-1 rounded-full text-blue-300 text-xs">ChatGPT</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-purple-300 text-xs">5G</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-green-300 text-xs">IoT</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-yellow-300 text-xs">Flutter</span>
+                <span class="tech-tag px-3 py-1 rounded-full text-pink-300 text-xs">Blockchain</span>
+              </div>
+            </article>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-12 pt-10 border-t border-white/20">
+      <div class="text-center">
+        <h4 class="text-lg md:text-xl font-semibold text-white mb-5">Desarrollado por:</h4>
+        <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-6">
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20 hover:bg-white/15 transition"> 
+            <p class="text-blue-300 font-medium">Miguel Ángel Piñeros Castillo</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20 hover:bg-white/15 transition"> 
+            <p class="text-purple-300 font-medium">Alejandro González Fernández</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20 hover:bg-white/15 transition"> 
+            <p class="text-pink-300 font-medium">Lucas Orlando Molina Parra</p>
+          </div>
+        </div>
+        <p class="text-gray-400 text-xs md:text-sm">© 2024 – Línea de Tiempo Interactiva de la Programación</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // ===== Animación por lotes =====
+    function animateTimeline(){
+      const items=document.querySelectorAll('.timeline-item');
+      items.forEach(i=>i.classList.remove('animate'));
+      items.forEach((i,idx)=>{setTimeout(()=>i.classList.add('animate'),idx*200)});
+    }
+
+    // Auto animar al cargar
+    window.addEventListener('load',()=>{setTimeout(animateTimeline,600)});
+
+    // Botón Animar
+    document.getElementById('animateBtn').addEventListener('click',animateTimeline);
+
+    // Observador de entrada para animación al aparecer
+    const observer=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('animate'); } });
+    },{threshold:.35});
+    document.querySelectorAll('.timeline-item').forEach(i=>observer.observe(i));
+
+    // Desplazamiento con botones
+    const rail=document.getElementById('rail');
+    const step=window.innerWidth<768? 280 : 420; // tamaño de salto
+    document.getElementById('btnLeft').addEventListener('click',()=>{
+      rail.scrollBy({left:-step,behavior:'smooth'});
+    });
+    document.getElementById('btnRight').addEventListener('click',()=>{
+      rail.scrollBy({left:step,behavior:'smooth'});
+    });
+
+    // Parallax sutil de la línea
+    window.addEventListener('scroll',()=>{
+      const line=document.querySelector('.timeline-line-gradient');
+      if(line){ line.style.transform=`translateY(${window.pageYOffset*0.06}px)`; }
+    });
+
+    // Interacción táctil: resaltar al tocar
+    document.querySelectorAll('.timeline-item').forEach(item=>{
+      item.addEventListener('click',()=>{
+        const dot=item.querySelector('.timeline-dot');
+        const card=item.querySelector('.timeline-card');
+        card.style.transform='translateY(-6px) scale(1.03)';
+        dot.style.transform='scale(1.25)';
+        setTimeout(()=>{card.style.transform='';dot.style.transform='';},260);
+      });
+    });
+  </script>
+</body>
+</html>
