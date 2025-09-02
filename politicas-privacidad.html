@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- =============================================================
+       POLÍTICAS DE PRIVACIDAD – Página estática optimizada
+       Sin sistema de "ventana dinámica". Contenido visible de una.
+       Mantiene topbar, drawer, footer y banner de consentimiento.
+       ============================================================= -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ing. Lucas Learning Hub · Políticas de Privacidad</title>
+  <meta name="description" content="Políticas de privacidad del sitio Ing. Lucas Learning Hub." />
+  <meta name="theme-color" content="#0d47a1" />
+
+  <style>
+    /* ===== Sistema (no tocar) ===== */
+    :root{ --blue-700:#0f3f8a; --blue-600:#1450a3; --blue-500:#1a63c7; --blue-300:#6aa8ff; --yellow-700:#b38100; --yellow-600:#d39e00; --yellow-500:#f0b800; --purple-700:#5e1cab; --purple-600:#6e28c4; --purple-500:#7e3bf0; --bg:#0e1116; --surface:#131823; --panel:#161d2b; --border:#263349; --soft:#0b0f16; --text:#e7eef7; --muted:#a9b6c7; --ok:#2ecc71; --warn:#ffb020; --danger:#ff5b6e; --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35); --container:1200px; --gap:16px; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif; background:linear-gradient(180deg,#0b1220,#0e1116); color:var(--text)}
+    a{color:var(--blue-300); text-decoration:none}
+    .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
+
+    /* Topbar & Drawer */
+    .topbar{position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(12,16,25,.7); border-bottom:1px solid var(--border)}
+    .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
+    .logo{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700; background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow)}
+    .brand{display:flex; flex-direction:column}
+    .brand strong{font-size:16px}
+    .brand span{font-size:12px; color:var(--muted)}
+    .burger{margin-left:auto; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.8); cursor:pointer}
+
+    .drawer{position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0f1624,#0b111c); border-left:1px solid var(--border); box-shadow: -20px 0 40px rgba(0,0,0,.35); transform:translateX(100%); transition:.25s ease transform}
+    .drawer.open{transform:translateX(0)}
+    .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
+    .drawer .bd{padding:12px 16px; display:grid; gap:16px}
+    .nav-group{border:1px solid var(--border); border-radius:12px; overflow:hidden}
+    .nav-group h4{margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)}
+    .nav{display:grid}
+    .nav a{padding:12px 12px; border-top:1px solid var(--border)}
+    .nav a:hover{background:rgba(26,99,199,.1)}
+
+    /* Ventana estática */
+    .workspace{padding:24px 0}
+    .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+    .window-titlebar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; background:linear-gradient(180deg,#1a2333,#151c29); border-bottom:1px solid var(--border)}
+    .title-left{display:flex; align-items:center; gap:10px}
+    .traffic{display:flex; gap:8px}
+    .dot{width:12px; height:12px; border-radius:50%}
+    .dot.close{background:#ff5f56}
+    .dot.min{background:#ffbd2e}
+    .dot.max{background:#27c93f}
+    .window-title{font-size:15px; font-weight:600}
+    .title-meta{font-size:12px; color:var(--muted)}
+    .window-body{display:grid; grid-template-columns:1fr; gap:0}
+    .pane{padding:18px; min-height:420px; background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(12,16,24,.95))}
+    .pane h2{margin:0 0 8px}
+    .embed{border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--soft)}
+    .window-status{display:flex; justify-content:space-between; gap:10px; align-items:center; padding:10px 12px; border-top:1px solid var(--border); background:linear-gradient(180deg,#121827,#0e1421); font-size:12px; color:var(--muted)}
+
+    /* Tablas/Código */
+    pre,code{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace}
+    pre{background:#0b0f16; border:1px solid var(--border); padding:12px; border-radius:10px; overflow:auto}
+    table{width:100%; border-collapse:collapse; font-size:14px}
+    th,td{border:1px solid var(--border); padding:8px 10px; text-align:left}
+    thead th{background:#151d2a}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border); color:var(--muted); padding:22px 0; font-size:13px; background:linear-gradient(180deg,#0f1624,#0c121e)}
+    .foot{display:grid; gap:12px}
+    @media(min-width:860px){.foot{grid-template-columns:1fr auto}}
+    .socials{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8)}
+
+    /* ===== Banner de consentimiento ===== */
+    .consent{position:fixed; left:16px; right:16px; bottom:16px; z-index:90; display:none;
+      border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow);
+      background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(16,22,34,.96));}
+    .consent .row{display:flex; gap:16px; align-items:flex-start; padding:14px}
+    .consent p{margin:0; color:var(--muted); font-size:14px}
+    .consent .actions{margin-left:auto; display:flex; gap:8px}
+    .consent .actions .btn{padding:8px 12px}
+  </style>
+</head>
+
+<body>
+  <!-- ===== Topbar ===== -->
+  <div class="topbar">
+    <div class="wrap row">
+      <div class="logo" aria-hidden="true">IL</div>
+      <div class="brand">
+        <strong>Ing. Lucas Learning Hub</strong>
+        <span>Políticas de Privacidad</span>
+      </div>
+      <button class="burger" id="openDrawer" title="Abrir menú" aria-label="Abrir menú">☰</button>
+    </div>
+  </div>
+
+  <!-- ===== Drawer ===== -->
+  <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
+    <div class="hd">
+      <strong>Navegación</strong>
+      <button class="btn" id="closeDrawer" aria-label="Cerrar">Cerrar ✕</button>
+    </div>
+    <div class="bd">
+      <div class="nav-group">
+        <h4>Páginas</h4>
+        <nav class="nav">
+          <a href="index.html">Inicio / Presentación</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="politicas-privacidad.html" aria-current="page">Políticas de Privacidad</a>
+        </nav>
+      </div>
+      <div class="nav-group">
+        <h4>Ventanas / Proyectos</h4>
+        <nav class="nav">
+          <a href="proyectos/pseint-promedio.html">PSeInt – Promedio</a>
+          <a href="proyectos/pseint-contador.html">PSeInt – Contador</a>
+          <a href="proyectos/servidor-ubuntu.html">Servidor Ubuntu</a>
+          <a href="proyectos/excel-macros.html">Excel – Macros</a>
+        </nav>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== Contenido (ventana estática) ===== -->
+  <div class="wrap workspace">
+    <section class="window" role="region" aria-label="Políticas de Privacidad">
+      <div class="window-titlebar">
+        <div class="title-left">
+          <div class="traffic" aria-hidden="true">
+            <span class="dot close"></span>
+            <span class="dot min"></span>
+            <span class="dot max"></span>
+          </div>
+          <div>
+            <div class="window-title">Políticas de Privacidad</div>
+            <div class="title-meta">Páginas > Legal · 2025-09-01 · Estado: Vigente</div>
+          </div>
+        </div>
+        <div class="title-right"></div>
+      </div>
+
+      <div class="window-body">
+        <section class="pane">
+          <h2>Políticas de Privacidad y Seguridad de la Información</h2>
+          <div class="embed" style="padding:16px">
+            <article class="policy">
+              <h3>1) Responsable del tratamiento</h3>
+              <p><strong>Ing. Lucas Learning Hub</strong> (sitio personal de aprendizaje y portafolio). Contacto para privacidad: <a href="mailto:politicasdeprivacidad@inglucas.com.co">politicasdeprivacidad@inglucas.com.co</a>.</p>
+
+              <h3>2) Datos que recolecto</h3>
+              <ul>
+                <li><strong>Formulario de contacto</strong>: nombre, correo y mensaje.</li>
+                <li><strong>Registros técnicos</strong>: IP, agente de usuario, páginas y tiempos (logs del servidor) para seguridad y diagnóstico.</li>
+                <li><strong>Cookies</strong>: solo las necesarias para el funcionamiento. Las analíticas son <em>opcionales</em> y requieren tu consentimiento explícito.</li>
+              </ul>
+
+              <h3>3) Finalidades</h3>
+              <ul>
+                <li>Responder consultas y dar seguimiento técnico.</li>
+                <li>Mejorar el sitio (rendimiento, accesibilidad, seguridad).</li>
+                <li>Prevenir abuso (ataques, spam) y mantener la integridad del servicio.</li>
+              </ul>
+
+              <h3>4) Bases legales</h3>
+              <ul>
+                <li><strong>Consentimiento</strong>: cookies analíticas y respuestas por correo.</li>
+                <li><strong>Interés legítimo</strong>: seguridad, métricas mínimas y mantenimiento.</li>
+                <li><strong>Relación precontractual/contractual</strong>: cuando solicitas soporte o colaboración.</li>
+              </ul>
+
+              <h3>5) Conservación</h3>
+              <ul>
+                <li>Mensajes: hasta 12 meses (o antes si pides eliminación).</li>
+                <li>Logs técnicos: 30–180 días, salvo incidentes de seguridad.</li>
+                <li>Cookies: según su vida útil (ver sección Cookies).</li>
+              </ul>
+
+              <h3>6) Destinatarios / Encargados</h3>
+              <p>No vendo datos. Puedo usar proveedores para hosting/analítica. Ej.: <em>GitHub Pages / Vercel / Netlify</em>, <em>Google Analytics (modo básico/anonimizado)</em>. Tratan datos por mi cuenta y bajo sus políticas. (Reemplaza con tus proveedores reales).</p>
+
+              <h3>7) Cookies</h3>
+              <p>
+                <strong>Necesarias</strong>: permiten que el sitio funcione (no requieren consentimiento).<br />
+                <strong>Analíticas (opcionales)</strong>: miden visitas y rendimiento. Solo se activan si ACEPTAS en el banner. Puedes cambiar tu decisión borrando cookies y recargando.
+              </p>
+
+              <h3>8) Seguridad de la información</h3>
+              <ul>
+                <li>HTTPS activo y revisión de encabezados de seguridad.</li>
+                <li>Principio de <em>mínimos privilegios</em> en servidores/servicios.</li>
+                <li>Actualización periódica de dependencias y monitoreo básico de logs.</li>
+                <li>Backups puntuales de contenido estático.</li>
+              </ul>
+              <p>Si detecto un incidente relevante, intentaré notificar y tomar medidas de mitigación. Para reportar cualquier problema de seguridad, contáctame: <a href="mailto:politicasdeprivacidad@inglucas.com.co">politicasdeprivacidad@inglucas.com.co</a>.</p>
+
+              <h3>9) Tus derechos</h3>
+              <ul>
+                <li>Acceso, rectificación y eliminación.</li>
+                <li>Oposición o limitación del tratamiento.</li>
+                <li>Portabilidad cuando aplique.</li>
+                <li>Retiro del consentimiento.</li>
+              </ul>
+
+              <h3>10) Menores</h3>
+              <p>Sitio orientado a público general; no recolecto datos de menores de forma intencional.</p>
+
+              <h3>11) Transferencias internacionales</h3>
+              <p>Los proveedores podrían estar fuera de tu país. Buscaré garantías adecuadas. (Lista aquí tus proveedores reales).</p>
+
+              <h3>12) Cambios a esta política</h3>
+              <p>Publicaré aquí cualquier actualización relevante.</p>
+
+              <h3>13) Contacto y quejas</h3>
+              <p>Quejas, dudas o comentarios: <a href="mailto:politicasdeprivacidad@inglucas.com.co">politicasdeprivacidad@inglucas.com.co</a>. Puedes acudir a la autoridad de protección de datos de tu país si no quedas conforme.</p>
+
+              <p style="margin-top:12px; font-size:13px; color:var(--muted)"><em>Última actualización: 2025-09-01</em></p>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <div class="window-status">
+        <div>Ruta: Páginas > Legal</div>
+        <div>Vigente</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <div class="socials">
+          <a class="chip" href="https://facebook.com/IngLucas" target="_blank" rel="noopener">Facebook</a>
+          <a class="chip" href="https://instagram.com/IngLucas" target="_blank" rel="noopener">Instagram</a>
+          <a class="chip" href="https://github.com/IngLucas" target="_blank" rel="noopener">GitHub</a>
+          <a class="chip" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="chip" href="mailto:contacto@inglucas.com.co">Email</a>
+          <a class="chip" href="#" id="manageConsent">Preferencias de cookies</a>
+        </div>
+        <div style="margin-top:10px">
+          <a href="politicas-privacidad.html" aria-current="page">Políticas de Privacidad</a>
+        </div>
+      </div>
+      <div>
+        © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Banner de consentimiento ===== -->
+  <div class="consent" id="consent">
+    <div class="row">
+      <p>
+        Uso <strong>cookies necesarias</strong> para que el sitio funcione y, si aceptas, cookies <strong>analíticas</strong> para medir visitas.
+        Lee la <a href="politicas-privacidad.html" target="_self">Política de Privacidad</a>.
+      </p>
+      <div class="actions">
+        <button class="btn" id="deny">Denegar</button>
+        <button class="btn primary" id="allow">Permitir</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Año en footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Drawer
+    const drawer = document.getElementById('drawer');
+    const openBtn = document.getElementById('openDrawer');
+    const closeBtn = document.getElementById('closeDrawer');
+    function openDrawer(){drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false');}
+    function closeDrawer(){drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true');}
+    openBtn.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    drawer.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
+
+    // ===== Banner de consentimiento (básico) =====
+    const CONSENT_KEY = 'lucasConsent'; // values: 'granted' | 'denied'
+    function getConsent(){ try { return localStorage.getItem(CONSENT_KEY); } catch(e){ return null; } }
+    function setConsent(v){ try { localStorage.setItem(CONSENT_KEY, v); } catch(e){} }
+    function enableAnalytics(){
+      // [Opcional] Inyecta tu script de analítica si consent=granted.
+      // const s=document.createElement('script'); s.src='https://.../analytics.js'; document.head.appendChild(s);
+    }
+    function initConsentBanner(){
+      const banner = document.getElementById('consent');
+      const allow = document.getElementById('allow');
+      const deny  = document.getElementById('deny');
+      const v = getConsent();
+      if(!v){ banner.style.display='block'; }
+      else if(v==='granted'){ enableAnalytics(); }
+      allow?.addEventListener('click', ()=>{ setConsent('granted'); banner.style.display='none'; enableAnalytics(); });
+      deny?.addEventListener('click',  ()=>{ setConsent('denied');  banner.style.display='none'; });
+      // botón para reabrir banner
+      document.getElementById('manageConsent')?.addEventListener('click',(e)=>{
+        e.preventDefault();
+        try { localStorage.removeItem(CONSENT_KEY); } catch(e){}
+        banner.style.display='block';
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{ initConsentBanner(); });
+  </script>
+</body>
+</html>
