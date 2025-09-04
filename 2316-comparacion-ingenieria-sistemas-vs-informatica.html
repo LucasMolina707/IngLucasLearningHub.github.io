@@ -196,10 +196,8 @@
         <section class="pane">
           <!-- =====================================================
                [AÑADIDO / ADDED] – CONTENIDO ENCAPSULADO 2316 (ES/EN)
-               ES: Implementación del proyecto 2316 con estructura académica,
-                   navegabilidad vertical (PC) y horizontal (móvil/táctil) dentro de .pane.
-               EN: Project 2316 with academic structure, vertical (desktop)
-                   and horizontal (mobile/touch) navigation inside .pane.
+               ES: Implementación del proyecto 2316 con estructura académica.
+               EN: Project 2316 with an academic structure.
                ===================================================== -->
 
           <article class="cmp-2316" aria-labelledby="cmp-ttl">
@@ -210,6 +208,8 @@
               <a href="#cmp-desarrollo" class="cmp-2316__pill">Desarrollo</a>
               <a href="#cmp-conclusiones" class="cmp-2316__pill">Conclusiones</a>
               <a href="#cmp-referencias" class="cmp-2316__pill">Referencias</a>
+              <!-- [AÑADIDO/ADDED] Enlace directo al video -->
+              <a href="#cmp-video" class="cmp-2316__pill">Video</a>
               <div class="cmp-2316__spacer"></div>
               <!-- Botones de desplazamiento horizontal en móvil / Horizontal scroll buttons on mobile -->
               <button class="cmp-2316__navbtn" id="cmpPrev" title="Anterior" aria-label="Anterior">◀</button>
@@ -223,9 +223,7 @@
               <p class="cmp-2316__meta">Apertura: 11/08/2025 · Cierre: 03/09/2025 · Evidencia: cuadro comparativo + breve desarrollo.</p>
             </header>
 
-            <!-- Contenedor con comportamiento adaptativo:
-                 - PC: flujo vertical
-                 - Móvil/táctil: carril horizontal con snap -->
+            <!-- Contenedor adaptativo: vertical en PC, carril horizontal en móvil -->
             <div class="cmp-2316__content" id="cmpContent" role="region" aria-label="Contenido deslizable 2316">
               <!-- ==================== INTRODUCCIÓN ==================== -->
               <section class="cmp-2316__slide" id="cmp-intro" aria-labelledby="cmp-intro-h">
@@ -343,7 +341,7 @@
               <!-- ==================== REFERENCIAS ==================== -->
               <section class="cmp-2316__slide" id="cmp-referencias" aria-labelledby="cmp-ref-h">
                 <div class="cmp-2316__hd">
-                  <h2 id="cmp-ref-h">Referencias (APA breve)</h2>
+                  <h2 id="cmp-ref-h">Referencias</h2>
                 </div>
                 <div class="cmp-2316__card">
                   <ul class="cmp-2316__refs">
@@ -351,6 +349,25 @@
                     <li>Ritchie, D. M., & Thompson, K. (1974). The UNIX time-sharing system. <em>Communications of the ACM</em>, 17(7), 365–375.</li>
                     <li>Video de clase: “Ingeniería de Sistemas vs Ingeniería Informática: ¿Cuál es la diferencia?” (YouTube).</li>
                   </ul>
+                </div>
+              </section>
+
+              <!-- ==================== VIDEO (debajo de Referencias) ==================== -->
+              <!-- [AÑADIDO/ADDED] Video incrustado debajo de las referencias (ES/EN) -->
+              <section class="cmp-2316__slide" id="cmp-video" aria-labelledby="cmp-video-h">
+                <div class="cmp-2316__hd">
+                  <h2 id="cmp-video-h">Video de referencia</h2>
+                </div>
+                <div class="cmp-2316__card">
+                  <div class="cmp-2316__video-frame" aria-label="Video: Ingeniería de Sistemas vs Ingeniería Informática">
+                    <iframe
+                      src="https://www.youtube.com/embed/7aGah7iKGhc?si=TLwgxnv0SwdGzX_G"
+                      title="YouTube: Ingeniería de Sistemas vs Ingeniería Informática"
+                      loading="lazy"
+                      allowfullscreen
+                      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                  </div>
+                  <p class="cmp-2316__muted" style="margin-top:8px">https://youtu.be/7aGah7iKGhc?si=TLwgxnv0SwdGzX_G</p>
                 </div>
               </section>
             </div> <!-- /cmp-2316__content -->
@@ -398,6 +415,7 @@
               display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
               border:1px solid var(--border); color:var(--muted); background:rgba(18,23,31,.12)
             }
+
             /* Tabla */
             .cmp-2316__table-wrap{overflow:auto; border:1px solid var(--border); border-radius:var(--radius)}
             .cmp-2316__caption{caption-side:top; text-align:left; padding:12px; color:var(--muted)}
@@ -407,10 +425,16 @@
             .cmp-2316__table-wrap tbody tr:hover{background:rgba(26,99,199,.06)}
             .cmp-2316__refs{margin:0 0 0 18px}
 
-            /* ===== MODO MÓVIL/TÁCTIL: carril horizontal con snap =====
-               ES: En pantallas pequeñas, las secciones se disponen en un carril
-               horizontal con desplazamiento suave y snap central.
-               EN: On small screens, sections become a horizontal snap carousel. */
+            /* Marco de video (look consistente con el Hub) */
+            .cmp-2316__video-frame{
+              position:relative; padding-bottom:56.25%; height:0; overflow:hidden;
+              border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--border)
+            }
+            .cmp-2316__video-frame iframe{
+              position:absolute; inset:0; width:100%; height:100%; border:0
+            }
+
+            /* ===== MODO MÓVIL/TÁCTIL: carril horizontal con snap ===== */
             @media (max-width: 860px){
               .cmp-2316__content{
                 display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px
@@ -432,12 +456,12 @@
               const next = document.getElementById('cmpNext');
               const isTouch = matchMedia('(max-width: 860px)').matches;
 
-              // Botones ◀ ▶ solo útiles en modo horizontal
+              // Botones ◀ ▶ (modo horizontal)
               function stepWidth(){ return rail?.clientWidth || 0; }
               prev?.addEventListener('click', ()=>{ if(!rail) return; rail.scrollBy({left:-stepWidth(), behavior:'smooth'}); });
               next?.addEventListener('click', ()=>{ if(!rail) return; rail.scrollBy({left: stepWidth(), behavior:'smooth'}); });
 
-              // Resaltar enlace activo al hacer scroll (desktop y móvil)
+              // Resaltar enlace activo al hacer scroll
               const links = Array.from(document.querySelectorAll('.cmp-2316__subnav .cmp-2316__pill'));
               const sections = links.map(a => document.querySelector(a.getAttribute('href')));
               const io = new IntersectionObserver(entries=>{
@@ -489,7 +513,7 @@
       <div>
         © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub
         <div id="custom-text" style="margin-top:8px; font-size:0.92em; opacity:.85;">
-          <em>— [TOCAR/EDIT] Mensaje breve de pie de página / Short footer note.</em>
+          <em>Pagina 2316 · Sistemas vs Informática.</em>
         </div>
       </div>
     </div>
