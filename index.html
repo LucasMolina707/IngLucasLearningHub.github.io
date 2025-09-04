@@ -2,49 +2,75 @@
 <html lang="es">
 <head>
   <!-- =============================================================
-       INDEX – PORTADA DEL SITIO (usa el mismo sistema visual)
-       Convenciones en comentarios:
-       [TOCAR]    = Sección segura para editar.
-       [AVANZADO] = Opcional; si sabes lo que haces.
-       [NO TOCAR] = Infraestructura; no la modifiques.
+       PLANTILLA BASE – HEADER + DRAWER + FOOTER + COOKIES
+       [ES] Solo lo esencial. Comportamiento adaptado a PC y móvil.
+       [EN] Essentials only. Behavior adapted for desktop and mobile.
        ============================================================= -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ing. Lucas Learning Hub · Inicio</title>
-  <meta name="description" content="Portafolio y bitácora de proyectos de Lucas Molina – Ingeniería Informática (AUNAR)." />
+  <title>Ing. Lucas Learning Hub · Plantilla</title>
+  <meta name="description" content="Plantilla base reutilizable con menú lateral y banner de cookies." />
   <meta name="theme-color" content="#0d47a1" />
 
   <style>
     /* =============================================================
-       [NO TOCAR] – SISTEMA DE DISEÑO (colores, tipografía, layout)
+       [NO TOCAR / DO NOT TOUCH] – SISTEMA DE DISEÑO (ES/EN)
+       Mantiene uniformidad del sitio / Keeps the site consistent
        ============================================================= */
     :root{
       --blue-700:#0f3f8a; --blue-600:#1450a3; --blue-500:#1a63c7; --blue-300:#6aa8ff;
-      --yellow-700:#b38100; --yellow-600:#d39e00; --yellow-500:#f0b800;
-      --purple-700:#5e1cab; --purple-600:#6e28c4; --purple-500:#7e3bf0;
-      --bg:#0e1116; --surface:#131823; --panel:#161d2b; --border:#263349; --soft:#0b0f16;
-      --text:#e7eef7; --muted:#a9b6c7; --ok:#2ecc71; --warn:#ffb020; --danger:#ff5b6e;
+      --purple-600:#6e28c4; --bg:#0e1116; --surface:#131823; --panel:#161d2b;
+      --border:#263349; --soft:#0b0f16; --text:#e7eef7; --muted:#a9b6c7;
       --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35);
       --container:1200px; --gap:16px;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif; background:linear-gradient(180deg,#0b1220,#0e1116); color:var(--text)}
+    body{
+      margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background:linear-gradient(180deg,#0b1220,#0e1116); color:var(--text)
+    }
     a{color:var(--blue-300); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
-    /* ===== TOPBAR ===== */
-    .topbar{position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(12,16,25,.7); border-bottom:1px solid var(--border)}
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – TOPBAR + BOTÓN (ES/EN)
+       ============================================================= */
+    .topbar{
+      position:sticky; top:0; z-index:60;
+      backdrop-filter:saturate(1.1) blur(8px);
+      background:rgba(12,16,25,.7);
+      border-bottom:1px solid var(--border)
+    }
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
-    .logo{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700; background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow)}
+    .logo{
+      width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700;
+      background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow)
+    }
     .brand{display:flex; flex-direction:column}
     .brand strong{font-size:16px}
     .brand span{font-size:12px; color:var(--muted)}
-    .burger{margin-left:auto; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.8); cursor:pointer}
+    .burger{
+      margin-left:auto; display:inline-flex; align-items:center; justify-content:center;
+      min-width:46px; height:40px; padding:0 10px; gap:8px;
+      border-radius:10px; border:2px solid var(--blue-500);
+      background:rgba(18,23,31,.9); color:var(--text);
+      cursor:pointer; transition:transform .15s ease, background .15s ease
+    }
+    .burger:hover{transform:scale(1.04); background:rgba(26,99,199,.12)}
 
-    /* ===== DRAWER (menú) ===== */
-    .drawer{position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0f1624,#0b111c); border-left:1px solid var(--border); box-shadow: -20px 0 40px rgba(0,0,0,.35); transform:translateX(100%); transition:.25s ease transform}
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – DRAWER / MENÚ LATERAL (ES/EN)
+       + contraste para que se identifique fácil en la UI
+       + stronger contrast for easier visual identification
+       ============================================================= */
+    .drawer{
+      position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw;
+      background:linear-gradient(180deg,#0e223a,#0a1729);
+      border-left:2px solid var(--blue-500);
+      box-shadow:-20px 0 40px rgba(0,0,0,.45);
+      transform:translateX(100%); transition:.25s ease transform, background-color .25s ease
+    }
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
     .drawer .bd{padding:12px 16px; display:grid; gap:16px}
@@ -52,64 +78,79 @@
     .nav-group h4{margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)}
     .nav{display:grid}
     .nav a{padding:12px 12px; border-top:1px solid var(--border)}
-    .nav a:hover{background:rgba(26,99,199,.1)}
+    .nav a:hover{background:rgba(26,99,199,.18)}
 
-    /* ===== HERO ===== */
-    .hero{padding:48px 0 28px; background:linear-gradient(180deg,rgba(20,26,38,.85),rgba(12,16,24,.85))}
-    .hero .grid{display:grid; gap:20px}
-    @media(min-width:860px){.hero .grid{grid-template-columns:1.2fr .8fr; align-items:center}}
-    .hero h1{margin:0 0 6px; font-size:36px}
-    .hero p.lead{margin:0; color:var(--muted); font-size:16px}
-    .hero .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8)}
-    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:var(--text); cursor:pointer}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
-    .btn.accent{background:linear-gradient(180deg,var(--yellow-600),var(--yellow-500)); color:#1a1400; border-color:transparent}
+    /* =============================================================
+       [TOCAR / EDIT] – ESPACIO DE CONTENIDO (ES/EN)
+       Inserta tu contenido aquí / Put your page content here
+       ============================================================= */
+    .workspace{padding:24px 0}
+    .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+    .window-titlebar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; background:linear-gradient(180deg,#1a2333,#151c29); border-bottom:1px solid var(--border)}
+    .title-left{display:flex; align-items:center; gap:10px}
+    .traffic{display:flex; gap:8px}
+    .dot{width:12px; height:12px; border-radius:50%}
+    .dot.close{background:#ff5f56}
+    .dot.min{background:#ffbd2e}
+    .dot.max{background:#27c93f}
+    .window-title{font-size:15px; font-weight:600}
+    .title-meta{font-size:12px; color:var(--muted)}
+    .window-body{display:grid; grid-template-columns:1fr; gap:0}
+    .pane{padding:18px; min-height:420px; background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(12,16,24,.95))}
 
-    /* ===== SECCIONES ===== */
-    section{padding:28px 0}
-    .section-hd{display:flex; align-items:end; justify-content:space-between; gap:10px; margin-bottom:14px}
-    .cards{display:grid; gap:16px}
-    @media(min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}}
-    .card{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px; display:grid; gap:10px}
-    .card h3{margin:0}
-    .tagrow{display:flex; gap:8px; flex-wrap:wrap}
-    .tag{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted)}
-
-    /* ===== TIMELINE SIMPLE (ruta de aprendizaje) ===== */
-    .timeline{display:grid; gap:14px}
-    .tl-item{display:grid; gap:6px; border-left:2px dashed var(--border); padding-left:12px}
-    .tl-item strong{font-size:14px}
-
-    /* ===== BLOQUE COLABORACIÓN ===== */
-    .collab{border:1px dashed var(--border); background:rgba(12,18,28,.6); border-radius:var(--radius); padding:16px; color:var(--muted)}
-
-    /* ===== FOOTER ===== */
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – FOOTER (ES/EN)
+       ============================================================= */
     footer{border-top:1px solid var(--border); color:var(--muted); padding:22px 0; font-size:13px; background:linear-gradient(180deg,#0f1624,#0c121e)}
     .foot{display:grid; gap:12px}
     @media(min-width:860px){.foot{grid-template-columns:1fr auto}}
     .socials{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8)}
+
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – BANNER COOKIES (ES/EN)
+       Armonioso, legible (tarjeta clara, texto oscuro) / Harmonious, legible
+       ============================================================= */
+    .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
+    .consent .card{
+      max-width:960px; margin:0 auto; background:#ffffff; color:#111111;
+      border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.18);
+      padding:16px 18px; border:1px solid rgba(0,0,0,.08);
+    }
+    .consent .row{ display:flex; gap:16px; align-items:flex-start; }
+    .consent p{ margin:0; line-height:1.5 }
+    .consent .actions{ margin-left:auto; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.08); color:#0e1116; cursor:pointer}
+    .btn.primary{ background:var(--blue-500); border-color:transparent; color:white; }
+    .btn:hover{ filter:brightness(1.05); }
+    @media (max-width:720px){
+      .consent{ inset:auto 8px 8px 8px; }
+      .consent .row{ flex-direction:column; }
+      .consent .actions{ margin-left:0 }
+    }
   </style>
 </head>
+
 <body>
   <!-- =============================================================
-       TOPBAR – Cabecera fija
+       [NO TOCAR / DO NOT TOUCH] – TOPBAR (ES/EN)
        ============================================================= -->
   <div class="topbar">
     <div class="wrap row">
       <div class="logo" aria-hidden="true">IL</div>
       <div class="brand">
         <strong>Ing. Lucas Learning Hub</strong>
-        <span>Portafolio · Proyectos · Bitácora</span>
+        <span>Bienvenidos</span>
       </div>
+      <!-- [ES] El texto del botón cambia según dispositivo en JS
+           [EN] Button label switches per device in JS -->
       <button class="burger" id="openDrawer" title="Abrir menú" aria-label="Abrir menú">☰</button>
     </div>
   </div>
 
   <!-- =============================================================
-       DRAWER – Menú lateral
+       [NO TOCAR / DO NOT TOUCH] – DRAWER (ES/EN)
+       Edita solo los enlaces / Edit links only
        ============================================================= -->
   <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
     <div class="hd">
@@ -120,7 +161,7 @@
       <div class="nav-group">
         <h4>Páginas</h4>
         <nav class="nav">
-          <a href="index.html" aria-current="page">Inicio / Presentación</a>
+          <a href="index.html">Inicio / Presentación</a>
           <a href="contacto.html">Contacto</a>
           <a href="politicas-privacidad.html">Políticas de Privacidad</a>
         </nav>
@@ -128,265 +169,410 @@
       <div class="nav-group">
         <h4>Ventanas / Proyectos</h4>
         <nav class="nav">
-          <a href="2313LíneaDeTiempo.html">2313LíneaDeTiempo.html</a>
+          <a href="2313LíneaDeTiempo.html">2313 · Línea de Tiempo</a>
           <a href="proyectos/pseint-contador.html">PSeInt – Contador</a>
           <a href="proyectos/servidor-ubuntu.html">Servidor Ubuntu</a>
           <a href="proyectos/excel-macros.html">Excel – Macros</a>
-          <a href="#" aria-current="page">2316 · Sistemas vs Informática</a>
+          <a href="2316-comparacion-ingenieria-sistemas-vs-informatica.html">2316 · Sistemas vs Informática</a>
         </nav>
       </div>
     </div>
   </aside>
 
   <!-- =============================================================
-       HERO – Presentación breve
+       [TOCAR / EDIT] – CONTENIDO PRINCIPAL (ES/EN)
        ============================================================= -->
-  <header class="hero">
-    <div class="wrap grid">
-      <div>
-        <h1>Hola, soy <strong>Lucas Molina</strong>.</h1>
-        <p class="lead">“Aprendiendo a ser ingeniero, un proyecto a la vez.”</p>
-        <div class="chips" aria-label="Público principal">
-          <span class="chip">Profesores AUNAR</span>
-          <span class="chip">Compañeros</span>
-          <span class="chip">Clientes potenciales</span>
-          <span class="chip">Comunidad tech</span>
-        </div>
-        <div class="cta">
-          <a class="btn primary" href="#proyectos">Ver proyectos destacados</a>
-          <a class="btn accent" href="#contacto">Portafolio / Contacto</a>
-        </div>
-      </div>
-      <div>
-        <!-- [AVANZADO] Puedes reemplazar por una imagen o animación -->
-        <div class="card" role="img" aria-label="Ilustración de aprendizaje continuo">
-          <h3>Bitácora en construcción</h3>
-          <p style="color:var(--muted)">Este sitio compila prácticas, retos y soluciones reales. Cada enlace abre una “ventana” con estructura uniforme para que sea fácil evaluar y mejorar.</p>
-          <div class="tagrow">
-            <span class="tag">HTML/CSS</span>
-            <span class="tag">Algoritmia</span>
-            <span class="tag">Linux/Servers</span>
-            <span class="tag">Excel/VBA</span>
+  <div class="wrap workspace">
+    <section class="window" role="region" aria-label="Contenido principal">
+      <div class="window-titlebar">
+        <div class="title-left">
+          <div class="traffic" aria-hidden="true">
+            <span class="dot close"></span>
+            <span class="dot min"></span>
+            <span class="dot max"></span>
+          </div>
+          <div>
+            <!-- [AÑADIDO/EDITADO] Título contextual de la ventana -->
+            <div class="window-title">Portada del sitio · Inicio</div>
+            <div class="title-meta">Ruta > Inicio · Activo</div>
           </div>
         </div>
+        <div class="title-right"></div>
       </div>
-    </div>
-  </header>
+
+      <div class="window-body">
+        <section class="pane">
+          <!-- =====================================================
+               [AÑADIDO / ADDED] – “INDEX / PORTADA” ENCAPSULADO
+               ES: Implementación de tu Index dentro de la plantilla,
+                   con estructura académica + subnavegación accesible.
+               EN: Your Index embedded in the base template with
+                   academic structure + accessible local sub-navigation.
+               ===================================================== -->
+
+          <article class="idx" aria-labelledby="idx-ttl">
+            <!-- Subnavegación local -->
+            <nav class="idx__subnav" aria-label="Secciones de la portada">
+              <a class="idx__pill" href="#idx-intro">Introducción</a>
+              <a class="idx__pill" href="#idx-desarrollo">Desarrollo</a>
+              <a class="idx__pill" href="#idx-conclusiones">Conclusiones</a>
+              <a class="idx__pill" href="#idx-referencias">Referencias </a>
+              <span class="idx__spacer"></span>
+              <button class="idx__navbtn" id="idxPrev" title="Anterior" aria-label="Anterior">◀</button>
+              <button class="idx__navbtn" id="idxNext" title="Siguiente" aria-label="Siguiente">▶</button>
+            </nav>
+
+            <!-- Hero / encabezado -->
+            <header class="idx__hero">
+              <h1 id="idx-ttl">Ing. Lucas Learning Hub · Portada</h1>
+              <p class="idx__lead">Portafolio y bitácora de proyectos. Esta portada integra <em>presentación</em>, <em>proyectos</em> y <em>contacto</em> dentro de una misma “ventana” uniforme.</p>
+            </header>
+
+            <div class="idx__content" id="idxContent" role="region" aria-label="Contenido portada">
+              <!-- =================== INTRODUCCIÓN =================== -->
+              <section class="idx__section" id="idx-intro" aria-labelledby="idx-intro-h">
+                <div class="idx__hd">
+                  <h2 id="idx-intro-h">Introducción</h2>
+                </div>
+                <div class="idx__card">
+                  <p>Este documento funciona como <strong>Index/Portada</strong> del sitio. Presenta el enfoque del autor, las áreas de interés y el mapa de navegación a “ventanas” temáticas. El propósito académico es <em>organizar la evidencia</em> de aprendizaje y <em>comunicar</em> soluciones de manera clara y evaluable.</p>
+                  <p class="idx__muted">Metas: visibilidad de proyectos, coherencia visual, accesibilidad básica y rutas de contacto.</p>
+                </div>
+              </section>
+
+              <!-- ==================== DESARROLLO ==================== -->
+              <section class="idx__section" id="idx-desarrollo" aria-labelledby="idx-desarrollo-h">
+                <div class="idx__hd">
+                  <h2 id="idx-desarrollo-h">Hola, soy Lucas Molina.</h2>
+                </div>
+
+                <!-- Bloque saludo + CTA (equivalente al HERO del fragmento) -->
+                <div class="idx__card idx__card--grid">
+                  <div>
+                    <h3 class="idx__h3">“Aprendiendo a ser ingeniero, <strong>un proyecto a la vez.”</strong>.</h3>
+                    <p class="idx__muted">“Para ustedes”</p>
+                    <div class="idx__chips" aria-label="Público principal">
+                      <span class="idx__chip">Profesores AUNAR</span>
+                      <span class="idx__chip">Compañeros</span>
+                      <span class="idx__chip">Clientes potenciales</span>
+                      <span class="idx__chip">Comunidad tech</span>
+                    </div>
+                    <div class="idx__cta">
+                      <a class="idx__btn idx__btn--primary" href="#idx-proyectos">Ver proyectos destacados</a>
+                      <a class="idx__btn idx__btn--accent" href="#idx-contacto">Portafolio / Contacto</a>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="idx__cardInner" role="img" aria-label="Ilustración de aprendizaje continuo">
+                      <h3 class="idx__h3">Bitácora en construcción</h3>
+                      <p class="idx__muted">Este sitio compila prácticas, retos y soluciones reales. Cada enlace abre una “ventana” con estructura uniforme para facilitar evaluación y mejora.</p>
+                      <div class="idx__tagrow">
+                        <span class="idx__tag">HTML/CSS</span>
+                        <span class="idx__tag">Algoritmia</span>
+                        <span class="idx__tag">Linux/Servers</span>
+                        <span class="idx__tag">Excel/VBA</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SOBRE MÍ -->
+                <div class="idx__card" id="idx-sobre">
+                  <h3 class="idx__h3">Sobre mí</h3>
+                  <p>Soy estudiante de <strong>Ingeniería Informática</strong> (AUNAR). Uso este espacio para documentar mi proceso, compartir código y mostrar evidencias de aprendizaje. Me interesa el desarrollo web, automatización con Excel/VBA y administración de servidores Linux.</p>
+                </div>
+
+                <!-- PROYECTOS DESTACADOS -->
+                <div class="idx__card" id="idx-proyectos">
+                  <div class="idx__rowhd">
+                    <h3 class="idx__h3">Proyectos destacados</h3>
+                    <a class="idx__link" href="#idx-contacto">¿Comentarios? Escríbeme →</a>
+                  </div>
+                  <div class="idx__cards">
+                    <article class="idx__mini">
+                      <h4 class="idx__h4">PSeInt · Promedio de notas</h4>
+                      <p>Algoritmo parametrizable + explicación paso a paso.</p>
+                      <div class="idx__tagrow"><span class="idx__tag">Algoritmia</span><span class="idx__tag">PSeInt</span></div>
+                      <a class="idx__btn" href="proyectos/pseint-promedio.html">Abrir ventana</a>
+                    </article>
+                    <article class="idx__mini">
+                      <h4 class="idx__h4">Servidor Ubuntu · Render/Cloud + Local</h4>
+                      <p>Guía práctica: despliegue estático y troubleshooting.</p>
+                      <div class="idx__tagrow"><span class="idx__tag">Linux</span><span class="idx__tag">DevOps</span></div>
+                      <a class="idx__btn" href="proyectos/servidor-ubuntu.html">Abrir ventana</a>
+                    </article>
+                    <article class="idx__mini">
+                      <h4 class="idx__h4">Excel Macros · Inventario minorista</h4>
+                      <p>Libro con menús, macros comentadas y reglas.</p>
+                      <div class="idx__tagrow"><span class="idx__tag">Excel/VBA</span><span class="idx__tag">Retail</span></div>
+                      <a class="idx__btn" href="proyectos/excel-macros.html">Abrir ventana</a>
+                    </article>
+                  </div>
+                </div>
+
+                <!-- RUTA DE APRENDIZAJE -->
+                <div class="idx__card" id="idx-ruta">
+                  <h3 class="idx__h3">Ruta de aprendizaje</h3>
+                  <div class="idx__timeline">
+                    <div class="idx__tl-item">
+                      <strong>Algoritmia y PSeInt</strong>
+                      <span>Condicionales, ciclos, modularización. Evidencias en ventanas PSeInt.</span>
+                    </div>
+                    <div class="idx__tl-item">
+                      <strong>Web básica (HTML/CSS)</strong>
+                      <span>Layouts responsivos y componentes reutilizables (la portada lo demuestra).</span>
+                    </div>
+                    <div class="idx__tl-item">
+                      <strong>Sistemas / Linux</strong>
+                      <span>Instalación, servicios web y despliegues (Render / GitHub Pages / Cloudflare).</span>
+                    </div>
+                    <div class="idx__tl-item">
+                      <strong>Automatización con Excel/VBA</strong>
+                      <span>Macros documentadas y flujos para comercio minorista.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- COLABORACIÓN -->
+                <div class="idx__card" id="idx-colabora">
+                  <h3 class="idx__h3">Colabora conmigo</h3>
+                  <p class="idx__muted"><strong>Este sitio es práctica en progreso.</strong> Si ves algo que pueda mejorar, dime o abre un issue.</p>
+                  <div class="idx__cta">
+                    <a class="idx__btn" href="https://github.com/IngLucas" target="_blank" rel="noopener">Abrir GitHub</a>
+                    <a class="idx__btn" href="#idx-contacto">Enviar sugerencia</a>
+                  </div>
+                </div>
+
+                <!-- CONTACTO -->
+                <div class="idx__card" id="idx-contacto">
+                  <h3 class="idx__h3">Portafolio y contacto</h3>
+                  <div class="idx__cards idx__cards--2">
+                    <div class="idx__mini">
+                      <h4 class="idx__h4">Contacto directo</h4>
+                      <p>¿Feedback, propuestas o colaboraciones? Estoy atento.</p>
+                      <div class="idx__cta">
+                        <a class="idx__btn" href="mailto:contacto@inglucas.com.co">contacto@inglucas.com.co</a>
+                        <a class="idx__btn" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener">LinkedIn</a>
+                      </div>
+                    </div>
+                    <div class="idx__mini">
+                      <h4 class="idx__h4">Más trabajos</h4>
+                      <p>Explora mis repos y bocetos en curso.</p>
+                      <a class="idx__btn" href="https://github.com/IngLucas" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- =================== CONCLUSIONES =================== -->
+              <section class="idx__section" id="idx-conclusiones" aria-labelledby="idx-conc-h">
+                <div class="idx__hd">
+                  <h2 id="idx-conc-h">Conclusiones</h2>
+                </div>
+                <div class="idx__card">
+                  <ol>
+                    <li>La portada unifica <strong>presentación, evidencias y contacto</strong> en un flujo legible.</li>
+                    <li>Se preserva una <strong>identidad visual consistente</strong> y una estructura evaluable.</li>
+                    <li>La navegación local y los componentes reutilizables facilitan <strong>escalabilidad</strong> del sitio.</li>
+                  </ol>
+                </div>
+              </section>
+
+              <!-- =================== REFERENCIAS =================== -->
+              <section class="idx__section" id="idx-referencias" aria-labelledby="idx-ref-h">
+                <div class="idx__hd">
+                  <h2 id="idx-ref-h">Referencias</h2>
+                </div>
+                <div class="idx__card">
+                  <ul class="idx__refs">
+                    <li>W3C. (2018). <em>Web Content Accessibility Guidelines (WCAG) 2.1</em>. World Wide Web Consortium.</li>
+                    <li>Nielsen, J. (1994). <em>10 Usability Heuristics for User Interface Design</em>. Nielsen Norman Group.</li>
+                    <li>Krug, S. (2014). <em>Don't Make Me Think, Revisited</em>. New Riders.</li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+
+            <!-- Área de estado accesible (si se usa en el futuro) -->
+            <p class="idx__sr" id="idxStatus" role="status" aria-live="polite"></p>
+          </article>
+
+          <!-- =====================================================
+               [AÑADIDO / ADDED] – ESTILOS ENCAPSULADOS .idx-*
+               ES/EN: Scoped styles so nothing leaks to the rest of the site.
+               ===================================================== -->
+          <style>
+            .idx{display:grid; gap:16px}
+            .idx__hero{
+              padding:16px; border:1px solid var(--border); border-radius:var(--radius);
+              background:linear-gradient(180deg,rgba(20,26,38,.85),rgba(12,16,24,.85)); box-shadow:var(--shadow)
+            }
+            .idx__lead{margin:.25rem 0 0; color:var(--muted); font-size:14.5px}
+
+            .idx__subnav{
+              display:flex; gap:10px; align-items:center; overflow:auto; padding:6px;
+              border:1px solid var(--border); border-radius:var(--radius);
+              background:linear-gradient(180deg,rgba(25,31,45,.9),rgba(18,23,33,.9))
+            }
+            .idx__pill{
+              white-space:nowrap; padding:6px 10px; border-radius:999px;
+              border:1px solid var(--border); color:var(--muted); background:rgba(18,23,31,.12)
+            }
+            .idx__pill:hover{background:rgba(26,99,199,.12); color:var(--text)}
+            .idx__pill.is-active{border-color:var(--blue-500); color:#fff; background:rgba(26,99,199,.18)}
+            .idx__spacer{flex:1}
+            .idx__navbtn{
+              min-width:40px; height:32px; border-radius:10px; border:1px solid var(--border);
+              background:rgba(18,23,31,.2); color:var(--text); cursor:pointer
+            }
+
+            .idx__content{display:grid; gap:16px}
+            .idx__section{scroll-margin-top:14px}
+            .idx__hd{display:flex; align-items:flex-end; justify-content:space-between; gap:10px; margin-bottom:8px}
+
+            .idx__card{
+              background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96));
+              border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px
+            }
+            .idx__card--grid{display:grid; gap:16px}
+            @media(min-width:860px){.idx__card--grid{grid-template-columns:1.2fr .8fr; align-items:center}}
+            .idx__cardInner{background:linear-gradient(180deg,rgba(16,22,34,.96),rgba(12,16,24,.96)); border:1px dashed var(--border); border-radius:var(--radius); padding:14px}
+
+            .idx__muted{color:var(--muted)}
+            .idx__h3{margin:0 0 8px}
+            .idx__h4{margin:0 0 6px}
+
+            .idx__chips{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 0}
+            .idx__chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8)}
+            .idx__cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+            .idx__btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:var(--text); cursor:pointer; text-decoration:none}
+            .idx__btn:hover{transform:translateY(-1px)}
+            .idx__btn--primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
+            .idx__btn--accent{background:linear-gradient(180deg,#d39e00,#f0b800); color:#1a1400; border-color:transparent}
+
+            .idx__rowhd{display:flex; align-items:end; justify-content:space-between; gap:10px; margin-bottom:10px}
+            .idx__link{color:var(--blue-300)}
+            .idx__cards{display:grid; gap:16px}
+            .idx__cards--2{grid-template-columns:1fr}
+            @media(min-width:760px){
+              .idx__cards{grid-template-columns:repeat(3,1fr)}
+              .idx__cards--2{grid-template-columns:repeat(2,1fr)}
+            }
+            .idx__mini{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; display:grid; gap:8px}
+
+            .idx__tagrow{display:flex; gap:8px; flex-wrap:wrap}
+            .idx__tag{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted)}
+
+            .idx__timeline{display:grid; gap:14px}
+            .idx__tl-item{display:grid; gap:6px; border-left:2px dashed var(--border); padding-left:12px}
+            .idx__tl-item strong{font-size:14px}
+
+            /* Móvil: la subnav permite scroll lateral si no entra */
+            @media (max-width: 860px){
+              .idx__subnav{scroll-snap-type:x proximity}
+              .idx__pill{scroll-snap-align:center}
+            }
+
+            /* Accesible, solo lectura (visually hidden) */
+            .idx__sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
+          </style>
+
+          <!-- =====================================================
+               [AÑADIDO / ADDED] – JS ENCAPSULADO .idx-*
+               ES/EN: Encapsulated JS. Only touches nodes inside .idx.
+               ===================================================== -->
+          <script>
+            (function(){
+              const rail = document.getElementById('idxContent');
+              const prev = document.getElementById('idxPrev');
+              const next = document.getElementById('idxNext');
+
+              // Secciones visibles
+              function sections(){ return Array.from(rail.querySelectorAll('.idx__section')); }
+              function currentIndex(){
+                const rect = rail.getBoundingClientRect();
+                const mid = rect.top + rect.height/3;
+                const idx = sections().findIndex(s=>{
+                  const r = s.getBoundingClientRect();
+                  return r.top <= mid && r.bottom >= mid;
+                });
+                return Math.max(0, idx);
+              }
+              prev?.addEventListener('click', ()=>{
+                const idx = currentIndex();
+                if(idx>0) sections()[idx-1].scrollIntoView({behavior:'smooth', block:'start'});
+              });
+              next?.addEventListener('click', ()=>{
+                const idx = currentIndex();
+                const list = sections();
+                if(idx<list.length-1) list[idx+1].scrollIntoView({behavior:'smooth', block:'start'});
+              });
+
+              // Enlaces activos en subnav
+              const links = Array.from(document.querySelectorAll('.idx__subnav .idx__pill'));
+              const targets = links.map(a => document.querySelector(a.getAttribute('href')));
+              const io = new IntersectionObserver(entries=>{
+                entries.forEach(e=>{
+                  if(e.isIntersecting){
+                    const id = '#'+e.target.id;
+                    links.forEach(l => l.classList.toggle('is-active', l.getAttribute('href')===id));
+                  }
+                });
+              }, {root:null, threshold:0.55});
+              targets.forEach(t => t && io.observe(t));
+            })();
+          </script>
+          <!-- ======================= FIN CONTENIDO ENCAPSULADO ======================= -->
+        </section>
+      </div>
+    </section>
+  </div>
 
   <!-- =============================================================
-       SOBRE MÍ breves
+       [NO TOCAR / DO NOT TOUCH] – FOOTER (ES/EN)
        ============================================================= -->
-  <section id="sobre-mi">
-    <div class="wrap">
-      <div class="section-hd">
-        <h2>Sobre mí</h2>
-      </div>
-      <div class="card">
-        <p>Soy estudiante de <strong>Ingeniería Informática</strong> (AUNAR). Uso este espacio para documentar mi proceso, compartir código y mostrar evidencias de aprendizaje. Me interesa el desarrollo web, automatización con Excel/VBA, y administración de servidores Linux.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =============================================================
-       PROYECTOS DESTACADOS – enlaza a tus "ventanas"
-       ============================================================= -->
-  <section id="proyectos">
-    <div class="wrap">
-      <div class="section-hd">
-        <h2>Proyectos destacados</h2>
-        <a href="#contacto">¿Comentarios? Escríbeme →</a>
-      </div>
-      <div class="cards">
-        <!-- Card 1 -->
-        <article class="card">
-          <h3>PSeInt · Promedio de notas</h3>
-          <p>Algoritmo parametrizable + explicación paso a paso. Ventana con pestañas de Resumen, Contenido y Resultados.</p>
-          <div class="tagrow"><span class="tag">Algoritmia</span><span class="tag">PSeInt</span></div>
-          <a class="btn" href="proyectos/pseint-promedio.html">Abrir ventana</a>
-        </article>
-        <!-- Card 2 -->
-        <article class="card">
-          <h3>Servidor Ubuntu · Render/Cloud + Local</h3>
-          <p>Guía práctica: deployment estático, estructura de proyecto y notas de troubleshooting.</p>
-          <div class="tagrow"><span class="tag">Linux</span><span class="tag">DevOps</span></div>
-          <a class="btn" href="proyectos/servidor-ubuntu.html">Abrir ventana</a>
-        </article>
-        <!-- Card 3 -->
-        <article class="card">
-          <h3>Excel Macros · Inventario minorista</h3>
-          <p>Diseño de libro con menús, macros comentadas y criterios parametrizados para solicitudes automáticas.</p>
-          <div class="tagrow"><span class="tag">Excel/VBA</span><span class="tag">Retail</span></div>
-          <a class="btn" href="proyectos/excel-macros.html">Abrir ventana</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- =============================================================
-       RUTA DE APRENDIZAJE – checklist simple
-       ============================================================= -->
-  <section id="ruta">
-    <div class="wrap">
-      <div class="section-hd">
-        <h2>Ruta de aprendizaje</h2>
-        <span style="color:var(--muted); font-size:13px">Objetivo: Presentarme · Portafolio/Contacto</span>
-      </div>
-      <div class="timeline">
-        <div class="tl-item">
-          <strong>Algoritmia y PSeInt</strong>
-          <span>Condicionales, ciclos, modularización. Evidencias en ventanas PSeInt.</span>
-        </div>
-        <div class="tl-item">
-          <strong>Web básica (HTML/CSS)</strong>
-          <span>Layouts responsivos y componentes reutilizables (esta portada lo demuestra).</span>
-        </div>
-        <div class="tl-item">
-          <strong>Sistemas / Linux</strong>
-          <span>Instalación, servicios web y despliegues (Render / GitHub Pages / Cloudflare).</span>
-        </div>
-        <div class="tl-item">
-          <strong>Automatización con Excel/VBA</strong>
-          <span>Macros documentadas y flujos para comercio minorista.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =============================================================
-       BLOQUE COLABORATIVO – abierto a correcciones
-       ============================================================= -->
-  <section id="colaboracion">
-    <div class="wrap">
-      <div class="section-hd">
-        <h2>Colabora conmigo</h2>
-      </div>
-      <div class="collab">
-        <p><strong>Este sitio es práctica en progreso.</strong> Si ves algo que pueda mejorar, dime o abre un issue.</p>
-        <div class="cta">
-          <a class="btn" href="https://github.com/IngLucas" target="_blank" rel="noopener">Abrir GitHub</a>
-          <a class="btn" href="#contacto">Enviar sugerencia</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =============================================================
-       CONTACTO / PORTAFOLIO
-       ============================================================= -->
-  <section id="contacto">
-    <div class="wrap">
-      <div class="section-hd">
-        <h2>Portafolio y contacto</h2>
-      </div>
-      <div class="cards">
-        <div class="card">
-          <h3>Contacto directo</h3>
-          <p>¿Feedback, propuestas o colaboraciones? Estoy atento.</p>
-          <div class="cta">
-            <a class="btn" href="mailto:contacto@inglucas.com.co">contacto@inglucas.com.co</a>
-            <a class="btn" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Más trabajos</h3>
-          <p>Explora mis repositorios y bocetos en curso.</p>
-          <a class="btn" href="https://github.com/IngLucas" target="_blank" rel="noopener">GitHub</a>
-        </div>
-        <div class="card">
-          <h3>Ventanas uniformes</h3>
-          <p>Estructura estandarizada para evidencias: Resumen, Contenido, Recursos y Resultados.</p>
-          <a class="btn" href="proyectos/pseint-contador.html">Ver ejemplo</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =============================================================
-       FOOTER – Redes, privacidad y firma
-       ============================================================= -->
-    <!-- ===== Footer ===== -->
   <footer>
     <div class="wrap foot">
       <div>
         <div class="socials">
-          <!-- Iconos SVG; mantienen .chip para conservar estilos -->
           <a class="chip" href="https://facebook.com/IngLucas" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
-            <!-- Facebook -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.01 3.66 9.16 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.86h2.77l-.44 2.91h-2.33V22c4.78-.78 8.44-4.93 8.44-9.94z"/>
-            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.01 3.66 9.16 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.86h2.77l-.44 2.91h-2.33V22c4.78-.78 8.44-4.93 8.44-9.94z"/></svg>
           </a>
-
           <a class="chip" href="https://instagram.com/IngLucas" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-            <!-- Instagram -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11.001 5.5 5.5 0 0 1 0-11zM17.5 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-5.5 2a3.5 3.5 0 1 0 0 7.001A3.5 3.5 0 0 0 12 8z"/>
-            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11.001 5.5 5.5 0 0 1 0-11zM17.5 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-5.5 2a3.5 3.5 0 1 0 0 7.001A3.5 3.5 0 0 0 12 8z"/></svg>
           </a>
-
           <a class="chip" href="https://github.com/IngLucas" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
-            <!-- GitHub -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.09-.74.09-.74 1.22.09 1.87 1.25 1.87 1.25 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.62-2.67-.31-5.48-1.34-5.48-5.95 0-1.31.47-2.38 1.24-3.22-.12-.31-.54-1.57.12-3.27 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.7.24 2.96.12 3.27.77.84 1.23 1.91 1.23 3.22 0 4.62-2.82 5.64-5.5 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/>
-            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.09-.74.09-.74 1.22.09 1.87 1.25 1.87 1.25 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.62-2.67-.31-5.48-1.34-5.48-5.95 0-1.31.47-2.38 1.24-3.22-.12-.31-.54-1.57.12-3.27 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.7.24 2.96.12 3.27.77.84 1.23 1.91 1.23 3.22 0 4.62-2.82 5.64-5.5 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
           </a>
-
           <a class="chip" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
-            <!-- LinkedIn -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.45 20.45h-3.55v-5.6c0-1.34-.03-3.07-1.87-3.07-1.88 0-2.17 1.46-2.17 2.97v5.7H9.31V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.42v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
-            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.6c0-1.34-.03-3.07-1.87-3.07-1.88 0-2.17 1.46-2.17 2.97v5.7H9.31V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.42v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
           </a>
-
-          <a class="chip" href="mailto:contacto@inglucas.com.co" aria-label="Email" title="Email">
-            <!-- Email -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 12 4 6.01V6h16zM4 8.24l8 5.76 8-5.76V18H4V8.24z"/>
-            </svg>
-          </a>
-
           <a class="chip" href="#" id="manageConsent">Preferencias de cookies</a>
         </div>
         <div style="margin-top:10px">
-          <a href="politicas-privacidad.html" aria-current="page">Políticas de Privacidad</a>
+          <a href="politicas-privacidad.html">Políticas de Privacidad</a>
         </div>
       </div>
       <div>
         © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub
-        <!-- Bloque para tu mensaje; cámbialo sin miedo -->
         <div id="custom-text" style="margin-top:8px; font-size:0.92em; opacity:.85;">
-          <em>— Edita aquí tu mensaje breve para el pie de página.</em>
+          <em>Lucas Molina.</em>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- ===== Banner de consentimiento ===== -->
-  <style>
-    /* Estilos del banner (look amable, bordes redondeados, similar al Hub) */
-    .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
-    .consent .card{
-      max-width:960px; margin:0 auto; background:#fff; color:#1b1b1b;
-      border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.12);
-      padding:16px 18px; border:1px solid rgba(0,0,0,.06);
-    }
-    .consent .row{ display:flex; gap:16px; align-items:flex-start; }
-    .consent p{ margin:0; line-height:1.45 }
-    .consent .actions{ margin-left:auto; display:flex; gap:10px; flex-wrap:wrap; }
-    @media (max-width:720px){
-      .consent{ inset:auto 8px 8px 8px; }
-      .consent .row{ flex-direction:column; }
-      .consent .actions{ margin-left:0 }
-    }
-  </style>
-
+  <!-- =============================================================
+       [NO TOCAR / DO NOT TOUCH] – BANNER DE COOKIES (ES/EN)
+       ============================================================= -->
   <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
     <div class="card">
       <div class="row">
         <p>
-          Usamos <strong>cookies esenciales</strong> para que el sitio funcione correctamente y, con tu permiso, <strong>cookies analíticas</strong> para entender el uso y mejorar la experiencia.
-          Puedes cambiar tu elección en <em>“Preferencias de cookies”</em>. Consulta la
-          <a href="politicas-privacidad.html" target="_self">Política de Privacidad</a>.
+          Usamos <strong>cookies esenciales</strong> para que el sitio funcione correctamente y, con tu permiso,
+          <strong>cookies analíticas</strong> para entender el uso y mejorar la experiencia.
+          Puedes cambiar tu elección en <em>“Preferencias de cookies”</em>.
+          Consulta la <a href="politicas-privacidad.html" target="_self">Política de Privacidad</a>.
         </p>
         <div class="actions">
           <button class="btn" id="deny">Rechazar</button>
@@ -397,43 +583,85 @@
   </div>
 
   <script>
-    // Año en footer
+    // =============================================================
+    // [NO TOCAR / DO NOT TOUCH] – UTILIDADES BÁSICAS (ES/EN)
+    // Año en footer / Year in footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Drawer
+    // Drawer refs
     const drawer = document.getElementById('drawer');
     const openBtn = document.getElementById('openDrawer');
     const closeBtn = document.getElementById('closeDrawer');
-    function openDrawer(){drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false');}
-    function closeDrawer(){drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true');}
+
+    function openDrawer(){
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden','false');
+    }
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden','true');
+    }
+
+    // Click básico
     openBtn?.addEventListener('click', openDrawer);
     closeBtn?.addEventListener('click', closeDrawer);
     drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
 
-    // ===== Banner de consentimiento (solo una vez por versión) =====
+    // =============================================================
+    // [NO TOCAR / DO NOT TOUCH] – HOVER/TOUCH LOGIC (ES/EN)
+    // Escritorio: abre por hover y se cierra al salir.
+    // Móvil/táctil: botón por clic; autocierre a los 5s o al presionar "Cerrar".
+    let autoCloseTimer = null;
+    const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+    function setBurgerLabel(){
+      if(!openBtn) return;
+      openBtn.textContent = isDesktop ? 'Menú' : '☰';
+    }
+    setBurgerLabel();
+
+    if (isDesktop){
+      openBtn?.addEventListener('mouseenter', openDrawer);
+      openBtn?.addEventListener('mouseleave', ()=>{
+        setTimeout(()=>{
+          const overDrawer = drawer.matches(':hover');
+          if(!overDrawer) closeDrawer();
+        }, 150);
+      });
+      drawer?.addEventListener('mouseleave', closeDrawer);
+    }
+
+    function startMobileAutoClose(){
+      if(isDesktop) return;
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = setTimeout(()=>{ closeDrawer(); }, 5000);
+    }
+    if(!isDesktop){
+      openBtn?.addEventListener('click', startMobileAutoClose);
+      ['click','touchstart'].forEach(evt=>{
+        drawer?.addEventListener(evt, startMobileAutoClose);
+      });
+    }
+
+    // =============================================================
+    // [NO TOCAR / DO NOT TOUCH] – COOKIES CONSENT (ES/EN)
     const CONSENT_KEY = 'lucasConsent';
-    const CONSENT_VERSION = 'v1-2025-09'; // Cambia si actualizas tu política
+    const CONSENT_VERSION = 'v1-2025-09'; // bump al actualizar política / bump on policy update
 
     function getConsent(){
-      try {
-        const raw = localStorage.getItem(CONSENT_KEY);
-        return raw ? JSON.parse(raw) : null;
-      } catch(e){ return null; }
+      try { const raw = localStorage.getItem(CONSENT_KEY); return raw ? JSON.parse(raw) : null; } catch(e){ return null; }
     }
     function setConsent(status){
-      try {
-        const data = { status, version: CONSENT_VERSION, ts: Date.now() };
-        localStorage.setItem(CONSENT_KEY, JSON.stringify(data));
-      } catch(e){}
+      try { const data = { status, version: CONSENT_VERSION, ts: Date.now() };
+        localStorage.setItem(CONSENT_KEY, JSON.stringify(data)); } catch(e){}
     }
     function shouldShowBanner(saved){
-      // Mostrar si no hay registro o si la versión cambió (re-consent)
       if(!saved) return true;
       if(saved.version !== CONSENT_VERSION) return true;
       return false;
     }
     function enableAnalytics(){
-      // [Opcional] Inyecta tu script de analítica si consent=granted.
+      // [TOCAR/EDIT] Inyecta tu script solo si consent=granted / inject only if granted
       // const s=document.createElement('script'); s.src='https://.../analytics.js'; document.head.appendChild(s);
     }
     function initConsentBanner(){
@@ -442,37 +670,31 @@
       const deny  = document.getElementById('deny');
       const saved = getConsent();
 
-      if(shouldShowBanner(saved)){
-        banner.style.display='block';
-      } else {
-        if(saved.status === 'granted') enableAnalytics();
-      }
+      if(shouldShowBanner(saved)){ banner.style.display='block'; }
+      else if(saved.status === 'granted'){ enableAnalytics(); }
 
-      allow?.addEventListener('click', ()=>{
-        setConsent('granted');
-        banner.style.display='none';
-        enableAnalytics();
-      });
-      deny?.addEventListener('click',  ()=>{
-        setConsent('denied');
-        banner.style.display='none';
-      });
+      allow?.addEventListener('click', ()=>{ setConsent('granted'); banner.style.display='none'; enableAnalytics(); });
+      deny ?.addEventListener('click', ()=>{ setConsent('denied');  banner.style.display='none'; });
 
-      // Botón para reabrir banner manualmente (no cambia el "solo una vez")
       document.getElementById('manageConsent')?.addEventListener('click',(e)=>{
         e.preventDefault();
-        // No borramos el consentimiento automáticamente; solo mostramos el diálogo para cambiarlo.
         banner.style.display='block';
       });
     }
-
     document.addEventListener('DOMContentLoaded', initConsentBanner);
+
+    // =============================================================
+    // [MENSAJE PARA EL FUTURO YO / NOTE TO FUTURE ME]
+    // ES: Si pides cambios, SOLO tocar:
+    //   - Enlaces del drawer, textos visibles y contenido dentro de .pane
+    //   - Mensaje/enlaces del footer
+    //   - enableAnalytics() y CONSENT_VERSION
+    //   - (Opcional) Colores de .drawer/.burger para contraste (sin cambiar estructura)
+    // EN: If you ask for changes, ONLY edit:
+    //   - Drawer links, visible texts, and content inside .pane
+    //   - Footer note/links
+    //   - enableAnalytics() and CONSENT_VERSION
+    //   - (Optional) .drawer/.burger colors for contrast (keep structure)
   </script>
 </body>
 </html>
-
-
-
-
-
-
