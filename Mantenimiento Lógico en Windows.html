@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- =============================================================
+       PLANTILLA BASE – HEADER + DRAWER + FOOTER + COOKIES
+       [ES] Solo lo esencial. Comportamiento adaptado a PC y móvil.
+       [EN] Essentials only. Behavior adapted for desktop and mobile.
+       ============================================================= -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ing. Lucas Learning Hub · Plantilla</title>
+  <meta name="description" content="Plantilla base reutilizable con menú lateral y banner de cookies." />
+  <meta name="theme-color" content="#0d47a1" />
+
+  <style>
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – SISTEMA DE DISEÑO (ES/EN)
+       Mantiene uniformidad del sitio / Keeps the site consistent
+       ============================================================= */
+    :root{
+      --blue-700:#0f3f8a; --blue-600:#1450a3; --blue-500:#1a63c7; --blue-300:#6aa8ff;
+      --purple-600:#6e28c4; --bg:#0e1116; --surface:#131823; --panel:#161d2b;
+      --border:#263349; --soft:#0b0f16; --text:#e7eef7; --muted:#a9b6c7;
+      --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35);
+      --container:1200px; --gap:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background:linear-gradient(180deg,#0b1220,#0e1116); color:var(--text)
+    }
+    a{color:var(--blue-300); text-decoration:none}
+    .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
+
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – TOPBAR + BOTÓN (ES/EN)
+       ============================================================= */
+    .topbar{
+      position:sticky; top:0; z-index:60;
+      backdrop-filter:saturate(1.1) blur(8px);
+      background:rgba(12,16,25,.7);
+      border-bottom:1px solid var(--border)
+    }
+    .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
+    .logo{
+      width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700;
+      background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow)
+    }
+    .brand{display:flex; flex-direction:column}
+    .brand strong{font-size:16px}
+    .brand span{font-size:12px; color:var(--muted)}
+    .burger{
+      margin-left:auto; display:inline-flex; align-items:center; justify-content:center;
+      min-width:46px; height:40px; padding:0 10px; gap:8px;
+      border-radius:10px; border:2px solid var(--blue-500);
+      background:rgba(18,23,31,.9); color:var(--text);
+      cursor:pointer; transition:transform .15s ease, background .15s ease
+    }
+    .burger:hover{transform:scale(1.04); background:rgba(26,99,199,.12)}
+
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – DRAWER / MENÚ LATERAL (ES/EN)
+       + contraste para que se identifique fácil en la UI
+       + stronger contrast for easier visual identification
+       ============================================================= */
+    .drawer{
+      position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw;
+      background:linear-gradient(180deg,#0e223a,#0a1729);
+      border-left:2px solid var(--blue-500);
+      box-shadow:-20px 0 40px rgba(0,0,0,.45);
+      transform:translateX(100%); transition:.25s ease transform, background-color .25s ease
+    }
+    .drawer.open{transform:translateX(0)}
+    .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
+    .drawer .bd{padding:12px 16px; display:grid; gap:16px}
+    .nav-group{border:1px solid var(--border); border-radius:12px; overflow:hidden}
+    .nav-group h4{margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)}
+    .nav{display:grid}
+    .nav a{padding:12px 12px; border-top:1px solid var(--border)}
+    .nav a:hover{background:rgba(26,99,199,.18)}
+
+    /* =============================================================
+       [TOCAR / EDIT] – ESPACIO DE CONTENIDO (ES/EN)
+       ============================================================= */
+    .workspace{padding:24px 0}
+    .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+    .window-titlebar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; background:linear-gradient(180deg,#1a2333,#151c29); border-bottom:1px solid var(--border)}
+    .title-left{display:flex; align-items:center; gap:10px}
+    .traffic{display:flex; gap:8px}
+    .dot{width:12px; height:12px; border-radius:50%}
+    .dot.close{background:#ff5f56}
+    .dot.min{background:#ffbd2e}
+    .dot.max{background:#27c93f}
+    .window-title{font-size:15px; font-weight:600}
+    .title-meta{font-size:12px; color:var(--muted)}
+    .window-body{display:grid; grid-template-columns:1fr; gap:0}
+    .pane{padding:18px; min-height:420px; background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(12,16,24,.95))}
+
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – FOOTER (ES/EN)
+       ============================================================= */
+    footer{border-top:1px solid var(--border); color:var(--muted); padding:22px 0; font-size:13px; background:linear-gradient(180deg,#0f1624,#0c121e)}
+    .foot{display:grid; gap:12px}
+    @media(min-width:860px){.foot{grid-template-columns:1fr auto}}
+    .socials{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8)}
+
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – BANNER COOKIES (ES/EN)
+       Armonioso, legible (tarjeta clara, texto oscuro) / Harmonious, legible
+       ============================================================= */
+    .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
+    .consent .card{
+      max-width:960px; margin:0 auto; background:#ffffff; color:#111111;
+      border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.18);
+      padding:16px 18px; border:1px solid rgba(0,0,0,.08);
+    }
+    .consent .row{ display:flex; gap:16px; align-items:flex-start; }
+    .consent p{ margin:0; line-height:1.5 }
+    .consent .actions{ margin-left:auto; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.08); color:#0e1116; cursor:pointer}
+    .btn.primary{ background:var(--blue-500); border-color:transparent; color:white; }
+    .btn:hover{ filter:brightness(1.05); }
+    @media (max-width:720px){
+      .consent{ inset:auto 8px 8px 8px; }
+      .consent .row{ flex-direction:column; }
+      .consent .actions{ margin-left:0 }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =============================================================
+       [NO TOCAR / DO NOT TOUCH] – TOPBAR (ES/EN)
+       ============================================================= -->
+  <div class="topbar">
+    <div class="wrap row">
+      <div class="logo" aria-hidden="true">IL</div>
+      <div class="brand">
+        <strong>Ing. Lucas Learning Hub</strong>
+        <span>Plantilla Base</span>
+      </div>
+      <!-- [ES] El texto del botón cambia según dispositivo en JS
+           [EN] Button label switches per device in JS -->
+      <button class="burger" id="openDrawer" title="Abrir menú" aria-label="Abrir menú">☰</button>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       [NO TOCAR / DO NOT TOUCH] – DRAWER (ES/EN)
+       Edita solo los enlaces / Edit links only
+       ============================================================= -->
+  <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
+    <div class="hd">
+      <strong>Navegación</strong>
+      <button class="btn" id="closeDrawer" aria-label="Cerrar">Cerrar ✕</button>
+    </div>
+    <div class="bd">
+      <div class="nav-group">
+        <h4>Páginas</h4>
+        <nav class="nav">
+          <a href="index.html">Inicio / Presentación</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="politicas-privacidad.html">Políticas de Privacidad</a>
+        </nav>
+      </div>
+      <div class="nav-group">
+        <h4>Ventanas / Proyectos</h4>
+        <nav class="nav">
+          <a href="2313LíneaDeTiempo.html">2313 · Línea de Tiempo</a>
+          <a href="proyectos/pseint-contador.html">PSeInt – Contador</a>
+          <a href="proyectos/servidor-ubuntu.html">Servidor Ubuntu</a>
+          <a href="proyectos/excel-macros.html">Excel – Macros</a>
+          <a href="2316-comparacion-ingenieria-sistemas-vs-informatica.html">2316 · Sistemas vs Informática</a>
+        </nav>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =============================================================
+       [TOCAR / EDIT] – CONTENIDO PRINCIPAL (ES/EN)
+       ============================================================= -->
+  <div class="wrap workspace">
+    <section class="window" role="region" aria-label="Contenido principal">
+      <div class="window-titlebar">
+        <div class="title-left">
+          <div class="traffic" aria-hidden="true">
+            <span class="dot close"></span>
+            <span class="dot min"></span>
+            <span class="dot max"></span>
+          </div>
+          <div>
+            <!-- [AÑADIDO/EDITADO] Título contextual de la ventana -->
+            <div class="window-title">Mantenimiento lógico en Windows · Guía paso a paso</div>
+            <div class="title-meta">Ruta > Ventanas · Activo</div>
+          </div>
+        </div>
+        <div class="title-right"></div>
+      </div>
+
+      <div class="window-body">
+        <section class="pane">
+          <!-- =====================================================
+               [AÑADIDO / ADDED] – CONTENIDO ENCAPSULADO (ES/EN)
+               ES: Implementación del proyecto "Mantenimiento Lógico en Windows"
+                   con estructura académica + subnavegación accesible.
+               EN: Encapsulated content for "Windows Logical Maintenance"
+                   with academic structure + accessible sub-navigation.
+               ===================================================== -->
+
+          <article class="wm" aria-labelledby="wm-title">
+            <!-- Subnavegación local (anclajes). Horizontal scroll en móvil -->
+            <nav class="wm__subnav" aria-label="Secciones de la guía">
+              <a class="wm__pill" href="#wm-intro">Introducción</a>
+              <a class="wm__pill" href="#wm-desarrollo">Desarrollo</a>
+              <a class="wm__pill" href="#wm-conclusiones">Conclusiones</a>
+              <a class="wm__pill" href="#wm-referencias">Referencias</a>
+              <span class="wm__spacer"></span>
+              <button class="wm__navbtn" id="wmPrev" title="Anterior" aria-label="Anterior">◀</button>
+              <button class="wm__navbtn" id="wmNext" title="Siguiente" aria-label="Siguiente">▶</button>
+            </nav>
+
+            <!-- Encabezado / Hero -->
+            <header class="wm__hero">
+              <h1 id="wm-title">Guía de Mantenimiento Lógico en Windows</h1>
+              <p class="wm__lead">Procedimiento paso a paso para mejorar rendimiento y estabilidad en equipos Windows orientado a principiantes.</p>
+            </header>
+
+            <!-- Contenido principal (flujo vertical en PC y móvil) -->
+            <div class="wm__content" id="wmContent" role="region" aria-label="Contenido de la guía">
+              <!-- =================== INTRODUCCIÓN =================== -->
+              <section class="wm__section" id="wm-intro" aria-labelledby="wm-intro-h">
+                <div class="wm__hd">
+                  <h2 id="wm-intro-h">Introducción</h2>
+                </div>
+                <div class="wm__card">
+                  <p>Este documento presenta una guía de <strong>mantenimiento lógico</strong> para Windows con acciones seguras y verificables. Se orienta a usuarios que desean <em>liberar espacio</em>, <em>corregir errores del sistema</em> y <em>optimizar el arranque</em> sin modificar hardware.</p>
+                  <p class="wm__muted">Al finalizar, deberías notar un <strong>sistema más ágil</strong> y con <strong>menos fallos</strong> de estabilidad.</p>
+                </div>
+              </section>
+
+              <!-- ==================== DESARROLLO ==================== -->
+              <section class="wm__section" id="wm-desarrollo" aria-labelledby="wm-desarrollo-h">
+                <div class="wm__hd">
+                  <h2 id="wm-desarrollo-h">Desarrollo (paso a paso)</h2>
+                </div>
+
+                <!-- Card 1: Limpieza -->
+                <div class="wm__card">
+                  <h3 class="wm__h3">1. Limpieza de archivos temporales</h3>
+                  <p><strong>¿Para qué sirve?</strong> Libera espacio y elimina residuos que pueden ralentizar el sistema.</p>
+
+                  <div class="wm__step">
+                    <label class="wm__checkwrap">
+                      <input type="checkbox" class="wm__check" aria-label="Marcar paso completado"> 
+                      <span>Presiona <b>Win</b> + <b>R</b>, escribe <code class="wm__cmd">cleanmgr</code> y pulsa <b>Enter</b>. Selecciona <b>C:</b>, marca “Archivos temporales, Caché de Internet, Miniaturas” y <b>Aceptar</b>.</span>
+                    </label>
+                    <button class="wm__btn" data-cmd="cleanmgr">Copiar comando</button>
+                  </div>
+
+                  <div class="wm__step">
+                    <label class="wm__checkwrap">
+                      <input type="checkbox" class="wm__check" aria-label="Marcar paso completado">
+                      <span>Presiona <b>Win</b> + <b>R</b>, escribe <code class="wm__cmd">%temp%</code> y pulsa <b>Enter</b>. Se abre una carpeta; selecciona todo (<b>Ctrl + E</b>) y elimina (<b>Supr</b>).</span>
+                    </label>
+                    <button class="wm__btn" data-cmd="%temp%">Copiar comando</button>
+                  </div>
+
+                  <div class="wm__step">
+                    <label class="wm__checkwrap">
+                      <input type="checkbox" class="wm__check" aria-label="Marcar paso completado">
+                      <span>Otra vez <b>Win</b> + <b>R</b>, escribe <code class="wm__cmd">temp</code> y pulsa <b>Enter</b>. Borra lo que permita.</span>
+                    </label>
+                    <button class="wm__btn" data-cmd="temp">Copiar comando</button>
+                  </div>
+
+                  <div class="wm__step">
+                    <label class="wm__checkwrap">
+                      <input type="checkbox" class="wm__check" aria-label="Marcar paso completado">
+                      <span>Por último, <b>Win</b> + <b>R</b>, escribe <code class="wm__cmd">prefetch</code> y pulsa <b>Enter</b>. Elimina los archivos posibles (Windows los recrea).</span>
+                    </label>
+                    <button class="wm__btn" data-cmd="prefetch">Copiar comando</button>
+                  </div>
+                </div>
+
+                <!-- Card 2: SFC/DISM -->
+                <div class="wm__card">
+                  <h3 class="wm__h3">2. Reparar archivos del sistema</h3>
+                  <p><strong>¿Para qué sirve?</strong> Corrige archivos dañados que pueden causar errores o pantallas azules.</p>
+
+                  <div class="wm__step">
+                    <label class="wm__checkwrap">
+                      <input type="checkbox" class="wm__check" aria-label="Marcar paso completado">
+                      <span>Abre <b>Terminal (Administrador)</b> (<b>Win</b> + <b>X</b>). Escribe <code class="wm__cmd">sfc /scannow</code> y pulsa <b>Enter</b>. Espera a que finalice.</span>
+                    </label>
+                    <button class="wm__btn" data-cmd="sfc /scannow">Copiar comando</button>
+                  </div>
+
+                  <div class="wm__step">
+                    <label class="wm__checkwrap">
+                      <input type="checkbox" class="wm__check" aria-label="Marcar paso completado">
+                      <span>Si SFC no repara todo, ejecuta <code class="wm__cmd">DISM /Online /Cleanup-Image /RestoreHealth</code>. Reinicia y repite <code class="wm__cmd">sfc /scannow</code>.</span>
+                    </label>
+                    <button class="wm__btn" data-cmd="DISM /Online /Cleanup-Image /RestoreHealth">Copiar comando</button>
+                  </div>
+                </div>
+
+                <!-- Card 3: CHKDSK -->
+                <div class="wm__card">
+                  <h3 class="wm__h3">3. Comprobación del disco</h3>
+                  <p><strong>¿Para qué sirve?</strong> Revisa y corrige sectores defectuosos.</p>
+
+                  <div class="wm__step">
+                    <label class="wm__checkwrap">
+                      <input type="checkbox" class="wm__check" aria-label="Marcar paso completado">
+                      <span>En <b>Terminal (Administrador)</b>, ejecuta <code class="wm__cmd">chkdsk C: /f /r</code>. Si pide reinicio, acepta.</span>
+                    </label>
+                    <button class="wm__btn" data-cmd="chkdsk C: /f /r">Copiar comando</button>
+                  </div>
+                </div>
+
+                <!-- Card 4: Inicio y servicios -->
+                <div class="wm__card">
+                  <h3 class="wm__h3">4. Optimizar inicio y servicios</h3>
+                  <p><strong>¿Para qué sirve?</strong> Evita programas que se abren solos y ralentizan el arranque.</p>
+
+                  <div class="wm__step">
+                    <label class="wm__checkwrap">
+                      <input type="checkbox" class="wm__check" aria-label="Marcar paso completado">
+                      <span>Abre el <b>Administrador de tareas</b> (<b>Ctrl</b> + <b>Shift</b> + <b>Esc</b>) → pestaña <b>Inicio</b> → <b>Deshabilita</b> lo que no uses.</span>
+                    </label>
+                  </div>
+
+                  <div class="wm__step">
+                    <label class="wm__checkwrap">
+                      <input type="checkbox" class="wm__check" aria-label="Marcar paso completado">
+                      <span>Presiona <b>Win</b> + <b>R</b>, escribe <code class="wm__cmd">services.msc</code> y pulsa <b>Enter</b>. Revisa servicios prescindibles (p. ej., Fax) → clic derecho → <b>Detener</b>.</span>
+                    </label>
+                    <button class="wm__btn" data-cmd="services.msc">Copiar comando</button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- =================== CONCLUSIONES =================== -->
+              <section class="wm__section" id="wm-conclusiones" aria-labelledby="wm-conc-h">
+                <div class="wm__hd">
+                  <h2 id="wm-conc-h">Conclusiones</h2>
+                </div>
+                <div class="wm__card">
+                  <ol>
+                    <li>La limpieza de temporales y cachés recupera espacio y reduce latencia de acceso.</li>
+                    <li><code class="wm__cmd">SFC</code> y <code class="wm__cmd">DISM</code> corrigen archivos del sistema y la imagen de Windows, estabilizando el entorno.</li>
+                    <li><code class="wm__cmd">CHKDSK</code> detecta y repara errores físicos/lógicos del disco.</li>
+                    <li>Optimizar el inicio y servicios disminuye la carga al arrancar y mejora la respuesta general.</li>
+                  </ol>
+                </div>
+              </section>
+
+              <!-- =================== REFERENCIAS =================== -->
+              <section class="wm__section" id="wm-referencias" aria-labelledby="wm-ref-h">
+                <div class="wm__hd">
+                  <h2 id="wm-ref-h">Referencias</h2>
+                </div>
+                <div class="wm__card">
+                  <ul class="wm__refs">
+                    <li>Microsoft. (s. f.). <em>Use the System File Checker tool to repair missing or corrupted system files</em>. Microsoft Learn.</li>
+                    <li>Microsoft. (s. f.). <em>DISM operating system package servicing command-line options</em>. Microsoft Learn.</li>
+                    <li>Microsoft. (s. f.). <em>Check Disk (chkdsk)</em>. Microsoft Learn.</li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+
+            <!-- Área de estado accesible para copiado -->
+            <p class="wm__sr" id="wmStatus" role="status" aria-live="polite"></p>
+          </article>
+
+          <!-- =====================================================
+               [AÑADIDO / ADDED] – ESTILOS ENCAPSULADOS .wm-*
+               ES/EN: Scoped styles so nothing leaks to the rest of the site.
+               ===================================================== -->
+          <style>
+            .wm{display:grid; gap:16px}
+            .wm__hero{
+              padding:16px; border:1px solid var(--border); border-radius:var(--radius);
+              background:linear-gradient(180deg,rgba(20,26,38,.85),rgba(12,16,24,.85)); box-shadow:var(--shadow)
+            }
+            .wm__lead{margin:.25rem 0 0; color:var(--muted); font-size:14.5px}
+
+            .wm__subnav{
+              display:flex; gap:10px; align-items:center; overflow:auto; padding:6px;
+              border:1px solid var(--border); border-radius:var(--radius);
+              background:linear-gradient(180deg,rgba(25,31,45,.9),rgba(18,23,33,.9))
+            }
+            .wm__pill{
+              white-space:nowrap; padding:6px 10px; border-radius:999px;
+              border:1px solid var(--border); color:var(--muted); background:rgba(18,23,31,.12)
+            }
+            .wm__pill:hover{background:rgba(26,99,199,.12); color:var(--text)}
+            .wm__pill.is-active{border-color:var(--blue-500); color:#fff; background:rgba(26,99,199,.18)}
+            .wm__spacer{flex:1}
+            .wm__navbtn{
+              min-width:40px; height:32px; border-radius:10px; border:1px solid var(--border);
+              background:rgba(18,23,31,.2); color:var(--text); cursor:pointer
+            }
+
+            .wm__content{display:grid; gap:16px}
+            .wm__section{scroll-margin-top:14px}
+            .wm__hd{display:flex; align-items:flex-end; justify-content:space-between; gap:10px; margin-bottom:8px}
+            .wm__card{
+              background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96));
+              border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px
+            }
+            .wm__muted{color:var(--muted)}
+            .wm__h3{margin:0 0 8px}
+
+            .wm__step{
+              display:grid; gap:8px; padding:10px; margin:10px 0;
+              border-left:4px solid var(--blue-500); background:rgba(26,99,199,.06);
+              border-radius:10px; border:1px solid var(--border)
+            }
+            .wm__checkwrap{display:flex; gap:10px; align-items:flex-start}
+            .wm__check{transform:scale(1.15); margin-top:2px}
+            .wm__cmd{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:#0f1624; color:#e7eef7; padding:2px 6px; border-radius:6px; border:1px solid var(--border)}
+            .wm__btn{justify-self:start; padding:6px 10px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.2); color:var(--text); cursor:pointer}
+            .wm__btn:hover{filter:brightness(1.05)}
+            .wm__refs{margin:0 0 0 18px}
+
+            /* Móvil: el contenido sigue siendo vertical; la subnav permite scroll lateral si no entra */
+            @media (max-width: 860px){
+              .wm__subnav{scroll-snap-type:x proximity}
+              .wm__pill{scroll-snap-align:center}
+            }
+
+            /* Accesible, sólo lectura (visually hidden) */
+            .wm__sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
+          </style>
+
+          <!-- =====================================================
+               [AÑADIDO / ADDED] – JS ENCAPSULADO .wm-*
+               ES/EN: Encapsulated JS. Only touches nodes inside .wm.
+               ===================================================== -->
+          <script>
+            (function(){
+              const rail = document.getElementById('wmContent');
+              const prev = document.getElementById('wmPrev');
+              const next = document.getElementById('wmNext');
+              const status = document.getElementById('wmStatus');
+
+              // Navegación por secciones (salta a la anterior/siguiente visible)
+              function sections(){ return Array.from(rail.querySelectorAll('.wm__section')); }
+              function currentIndex(){
+                const rect = rail.getBoundingClientRect();
+                const mid = rect.top + rect.height/3;
+                const idx = sections().findIndex(s=>{
+                  const r = s.getBoundingClientRect();
+                  return r.top <= mid && r.bottom >= mid;
+                });
+                return Math.max(0, idx);
+              }
+              prev?.addEventListener('click', ()=>{
+                const idx = currentIndex();
+                if(idx>0) sections()[idx-1].scrollIntoView({behavior:'smooth', block:'start'});
+              });
+              next?.addEventListener('click', ()=>{
+                const idx = currentIndex();
+                const list = sections();
+                if(idx<list.length-1) list[idx+1].scrollIntoView({behavior:'smooth', block:'start'});
+              });
+
+              // Enlaces activos en la subnav
+              const links = Array.from(document.querySelectorAll('.wm__subnav .wm__pill'));
+              const targets = links.map(a => document.querySelector(a.getAttribute('href')));
+              const io = new IntersectionObserver(entries=>{
+                entries.forEach(e=>{
+                  if(e.isIntersecting){
+                    const id = '#'+e.target.id;
+                    links.forEach(l => l.classList.toggle('is-active', l.getAttribute('href')===id));
+                  }
+                });
+              }, {root:null, threshold:0.55});
+              targets.forEach(t => t && io.observe(t));
+
+              // Copiado de comandos (botones con data-cmd)
+              rail.addEventListener('click', async (e)=>{
+                const btn = e.target.closest('.wm__btn[data-cmd]');
+                if(!btn) return;
+                const cmd = btn.getAttribute('data-cmd');
+                try{
+                  await navigator.clipboard.writeText(cmd);
+                  if(status){ status.textContent = 'Copiado: ' + cmd; }
+                }catch(_){}
+              });
+            })();
+          </script>
+          <!-- ========================= FIN CONTENIDO ENCAPSULADO ========================= -->
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <!-- =============================================================
+       [NO TOCAR / DO NOT TOUCH] – FOOTER (ES/EN)
+       ============================================================= -->
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <div class="socials">
+          <a class="chip" href="https://facebook.com/IngLucas" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.01 3.66 9.16 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.86h2.77l-.44 2.91h-2.33V22c4.78-.78 8.44-4.93 8.44-9.94z"/></svg>
+          </a>
+          <a class="chip" href="https://instagram.com/IngLucas" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11.001 5.5 5.5 0 0 1 0-11zM17.5 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-5.5 2a3.5 3.5 0 1 0 0 7.001A3.5 3.5 0 0 0 12 8z"/></svg>
+          </a>
+          <a class="chip" href="https://github.com/IngLucas" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.09-.74.09-.74 1.22.09 1.87 1.25 1.87 1.25 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.62-2.67-.31-5.48-1.34-5.48-5.95 0-1.31.47-2.38 1.24-3.22-.12-.31-.54-1.57.12-3.27 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.7.24 2.96.12 3.27.77.84 1.23 1.91 1.23 3.22 0 4.62-2.82 5.64-5.5 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          </a>
+          <a class="chip" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.6c0-1.34-.03-3.07-1.87-3.07-1.88 0-2.17 1.46-2.17 2.97v5.7H9.31V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.42v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+          <a class="chip" href="#" id="manageConsent">Preferencias de cookies</a>
+        </div>
+        <div style="margin-top:10px">
+          <a href="politicas-privacidad.html">Políticas de Privacidad</a>
+        </div>
+      </div>
+      <div>
+        © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub
+        <div id="custom-text" style="margin-top:8px; font-size:0.92em; opacity:.85;">
+          <em>Busca nuestros servicios. https://networkcentersasvcio.com</em>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================================
+       [NO TOCAR / DO NOT TOUCH] – BANNER DE COOKIES (ES/EN)
+       ============================================================= -->
+  <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
+    <div class="card">
+      <div class="row">
+        <p>
+          Usamos <strong>cookies esenciales</strong> para que el sitio funcione correctamente y, con tu permiso,
+          <strong>cookies analíticas</strong> para entender el uso y mejorar la experiencia.
+          Puedes cambiar tu elección en <em>“Preferencias de cookies”</em>.
+          Consulta la <a href="politicas-privacidad.html" target="_self">Política de Privacidad</a>.
+        </p>
+        <div class="actions">
+          <button class="btn" id="deny">Rechazar</button>
+          <button class="btn primary" id="allow">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =============================================================
+    // [NO TOCAR / DO NOT TOUCH] – UTILIDADES BÁSICAS (ES/EN)
+    // Año en footer / Year in footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Drawer refs
+    const drawer = document.getElementById('drawer');
+    const openBtn = document.getElementById('openDrawer');
+    const closeBtn = document.getElementById('closeDrawer');
+
+    function openDrawer(){
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden','false');
+    }
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden','true');
+    }
+
+    // Click básico
+    openBtn?.addEventListener('click', openDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+    drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
+
+    // =============================================================
+    // [NO TOCAR / DO NOT TOUCH] – HOVER/TOUCH LOGIC (ES/EN)
+    // Escritorio: abre por hover y se cierra al salir.
+    // Móvil/táctil: botón por clic; autocierre a los 5s o al presionar "Cerrar".
+    let autoCloseTimer = null;
+    const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+    function setBurgerLabel(){
+      if(!openBtn) return;
+      openBtn.textContent = isDesktop ? 'Menú' : '☰';
+    }
+    setBurgerLabel();
+
+    if (isDesktop){
+      openBtn?.addEventListener('mouseenter', openDrawer);
+      openBtn?.addEventListener('mouseleave', ()=>{
+        setTimeout(()=>{
+          const overDrawer = drawer.matches(':hover');
+          if(!overDrawer) closeDrawer();
+        }, 150);
+      });
+      drawer?.addEventListener('mouseleave', closeDrawer);
+    }
+
+    function startMobileAutoClose(){
+      if(isDesktop) return;
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = setTimeout(()=>{ closeDrawer(); }, 5000);
+    }
+    if(!isDesktop){
+      openBtn?.addEventListener('click', startMobileAutoClose);
+      ['click','touchstart'].forEach(evt=>{
+        drawer?.addEventListener(evt, startMobileAutoClose);
+      });
+    }
+
+    // =============================================================
+    // [NO TOCAR / DO NOT TOUCH] – COOKIES CONSENT (ES/EN)
+    const CONSENT_KEY = 'lucasConsent';
+    const CONSENT_VERSION = 'v1-2025-09'; // bump al actualizar política
+
+    function getConsent(){
+      try { const raw = localStorage.getItem(CONSENT_KEY); return raw ? JSON.parse(raw) : null; } catch(e){ return null; }
+    }
+    function setConsent(status){
+      try { const data = { status, version: CONSENT_VERSION, ts: Date.now() };
+        localStorage.setItem(CONSENT_KEY, JSON.stringify(data)); } catch(e){}
+    }
+    function shouldShowBanner(saved){
+      if(!saved) return true;
+      if(saved.version !== CONSENT_VERSION) return true;
+      return false;
+    }
+    function enableAnalytics(){
+      // [TOCAR/EDIT] Inyecta tu script solo si consent=granted
+      // const s=document.createElement('script'); s.src='https://.../analytics.js'; document.head.appendChild(s);
+    }
+    function initConsentBanner(){
+      const banner = document.getElementById('consent');
+      const allow = document.getElementById('allow');
+      const deny  = document.getElementById('deny');
+      const saved = getConsent();
+
+      if(shouldShowBanner(saved)){ banner.style.display='block'; }
+      else if(saved.status === 'granted'){ enableAnalytics(); }
+
+      allow?.addEventListener('click', ()=>{ setConsent('granted'); banner.style.display='none'; enableAnalytics(); });
+      deny ?.addEventListener('click', ()=>{ setConsent('denied');  banner.style.display='none'; });
+
+      document.getElementById('manageConsent')?.addEventListener('click',(e)=>{
+        e.preventDefault();
+        banner.style.display='block';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', initConsentBanner);
+  </script>
+</body>
+</html>
