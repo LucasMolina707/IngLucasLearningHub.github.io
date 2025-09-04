@@ -305,15 +305,14 @@
           <a href="politicas-privacidad.html">Políticas de Privacidad</a>
         </div>
       </div>
-        <div>© <span id="y"></span> <strong>IngLucas</strong> · 2316 · Teorías de la Ingeniería Informática</div>
-        <div class="muted">Página: 2316-comparacion-ingenieria-sistemas-vs-informatica.html</div>
-      </div>
+      <div>
+        © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub
       </div>
     </div>
   </footer>
 
   <script>
-    // Año en footer
+    // Año footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
     // Drawer
@@ -322,9 +321,44 @@
     const closeBtn = document.getElementById('closeDrawer');
     function openDrawer(){drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false');}
     function closeDrawer(){drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true');}
-    if(openBtn) openBtn.addEventListener('click', openDrawer);
-    if(closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    openBtn?.addEventListener('click', openDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
     drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
+
+    // ====== Timeline logic ======
+    function animateTimeline(){
+      document.querySelectorAll('.ti').forEach(i=>i.classList.remove('animate'));
+      document.querySelectorAll('.ti').forEach((i,idx)=>{setTimeout(()=>i.classList.add('animate'),idx*200)});
+    }
+    window.addEventListener('load',()=>{setTimeout(animateTimeline,600)});
+    document.getElementById('animateBtn').addEventListener('click',animateTimeline);
+
+    const observer=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('animate'); } });
+    },{threshold:.35});
+    document.querySelectorAll('.ti').forEach(i=>observer.observe(i));
+
+    const rail=document.getElementById('rail');
+    function stepSize(){
+      return (window.innerWidth<768)? 300 : 440;
+    }
+    document.getElementById('btnLeft').addEventListener('click',()=>rail.scrollBy({left:-stepSize(),behavior:'smooth'}));
+    document.getElementById('btnRight').addEventListener('click',()=>rail.scrollBy({left:stepSize(),behavior:'smooth'}));
+
+    // Parallax sutil de la línea
+    window.addEventListener('scroll',()=>{
+      const line=document.querySelector('.line-base');
+      if(line){ line.style.transform=`translateY(calc(-50% + ${window.pageYOffset*0.06}px))`; }
+    });
+
+    // Toque/click: pequeño “bump”
+    document.querySelectorAll('.ti').forEach(item=>{
+      item.addEventListener('click',()=>{
+        const card=item.querySelector('.card');
+        card.style.transform='translateY(-6px) scale(1.03)';
+        setTimeout(()=>{card.style.transform='';},240);
+      });
+    });
   </script>
 </body>
 </html>
