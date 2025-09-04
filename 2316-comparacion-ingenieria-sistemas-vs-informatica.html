@@ -291,74 +291,41 @@
   <!-- =============================================================
        FOOTER – Firma
        ============================================================= -->
-  <footer>
-    <div class="wrap foot">
-      <div>
-        <div class="socials">
-          <a class="btn ghost" href="https://facebook.com/IngLucas" target="_blank" rel="noopener">Facebook</a>
-          <a class="btn ghost" href="https://instagram.com/IngLucas" target="_blank" rel="noopener">Instagram</a>
-          <a class="btn ghost" href="https://github.com/IngLucas" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn ghost" href="mailto:contacto@inglucas.com.co">Email</a>
-        </div>
-        <div style="margin-top:10px">
-          <a href="politicas-privacidad.html">Políticas de Privacidad</a>
-        </div>
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="socials">
+        <a href="https://facebook.com/IngLucas" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://instagram.com/IngLucas" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com/IngLucas" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:contacto@inglucas.com.co" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
       </div>
-      <div>
-        © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub
+
+      <div style="margin-top:10px">
+        <a href="politicas-privacidad.html">Políticas de Privacidad</a>
       </div>
     </div>
-  </footer>
 
-  <script>
-    // Año footer
-    document.getElementById('y').textContent = new Date().getFullYear();
+    <div>
+      © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub
+      <div id="custom-text" style="margin-top:8px; font-size:0.9em; color:#888;">
+        <!-- Edita aquí tu mensaje personalizado -->
+        <em>Edita este texto en el código para agregar tu mensaje.</em>
+      </div>
+    </div>
+  </div>
+</footer>
 
-    // Drawer
-    const drawer = document.getElementById('drawer');
-    const openBtn = document.getElementById('openDrawer');
-    const closeBtn = document.getElementById('closeDrawer');
-    function openDrawer(){drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false');}
-    function closeDrawer(){drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true');}
-    openBtn?.addEventListener('click', openDrawer);
-    closeBtn?.addEventListener('click', closeDrawer);
-    drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
-
-    // ====== Timeline logic ======
-    function animateTimeline(){
-      document.querySelectorAll('.ti').forEach(i=>i.classList.remove('animate'));
-      document.querySelectorAll('.ti').forEach((i,idx)=>{setTimeout(()=>i.classList.add('animate'),idx*200)});
-    }
-    window.addEventListener('load',()=>{setTimeout(animateTimeline,600)});
-    document.getElementById('animateBtn').addEventListener('click',animateTimeline);
-
-    const observer=new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('animate'); } });
-    },{threshold:.35});
-    document.querySelectorAll('.ti').forEach(i=>observer.observe(i));
-
-    const rail=document.getElementById('rail');
-    function stepSize(){
-      return (window.innerWidth<768)? 300 : 440;
-    }
-    document.getElementById('btnLeft').addEventListener('click',()=>rail.scrollBy({left:-stepSize(),behavior:'smooth'}));
-    document.getElementById('btnRight').addEventListener('click',()=>rail.scrollBy({left:stepSize(),behavior:'smooth'}));
-
-    // Parallax sutil de la línea
-    window.addEventListener('scroll',()=>{
-      const line=document.querySelector('.line-base');
-      if(line){ line.style.transform=`translateY(calc(-50% + ${window.pageYOffset*0.06}px))`; }
-    });
-
-    // Toque/click: pequeño “bump”
-    document.querySelectorAll('.ti').forEach(item=>{
-      item.addEventListener('click',()=>{
-        const card=item.querySelector('.card');
-        card.style.transform='translateY(-6px) scale(1.03)';
-        setTimeout(()=>{card.style.transform='';},240);
-      });
-    });
-  </script>
-</body>
-</html>
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
