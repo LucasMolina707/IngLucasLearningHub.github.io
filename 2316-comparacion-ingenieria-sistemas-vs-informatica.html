@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- =============================================================
+       2316 – COMPARACIÓN: Ingeniería de Sistemas vs Ingeniería Informática
+       Basado en el mismo sistema visual de la portada.
+       Convenciones:
+       [TOCAR]    = Sección segura para editar.
+       [AVANZADO] = Opcional; si sabes lo que haces.
+       [NO TOCAR] = Infraestructura; no la modifiques.
+       ============================================================= -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2316 · Comparación: Sistemas vs Informática</title>
+  <meta name="description" content="Cuadro comparativo e informe breve: Ingeniería de Sistemas vs Ingeniería Informática (Computer Engineering), con base en el video de clase." />
+  <meta name="theme-color" content="#0d47a1" />
+
+  <style>
+    /* =============================================================
+       [NO TOCAR] – SISTEMA DE DISEÑO (colores, tipografía, layout)
+       ============================================================= */
+    :root{
+      --blue-700:#0f3f8a; --blue-600:#1450a3; --blue-500:#1a63c7; --blue-300:#6aa8ff;
+      --yellow-700:#b38100; --yellow-600:#d39e00; --yellow-500:#f0b800;
+      --purple-700:#5e1cab; --purple-600:#6e28c4; --purple-500:#7e3bf0;
+      --bg:#0e1116; --surface:#131823; --panel:#161d2b; --border:#263349; --soft:#0b0f16;
+      --text:#e7eef7; --muted:#a9b6c7; --ok:#2ecc71; --warn:#ffb020; --danger:#ff5b6e;
+      --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35);
+      --container:1200px; --gap:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif; background:linear-gradient(180deg,#0b1220,#0e1116); color:var(--text)}
+    a{color:var(--blue-300); text-decoration:none}
+    .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
+
+    /* ===== TOPBAR ===== */
+    .topbar{position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(12,16,25,.7); border-bottom:1px solid var(--border)}
+    .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
+    .logo{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700; background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow)}
+    .brand{display:flex; flex-direction:column}
+    .brand strong{font-size:16px}
+    .brand span{font-size:12px; color:var(--muted)}
+    .burger{margin-left:auto; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.8); cursor:pointer}
+
+    /* ===== DRAWER (menú) ===== */
+    .drawer{position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0f1624,#0b111c); border-left:1px solid var(--border); box-shadow: -20px 0 40px rgba(0,0,0,.35); transform:translateX(100%); transition:.25s ease transform}
+    .drawer.open{transform:translateX(0)}
+    .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
+    .drawer .bd{padding:12px 16px; display:grid; gap:16px}
+    .nav-group{border:1px solid var(--border); border-radius:12px; overflow:hidden}
+    .nav-group h4{margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)}
+    .nav{display:grid}
+    .nav a{padding:12px 12px; border-top:1px solid var(--border)}
+    .nav a:hover{background:rgba(26,99,199,.1)}
+
+    /* ===== SECCIONES ===== */
+    header.hero{padding:36px 0 18px; background:linear-gradient(180deg,rgba(20,26,38,.85),rgba(12,16,24,.85))}
+    header.hero h1{margin:0 0 6px; font-size:30px}
+    header.hero p.lead{margin:0; color:var(--muted); font-size:15px}
+    section{padding:28px 0}
+    .section-hd{display:flex; align-items:end; justify-content:space-between; gap:10px; margin-bottom:14px}
+
+    .card{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px}
+
+    /* ===== TABLA COMPARATIVA ===== */
+    .table-wrap{overflow:auto; border:1px solid var(--border); border-radius:var(--radius)}
+    table{width:100%; border-collapse:collapse; min-width:780px}
+    caption{caption-side:top; text-align:left; padding:12px; color:var(--muted)}
+    th, td{border-top:1px solid var(--border); padding:12px 10px; text-align:left; vertical-align:top}
+    thead th{background:#111826; position:sticky; top:0}
+    tbody tr:hover{background:rgba(26,99,199,.06)}
+
+    /* ===== BLOQUES DE TEXTO ===== */
+    .muted{color:var(--muted)}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted)}
+
+    /* ===== FOOTER ===== */
+    footer{border-top:1px solid var(--border); color:var(--muted); padding:22px 0; font-size:13px; background:linear-gradient(180deg,#0f1624,#0c121e)}
+    .foot{display:grid; gap:12px}
+    @media(min-width:860px){.foot{grid-template-columns:1fr auto}}
+  </style>
+</head>
+<body>
+  <!-- =============================================================
+       TOPBAR – Cabecera fija
+       ============================================================= -->
+  <div class="topbar">
+    <div class="wrap row">
+      <div class="logo" aria-hidden="true">IL</div>
+      <div class="brand">
+        <strong>Ing. Lucas Learning Hub</strong>
+        <span>2316 · Teorías de la Ingeniería Informática</span>
+      </div>
+      <button class="burger" id="openDrawer" title="Abrir menú" aria-label="Abrir menú">☰</button>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       DRAWER – Menú lateral
+       ============================================================= -->
+  <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
+    <div class="hd">
+      <strong>Navegación</strong>
+      <button class="pill" id="closeDrawer" aria-label="Cerrar">Cerrar ✕</button>
+    </div>
+    <div class="bd">
+      <div class="nav-group">
+        <h4>Páginas</h4>
+        <nav class="nav">
+          <a href="index.html">Inicio / Presentación</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="politicas-privacidad.html">Políticas de Privacidad</a>
+        </nav>
+      </div>
+      <div class="nav-group">
+        <h4>Ventanas / Proyectos</h4>
+        <nav class="nav">
+          <a href="2313LíneaDeTiempo.html">2313LíneaDeTiempo.html</a>
+          <a href="proyectos/pseint-contador.html">PSeInt – Contador</a>
+          <a href="proyectos/servidor-ubuntu.html">Servidor Ubuntu</a>
+          <a href="proyectos/excel-macros.html">Excel – Macros</a>
+          <a href="#" aria-current="page">2316 · Sistemas vs Informática</a>
+        </nav>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =============================================================
+       HERO – Encabezado de actividad
+       ============================================================= -->
+  <header class="hero">
+    <div class="wrap">
+      <h1>2316 · Comparación: Ingeniería de Sistemas vs Ingeniería Informática</h1>
+      <p class="lead">Actividad de clase – Video y cuadro comparativo. Basado en el video “Ingeniería de Sistemas vs Ingeniería Informática: ¿Cuál es la diferencia?”.</p>
+      <p class="muted">Apertura: 11/08/2025 · Cierre: 03/09/2025 · Evidencia: cuadro comparativo + breve desarrollo.</p>
+    </div>
+  </header>
+
+  <!-- =============================================================
+       INTRODUCCIÓN – [TOCAR]
+       ============================================================= -->
+  <section id="introduccion">
+    <div class="wrap">
+      <div class="section-hd">
+        <h2>Introducción</h2>
+      </div>
+      <div class="card">
+        <p>Este documento presenta un <strong>cuadro comparativo</strong> y un <strong>desarrollo breve</strong> sobre las diferencias y solapamientos entre <em>Ingeniería de Sistemas</em> e <em>Ingeniería Informática (Computer Engineering)</em>. El análisis se construye a partir del contenido del video visto en clase y se organiza para apoyar la comprensión de <span class="muted">enfoques, formación, campo de acción</span> y <span class="muted">ejemplos de aplicación</span>.</p>
+        <p style="margin-top:8px" class="muted">Nota: El objetivo no es decidir “cuál es mejor”, sino <strong>entender el rol</strong> de cada disciplina y cómo colaboran en proyectos tecnológicos reales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       CUADRO COMPARATIVO – [TOCAR]
+       ============================================================= -->
+  <section id="cuadro">
+    <div class="wrap">
+      <div class="section-hd">
+        <h2>Cuadro comparativo</h2>
+        <a class="pill" href="#desarrollo">Ir al desarrollo →</a>
+      </div>
+      <div class="table-wrap">
+        <table aria-describedby="caption">
+          <caption id="caption">Comparación basada en el video de clase.</caption>
+          <thead>
+            <tr>
+              <th>Aspecto</th>
+              <th>Ingeniería de Sistemas</th>
+              <th>Ingeniería Informática (Computer Engineering)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Enfoque principal</strong></td>
+              <td>Diseño, coordinación e <strong>integración de sistemas completos</strong> con visión holística.</td>
+              <td>Diseño e integración de <strong>hardware, software y comunicaciones</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Origen / fundamento</strong></td>
+              <td>Teoría General de Sistemas (Bertalanffy): “El todo es más que la suma de sus partes”.</td>
+              <td>Base en electrónica, teoría de la información e ingeniería de hardware y software.</td>
+            </tr>
+            <tr>
+              <td><strong>Campo de acción</strong></td>
+              <td>Proyectos complejos y multidisciplinares (empresas, ciudades, productos tecnológicos, gestión).</td>
+              <td>Computadoras y sistemas electrónicos de alta complejidad (microcontroladores, redes, embebidos).</td>
+            </tr>
+            <tr>
+              <td><strong>Formación típica</strong></td>
+              <td>Modelado de sistemas, abstracción, gestión de proyectos, arquitectura y <em>software</em>.</td>
+              <td>Electrónica digital/analógica, arquitectura de computadores, comunicaciones, <em>software</em> de bajo nivel.</td>
+            </tr>
+            <tr>
+              <td><strong>Programación</strong></td>
+              <td>Sólida base para integración y desarrollo; ventaja en <em>abstracción</em> y arquitectura de <em>software</em>.</td>
+              <td>Mayor fortaleza en programación <em>de bajo nivel</em> cercana al hardware.</td>
+            </tr>
+            <tr>
+              <td><strong>Ejemplos de rol</strong></td>
+              <td>Coordinación de equipos, gestión de proyectos, diseño de arquitecturas, liderazgo técnico/empresarial.</td>
+              <td>Diseño de hardware, <em>firmware</em>, redes, sistemas embebidos, soporte técnico especializado.</td>
+            </tr>
+            <tr>
+              <td><strong>Dónde se solapan</strong></td>
+              <td colspan="2">En desarrollo de <em>software</em> y proyectos tecnológicos donde “todo es sistema y computadora a la vez”. En muchos contextos trabajan juntos.</td>
+            </tr>
+            <tr>
+              <td><strong>Contexto regional</strong></td>
+              <td colspan="2">En LATAM, la industria de alta tecnología es limitada; muchas vacantes se centran en programación, lo que alimenta la confusión entre carreras.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       DESARROLLO – [TOCAR]
+       ============================================================= -->
+  <section id="desarrollo">
+    <div class="wrap">
+      <div class="section-hd">
+        <h2>Desarrollo y análisis</h2>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">1) ¿Por qué se confunden?</h3>
+        <ul>
+          <li>Ambas operan en <strong>alta tecnología</strong> y las computadoras son <em>sistemas</em>; hay tareas donde pueden ofrecer <em>soluciones equivalentes</em> con enfoques distintos.</li>
+          <li>La <strong>programación</strong> está en el centro de muchas actividades; se percibe como “la” actividad de ambas, ocultando diferencias de fondo.</li>
+          <li>En <strong>América Latina</strong>, la menor presencia de industrias hardware de punta hace que gran parte del mercado sea <em>software</em>, reforzando el solapamiento.</li>
+        </ul>
+        <h3>2) ¿Cómo se complementan?</h3>
+        <ul>
+          <li><strong>Diseño de productos complejos</strong>: Informática lidera hardware/firmware; Sistemas lidera la integración, arquitectura y coordinación del todo.</li>
+          <li><strong>Software</strong>: ambos programan. Informática destaca en bajo nivel y optimización; Sistemas en arquitectura, modularidad y orquestación.</li>
+          <li><strong>Gestión</strong>: Sistemas suele impulsar <em>roadmaps</em>, riesgos, y alineación de equipos; Informática asegura la viabilidad técnica del sustrato electrónico.</li>
+        </ul>
+        <h3>3) Ejemplos prácticos</h3>
+        <ul>
+          <li><em>Consola de videojuegos</em>: Informática → hardware/firmware; ambos → SO; Sistemas → ensamblaje del producto final. Estudio de videojuegos: motor (Informática), juegos (Sistemas).</li>
+          <li><em>Soporte y redes</em>: perfiles de Informática suelen encajar mejor para administración de servidores, redes y mantenimiento especializado.</li>
+          <li><em>Gestión empresarial</em>: perfiles de Sistemas encajan mejor en dirección de proyectos/negocio por su mirada sistémica.</li>
+        </ul>
+        <p class="muted" style="margin-top:8px">Fuente base: video de clase “Ingeniería de Sistemas vs Ingeniería Informática: ¿Cuál es la diferencia?”.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       CONCLUSIONES – [TOCAR]
+       ============================================================= -->
+  <section id="conclusiones">
+    <div class="wrap">
+      <div class="section-hd">
+        <h2>Conclusiones</h2>
+      </div>
+      <div class="card">
+        <ol>
+          <li>Las dos disciplinas <strong>no son iguales</strong>; comparten espacios pero poseen <strong>focos y competencias</strong> diferentes.</li>
+          <li>En proyectos reales, el valor emerge cuando <strong>colaboran</strong>: el todo (producto) supera la suma de especialidades.</li>
+          <li>En entornos con menor industria de hardware, la programación domina y <strong>aumenta el solapamiento</strong>, pero no borra las diferencias de base.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       FOOTER – Firma
+       ============================================================= -->
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <div>© <span id="y"></span> <strong>IngLucas</strong> · 2316 · Teorías de la Ingeniería Informática</div>
+        <div class="muted">Página: 2316-comparacion-ingenieria-sistemas-vs-informatica.html</div>
+      </div>
+      <div><a href="#introduccion">↑ Arriba</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Año en footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Drawer
+    const drawer = document.getElementById('drawer');
+    const openBtn = document.getElementById('openDrawer');
+    const closeBtn = document.getElementById('closeDrawer');
+    function openDrawer(){drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false');}
+    function closeDrawer(){drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true');}
+    if(openBtn) openBtn.addEventListener('click', openDrawer);
+    if(closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
+  </script>
+</body>
+</html>
