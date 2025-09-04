@@ -2,48 +2,73 @@
 <html lang="es">
 <head>
   <!-- =============================================================
-       2313 – LÍNEA DE TIEMPO (Horizontal) – Optimizada v2
-       Respeta el sistema visual y contenido original.
-       Cambios clave:
-       - Banner de consentimiento único (eliminados duplicados)
-       - Accesibilidad/ARIA mejoradas
-       - Drawer con bloqueo de scroll y cierre con ESC
-       - Observers y eventos delegados para mejor rendimiento
-       - Animaciones respetan prefers-reduced-motion
+       PLANTILLA BASE – HEADER + DRAWER + FOOTER + COOKIES
+       [ES] Solo lo esencial. Comportamiento adaptado a PC y móvil.
+       [EN] Essentials only. Behavior adapted for desktop and mobile.
        ============================================================= -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>2313 · Línea de Tiempo (Horizontal) – Ing. Lucas Learning Hub</title>
-  <meta name="description" content="Línea de tiempo horizontal: de la programación manual a la era digital móvil." />
+  <title>Ing. Lucas Learning Hub · Plantilla</title>
+  <meta name="description" content="Plantilla base reutilizable con menú lateral y banner de cookies." />
   <meta name="theme-color" content="#0d47a1" />
 
   <style>
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – SISTEMA DE DISEÑO (ES/EN)
+       Mantiene uniformidad del sitio / Keeps the site consistent
+       ============================================================= */
     :root{
       --blue-700:#0f3f8a; --blue-600:#1450a3; --blue-500:#1a63c7; --blue-300:#6aa8ff;
-      --yellow-700:#b38100; --yellow-600:#d39e00; --yellow-500:#f0b800;
-      --purple-700:#5e1cab; --purple-600:#6e28c4; --purple-500:#7e3bf0;
-      --bg:#0e1116; --surface:#131823; --panel:#161d2b; --border:#263349; --soft:#0b0f16;
-      --text:#e7eef7; --muted:#a9b6c7; --ok:#2ecc71; --warn:#ffb020; --danger:#ff5b6e;
+      --purple-600:#6e28c4; --bg:#0e1116; --surface:#131823; --panel:#161d2b;
+      --border:#263349; --soft:#0b0f16; --text:#e7eef7; --muted:#a9b6c7;
       --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35);
       --container:1200px; --gap:16px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif; background:linear-gradient(180deg,#0b1220,#0e1116); color:var(--text)}
+    body{
+      margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background:linear-gradient(180deg,#0b1220,#0e1116); color:var(--text)
+    }
     a{color:var(--blue-300); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
-    /* ===== TOPBAR ===== */
-    .topbar{position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(12,16,25,.7); border-bottom:1px solid var(--border)}
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – TOPBAR + BOTÓN (ES/EN)
+       ============================================================= */
+    .topbar{
+      position:sticky; top:0; z-index:60;
+      backdrop-filter:saturate(1.1) blur(8px);
+      background:rgba(12,16,25,.7);
+      border-bottom:1px solid var(--border)
+    }
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
-    .logo{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700; background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow)}
+    .logo{
+      width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700;
+      background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow)
+    }
     .brand{display:flex; flex-direction:column}
     .brand strong{font-size:16px}
     .brand span{font-size:12px; color:var(--muted)}
-    .burger{margin-left:auto; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.8); cursor:pointer}
+    .burger{
+      margin-left:auto; display:inline-flex; align-items:center; justify-content:center;
+      min-width:46px; height:40px; padding:0 10px; gap:8px;
+      border-radius:10px; border:2px solid var(--blue-500);
+      background:rgba(18,23,31,.9); color:var(--text);
+      cursor:pointer; transition:transform .15s ease, background .15s ease
+    }
+    .burger:hover{transform:scale(1.04); background:rgba(26,99,199,.12)}
 
-    /* ===== DRAWER (menú) ===== */
-    .drawer{position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0f1624,#0b111c); border-left:1px solid var(--border); box-shadow:-20px 0 40px rgba(0,0,0,.35); transform:translateX(100%); transition:.25s ease transform}
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – DRAWER / MENÚ LATERAL (ES/EN)
+       ============================================================= */
+    .drawer{
+      position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw;
+      background:linear-gradient(180deg,#0e223a,#0a1729);
+      border-left:2px solid var(--blue-500);
+      box-shadow:-20px 0 40px rgba(0,0,0,.45);
+      transform:translateX(100%); transition:.25s ease transform, background-color .25s ease
+    }
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
     .drawer .bd{padding:12px 16px; display:grid; gap:16px}
@@ -51,101 +76,79 @@
     .nav-group h4{margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)}
     .nav{display:grid}
     .nav a{padding:12px 12px; border-top:1px solid var(--border)}
-    .nav a:hover{background:rgba(26,99,199,.1)}
-    body.drawer-open{overflow:hidden}
+    .nav a:hover{background:rgba(26,99,199,.18)}
 
-    /* ===== SECCIONES GENERALES ===== */
-    section{padding:28px 0}
-    .section-hd{display:flex; align-items:end; justify-content:space-between; gap:10px; margin-bottom:14px}
+    /* =============================================================
+       [TOCAR / EDIT] – ESPACIO DE CONTENIDO (ES/EN)
+       ============================================================= */
+    .workspace{padding:24px 0}
+    .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+    .window-titlebar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; background:linear-gradient(180deg,#1a2333,#151c29); border-bottom:1px solid var(--border)}
+    .title-left{display:flex; align-items:center; gap:10px}
+    .traffic{display:flex; gap:8px}
+    .dot{width:12px; height:12px; border-radius:50%}
+    .dot.close{background:#ff5f56}
+    .dot.min{background:#ffbd2e}
+    .dot.max{background:#27c93f}
+    .window-title{font-size:15px; font-weight:600}
+    .title-meta{font-size:12px; color:var(--muted)}
+    .window-body{display:grid; grid-template-columns:1fr; gap:0}
+    .pane{padding:18px; min-height:420px; background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(12,16,24,.95))}
 
-    /* ===== EMBED PAGE ===== */
-    .embed-page{border:1px solid var(--border); border-radius:var(--radius); background:linear-gradient(180deg,#0d1322,#0b1120); box-shadow:var(--shadow); overflow:hidden}
-    .embed-head{padding:18px 20px; border-bottom:1px solid var(--border); background:linear-gradient(180deg,rgba(20,26,38,.85),rgba(12,16,24,.85))}
-    .embed-head h1{margin:0; font-size:26px}
-    .embed-head p{margin:6px 0 0; color:var(--muted)}
-    .embed-controls{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 16px; border-bottom:1px solid var(--border); background:rgba(12,16,24,.6)}
-    .legend{display:none; gap:10px; color:#bcd3ff; font-size:12px}
-    .legend span{display:inline-flex; align-items:center; gap:6px}
-    .legend i{display:inline-block; width:12px; height:4px; border-radius:999px}
-    @media(min-width:760px){ .legend{display:flex} }
-    .embed-actions{display:flex; gap:8px}
-    .btn{display:inline-flex; align-items:center; gap:6px; padding:9px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:var(--text); cursor:pointer}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
-    .btn.ghost{background:rgba(255,255,255,.06)}
-
-    /* ===== TIMELINE ===== */
-    .embed-body{padding:0; position:relative}
-    .line-base{position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); height:4px; border-radius:999px; opacity:.7; background:linear-gradient(90deg,#1e40af,#3b82f6,#06b6d4,#10b981,#f59e0b,#ef4444,#8b5cf6,#ec4899)}
-    .rail{position:relative; overflow-x:auto; overflow-y:visible; scroll-snap-type:x mandatory; padding:48px 10px 56px}
-    .rail::-webkit-scrollbar{height:8px}
-    .rail::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2); border-radius:999px}
-    .rail::-webkit-scrollbar-track{background:rgba(255,255,255,.06)}
-    .row{display:flex; gap:24px}
-    .snap{scroll-snap-align:center}
-    .ti{position:relative; min-width:320px; max-width:420px}
-    @media(min-width:960px){ .ti{min-width:380px; max-width:460px} }
-
-    .dot{position:absolute; top:-6px; left:50%; transform:translate(-50%,-50%); width:28px; height:28px; border-radius:999px; border:4px solid #fff; box-shadow:0 4px 16px rgba(0,0,0,.4); display:grid; place-items:center; font-weight:700; color:#fff; font-size:11px}
-    .dot.blue{background:#2563eb} .dot.cyan{background:#0891b2} .dot.green{background:#16a34a}
-    .dot.yellow{background:#ca8a04} .dot.red{background:#dc2626} .dot.purple{background:#7c3aed}
-    .dot.pink{background:#db2777} .dot.indigo{background:#4f46e5} .dot.gradient{background:linear-gradient(90deg,#3b82f6,#7c3aed)}
-
-    .card{margin-top:22px; background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:18px; padding:16px; box-shadow:var(--shadow); transition:transform .25s ease, box-shadow .25s ease}
-    .ti:hover .card{transform:translateY(-6px) scale(1.02)}
-    .badge{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); color:#fff; font-weight:700; font-size:12px; padding:8px 12px; border-radius:999px; display:inline-block; margin-bottom:10px}
-    .card h3{margin:0 0 8px; font-size:22px}
-    .card p{margin:0 0 10px; color:#d9e6ff}
-    .card ul{margin:0 0 10px 18px; color:#c9d6ea; font-size:14px}
-    .tags{display:flex; flex-wrap:wrap; gap:8px}
-    .tag{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid rgba(59,130,246,.32); color:#b3d1ff; background:rgba(59,130,246,.18)}
-
-    /* Animaciones */
-    .ti{opacity:0; transform:translateY(30px); transition:all .6s ease}
-    .ti.animate{opacity:1; transform:translateY(0)}
-    .pulse{animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.75}}
-    @media (prefers-reduced-motion: reduce){ .ti{transition:none} .pulse{animation:none} }
-
-    /* ===== FOOTER INTERNO ===== */
-    .embed-foot{padding:18px 20px; border-top:1px solid var(--border); text-align:center; color:#b7c4d8; font-size:13px}
-
-    /* ===== FOOTER GLOBAL ===== */
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – FOOTER (ES/EN)
+       ============================================================= */
     footer{border-top:1px solid var(--border); color:var(--muted); padding:22px 0; font-size:13px; background:linear-gradient(180deg,#0f1624,#0c121e)}
     .foot{display:grid; gap:12px}
     @media(min-width:860px){.foot{grid-template-columns:1fr auto}}
     .socials{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8)}
 
-    /* ===== Banner de consentimiento (ÚNICO) ===== */
-    .consent{position:fixed; left:0; right:0; bottom:12px; z-index:1000; display:none}
-    .consent .bar{max-width:980px; margin:0 auto; background:#fff; color:#111; border-radius:14px; box-shadow:0 12px 30px rgba(0,0,0,.14); border:1px solid rgba(0,0,0,.08); padding:14px 16px; display:flex; gap:14px; align-items:flex-start; transform:translateY(16px); opacity:0; transition:transform .35s ease, opacity .35s ease}
-    .consent.show{display:block}
-    .consent.show .bar{transform:translateY(0); opacity:1}
-    .consent p{margin:0; line-height:1.45}
-    .consent a{text-decoration:underline; color:#111}
-    .consent .actions{margin-left:auto; display:flex; gap:10px; flex-wrap:wrap}
-    @media (prefers-reduced-motion: reduce){ .consent .bar{transition:none; transform:none; opacity:1} }
-    @media (max-width:720px){ .consent{bottom:8px; padding:0 8px} .consent .bar{flex-direction:column} .consent .actions{margin-left:0} }
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – BANNER COOKIES (ES/EN)
+       ============================================================= */
+    .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
+    .consent .card{
+      max-width:960px; margin:0 auto; background:#ffffff; color:#111111;
+      border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.18);
+      padding:16px 18px; border:1px solid rgba(0,0,0,.08);
+    }
+    .consent .row{ display:flex; gap:16px; align-items:flex-start; }
+    .consent p{ margin:0; line-height:1.5 }
+    .consent .actions{ margin-left:auto; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.08); color:#0e1116; cursor:pointer}
+    .btn.primary{ background:var(--blue-500); border-color:transparent; color:white; }
+    .btn:hover{ filter:brightness(1.05); }
+    @media (max-width:720px){
+      .consent{ inset:auto 8px 8px 8px; }
+      .consent .row{ flex-direction:column; }
+      .consent .actions{ margin-left:0 }
+    }
   </style>
 </head>
+
 <body>
-  <!-- ===== TOPBAR ===== -->
+  <!-- =============================================================
+       [NO TOCAR / DO NOT TOUCH] – TOPBAR (ES/EN)
+       ============================================================= -->
   <div class="topbar">
     <div class="wrap row">
       <div class="logo" aria-hidden="true">IL</div>
       <div class="brand">
         <strong>Ing. Lucas Learning Hub</strong>
-        <span>Portafolio · Proyectos · Bitácora</span>
+        <span>Pagina 2313 · Línea de Tiempo (Horizontal).</span>
       </div>
-      <button class="burger" id="openDrawer" title="Abrir menú" aria-controls="drawer" aria-expanded="false" aria-label="Abrir menú" type="button">☰</button>
+      <button class="burger" id="openDrawer" title="Abrir menú" aria-label="Abrir menú">☰</button>
     </div>
   </div>
 
-  <!-- ===== DRAWER ===== -->
-  <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true" tabindex="-1">
+  <!-- =============================================================
+       [NO TOCAR / DO NOT TOUCH] – DRAWER (ES/EN)
+       ============================================================= -->
+  <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
     <div class="hd">
       <strong>Navegación</strong>
-      <button class="btn ghost" id="closeDrawer" aria-label="Cerrar" type="button">Cerrar ✕</button>
+      <button class="btn" id="closeDrawer" aria-label="Cerrar">Cerrar ✕</button>
     </div>
     <div class="bd">
       <div class="nav-group">
@@ -159,7 +162,7 @@
       <div class="nav-group">
         <h4>Ventanas / Proyectos</h4>
         <nav class="nav">
-          <a href="2313LíneaDeTiempo.html" aria-current="page">2313 · Línea de Tiempo</a>
+          <a href="2313LíneaDeTiempo.html">2313 · Línea de Tiempo</a>
           <a href="proyectos/pseint-contador.html">PSeInt – Contador</a>
           <a href="proyectos/servidor-ubuntu.html">Servidor Ubuntu</a>
           <a href="proyectos/excel-macros.html">Excel – Macros</a>
@@ -169,209 +172,428 @@
     </div>
   </aside>
 
-  <!-- ===== HERO ===== -->
-  <header class="wrap" style="padding:30px 0 10px">
-    <h1 style="margin:0 0 6px; font-size:32px">2313 · Línea de Tiempo (Horizontal)</h1>
-    <p style="margin:0; color:var(--muted)">De la programación manual a la era digital móvil.</p>
-  </header>
-
-  <!-- ===== EMBED PAGE – Timeline ===== -->
-  <section>
-    <div class="wrap">
-      <div class="embed-page" id="timelinePage" role="region" aria-label="Línea de tiempo interactiva">
-        <div class="embed-head">
-          <h1>📜 Línea de Tiempo</h1>
-          <p>De la programación manual a la era digital móvil</p>
-        </div>
-
-        <div class="embed-controls">
-          <div class="legend" aria-hidden="false">
-            <span><i style="background:#60a5fa"></i>1940s</span>
-            <span><i style="background:#22d3ee"></i>1950s</span>
-            <span><i style="background:#34d399"></i>1960s</span>
-            <span><i style="background:#f59e0b"></i>1970s</span>
-            <span><i style="background:#ef4444"></i>1980s</span>
-            <span><i style="background:#a78bfa"></i>1990s</span>
-            <span><i style="background:#f472b6"></i>2000s</span>
-            <span><i style="background:#6366f1"></i>2010s</span>
-            <span><i style="background:#8b5cf6"></i>2020s</span>
+  <!-- =============================================================
+       [TOCAR / EDIT] – CONTENIDO PRINCIPAL (ES/EN)
+       ============================================================= -->
+  <div class="wrap workspace">
+    <section class="window" role="region" aria-label="Contenido principal">
+      <div class="window-titlebar">
+        <div class="title-left">
+          <div class="traffic" aria-hidden="true">
+            <span class="dot close"></span>
+            <span class="dot min"></span>
+            <span class="dot max"></span>
           </div>
-          <div class="embed-actions">
-            <button class="btn ghost" id="btnLeft" title="Desplazar a la izquierda" type="button" aria-label="Anterior">◀</button>
-            <button class="btn primary" id="animateBtn" type="button">🚀 Animar</button>
-            <button class="btn ghost" id="btnRight" title="Desplazar a la derecha" type="button" aria-label="Siguiente">▶</button>
+          <div>
+            <!-- [ES] Puedes ajustar el título visible de la sección
+                 [EN] You may adjust the visible section title -->
+            <div class="window-title">2313 · Línea de Tiempo — De la programación manual a la era digital móvil</div>
+            <div class="title-meta">Ruta > Ventanas · Activo</div>
           </div>
         </div>
-
-        <div class="embed-body">
-          <div class="line-base" aria-hidden="true"></div>
-          <div class="rail" id="rail" tabindex="0" aria-label="Carril de eventos por décadas">
-            <ol class="row">
-              <!-- 1940s -->
-              <li class="ti snap">
-                <div class="dot blue"><span>40</span></div>
-                <article class="card">
-                  <span class="badge">1940s – Programación manual</span>
-                  <h3>🔧 Los Pioneros</h3>
-                  <p>Computadoras con interruptores físicos, cables y tarjetas perforadas. Programación mediante conexiones manuales y configuración de hardware.</p>
-                  <ul>
-                    <li>ENIAC: 30 toneladas, 18,000 tubos de vacío</li>
-                    <li>Colossus: descifraba códigos alemanes</li>
-                    <li>Programación: <em>rewiring</em> físico</li>
-                  </ul>
-                  <div class="tags"><span class="tag">ENIAC</span><span class="tag">Colossus</span><span class="tag">Tubos de Vacío</span></div>
-                </article>
-              </li>
-              <!-- 1950s -->
-              <li class="ti snap">
-                <div class="dot cyan"><span>50</span></div>
-                <article class="card">
-                  <span class="badge">1950s – Lenguajes de bajo nivel</span>
-                  <h3>💻 Primeros Lenguajes</h3>
-                  <p>Surge el ensamblador y los primeros lenguajes de alto nivel. Transición de programación manual a código escrito.</p>
-                  <ul>
-                    <li>Fortran: cálculos científicos e ingeniería</li>
-                    <li>COBOL: aplicaciones comerciales</li>
-                    <li>Transistores reemplazan tubos de vacío</li>
-                    <li>Primeros compiladores automáticos</li>
-                  </ul>
-                  <div class="tags"><span class="tag">Fortran (1957)</span><span class="tag">COBOL (1959)</span><span class="tag">Transistores</span></div>
-                </article>
-              </li>
-              <!-- 1960s -->
-              <li class="ti snap">
-                <div class="dot green"><span>60</span></div>
-                <article class="card">
-                  <span class="badge">1960s – Sistemas operativos iniciales</span>
-                  <h3>🖥️ Era de los Mainframes</h3>
-                  <p>Primeros mainframes multitarea y bases de la programación estructurada. Computadoras más pequeñas y eficientes.</p>
-                  <ul>
-                    <li>IBM System/360: arquitectura estándar</li>
-                    <li>Circuitos integrados reducen tamaño</li>
-                    <li>Time-sharing: múltiples usuarios</li>
-                    <li>Primeros sistemas operativos básicos</li>
-                  </ul>
-                  <div class="tags"><span class="tag">IBM System/360</span><span class="tag">Time-sharing</span><span class="tag">Circuitos Integrados</span></div>
-                </article>
-              </li>
-              <!-- 1970s -->
-              <li class="ti snap">
-                <div class="dot yellow"><span>70</span></div>
-                <article class="card">
-                  <span class="badge">1970s – Unix y C</span>
-                  <h3>🚀 Revolución Unix</h3>
-                  <p>Nace Unix (1969–1971) y el lenguaje C (1972) aporta portabilidad entre sistemas. Se asientan bases de la computación moderna.</p>
-                  <ul>
-                    <li>Unix: filosofía “todo es archivo”</li>
-                    <li>C: lenguaje de sistemas portable</li>
-                    <li>Microprocesadores Intel 4004, 8008</li>
-                    <li>Ethernet: redes locales (1973)</li>
-                  </ul>
-                  <div class="tags"><span class="tag">Unix</span><span class="tag">Lenguaje C</span><span class="tag">Intel 4004</span><span class="tag">Ethernet</span></div>
-                </article>
-              </li>
-              <!-- 1980s -->
-              <li class="ti snap">
-                <div class="dot red"><span>80</span></div>
-                <article class="card">
-                  <span class="badge">1980s – PC y GUI</span>
-                  <h3>🖱️ Era de las PC</h3>
-                  <p>IBM PC (1981) y Apple Macintosh (1984) popularizan la informática personal. Las interfaces gráficas revolucionan la interacción.</p>
-                  <ul>
-                    <li>IBM PC: arquitectura abierta</li>
-                    <li>Macintosh: GUI masiva con mouse</li>
-                    <li>MS-DOS: sistema dominante</li>
-                    <li>C++: orientación a objetos</li>
-                  </ul>
-                  <div class="tags"><span class="tag">IBM PC</span><span class="tag">Macintosh</span><span class="tag">MS-DOS</span><span class="tag">C++</span></div>
-                </article>
-              </li>
-              <!-- 1990s -->
-              <li class="ti snap">
-                <div class="dot purple pulse"><span>90</span></div>
-                <article class="card">
-                  <span class="badge">1990s – Internet y software masivo</span>
-                  <h3>🌐 Revolución de Internet</h3>
-                  <p>La Web conecta el mundo. Los lenguajes web transforman la programación hacia aplicaciones distribuidas.</p>
-                  <ul>
-                    <li>WWW: HTML, HTTP, URLs (T. Berners-Lee)</li>
-                    <li>Windows 95: GUI masiva</li>
-                    <li>Java: "write once, run anywhere"</li>
-                    <li>JavaScript: interactividad en navegadores</li>
-                    <li>Linux (1991): Unix libre y OSS</li>
-                  </ul>
-                  <div class="tags"><span class="tag">WWW</span><span class="tag">Windows 95</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">Linux</span></div>
-                </article>
-              </li>
-              <!-- 2000s -->
-              <li class="ti snap">
-                <div class="dot pink"><span>00</span></div>
-                <article class="card">
-                  <span class="badge">2000s – Conectividad global</span>
-                  <h3>📱 Nacimiento del Smartphone</h3>
-                  <p>La banda ancha conecta hogares. Los smartphones llevan la computación al bolsillo.</p>
-                  <ul>
-                    <li>Internet de alta velocidad</li>
-                    <li>BlackBerry: email móvil</li>
-                    <li>iPhone (2007): touchscreen</li>
-                    <li>Android (2008): plataforma abierta</li>
-                    <li>Web 2.0: redes sociales</li>
-                  </ul>
-                  <div class="tags"><span class="tag">Banda Ancha</span><span class="tag">BlackBerry</span><span class="tag">iPhone</span><span class="tag">Android</span><span class="tag">Web 2.0</span></div>
-                </article>
-              </li>
-              <!-- 2010s -->
-              <li class="ti snap">
-                <div class="dot indigo pulse"><span>10</span></div>
-                <article class="card">
-                  <span class="badge">2010s – Era digital móvil</span>
-                  <h3>📲 Dominio de las Apps</h3>
-                  <p>Las apps móviles dominan la interacción. La nube centraliza servicios y datos.</p>
-                  <ul>
-                    <li>App Store / Google Play</li>
-                    <li>Instagram, WhatsApp, Uber</li>
-                    <li>AWS / Azure: IaaS</li>
-                    <li>Responsive design</li>
-                    <li>Git & GitHub</li>
-                  </ul>
-                  <div class="tags"><span class="tag">App Stores</span><span class="tag">Cloud</span><span class="tag">GitHub</span></div>
-                </article>
-              </li>
-              <!-- 2020s -->
-              <li class="ti snap">
-                <div class="dot gradient pulse"><span>20</span></div>
-                <article class="card" style="background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.06)); border-color:rgba(255,255,255,.3)">
-                  <span class="badge">2020s – Era digital avanzada</span>
-                  <h3>🤖 Inteligencia Artificial</h3>
-                  <p>IA generativa, 5G e IoT conectan todo. Paradigmas multiplataforma y descentralización.</p>
-                  <ul>
-                    <li>ChatGPT, Copilot: asistencia a código</li>
-                    <li>5G: baja latencia & edge</li>
-                    <li>IoT: billones de dispositivos</li>
-                    <li>React Native, Flutter</li>
-                    <li>Blockchain y NFTs</li>
-                  </ul>
-                  <div class="tags"><span class="tag">ChatGPT</span><span class="tag">5G</span><span class="tag">IoT</span><span class="tag">Flutter</span><span class="tag">Blockchain</span></div>
-                </article>
-              </li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="embed-foot">
-          <h4 style="margin:0 0 10px; font-size:16px; color:#fff">Desarrollado por:</h4>
-          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:8px">
-            <div style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.2); padding:8px 12px; border-radius:12px">Miguel Ángel Piñeros Castillo</div>
-            <div style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.2); padding:8px 12px; border-radius:12px">Alejandro González Fernández</div>
-            <div style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.2); padding:8px 12px; border-radius:12px">Lucas Orlando Molina Parra</div>
-          </div>
-          <div>✏️  2025 – Línea de Tiempo Interactiva de la Programación</div>
-        </div>
+        <div class="title-right"></div>
       </div>
-    </div>
-  </section>
 
-  <!-- ===== FOOTER ===== -->
+      <div class="window-body">
+        <section class="pane">
+          <!-- =====================================================
+               [AÑADIDO / ADDED] – BLOQUE ENCAPSULADO (ES/EN)
+               ES: Integra el proyecto “Línea de Tiempo (Horizontal)”
+                   con estructura académica básica. Estilos y JS
+                   encapsulados bajo .tlx-* para evitar conflictos.
+               EN: Integrates the “Horizontal Timeline” project with
+                   basic academic structure. Styles/JS are namespaced
+                   under .tlx-* to avoid leaking globals.
+               ===================================================== -->
+
+          <!-- Introducción -->
+          <article class="tlx">
+            <header class="tlx-head">
+              <h1>📜 Línea de Tiempo: De la Programación Manual a la Era Digital Móvil</h1>
+              <p class="tlx-sub">
+                <strong>Introducción.</strong> Este trabajo presenta, en formato de línea de tiempo
+                horizontal, los hitos que marcaron la evolución del desarrollo de software y la
+                computación moderna: desde el cableado manual y las tarjetas perforadas hasta el
+                uso extendido de apps móviles e inteligencia artificial. El objetivo es ofrecer
+                una visión cronológica clara para estudiantes de primer semestre y público técnico
+                general, sosteniendo legibilidad, contraste y accesibilidad.
+              </p>
+            </header>
+
+            <!-- Desarrollo -->
+            <section class="tlx-dev">
+              <div class="tlx-controls">
+                <div class="tlx-legend" aria-hidden="true">
+                  <span><i style="background:#2f6fd6"></i> 1940s</span>
+                  <span><i style="background:#19b5d1"></i> 1950s</span>
+                  <span><i style="background:#22c55e"></i> 1960s</span>
+                  <span><i style="background:#eab308"></i> 1970s</span>
+                  <span><i style="background:#ef4444"></i> 1980s</span>
+                  <span><i style="background:#8b5cf6"></i> 1990s</span>
+                  <span><i style="background:#ec4899"></i> 2000s</span>
+                  <span><i style="background:#6366f1"></i> 2010s</span>
+                  <span><i style="background:linear-gradient(90deg,#3b82f6,#8b5cf6)"></i> 2020s</span>
+                </div>
+                <div class="tlx-buttons">
+                  <button id="tlxBtnLeft" class="tlx-btn" aria-label="Desplazar a la izquierda">◀</button>
+                  <button id="tlxAnimate" class="tlx-btn tlx-primary" aria-label="Animar items">🚀 Animar</button>
+                  <button id="tlxBtnRight" class="tlx-btn" aria-label="Desplazar a la derecha">▶</button>
+                </div>
+              </div>
+
+              <div class="tlx-timeline">
+                <div class="tlx-line" aria-hidden="true"></div>
+
+                <div id="tlxRail" class="tlx-rail" role="list" tabindex="0" aria-label="Línea de tiempo horizontal">
+                  <!-- 1940s -->
+                  <article class="tlx-item" role="listitem" data-decade="1940s">
+                    <div class="tlx-dot" style="--dot:#2f6fd6"><span>40</span></div>
+                    <div class="tlx-card">
+                      <span class="tlx-badge">1940s – Programación manual</span>
+                      <h3>🔧 Los Pioneros</h3>
+                      <p>Interruptores físicos, cableado y tarjetas perforadas. Programación por <em>rewiring</em> de hardware.</p>
+                      <ul>
+                        <li>ENIAC: 30 toneladas, 18.000 tubos de vacío</li>
+                        <li>Colossus: criptoanálisis en guerra</li>
+                        <li>Configuración manual del sistema</li>
+                      </ul>
+                      <div class="tlx-tags">
+                        <span>ENIAC</span><span>Colossus</span><span>Tubos de vacío</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- 1950s -->
+                  <article class="tlx-item" role="listitem" data-decade="1950s">
+                    <div class="tlx-dot" style="--dot:#19b5d1"><span>50</span></div>
+                    <div class="tlx-card">
+                      <span class="tlx-badge">1950s – Lenguajes de bajo/alto nivel</span>
+                      <h3>💻 Primeros Lenguajes</h3>
+                      <p>Transición del hardware al código: ensamblador y primeros lenguajes de alto nivel.</p>
+                      <ul>
+                        <li>Fortran (1957) para ciencia e ingeniería</li>
+                        <li>COBOL (1959) para negocios</li>
+                        <li>Transistores reemplazan tubos</li>
+                        <li>Compiladores automáticos iniciales</li>
+                      </ul>
+                      <div class="tlx-tags">
+                        <span>Fortran</span><span>COBOL</span><span>Transistores</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- 1960s -->
+                  <article class="tlx-item" role="listitem" data-decade="1960s">
+                    <div class="tlx-dot" style="--dot:#22c55e"><span>60</span></div>
+                    <div class="tlx-card">
+                      <span class="tlx-badge">1960s – Mainframes y SO iniciales</span>
+                      <h3>🖥️ Era de los Mainframes</h3>
+                      <p>Multitarea y <em>time-sharing</em>; bases de la programación estructurada.</p>
+                      <ul>
+                        <li>IBM System/360: arquitectura estándar</li>
+                        <li>Circuitos integrados reducen tamaño</li>
+                        <li>Primeros sistemas operativos</li>
+                      </ul>
+                      <div class="tlx-tags">
+                        <span>System/360</span><span>Time-sharing</span><span>CI</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- 1970s -->
+                  <article class="tlx-item" role="listitem" data-decade="1970s">
+                    <div class="tlx-dot" style="--dot:#eab308"><span>70</span></div>
+                    <div class="tlx-card">
+                      <span class="tlx-badge">1970s – Unix y C</span>
+                      <h3>🚀 Revolución Unix</h3>
+                      <p>Unix (1969–1971) y C (1972) habilitan portabilidad y filosofía “todo es archivo”.</p>
+                      <ul>
+                        <li>Microprocesadores Intel 4004, 8008</li>
+                        <li>Ethernet (1973): redes locales</li>
+                      </ul>
+                      <div class="tlx-tags">
+                        <span>Unix</span><span>C</span><span>Intel 4004</span><span>Ethernet</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- 1980s -->
+                  <article class="tlx-item" role="listitem" data-decade="1980s">
+                    <div class="tlx-dot" style="--dot:#ef4444"><span>80</span></div>
+                    <div class="tlx-card">
+                      <span class="tlx-badge">1980s – PC y GUI</span>
+                      <h3>🖱️ Era de las PC</h3>
+                      <p>IBM PC (1981) y Macintosh (1984) popularizan la informática personal y las GUI.</p>
+                      <ul>
+                        <li>MS-DOS como base de software</li>
+                        <li>C++: orientación a objetos</li>
+                      </ul>
+                      <div class="tlx-tags">
+                        <span>IBM PC</span><span>Macintosh</span><span>MS-DOS</span><span>C++</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- 1990s -->
+                  <article class="tlx-item" role="listitem" data-decade="1990s">
+                    <div class="tlx-dot tlx-pulse" style="--dot:#8b5cf6"><span>90</span></div>
+                    <div class="tlx-card">
+                      <span class="tlx-badge">1990s – Internet y software masivo</span>
+                      <h3>🌐 Revolución de Internet</h3>
+                      <p>La Web conecta el mundo: HTML, HTTP, URL y navegadores.</p>
+                      <ul>
+                        <li>Windows 95: GUI masiva</li>
+                        <li>Java y JavaScript</li>
+                        <li>Linux (1991) y OSS</li>
+                      </ul>
+                      <div class="tlx-tags">
+                        <span>WWW</span><span>Windows 95</span><span>Java</span><span>JavaScript</span><span>Linux</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- 2000s -->
+                  <article class="tlx-item" role="listitem" data-decade="2000s">
+                    <div class="tlx-dot" style="--dot:#ec4899"><span>00</span></div>
+                    <div class="tlx-card">
+                      <span class="tlx-badge">2000s – Conectividad global</span>
+                      <h3>📱 Nacimiento del Smartphone</h3>
+                      <p>Banda ancha en hogares; smartphones llevan la computación al bolsillo.</p>
+                      <ul>
+                        <li>BlackBerry, iPhone (2007)</li>
+                        <li>Android (2008) plataforma abierta</li>
+                        <li>Web 2.0 y redes sociales</li>
+                      </ul>
+                      <div class="tlx-tags">
+                        <span>Banda ancha</span><span>iPhone</span><span>Android</span><span>Web 2.0</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- 2010s -->
+                  <article class="tlx-item" role="listitem" data-decade="2010s">
+                    <div class="tlx-dot tlx-pulse" style="--dot:#6366f1"><span>10</span></div>
+                    <div class="tlx-card">
+                      <span class="tlx-badge">2010s – Era digital móvil</span>
+                      <h3>📲 Dominio de las Apps</h3>
+                      <p>Las apps y la nube definen la experiencia: tiendas, mensajería, movilidad.</p>
+                      <ul>
+                        <li>App Store / Google Play</li>
+                        <li>Instagram, WhatsApp, Uber</li>
+                        <li>AWS / Azure</li>
+                        <li>Responsive design · Git/GitHub</li>
+                      </ul>
+                      <div class="tlx-tags">
+                        <span>App Stores</span><span>Cloud</span><span>GitHub</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- 2020s -->
+                  <article class="tlx-item" role="listitem" data-decade="2020s">
+                    <div class="tlx-dot tlx-pulse" style="--dot:linear-gradient(90deg,#3b82f6,#8b5cf6)"><span>20</span></div>
+                    <div class="tlx-card">
+                      <span class="tlx-badge">2020s – Era digital avanzada</span>
+                      <h3>🤖 Inteligencia Artificial</h3>
+                      <p>IA generativa, 5G e IoT; paradigmas multiplataforma y mayor descentralización.</p>
+                      <ul>
+                        <li>Asistentes de código</li>
+                        <li>5G y edge computing</li>
+                        <li>IoT masivo</li>
+                        <li>Flutter / React Native</li>
+                        <li>Blockchain/NFTs</li>
+                      </ul>
+                      <div class="tlx-tags">
+                        <span>IA</span><span>5G</span><span>IoT</span><span>Flutter</span><span>Blockchain</span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+                <!-- Barra de desplazamiento manual (slider) -->
+                <div class="tlx-scrollbar" aria-hidden="false">
+                  <input id="tlxScroll" type="range" min="0" max="100" value="0" aria-label="Barra de desplazamiento de la línea de tiempo">
+                </div>
+              </div>
+            </section>
+
+            <!-- Conclusiones -->
+            <section class="tlx-conc">
+              <h2>Conclusiones</h2>
+              <ol>
+                <li>La portabilidad (Unix/C) y la estandarización (System/360, Ethernet) crearon el terreno común que permitió la Web y los smartphones.</li>
+                <li>Las capas de abstracción (de ensamblador a lenguajes modernos) democratizaron la creación de software.</li>
+                <li>La movilidad y la nube consolidaron un ecosistema centrado en experiencias y servicios, hoy acelerado por IA.</li>
+              </ol>
+            </section>
+
+            <!-- Referencias (APA breve) -->
+            <section class="tlx-refs">
+              <h2>Referencias.</h2>
+              <ul>
+                <li>Ritchie, D. M., & Thompson, K. (1974). The UNIX time-sharing system. <em>Communications of the ACM</em>, 17(7), 365–375.</li>
+                <li>Backus, J. (1978). Programming in America in the 1950s—Some personal impressions. <em>Annals of the History of Computing</em>, 1(2), 36–48.</li>
+                <li>Berners-Lee, T. (1996). The World Wide Web: Past, present and future. <em>IEEE Computer</em>.</li>
+              </ul>
+            </section>
+          </article>
+
+          <!-- ======================= ESTILOS ENCAPSULADOS ======================= -->
+          <style>
+            .tlx{display:grid; gap:18px}
+            .tlx-head h1{margin:0; font-size:clamp(22px,3.8vw,34px); line-height:1.2}
+            .tlx-sub{color:var(--muted); margin:6px 0 0}
+            .tlx-dev{display:grid; gap:12px}
+
+            .tlx-controls{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between}
+            .tlx-legend{display:flex; gap:14px; flex-wrap:wrap; color:#bcd1ff; opacity:.9; font-size:12px}
+            .tlx-legend i{display:inline-block; width:14px; height:4px; border-radius:2px; margin-right:6px}
+            .tlx-buttons{display:flex; gap:10px}
+            .tlx-btn{
+              padding:8px 12px; border-radius:999px; border:1px solid var(--border);
+              background:rgba(255,255,255,.06); color:var(--text); cursor:pointer
+            }
+            .tlx-btn:hover{filter:brightness(1.06)}
+            .tlx-primary{background:linear-gradient(90deg,var(--blue-600),var(--purple-600)); border-color:transparent; font-weight:600}
+
+            .tlx-timeline{position:relative; display:grid; gap:10px}
+            .tlx-line{
+              position:absolute; left:0; right:0; top:50%; transform:translateY(-50%);
+              height:2px; border-radius:999px;
+              background:linear-gradient(90deg,#1e40af,#3b82f6,#06b6d4,#10b981,#f59e0b,#ef4444,#8b5cf6,#ec4899);
+              opacity:.7
+            }
+            .tlx-rail{
+              position:relative; overflow-x:auto; overflow-y:visible; scroll-snap-type:x mandatory;
+              display:flex; gap:16px; padding:18px 2px 26px 2px
+            }
+            .tlx-rail::-webkit-scrollbar{height:10px}
+            .tlx-rail::-webkit-scrollbar-track{background:rgba(255,255,255,.04); border-radius:999px}
+            .tlx-rail::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18); border-radius:999px}
+
+            .tlx-item{
+              scroll-snap-align:center; position:relative; min-width:min(82vw,420px);
+              transition:transform .3s ease, opacity .3s ease; opacity:0; transform:translateY(30px)
+            }
+            .tlx-item.is-in{opacity:1; transform:translateY(0)}
+            @media (min-width:980px){ .tlx-item{min-width:460px} }
+
+            .tlx-dot{
+              position:absolute; left:50%; top:-6px; transform:translateX(-50%);
+              width:28px; height:28px; border-radius:999px; border:4px solid #fff; display:grid; place-items:center;
+              background:var(--dot,#1a63c7); box-shadow:0 10px 20px rgba(0,0,0,.35); transition:transform .3s ease, box-shadow .3s ease
+            }
+            .tlx-dot span{color:#fff; font-size:12px; font-weight:700}
+            .tlx-pulse{animation:tlxPulse 2s infinite}
+            @keyframes tlxPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.2)}}
+
+            .tlx-card{
+              margin-top:22px; background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));
+              border:1px solid rgba(255,255,255,.18); border-radius:16px; padding:16px; backdrop-filter:blur(8px);
+              transition:transform .25s ease, box-shadow .25s ease
+            }
+            .tlx-item:hover .tlx-card{transform:translateY(-6px) scale(1.02); box-shadow:0 12px 28px rgba(0,0,0,.35)}
+            .tlx-item:hover .tlx-dot{transform:translateX(-50%) scale(1.15); box-shadow:0 0 24px rgba(59,130,246,.6)}
+
+            .tlx-badge{
+              display:inline-block; font-size:12px; color:#fff; font-weight:700; margin-bottom:8px;
+              padding:6px 10px; border-radius:999px;
+              background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)
+            }
+            .tlx-card h3{margin:6px 0 8px; font-size:20px}
+            .tlx-card p{margin:0 0 8px; color:#d7e3f5}
+            .tlx-card ul{margin:0 0 10px 16px; padding:0; color:#c8d6ec}
+            .tlx-card li{margin:4px 0}
+            .tlx-tags{display:flex; gap:8px; flex-wrap:wrap}
+            .tlx-tags span{
+              display:inline-block; font-size:11px; color:#b9d5ff;
+              padding:6px 10px; border-radius:999px; background:rgba(59,130,246,.18); border:1px solid rgba(59,130,246,.32)
+            }
+
+            .tlx-scrollbar{padding:0 6px}
+            .tlx-scrollbar input[type="range"]{
+              width:100%; accent-color:var(--blue-500); cursor:pointer
+            }
+
+            .tlx-conc h2, .tlx-refs h2{margin:8px 0 6px}
+            .tlx-conc ol{margin:0 0 0 18px}
+            .tlx-refs ul{margin:0 0 0 18px}
+          </style>
+
+          <!-- ======================= LÓGICA ENCAPSULADA ======================= -->
+          <script>
+            (function(){
+              // Guard-rails
+              const rail = document.getElementById('tlxRail');
+              const btnL = document.getElementById('tlxBtnLeft');
+              const btnR = document.getElementById('tlxBtnRight');
+              const btnA = document.getElementById('tlxAnimate');
+              const slider = document.getElementById('tlxScroll');
+              const items = Array.from(document.querySelectorAll('.tlx-item'));
+              if(!rail) return;
+
+              // Animación por lotes
+              function animateIn(){
+                items.forEach(i=>i.classList.remove('is-in'));
+                items.forEach((i,idx)=>{ setTimeout(()=>i.classList.add('is-in'), idx*160); });
+              }
+              window.addEventListener('load', ()=> setTimeout(animateIn, 500));
+              btnA?.addEventListener('click', animateIn);
+
+              // Intersection Observer para animación al aparecer
+              const io = new IntersectionObserver((entries)=>{
+                entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('is-in'); });
+              }, { root: rail, threshold: .35 });
+              items.forEach(i=> io.observe(i));
+
+              // Desplazamiento con botones
+              function stepSize(){
+                const w = rail.clientWidth;
+                return Math.max(280, Math.min(460, Math.floor(w*0.6)));
+              }
+              btnL?.addEventListener('click',()=> rail.scrollBy({left:-stepSize(),behavior:'smooth'}));
+              btnR?.addEventListener('click',()=> rail.scrollBy({left: stepSize(),behavior:'smooth'}));
+
+              // Slider vinculado al scroll
+              function updateSlider(){
+                const max = rail.scrollWidth - rail.clientWidth;
+                const val = max>0 ? Math.round(rail.scrollLeft / max * 100) : 0;
+                slider.value = String(val);
+              }
+              function scrollToSlider(){
+                const max = rail.scrollWidth - rail.clientWidth;
+                rail.scrollTo({ left: (slider.value/100)*max, behavior:'smooth' });
+              }
+              rail.addEventListener('scroll', updateSlider, {passive:true});
+              slider?.addEventListener('input', scrollToSlider);
+
+              // Parallax sutil de la línea
+              const line = document.querySelector('.tlx-line');
+              window.addEventListener('scroll',()=>{ if(line){ line.style.transform = 'translateY(calc(-50% + '+ (window.pageYOffset*0.06) +'px))'; } }, {passive:true});
+
+              // Interacción táctil (toque breve = micro-animación)
+              items.forEach(item=>{
+                item.addEventListener('click',()=>{
+                  const dot = item.querySelector('.tlx-dot');
+                  const card = item.querySelector('.tlx-card');
+                  if(card && dot){
+                    card.style.transform='translateY(-6px) scale(1.03)';
+                    dot.style.transform='translateX(-50%) scale(1.25)';
+                    setTimeout(()=>{card.style.transform=''; dot.style.transform='';},260);
+                  }
+                });
+              });
+            })();
+          </script>
+          <!-- =================== FIN BLOQUE ENCAPSULADO (.tlx-*) =================== -->
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <!-- =============================================================
+       [NO TOCAR / DO NOT TOUCH] – FOOTER (ES/EN)
+       ============================================================= -->
   <footer>
     <div class="wrap foot">
       <div>
@@ -388,106 +610,138 @@
           <a class="chip" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.6c0-1.34-.03-3.07-1.87-3.07-1.88 0-2.17 1.46-2.17 2.97v5.7H9.31V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.42v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
           </a>
-          <a class="chip" href="mailto:contacto@inglucas.com.co" aria-label="Email" title="Email">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 12 4 6.01V6h16zM4 8.24l8 5.76 8-5.76V18H4V8.24z"/></svg>
-          </a>
           <a class="chip" href="#" id="manageConsent">Preferencias de cookies</a>
         </div>
         <div style="margin-top:10px">
-          <a href="politicas-privacidad.html" aria-current="page">Políticas de Privacidad</a>
+          <a href="politicas-privacidad.html">Políticas de Privacidad</a>
         </div>
       </div>
       <div>
         © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub
-        <div id="custom-text" style="margin-top:8px; font-size:0.92em; opacity:.85;"><em> Pagina 2313 · Línea de Tiempo (Horizontal).</em></div>
+        <div id="custom-text" style="margin-top:8px; font-size:0.92em; opacity:.85;">
+          <em>Pagina 2313 · Línea de Tiempo (Horizontal)..</em>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- ===== Banner de consentimiento (ÚNICO) ===== -->
-  <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Preferencias de cookies" aria-modal="true" hidden>
-    <div class="bar">
-      <p>
-        Usamos <strong>cookies esenciales</strong> para que el sitio funcione correctamente y, con tu permiso,
-        <strong>cookies analíticas</strong> para entender el uso y mejorar la experiencia.
-        Puedes cambiar tu elección en <em>“Preferencias de cookies”</em>.
-        Consulta la <a href="politicas-privacidad.html" target="_self">Política de Privacidad</a>.
-      </p>
-      <div class="actions">
-        <button class="btn" id="deny" type="button">Rechazar</button>
-        <button class="btn primary" id="allow" type="button">Aceptar</button>
+  <!-- =============================================================
+       [NO TOCAR / DO NOT TOUCH] – BANNER DE COOKIES (ES/EN)
+       ============================================================= -->
+  <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
+    <div class="card">
+      <div class="row">
+        <p>
+          Usamos <strong>cookies esenciales</strong> para que el sitio funcione correctamente y, con tu permiso,
+          <strong>cookies analíticas</strong> para entender el uso y mejorar la experiencia.
+          Puedes cambiar tu elección en <em>“Preferencias de cookies”</em>.
+          Consulta la <a href="politicas-privacidad.html" target="_self">Política de Privacidad</a>.
+        </p>
+        <div class="actions">
+          <button class="btn" id="deny">Rechazar</button>
+          <button class="btn primary" id="allow">Aceptar</button>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    // Helpers
-    const $ = (s, c=document) => c.querySelector(s);
-    const $$ = (s, c=document) => Array.from(c.querySelectorAll(s));
+    // =============================================================
+    // [NO TOCAR / DO NOT TOUCH] – UTILIDADES BÁSICAS (ES/EN)
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Año en footer
-    $('#y').textContent = new Date().getFullYear();
+    const drawer = document.getElementById('drawer');
+    const openBtn = document.getElementById('openDrawer');
+    const closeBtn = document.getElementById('closeDrawer');
 
-    // Drawer
-    const drawer = $('#drawer');
-    const openBtn = $('#openDrawer');
-    const closeBtn = $('#closeDrawer');
-    const toggleDrawer = (open) => {
-      drawer.classList.toggle('open', open);
-      drawer.setAttribute('aria-hidden', String(!open));
-      openBtn?.setAttribute('aria-expanded', String(open));
-      document.body.classList.toggle('drawer-open', open);
-    };
-    openBtn?.addEventListener('click', () => toggleDrawer(true));
-    closeBtn?.addEventListener('click', () => toggleDrawer(false));
-    drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) toggleDrawer(false); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') toggleDrawer(false); }, {passive:true});
-
-    // Consentimiento (único por versión)
-    const CONSENT_KEY = 'lucasConsent';
-    const CONSENT_VERSION = 'v1-2025-09';
-    const getConsent = () => { try{ return JSON.parse(localStorage.getItem(CONSENT_KEY)) }catch{ return null } };
-    const setConsent = (status) => { try{ localStorage.setItem(CONSENT_KEY, JSON.stringify({ status, version: CONSENT_VERSION, ts: Date.now() })) }catch{} };
-    const shouldShow = (s) => !s || s.version !== CONSENT_VERSION;
-    const enableAnalytics = () => { /* inyecta tu script si granted */ };
-
-    const showConsent = () => { const c = $('#consent'); if(!c) return; c.hidden=false; c.style.display='block'; requestAnimationFrame(()=>c.classList.add('show')); };
-    const hideConsent = () => {
-      const c = $('#consent'); if(!c) return; const bar = c.querySelector('.bar');
-      bar.style.transform='translateY(16px)'; bar.style.opacity='0';
-      const end = ()=>{ c.classList.remove('show'); c.hidden=true; c.style.display='none'; bar.removeEventListener('transitionend', end); };
-      bar.addEventListener('transitionend', end); setTimeout(end, 500);
-    };
-
-    function initConsent(){
-      const saved = getConsent();
-      if(shouldShow(saved)) showConsent(); else if(saved?.status==='granted') enableAnalytics();
-      $('#allow')?.addEventListener('click', ()=>{ setConsent('granted'); enableAnalytics(); hideConsent(); });
-      $('#deny')?.addEventListener('click',  ()=>{ setConsent('denied'); hideConsent(); });
-      $('#manageConsent')?.addEventListener('click',(e)=>{ e.preventDefault(); showConsent(); });
+    function openDrawer(){
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden','false');
+    }
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden','true');
     }
 
-    // Timeline
-    const animateTimeline = () => { $$('.ti').forEach(i=>i.classList.remove('animate')); $$('.ti').forEach((i,idx)=> setTimeout(()=> i.classList.add('animate'), idx*200)); };
-    const rail = $('#rail');
-    const stepSize = () => (window.innerWidth < 768 ? 300 : 440);
-    $('#btnLeft')?.addEventListener('click', ()=> rail.scrollBy({ left:-stepSize(), behavior:'smooth' }));
-    $('#btnRight')?.addEventListener('click',()=> rail.scrollBy({ left: stepSize(), behavior:'smooth' }));
-    $('#animateBtn')?.addEventListener('click', animateTimeline);
+    openBtn?.addEventListener('click', openDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+    drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
 
-    const io = new IntersectionObserver((entries)=> entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('animate'); }), {threshold:.35, root: rail});
-    $$('.ti').forEach(i=> io.observe(i));
+    // =============================================================
+    // [NO TOCAR / DO NOT TOUCH] – HOVER/TOUCH LOGIC (ES/EN)
+    let autoCloseTimer = null;
+    const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-    // Parallax (clamped + pasivo)
-    const line = document.querySelector('.line-base');
-    const onScroll = () => { if(!line) return; const y = Math.max(-20, Math.min(20, window.pageYOffset*0.06)); line.style.transform = `translateY(calc(-50% + ${y}px))`; };
-    document.addEventListener('scroll', onScroll, {passive:true});
+    function setBurgerLabel(){
+      if(!openBtn) return;
+      openBtn.textContent = isDesktop ? 'Menú' : '☰';
+    }
+    setBurgerLabel();
 
-    // Bump por delegación
-    rail?.addEventListener('click', (ev)=>{ const li = ev.target.closest('.ti'); if(!li) return; const card = li.querySelector('.card'); card.style.transform='translateY(-6px) scale(1.03)'; setTimeout(()=> card.style.transform='', 240); });
+    if (isDesktop){
+      openBtn?.addEventListener('mouseenter', openDrawer);
+      openBtn?.addEventListener('mouseleave', ()=>{
+        setTimeout(()=>{
+          const overDrawer = drawer.matches(':hover');
+          if(!overDrawer) closeDrawer();
+        }, 150);
+      });
+      drawer?.addEventListener('mouseleave', closeDrawer);
+    }
 
-    // Load
-    window.addEventListener('load', ()=>{ setTimeout(animateTimeline, 600); initConsent(); }, {once:true});
+    function startMobileAutoClose(){
+      if(isDesktop) return;
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = setTimeout(()=>{ closeDrawer(); }, 5000);
+    }
+    if(!isDesktop){
+      openBtn?.addEventListener('click', startMobileAutoClose);
+      ['click','touchstart'].forEach(evt=>{
+        drawer?.addEventListener(evt, startMobileAutoClose);
+      });
+    }
+
+    // =============================================================
+    // [NO TOCAR / DO NOT TOUCH] – COOKIES CONSENT (ES/EN)
+    const CONSENT_KEY = 'lucasConsent';
+    const CONSENT_VERSION = 'v1-2025-09';
+
+    function getConsent(){
+      try { const raw = localStorage.getItem(CONSENT_KEY); return raw ? JSON.parse(raw) : null; } catch(e){ return null; }
+    }
+    function setConsent(status){
+      try {
+        const data = { status, version: CONSENT_VERSION, ts: Date.now() };
+        localStorage.setItem(CONSENT_KEY, JSON.stringify(data));
+      } catch(e){}
+    }
+    function shouldShowBanner(saved){
+      if(!saved) return true;
+      if(saved.version !== CONSENT_VERSION) return true;
+      return false;
+    }
+    function enableAnalytics(){
+      // [TOCAR/EDIT] Inyecta tu script solo si consent=granted
+      // const s=document.createElement('script'); s.src='https://.../analytics.js'; document.head.appendChild(s);
+    }
+    function initConsentBanner(){
+      const banner = document.getElementById('consent');
+      const allow = document.getElementById('allow');
+      const deny  = document.getElementById('deny');
+      const saved = getConsent();
+
+      if(shouldShowBanner(saved)){ banner.style.display='block'; }
+      else if(saved.status === 'granted'){ enableAnalytics(); }
+
+      allow?.addEventListener('click', ()=>{ setConsent('granted'); banner.style.display='none'; enableAnalytics(); });
+      deny ?.addEventListener('click', ()=>{ setConsent('denied');  banner.style.display='none'; });
+
+      document.getElementById('manageConsent')?.addEventListener('click',(e)=>{
+        e.preventDefault();
+        banner.style.display='block';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', initConsentBanner);
   </script>
 </body>
 </html>
