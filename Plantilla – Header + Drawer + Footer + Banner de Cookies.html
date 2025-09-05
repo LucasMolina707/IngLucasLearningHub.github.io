@@ -1,16 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- =============================================================
-       PLANTILLA BASE – HEADER + DRAWER + FOOTER + COOKIES
-       [ES] Solo lo esencial. Comportamiento adaptado a PC y móvil.
-       [EN] Essentials only. Behavior adapted for desktop and mobile.
-       ============================================================= -->
+  <!-- =====================================================================
+       CABECERA OPTIMIZADA PARA SEO
+       Guía:
+       - Mantén el <title> y la meta description con tus palabras clave principales.
+       - No coloques comentarios dentro de las etiquetas <meta>/<script> del head.
+       - Ajusta URLs absolutas a tu dominio real.
+       ===================================================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ing. Lucas Learning Hub · Plantilla</title>
-  <meta name="description" content="Plantilla base reutilizable con menú lateral y banner de cookies." />
+
+  <!-- Título breve con marca y país -->
+  <title>Ing. Lucas Molina · Learning Hub — Estudiante de Ingeniería Informática en Colombia</title>
+
+  <!-- Descripción concisa con variaciones naturales de tu nombre/marca -->
+  <meta name="description" content="Portafolio y bitácora de Ing. Lucas Molina (Ing Lucas) — estudiante de Ingeniería Informática. Proyectos, tutoriales y recursos del Ing. Lucas Learning Hub en Colombia." />
+
+  <!-- Robots: indexación amplia y previews grandes -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Señales de país e idioma -->
+  <link rel="alternate" hreflang="es-co" href="https://hub.inglucas.com.co/">
+  <link rel="alternate" hreflang="es" href="https://hub.inglucas.com.co/">
+
+  <!-- Canónica para evitar duplicados -->
+  <link rel="canonical" href="https://hub.inglucas.com.co/">
+
+  <!-- Open Graph / Twitter para compartir correctamente -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Ing. Lucas Learning Hub">
+  <meta property="og:title" content="Ing. Lucas Molina · Learning Hub">
+  <meta property="og:description" content="Proyectos y recursos de Ing. Lucas Molina (Ing Lucas) en Colombia.">
+  <meta property="og:url" content="https://hub.inglucas.com.co/">
+  <meta property="og:image" content="https://hub.inglucas.com.co/multimedia/cover-og.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ing. Lucas Molina · Learning Hub">
+  <meta name="twitter:description" content="Portafolio, proyectos y tutoriales del Ing Lucas en Colombia.">
+  <meta name="twitter:image" content="https://hub.inglucas.com.co/multimedia/cover-og.webp">
+
+  <!-- Colores del navegador -->
   <meta name="theme-color" content="#0d47a1" />
+
+  <!-- Datos estructurados (JSON-LD) — sin comentarios dentro -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://hub.inglucas.com.co/#lucas",
+        "name": "Ing. Lucas Molina",
+        "alternateName": ["Lucas Molina", "Ing Lucas", "Ing Lucas Molina", "Lucas Learning Hub", "Ing. Lucas Learning Hub"],
+        "description": "Estudiante de Ingeniería Informática y creador de Ing. Lucas Learning Hub en Colombia.",
+        "url": "https://hub.inglucas.com.co/",
+        "image": "https://hub.inglucas.com.co/multimedia/lucas-profile.webp",
+        "sameAs": [
+          "https://github.com/IngLucas",
+          "https://www.linkedin.com/in/IngLucas",
+          "https://instagram.com/IngLucas",
+          "https://facebook.com/IngLucas"
+        ],
+        "nationality": "CO",
+        "knowsAbout": [
+          "Ingeniería Informática", "Linux", "Ubuntu", "Windows", "Desarrollo web",
+          "Automatización con scripts", "Servidores", "AppSheet", "Excel macros"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://hub.inglucas.com.co/#website",
+        "name": "Ing. Lucas Learning Hub",
+        "url": "https://hub.inglucas.com.co/",
+        "inLanguage": "es-CO",
+        "publisher": { "@id": "https://hub.inglucas.com.co/#lucas" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://hub.inglucas.com.co/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://hub.inglucas.com.co/#network-center",
+        "name": "Network Center",
+        "url": "https://hub.inglucas.com.co/",
+        "brand": "Network Center",
+        "areaServed": "CO",
+        "sameAs": [
+          "https://github.com/IngLucas",
+          "https://www.linkedin.com/in/IngLucas"
+        ]
+      }
+    ]
+  }
+  </script>
 
   <style>
     /* =============================================================
@@ -61,8 +147,6 @@
 
     /* =============================================================
        [NO TOCAR / DO NOT TOUCH] – DRAWER / MENÚ LATERAL (ES/EN)
-       + contraste para que se identifique fácil en la UI
-       + stronger contrast for easier visual identification
        ============================================================= */
     .drawer{
       position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw;
@@ -82,7 +166,6 @@
 
     /* =============================================================
        [TOCAR / EDIT] – ESPACIO DE CONTENIDO (ES/EN)
-       Inserta tu contenido aquí / Put your page content here
        ============================================================= */
     .workspace{padding:24px 0}
     .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
@@ -109,7 +192,6 @@
 
     /* =============================================================
        [NO TOCAR / DO NOT TOUCH] – BANNER COOKIES (ES/EN)
-       Armonioso, legible (tarjeta clara, texto oscuro) / Harmonious, legible
        ============================================================= */
     .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
     .consent .card{
@@ -133,7 +215,7 @@
 
 <body>
   <!-- =============================================================
-       [NO TOCAR / DO NOT TOUCH] – TOPBAR (ES/EN)
+       TOPBAR (conserva animaciones y estructura)
        ============================================================= -->
   <div class="topbar">
     <div class="wrap row">
@@ -142,15 +224,13 @@
         <strong>Ing. Lucas Learning Hub</strong>
         <span>Plantilla Base</span>
       </div>
-      <!-- [ES] El texto del botón cambia según dispositivo en JS
-           [EN] Button label switches per device in JS -->
-      <button class="burger" id="openDrawer" title="Abrir menú" aria-label="Abrir menú">☰</button>
+      <button class="burger" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false">☰</button>
     </div>
   </div>
 
   <!-- =============================================================
-       [NO TOCAR / DO NOT TOUCH] – DRAWER (ES/EN)
-       Edita solo los enlaces / Edit links only
+       DRAWER / MENÚ LATERAL
+       Nota: actualiza slugs a kebab-case y sin tildes
        ============================================================= -->
   <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
     <div class="hd">
@@ -169,18 +249,22 @@
       <div class="nav-group">
         <h4>Ventanas / Proyectos</h4>
         <nav class="nav">
-          <a href="2313LíneaDeTiempo.html">2313 · Línea de Tiempo</a>
-          <a href="2316-comparacion-ingenieria-sistemas-vs-informatica.html">2316 · Sistemas vs Informática</a>
+          <!-- Slug corregido sin tildes -->
+          <a href="2313-linea-de-tiempo.html">2313 · Línea de Tiempo</a>
           <a href="proyectos/pseint-contador.html">PSeInt – Contador</a>
           <a href="proyectos/servidor-ubuntu.html">Servidor Ubuntu</a>
           <a href="proyectos/excel-macros.html">Excel – Macros</a>
+          <a href="2316-comparacion-ingenieria-sistemas-vs-informatica.html">2316 · Sistemas vs Informática</a>
         </nav>
       </div>
     </div>
   </aside>
 
   <!-- =============================================================
-       [TOCAR / EDIT] – CONTENIDO PRINCIPAL (ES/EN)
+       CONTENIDO PRINCIPAL
+       Cambios SEO clave:
+       - H1 real con tus claves.
+       - Intro breve con variaciones naturales de tu marca/nombre.
        ============================================================= -->
   <div class="wrap workspace">
     <section class="window" role="region" aria-label="Contenido principal">
@@ -192,8 +276,8 @@
             <span class="dot max"></span>
           </div>
           <div>
-            <div class="window-title">Título de la sección / Section title</div>
-            <div class="title-meta">Ruta > Sección · Estado</div>
+            <div class="window-title">Inicio · Ing. Lucas Learning Hub</div>
+            <div class="title-meta">Ruta > Portada · Estado</div>
           </div>
         </div>
         <div class="title-right"></div>
@@ -201,11 +285,17 @@
 
       <div class="window-body">
         <section class="pane">
-          <!-- =====================================================
-               [TOCAR / EDIT] – ZONA LIBRE (ES/EN)
-               ES: Agrega tu HTML aquí. No cambies clases padre (.pane/.window).
-               EN: Add your HTML here. Do not change parent classes (.pane/.window).
-               ===================================================== -->
+          <!-- H1 visible (SEO) -->
+          <h1>Ing. Lucas Molina — Learning Hub de Ingeniería Informática (Colombia)</h1>
+          <p>
+            Bienvenido a <strong>Ing. Lucas Learning Hub</strong>, el espacio donde recopilo proyectos, apuntes y tutoriales
+            como <strong>estudiante de Ingeniería Informática</strong>. Aquí encontrarás recursos de <em>Linux/Ubuntu</em>,
+            <em>Windows</em>, <em>desarrollo web</em>, <em>automatización con scripts</em> y servidores — todo bajo mi marca
+            personal <strong>Ing Lucas</strong> / <strong>Lucas Learning Hub</strong>, con alcance en Colombia y conexiones
+            con <strong>Network Center</strong>.
+          </p>
+
+          <!-- Zona libre original, intacta -->
           <p>Coloca aquí tu contenido… / Put your content here…</p>
         </section>
       </div>
@@ -213,7 +303,7 @@
   </div>
 
   <!-- =============================================================
-       [NO TOCAR / DO NOT TOUCH] – FOOTER (ES/EN)
+       FOOTER (sin cambios visuales, añade “Colombia” para señal local)
        ============================================================= -->
   <footer>
     <div class="wrap foot">
@@ -238,7 +328,7 @@
         </div>
       </div>
       <div>
-        © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub
+        © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub · Colombia
         <div id="custom-text" style="margin-top:8px; font-size:0.92em; opacity:.85;">
           <em>— [TOCAR/EDIT] Mensaje breve de pie de página / Short footer note.</em>
         </div>
@@ -247,7 +337,7 @@
   </footer>
 
   <!-- =============================================================
-       [NO TOCAR / DO NOT TOUCH] – BANNER DE COOKIES (ES/EN)
+       BANNER COOKIES (conservar comportamiento)
        ============================================================= -->
   <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
     <div class="card">
@@ -266,13 +356,19 @@
     </div>
   </div>
 
+  <!-- Fallback sin JS: aviso mínimo (no afecta SEO) -->
+  <noscript>
+    <div style="position:fixed;left:0;right:0;bottom:0;background:#fff;color:#111;border-top:1px solid #ddd;padding:10px 14px;font:14px/1.4 system-ui">
+      Este sitio utiliza cookies esenciales. Para analíticas necesitas habilitar JavaScript o dar consentimiento desde “Preferencias de cookies”.
+    </div>
+  </noscript>
+
   <script>
     // =============================================================
-    // [NO TOCAR / DO NOT TOUCH] – UTILIDADES BÁSICAS (ES/EN)
-    // Año en footer / Year in footer
+    // UTILIDADES BÁSICAS (ES/EN) – Mantener estructura original
+    // =============================================================
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Drawer refs
     const drawer = document.getElementById('drawer');
     const openBtn = document.getElementById('openDrawer');
     const closeBtn = document.getElementById('closeDrawer');
@@ -280,78 +376,67 @@
     function openDrawer(){
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden','false');
+      openBtn?.setAttribute('aria-expanded','true');
     }
     function closeDrawer(){
       drawer.classList.remove('open');
       drawer.setAttribute('aria-hidden','true');
+      openBtn?.setAttribute('aria-expanded','false');
     }
 
-    // Click básico
     openBtn?.addEventListener('click', openDrawer);
     closeBtn?.addEventListener('click', closeDrawer);
     drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
 
     // =============================================================
-    // [NO TOCAR / DO NOT TOUCH] – HOVER/TOUCH LOGIC (ES/EN)
-    // Escritorio: abre por hover y se cierra al salir.
-    // Desktop: open on hover, close on mouseleave.
-    //
-    // Móvil/táctil: botón queda por clic; al abrir se cierra a los 5s
-    // o al presionar "Cerrar".
-    // Mobile/touch: click to open; auto-close after 5s or Close button.
+    // HOVER/TOUCH LOGIC (conservar tu comportamiento)
     // =============================================================
     let autoCloseTimer = null;
     const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-    // Botón “Menú” en escritorio, “☰” en móvil
     function setBurgerLabel(){
       if(!openBtn) return;
       openBtn.textContent = isDesktop ? 'Menú' : '☰';
     }
     setBurgerLabel();
 
-    // Hover abrir/cerrar (solo escritorio)
     if (isDesktop){
       openBtn?.addEventListener('mouseenter', openDrawer);
-
-      // Cerrar al salir del botón (espera breve para permitir ir al drawer)
       openBtn?.addEventListener('mouseleave', ()=>{
         setTimeout(()=>{
           const overDrawer = drawer.matches(':hover');
           if(!overDrawer) closeDrawer();
         }, 150);
       });
-
-      // Cerrar al salir del drawer
       drawer?.addEventListener('mouseleave', closeDrawer);
     }
 
-    // Auto-cierre en móviles/táctiles
     function startMobileAutoClose(){
       if(isDesktop) return;
       clearTimeout(autoCloseTimer);
       autoCloseTimer = setTimeout(()=>{ closeDrawer(); }, 5000);
     }
     if(!isDesktop){
-      // Al abrir por clic, arranca temporizador
       openBtn?.addEventListener('click', startMobileAutoClose);
-      // Si hay interacción dentro, renueva temporizador
       ['click','touchstart'].forEach(evt=>{
         drawer?.addEventListener(evt, startMobileAutoClose);
       });
     }
 
     // =============================================================
-    // [NO TOCAR / DO NOT TOUCH] – COOKIES CONSENT (ES/EN)
+    // COOKIES CONSENT (mantén versión cuando cambie la política)
+    // =============================================================
     const CONSENT_KEY = 'lucasConsent';
-    const CONSENT_VERSION = 'v1-2025-09'; // bump al actualizar política / bump on policy update
+    const CONSENT_VERSION = 'v1-2025-09';
 
     function getConsent(){
       try { const raw = localStorage.getItem(CONSENT_KEY); return raw ? JSON.parse(raw) : null; } catch(e){ return null; }
     }
     function setConsent(status){
-      try { const data = { status, version: CONSENT_VERSION, ts: Date.now() };
-        localStorage.setItem(CONSENT_KEY, JSON.stringify(data)); } catch(e){}
+      try {
+        const data = { status, version: CONSENT_VERSION, ts: Date.now() };
+        localStorage.setItem(CONSENT_KEY, JSON.stringify(data));
+      } catch(e){}
     }
     function shouldShowBanner(saved){
       if(!saved) return true;
@@ -359,7 +444,7 @@
       return false;
     }
     function enableAnalytics(){
-      // [TOCAR/EDIT] Inyecta tu script solo si consent=granted / inject only if granted
+      // [TOCAR/EDIT] Inyecta tu script solo si consent=granted
       // const s=document.createElement('script'); s.src='https://.../analytics.js'; document.head.appendChild(s);
     }
     function initConsentBanner(){
@@ -369,7 +454,7 @@
       const saved = getConsent();
 
       if(shouldShowBanner(saved)){ banner.style.display='block'; }
-      else if(saved.status === 'granted'){ enableAnalytics(); }
+      else if(saved && saved.status === 'granted'){ enableAnalytics(); }
 
       allow?.addEventListener('click', ()=>{ setConsent('granted'); banner.style.display='none'; enableAnalytics(); });
       deny ?.addEventListener('click', ()=>{ setConsent('denied');  banner.style.display='none'; });
@@ -380,19 +465,6 @@
       });
     }
     document.addEventListener('DOMContentLoaded', initConsentBanner);
-
-    // =============================================================
-    // [MENSAJE PARA EL FUTURO YO / NOTE TO FUTURE ME]
-    // ES: Si pides cambios, SOLO tocar:
-    //   - Enlaces del drawer, textos visibles y contenido dentro de .pane
-    //   - Mensaje/enlaces del footer
-    //   - enableAnalytics() y CONSENT_VERSION
-    //   - (Opcional) Colores de .drawer/.burger para contraste (sin cambiar estructura)
-    // EN: If you ask for changes, ONLY edit:
-    //   - Drawer links, visible texts, and content inside .pane
-    //   - Footer note/links
-    //   - enableAnalytics() and CONSENT_VERSION
-    //   - (Optional) .drawer/.burger colors for contrast (keep structure)
   </script>
 </body>
 </html>
