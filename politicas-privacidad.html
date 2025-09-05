@@ -1,35 +1,160 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- =============================================================
-       POLÍTICAS DE PRIVACIDAD – Página estática optimizada
-       Sin sistema de "ventana dinámica". Contenido visible de una.
-       Mantiene topbar, drawer, footer y banner de consentimiento.
-       ============================================================= -->
+  <!-- =====================================================================
+       CABECERA OPTIMIZADA PARA SEO
+       Guía:
+       - Mantén el <title> y la meta description con tus palabras clave principales.
+       - No coloques comentarios dentro de las etiquetas <meta>/<script> del head.
+       - Ajusta URLs absolutas a tu dominio real.
+       ===================================================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ing. Lucas Learning Hub · Políticas de Privacidad</title>
-  <meta name="description" content="Políticas de privacidad del sitio Ing. Lucas Learning Hub." />
+
+  <!-- Título breve con marca y país -->
+  <title>Ing. Lucas Molina · Learning Hub — Estudiante de Ingeniería Informática en Colombia</title>
+
+  <!-- Descripción concisa con variaciones naturales de tu nombre/marca -->
+  <meta name="description" content="Portafolio y bitácora de Ing. Lucas Molina (Ing Lucas) — estudiante de Ingeniería Informática. Proyectos, tutoriales y recursos del Ing. Lucas Learning Hub en Colombia." />
+
+  <!-- Robots: indexación amplia y previews grandes -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Señales de país e idioma -->
+  <link rel="alternate" hreflang="es-co" href="https://hub.inglucas.com.co/">
+  <link rel="alternate" hreflang="es" href="https://hub.inglucas.com.co/">
+
+  <!-- Canónica para evitar duplicados -->
+  <link rel="canonical" href="https://hub.inglucas.com.co/">
+
+  <!-- Open Graph / Twitter para compartir correctamente -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Ing. Lucas Learning Hub">
+  <meta property="og:title" content="Ing. Lucas Molina · Learning Hub">
+  <meta property="og:description" content="Proyectos y recursos de Ing. Lucas Molina (Ing Lucas) en Colombia.">
+  <meta property="og:url" content="https://hub.inglucas.com.co/">
+  <meta property="og:image" content="https://hub.inglucas.com.co/multimedia/cover-og.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ing. Lucas Molina · Learning Hub">
+  <meta name="twitter:description" content="Portafolio, proyectos y tutoriales del Ing Lucas en Colombia.">
+  <meta name="twitter:image" content="https://hub.inglucas.com.co/multimedia/cover-og.webp">
+
+  <!-- Colores del navegador -->
   <meta name="theme-color" content="#0d47a1" />
 
+  <!-- Datos estructurados (JSON-LD) — sin comentarios dentro -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://hub.inglucas.com.co/#lucas",
+        "name": "Ing. Lucas Molina",
+        "alternateName": ["Lucas Molina", "Ing Lucas", "Ing Lucas Molina", "Lucas Learning Hub", "Ing. Lucas Learning Hub"],
+        "description": "Estudiante de Ingeniería Informática y creador de Ing. Lucas Learning Hub en Colombia.",
+        "url": "https://hub.inglucas.com.co/",
+        "image": "https://hub.inglucas.com.co/multimedia/lucas-profile.webp",
+        "sameAs": [
+          "https://github.com/IngLucas",
+          "https://www.linkedin.com/in/IngLucas",
+          "https://instagram.com/IngLucas",
+          "https://facebook.com/IngLucas"
+        ],
+        "nationality": "CO",
+        "knowsAbout": [
+          "Ingeniería Informática", "Linux", "Ubuntu", "Windows", "Desarrollo web",
+          "Automatización con scripts", "Servidores", "AppSheet", "Excel macros"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://hub.inglucas.com.co/#website",
+        "name": "Ing. Lucas Learning Hub",
+        "url": "https://hub.inglucas.com.co/",
+        "inLanguage": "es-CO",
+        "publisher": { "@id": "https://hub.inglucas.com.co/#lucas" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://hub.inglucas.com.co/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://hub.inglucas.com.co/#network-center",
+        "name": "Network Center",
+        "url": "https://hub.inglucas.com.co/",
+        "brand": "Network Center",
+        "areaServed": "CO",
+        "sameAs": [
+          "https://github.com/IngLucas",
+          "https://www.linkedin.com/in/IngLucas"
+        ]
+      }
+    ]
+  }
+  </script>
+
   <style>
-    /* ===== Sistema (no tocar) ===== */
-    :root{ --blue-700:#0f3f8a; --blue-600:#1450a3; --blue-500:#1a63c7; --blue-300:#6aa8ff; --yellow-700:#b38100; --yellow-600:#d39e00; --yellow-500:#f0b800; --purple-700:#5e1cab; --purple-600:#6e28c4; --purple-500:#7e3bf0; --bg:#0e1116; --surface:#131823; --panel:#161d2b; --border:#263349; --soft:#0b0f16; --text:#e7eef7; --muted:#a9b6c7; --ok:#2ecc71; --warn:#ffb020; --danger:#ff5b6e; --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35); --container:1200px; --gap:16px; }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif; background:linear-gradient(180deg,#0b1220,#0e1116); color:var(--text)}
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – SISTEMA DE DISEÑO (ES/EN)
+       Mantiene uniformidad del sitio / Keeps the site consistent
+       ============================================================= */
+    :root{
+      --blue-700:#0f3f8a; --blue-600:#1450a3; --blue-500:#1a63c7; --blue-300:#6aa8ff;
+      --purple-600:#6e28c4; --bg:#0e1116; --surface:#131823; --panel:#161d2b;
+      --border:#263349; --soft:#0b0f16; --text:#e7eef7; --muted:#a9b6c7;
+      --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35);
+      --container:1200px; --gap:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background:linear-gradient(180deg,#0b1220,#0e1116); color:var(--text)
+    }
     a{color:var(--blue-300); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
-    /* Topbar & Drawer */
-    .topbar{position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(12,16,25,.7); border-bottom:1px solid var(--border)}
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – TOPBAR + BOTÓN (ES/EN)
+       ============================================================= */
+    .topbar{
+      position:sticky; top:0; z-index:60;
+      backdrop-filter:saturate(1.1) blur(8px);
+      background:rgba(12,16,25,.7);
+      border-bottom:1px solid var(--border)
+    }
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
-    .logo{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700; background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow)}
+    .logo{
+      width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700;
+      background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow)
+    }
     .brand{display:flex; flex-direction:column}
     .brand strong{font-size:16px}
     .brand span{font-size:12px; color:var(--muted)}
-    .burger{margin-left:auto; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.8); cursor:pointer}
+    .burger{
+      margin-left:auto; display:inline-flex; align-items:center; justify-content:center;
+      min-width:46px; height:40px; padding:0 10px; gap:8px;
+      border-radius:10px; border:2px solid var(--blue-500);
+      background:rgba(18,23,31,.9); color:var(--text);
+      cursor:pointer; transition:transform .15s ease, background .15s ease
+    }
+    .burger:hover{transform:scale(1.04); background:rgba(26,99,199,.12)}
 
-    .drawer{position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0f1624,#0b111c); border-left:1px solid var(--border); box-shadow: -20px 0 40px rgba(0,0,0,.35); transform:translateX(100%); transition:.25s ease transform}
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – DRAWER / MENÚ LATERAL (ES/EN)
+       ============================================================= */
+    .drawer{
+      position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw;
+      background:linear-gradient(180deg,#0e223a,#0a1729);
+      border-left:2px solid var(--blue-500);
+      box-shadow:-20px 0 40px rgba(0,0,0,.45);
+      transform:translateX(100%); transition:.25s ease transform, background-color .25s ease
+    }
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
     .drawer .bd{padding:12px 16px; display:grid; gap:16px}
@@ -37,9 +162,11 @@
     .nav-group h4{margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)}
     .nav{display:grid}
     .nav a{padding:12px 12px; border-top:1px solid var(--border)}
-    .nav a:hover{background:rgba(26,99,199,.1)}
+    .nav a:hover{background:rgba(26,99,199,.18)}
 
-    /* Ventana estática */
+    /* =============================================================
+       [TOCAR / EDIT] – ESPACIO DE CONTENIDO (ES/EN)
+       ============================================================= */
     .workspace{padding:24px 0}
     .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
     .window-titlebar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; background:linear-gradient(180deg,#1a2333,#151c29); border-bottom:1px solid var(--border)}
@@ -53,49 +180,58 @@
     .title-meta{font-size:12px; color:var(--muted)}
     .window-body{display:grid; grid-template-columns:1fr; gap:0}
     .pane{padding:18px; min-height:420px; background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(12,16,24,.95))}
-    .pane h2{margin:0 0 8px}
-    .embed{border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--soft)}
-    .window-status{display:flex; justify-content:space-between; gap:10px; align-items:center; padding:10px 12px; border-top:1px solid var(--border); background:linear-gradient(180deg,#121827,#0e1421); font-size:12px; color:var(--muted)}
 
-    /* Tablas/Código */
-    pre,code{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace}
-    pre{background:#0b0f16; border:1px solid var(--border); padding:12px; border-radius:10px; overflow:auto}
-    table{width:100%; border-collapse:collapse; font-size:14px}
-    th,td{border:1px solid var(--border); padding:8px 10px; text-align:left}
-    thead th{background:#151d2a}
-
-    /* Footer */
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – FOOTER (ES/EN)
+       ============================================================= */
     footer{border-top:1px solid var(--border); color:var(--muted); padding:22px 0; font-size:13px; background:linear-gradient(180deg,#0f1624,#0c121e)}
     .foot{display:grid; gap:12px}
     @media(min-width:860px){.foot{grid-template-columns:1fr auto}}
     .socials{display:flex; gap:10px; flex-wrap:wrap}
     .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8)}
 
-    /* ===== Banner de consentimiento ===== */
-    .consent{position:fixed; left:16px; right:16px; bottom:16px; z-index:90; display:none;
-      border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow);
-      background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(16,22,34,.96));}
-    .consent .row{display:flex; gap:16px; align-items:flex-start; padding:14px}
-    .consent p{margin:0; color:var(--muted); font-size:14px}
-    .consent .actions{margin-left:auto; display:flex; gap:8px}
-    .consent .actions .btn{padding:8px 12px}
+    /* =============================================================
+       [NO TOCAR / DO NOT TOUCH] – BANNER COOKIES (ES/EN)
+       ============================================================= */
+    .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
+    .consent .card{
+      max-width:960px; margin:0 auto; background:#ffffff; color:#111111;
+      border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.18);
+      padding:16px 18px; border:1px solid rgba(0,0,0,.08);
+    }
+    .consent .row{ display:flex; gap:16px; align-items:flex-start; }
+    .consent p{ margin:0; line-height:1.5 }
+    .consent .actions{ margin-left:auto; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.08); color:#0e1116; cursor:pointer}
+    .btn.primary{ background:var(--blue-500); border-color:transparent; color:white; }
+    .btn:hover{ filter:brightness(1.05); }
+    @media (max-width:720px){
+      .consent{ inset:auto 8px 8px 8px; }
+      .consent .row{ flex-direction:column; }
+      .consent .actions{ margin-left:0 }
+    }
   </style>
 </head>
 
 <body>
-  <!-- ===== Topbar ===== -->
+  <!-- =============================================================
+       TOPBAR (conserva animaciones y estructura)
+       ============================================================= -->
   <div class="topbar">
     <div class="wrap row">
       <div class="logo" aria-hidden="true">IL</div>
       <div class="brand">
         <strong>Ing. Lucas Learning Hub</strong>
-        <span>Políticas de Privacidad</span>
+        <span>Plantilla Base</span>
       </div>
-      <button class="burger" id="openDrawer" title="Abrir menú" aria-label="Abrir menú">☰</button>
+      <button class="burger" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false">☰</button>
     </div>
   </div>
 
-  <!-- ===== Drawer  menu ===== -->
+  <!-- =============================================================
+       DRAWER / MENÚ LATERAL
+       Nota: actualiza slugs a kebab-case y sin tildes
+       ============================================================= -->
   <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
     <div class="hd">
       <strong>Navegación</strong>
@@ -107,25 +243,31 @@
         <nav class="nav">
           <a href="index.html">Inicio / Presentación</a>
           <a href="contacto.html">Contacto</a>
-          <a href="politicas-privacidad.html" aria-current="page">Políticas de Privacidad</a>
+          <a href="politicas-privacidad.html">Políticas de Privacidad</a>
         </nav>
       </div>
       <div class="nav-group">
         <h4>Ventanas / Proyectos</h4>
         <nav class="nav">
-          <a href="2313LíneaDeTiempo.html">2313 · Línea de Tiempo</a>
-          <a href="2316-comparacion-ingenieria-sistemas-vs-informatica.html">2316 · Sistemas vs Informática</a>
+          <!-- Slug corregido sin tildes -->
+          <a href="2313-linea-de-tiempo.html">2313 · Línea de Tiempo</a>
           <a href="proyectos/pseint-contador.html">PSeInt – Contador</a>
           <a href="proyectos/servidor-ubuntu.html">Servidor Ubuntu</a>
           <a href="proyectos/excel-macros.html">Excel – Macros</a>
+          <a href="2316-comparacion-ingenieria-sistemas-vs-informatica.html">2316 · Sistemas vs Informática</a>
         </nav>
       </div>
     </div>
   </aside>
 
-  <!-- ===== Contenido (ventana estática) ===== -->
+  <!-- =============================================================
+       CONTENIDO PRINCIPAL
+       Cambios SEO clave:
+       - H1 real con tus claves.
+       - Intro breve con variaciones naturales de tu marca/nombre.
+       ============================================================= -->
   <div class="wrap workspace">
-    <section class="window" role="region" aria-label="Políticas de Privacidad">
+    <section class="window" role="region" aria-label="Contenido principal">
       <div class="window-titlebar">
         <div class="title-left">
           <div class="traffic" aria-hidden="true">
@@ -134,184 +276,269 @@
             <span class="dot max"></span>
           </div>
           <div>
-            <div class="window-title">Políticas de Privacidad</div>
-            <div class="title-meta">Páginas > Legal · 2025-09-01 · Estado: Vigente</div>
+            <div class="window-title">Políticas de Privacidad · Ing. Lucas Learning Hub</div>
+            <div class="title-meta">Ruta > Legal · Vigente (01/09/2025)</div>
           </div>
         </div>
         <div class="title-right"></div>
       </div>
 
       <div class="window-body">
-        <section class="pane">
-          <h2>Políticas de Privacidad y Seguridad de la Información</h2>
-          <div class="embed" style="padding:16px">
-            <article class="policy">
-              <h3>1) Responsable del tratamiento</h3>
-              <p><strong>Ing. Lucas Learning Hub</strong> (sitio personal de aprendizaje y portafolio). Contacto para privacidad: <a href="mailto:politicasdeprivacidad@inglucas.com.co">politicasdeprivacidad@inglucas.com.co</a>.</p>
+        <!-- [ADD][ES] Documento legal integrado dentro de la plantilla base. Estructura académica: Introducción, Desarrollo, Conclusiones, Referencias. -->
+        <!-- [ADD][EN] Integrated legal document within base template. Academic structure: Introduction, Body, Conclusions, References. -->
+        <section class="pane" id="ilh-pane" aria-labelledby="ilh-h1" data-scope="ilh">
+          <!-- H1 visible (SEO) -->
+          <h1 id="ilh-h1">Políticas de Privacidad y Seguridad de la Información</h1>
+          <p><strong>Última actualización:</strong> 01 de septiembre de 2025 · <strong>Estado:</strong> Vigente</p>
+          <p>
+            Este documento explica cómo manejo tus datos personales y técnicos cuando visitas o usas
+            <strong>Ing. Lucas Learning Hub</strong>, un sitio personal de aprendizaje y portafolio. Léelo con calma: es
+            breve y busca ser claro.
+          </p>
 
-              <h3>2) Datos que recolecto</h3>
+          <!-- =============================================================
+               INTRODUCCIÓN
+               ============================================================= -->
+          <!-- [ADD][ES] Introducción en estilo universitario: propósito y alcance del tratamiento de datos. -->
+          <!-- [ADD][EN] Academic-style introduction: purpose and scope of data processing. -->
+          <section id="ilh-introduccion" aria-labelledby="ilh-intro-h2">
+            <h2 id="ilh-intro-h2">Introducción</h2>
+            <p>
+              La presente política define los principios, finalidades y prácticas de <em>tratamiento de datos</em> aplicados en
+              Ing. Lucas Learning Hub. Su alcance cubre la navegación web, el uso del formulario de contacto y los registros
+              técnicos generados por la infraestructura que sostiene el sitio. El enfoque es de <strong>mínimos datos</strong>,
+              <strong>transparencia</strong> y <strong>seguridad razonable</strong>.
+            </p>
+          </section>
+
+          <!-- =============================================================
+               DESARROLLO (CUERPO)
+               ============================================================= -->
+          <!-- [ADD][ES] Desarrollo: integración del contenido original, ordenado por secciones numeradas. -->
+          <!-- [ADD][EN] Body: integrated original content, organized by numbered sections. -->
+          <article id="ilh-desarrollo" aria-labelledby="ilh-dev-h2">
+            <h2 id="ilh-dev-h2">Desarrollo</h2>
+
+            <section id="ilh-1" aria-labelledby="ilh-1-h3">
+              <h3 id="ilh-1-h3">1. Responsable del tratamiento</h3>
               <ul>
-                <li><strong>Formulario de contacto</strong>: nombre, correo y mensaje.</li>
-                <li><strong>Registros técnicos</strong>: IP, agente de usuario, páginas y tiempos (logs del servidor) para seguridad y diagnóstico.</li>
-                <li><strong>Cookies</strong>: solo las necesarias para el funcionamiento. Las analíticas son <em>opcionales</em> y requieren tu consentimiento explícito.</li>
+                <li><strong>Responsable:</strong> Ing. Lucas Learning Hub (proyecto personal de Lucas Molina).</li>
+                <li><strong>Jurisdicción:</strong> Colombia.</li>
+                <li><strong>Contacto de privacidad y seguridad:</strong> <a href="mailto:politicasdeprivacidad@inglucas.com.co">politicasdeprivacidad@inglucas.com.co</a>.</li>
               </ul>
+            </section>
 
-              <h3>3) Finalidades</h3>
+            <section id="ilh-2" aria-labelledby="ilh-2-h3">
+              <h3 id="ilh-2-h3">2. Datos que recolecto</h3>
+              <ul>
+                <li><strong>Formulario de contacto:</strong> nombre, correo y mensaje.</li>
+                <li><strong>Registros técnicos (logs):</strong> dirección IP, agente de usuario, páginas visitadas y tiempos de acceso.</li>
+                <li><strong>Cookies:</strong>
+                  <ul>
+                    <li>Necesarias para el funcionamiento del sitio.</li>
+                    <li>Analíticas (opcionales y anónimas), que solo se activan si aceptas en el banner.</li>
+                  </ul>
+                </li>
+              </ul>
+            </section>
+
+            <section id="ilh-3" aria-labelledby="ilh-3-h3">
+              <h3 id="ilh-3-h3">3. Finalidades</h3>
               <ul>
                 <li>Responder consultas y dar seguimiento técnico.</li>
-                <li>Mejorar el sitio (rendimiento, accesibilidad, seguridad).</li>
-                <li>Prevenir abuso (ataques, spam) y mantener la integridad del servicio.</li>
+                <li>Mejorar el sitio en rendimiento, accesibilidad y seguridad.</li>
+                <li>Prevenir abuso (spam, intentos de ataque) y mantener la integridad del servicio.</li>
+                <li>Uso académico y de portafolio: mostrar proyectos sin exponer datos personales de terceros.</li>
               </ul>
+            </section>
 
-              <h3>4) Bases legales</h3>
+            <section id="ilh-4" aria-labelledby="ilh-4-h3">
+              <h3 id="ilh-4-h3">4. Bases legales</h3>
               <ul>
-                <li><strong>Consentimiento</strong>: cookies analíticas y respuestas por correo.</li>
-                <li><strong>Interés legítimo</strong>: seguridad, métricas mínimas y mantenimiento.</li>
-                <li><strong>Relación precontractual/contractual</strong>: cuando solicitas soporte o colaboración.</li>
+                <li><strong>Consentimiento:</strong> uso de cookies analíticas y envío de respuestas por correo.</li>
+                <li><strong>Interés legítimo:</strong> seguridad, métricas mínimas y mantenimiento técnico.</li>
+                <li><strong>Relación precontractual/contractual:</strong> cuando solicitas soporte o colaboración.</li>
               </ul>
+            </section>
 
-              <h3>5) Conservación</h3>
+            <section id="ilh-5" aria-labelledby="ilh-5-h3">
+              <h3 id="ilh-5-h3">5. Conservación</h3>
               <ul>
-                <li>Mensajes: hasta 12 meses (o antes si pides eliminación).</li>
-                <li>Logs técnicos: 30–180 días, salvo incidentes de seguridad.</li>
-                <li>Cookies: según su vida útil (ver sección Cookies).</li>
+                <li><strong>Mensajes:</strong> hasta 12 meses (o antes si solicitas eliminación).</li>
+                <li><strong>Logs técnicos:</strong> 30 días por defecto, ampliables a 180 días si ocurre un incidente de seguridad.</li>
+                <li><strong>Cookies:</strong> según su vida útil (ver sección de cookies).</li>
+                <li>La eliminación se realiza de forma segura mediante borrado de registros.</li>
               </ul>
+            </section>
 
-              <h3>6) Destinatarios / Encargados</h3>
-              <p>No vendo datos. Puedo usar proveedores para hosting/analítica. Ej.: <em>GitHub Pages / Vercel / Netlify</em>, <em>Google Analytics (modo básico/anonimizado)</em>. Tratan datos por mi cuenta y bajo sus políticas. (Reemplaza con tus proveedores reales).</p>
-
-              <h3>7) Cookies</h3>
-              <p>
-                <strong>Necesarias</strong>: permiten que el sitio funcione (no requieren consentimiento).<br />
-                <strong>Analíticas (opcionales)</strong>: miden visitas y rendimiento. Solo se activan si ACEPTAS en el banner. Puedes cambiar tu decisión borrando cookies y recargando.
-              </p>
-
-              <h3>8) Seguridad de la información</h3>
+            <section id="ilh-6" aria-labelledby="ilh-6-h3">
+              <h3 id="ilh-6-h3">6. Destinatarios y encargados</h3>
               <ul>
-                <li>HTTPS activo y revisión de encabezados de seguridad.</li>
-                <li>Principio de <em>mínimos privilegios</em> en servidores/servicios.</li>
-                <li>Actualización periódica de dependencias y monitoreo básico de logs.</li>
-                <li>Backups puntuales de contenido estático.</li>
+                <li>No vendo datos personales.</li>
+                <li>Uso proveedores de servicios que pueden procesar datos en mi nombre:
+                  <ul>
+                    <li><strong>Hosting y publicación web:</strong> GitHub Pages / Vercel / Netlify.</li>
+                    <li><strong>Seguridad y red:</strong> Cloudflare.</li>
+                    <li><strong>Analítica opcional:</strong> Google Analytics (modo básico y anonimizado).</li>
+                    <li><strong>Correo:</strong> Gmail/Outlook para responder mensajes.</li>
+                  </ul>
+                </li>
+                <li>Cada proveedor actúa bajo sus propias políticas y con contratos de tratamiento de datos.</li>
               </ul>
-              <p>Si detecto un incidente relevante, intentaré notificar y tomar medidas de mitigación. Para reportar cualquier problema de seguridad, contáctame: <a href="mailto:politicasdeprivacidad@inglucas.com.co">politicasdeprivacidad@inglucas.com.co</a>.</p>
+            </section>
 
-              <h3>9) Tus derechos</h3>
+            <section id="ilh-7" aria-labelledby="ilh-7-h3">
+              <h3 id="ilh-7-h3">7. Cookies</h3>
               <ul>
-                <li>Acceso, rectificación y eliminación.</li>
+                <li><strong>Necesarias:</strong> garantizan el funcionamiento básico del sitio. No requieren consentimiento.</li>
+                <li><strong>Analíticas (opcionales):</strong> miden visitas y rendimiento. Solo se activan si das clic en “Aceptar” en el banner de cookies.</li>
+                <li>Puedes cambiar tu decisión en cualquier momento borrando cookies en tu navegador y recargando la página.</li>
+              </ul>
+            </section>
+
+            <section id="ilh-8" aria-labelledby="ilh-8-h3">
+              <h3 id="ilh-8-h3">8. Seguridad de la información</h3>
+              <ul>
+                <li>Acceso mediante HTTPS y uso de encabezados de seguridad revisados.</li>
+                <li>Aplicación del principio de mínimos privilegios en servidores y servicios.</li>
+                <li>Monitoreo básico de logs y actualización periódica de dependencias.</li>
+                <li>Backups puntuales del contenido estático.</li>
+                <li>En caso de incidente de seguridad relevante, intentaré notificar y aplicar medidas de mitigación.</li>
+                <li>Nota: ningún sistema es 100 % seguro, aunque aplico buenas prácticas razonables.</li>
+              </ul>
+            </section>
+
+            <section id="ilh-9" aria-labelledby="ilh-9-h3">
+              <h3 id="ilh-9-h3">9. Tus derechos</h3>
+              <p>Como titular de datos puedes solicitar:</p>
+              <ul>
+                <li>Acceso, rectificación o eliminación de tus datos.</li>
                 <li>Oposición o limitación del tratamiento.</li>
-                <li>Portabilidad cuando aplique.</li>
-                <li>Retiro del consentimiento.</li>
+                <li>Portabilidad de datos (cuando aplique).</li>
+                <li>Retiro del consentimiento otorgado.</li>
               </ul>
+              <p>
+                <strong>Cómo ejercerlos:</strong> escribe a
+                <a href="mailto:politicasdeprivacidad@inglucas.com.co">politicasdeprivacidad@inglucas.com.co</a>
+                indicando tu solicitud y un correo de contacto.
+              </p>
+            </section>
 
-              <h3>10) Menores</h3>
-              <p>Sitio orientado a público general; no recolecto datos de menores de forma intencional.</p>
+            <section id="ilh-10" aria-labelledby="ilh-10-h3">
+              <h3 id="ilh-10-h3">10. Menores</h3>
+              <p>
+                Este sitio está dirigido a público general. No recolecto de forma intencional datos de menores de edad. Si
+                llego a recibir información de un menor, procederé a eliminarla de inmediato.
+              </p>
+            </section>
 
-              <h3>11) Transferencias internacionales</h3>
-              <p>Los proveedores podrían estar fuera de tu país. Buscaré garantías adecuadas. (Lista aquí tus proveedores reales).</p>
+            <section id="ilh-11" aria-labelledby="ilh-11-h3">
+              <h3 id="ilh-11-h3">11. Transferencias internacionales</h3>
+              <p>
+                Algunos proveedores pueden estar ubicados fuera de Colombia. Buscaré siempre garantías adecuadas (por
+                ejemplo, cláusulas contractuales tipo o políticas de privacidad reconocidas internacionalmente).
+              </p>
+            </section>
 
-              <h3>12) Cambios a esta política</h3>
-              <p>Publicaré aquí cualquier actualización relevante.</p>
+            <section id="ilh-12" aria-labelledby="ilh-12-h3">
+              <h3 id="ilh-12-h3">12. Cambios a esta política</h3>
+              <p>
+                Publicaré cualquier modificación directamente en esta página con una nueva fecha de actualización. Si los
+                cambios son sustanciales y tienes un mensaje previo enviado, podrías recibir notificación por correo.
+              </p>
+            </section>
 
-              <h3>13) Contacto y quejas</h3>
-              <p>Quejas, dudas o comentarios: <a href="mailto:politicasdeprivacidad@inglucas.com.co">politicasdeprivacidad@inglucas.com.co</a>. Puedes acudir a la autoridad de protección de datos de tu país si no quedas conforme.</p>
+            <section id="ilh-13" aria-labelledby="ilh-13-h3">
+              <h3 id="ilh-13-h3">13. Contacto y quejas</h3>
+              <ul>
+                <li><strong>Correo de contacto:</strong> <a href="mailto:politicasdeprivacidad@inglucas.com.co">politicasdeprivacidad@inglucas.com.co</a>.</li>
+                <li><strong>Autoridad de protección de datos en Colombia:</strong> Superintendencia de Industria y Comercio (SIC) – <a href="https://sic.gov.co">sic.gov.co</a>.</li>
+              </ul>
+            </section>
+          </article>
 
-              <p style="margin-top:12px; font-size:13px; color:var(--muted)"><em>Última actualización: 2025-09-01</em></p>
-            </article>
-          </div>
+          <!-- =============================================================
+               CONCLUSIONES
+               ============================================================= -->
+          <!-- [ADD][ES] Cierre breve con síntesis de prácticas y tu enfoque de datos mínimos. -->
+          <!-- [ADD][EN] Brief closing summarizing practices and minimal-data approach. -->
+          <section id="ilh-conclusiones" aria-labelledby="ilh-conc-h2">
+            <h2 id="ilh-conc-h2">Conclusiones</h2>
+            <p>
+              Ing. Lucas Learning Hub aplica un enfoque de <em>datos mínimos</em>, medidas de seguridad razonables y
+              transparencia en el tratamiento. La activación de analíticas es opcional y controlada por el usuario a través
+              del banner de consentimiento, y los plazos de conservación son limitados y proporcionales a las finalidades.
+            </p>
+          </section>
+
+          <!-- =============================================================
+               REFERENCIAS (APA breve)
+               ============================================================= -->
+          <!-- [ADD][ES] Lista breve de referencias en estilo APA simplificado. -->
+          <!-- [ADD][EN] Short APA-style references list. -->
+          <section id="ilh-referencias" aria-labelledby="ilh-ref-h2">
+            <h2 id="ilh-ref-h2">Referencias</h2>
+            <ul>
+              <li>
+                Superintendencia de Industria y Comercio. (s. f.). <em>Protección de datos personales</em>. Recuperado de
+                <a href="https://sic.gov.co">https://sic.gov.co</a>
+              </li>
+              <li>
+                Ing. Lucas Learning Hub. (2025, septiembre 1). <em>Políticas de Privacidad y Seguridad de la Información</em>.
+                hub.inglucas.com.co
+              </li>
+            </ul>
+          </section>
         </section>
-      </div>
-
-      <div class="window-status">
-        <div>Ruta: Páginas > Legal</div>
-        <div>Vigente</div>
       </div>
     </section>
   </div>
 
-  <!-- ===== Footer Pie de paguina===== -->
-    <!-- ===== Footer ===== -->
+  <!-- =============================================================
+       FOOTER (sin cambios visuales, añade “Colombia” para señal local)
+       ============================================================= -->
   <footer>
     <div class="wrap foot">
       <div>
         <div class="socials">
-          <!-- Iconos SVG; mantienen .chip para conservar estilos -->
           <a class="chip" href="https://facebook.com/IngLucas" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
-            <!-- Facebook -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.01 3.66 9.16 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.86h2.77l-.44 2.91h-2.33V22c4.78-.78 8.44-4.93 8.44-9.94z"/>
-            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.01 3.66 9.16 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.86h2.77l-.44 2.91h-2.33V22c4.78-.78 8.44-4.93 8.44-9.94z"/></svg>
           </a>
-
           <a class="chip" href="https://instagram.com/IngLucas" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-            <!-- Instagram -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11.001 5.5 5.5 0 0 1 0-11zM17.5 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-5.5 2a3.5 3.5 0 1 0 0 7.001A3.5 3.5 0 0 0 12 8z"/>
-            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11.001 5.5 5.5 0 0 1 0-11zM17.5 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-5.5 2a3.5 3.5 0 1 0 0 7.001A3.5 3.5 0 0 0 12 8z"/></svg>
           </a>
-
           <a class="chip" href="https://github.com/IngLucas" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
-            <!-- GitHub -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.09-.74.09-.74 1.22.09 1.87 1.25 1.87 1.25 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.62-2.67-.31-5.48-1.34-5.48-5.95 0-1.31.47-2.38 1.24-3.22-.12-.31-.54-1.57.12-3.27 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.7.24 2.96.12 3.27.77.84 1.23 1.91 1.23 3.22 0 4.62-2.82 5.64-5.5 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/>
-            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.09-.74.09-.74 1.22.09 1.87 1.25 1.87 1.25 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.62-2.67-.31-5.48-1.34-5.48-5.95 0-1.31.47-2.38 1.24-3.22-.12-.31-.54-1.57.12-3.27 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.7.24 2.96.12 3.27.77.84 1.23 1.91 1.23 3.22 0 4.62-2.82 5.64-5.5 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
           </a>
-
           <a class="chip" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
-            <!-- LinkedIn -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.45 20.45h-3.55v-5.6c0-1.34-.03-3.07-1.87-3.07-1.88 0-2.17 1.46-2.17 2.97v5.7H9.31V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.42v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
-            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.6c0-1.34-.03-3.07-1.87-3.07-1.88 0-2.17 1.46-2.17 2.97v5.7H9.31V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.42v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
           </a>
-
-          <a class="chip" href="mailto:contacto@inglucas.com.co" aria-label="Email" title="Email">
-            <!-- Email -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 12 4 6.01V6h16zM4 8.24l8 5.76 8-5.76V18H4V8.24z"/>
-            </svg>
-          </a>
-
           <a class="chip" href="#" id="manageConsent">Preferencias de cookies</a>
         </div>
         <div style="margin-top:10px">
-          <a href="politicas-privacidad.html" aria-current="page">Políticas de Privacidad</a>
+          <a href="politicas-privacidad.html">Políticas de Privacidad</a>
         </div>
       </div>
       <div>
-        © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub
-        <!-- Bloque para tu mensaje; cámbialo sin miedo -->
+        © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub · Colombia
         <div id="custom-text" style="margin-top:8px; font-size:0.92em; opacity:.85;">
-          <em>— Edita aquí tu mensaje breve para el pie de página.</em>
+          <em>Políticas de Privacidad · Ing. Lucas Learning Hub.</em>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- ===== Banner de consentimiento ===== -->
-  <style>
-    /* Estilos del banner (look amable, bordes redondeados, similar al Hub) */
-    .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
-    .consent .card{
-      max-width:960px; margin:0 auto; background:#fff; color:#1b1b1b;
-      border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.12);
-      padding:16px 18px; border:1px solid rgba(0,0,0,.06);
-    }
-    .consent .row{ display:flex; gap:16px; align-items:flex-start; }
-    .consent p{ margin:0; line-height:1.45 }
-    .consent .actions{ margin-left:auto; display:flex; gap:10px; flex-wrap:wrap; }
-    @media (max-width:720px){
-      .consent{ inset:auto 8px 8px 8px; }
-      .consent .row{ flex-direction:column; }
-      .consent .actions{ margin-left:0 }
-    }
-  </style>
-
+  <!-- =============================================================
+       BANNER COOKIES (conservar comportamiento)
+       ============================================================= -->
   <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
     <div class="card">
       <div class="row">
         <p>
-          Usamos <strong>cookies esenciales</strong> para que el sitio funcione correctamente y, con tu permiso, <strong>cookies analíticas</strong> para entender el uso y mejorar la experiencia.
-          Puedes cambiar tu elección en <em>“Preferencias de cookies”</em>. Consulta la
-          <a href="politicas-privacidad.html" target="_self">Política de Privacidad</a>.
+          Usamos <strong>cookies esenciales</strong> para que el sitio funcione correctamente y, con tu permiso,
+          <strong>cookies analíticas</strong> para entender el uso y mejorar la experiencia.
+          Puedes cambiar tu elección en <em>“Preferencias de cookies”</em>.
+          Consulta la <a href="politicas-privacidad.html" target="_self">Política de Privacidad</a>.
         </p>
         <div class="actions">
           <button class="btn" id="deny">Rechazar</button>
@@ -321,29 +548,81 @@
     </div>
   </div>
 
+  <!-- Fallback sin JS: aviso mínimo (no afecta SEO) -->
+  <noscript>
+    <div style="position:fixed;left:0;right:0;bottom:0;background:#fff;color:#111;border-top:1px solid #ddd;padding:10px 14px;font:14px/1.4 system-ui">
+      Este sitio utiliza cookies esenciales. Para analíticas necesitas habilitar JavaScript o dar consentimiento desde “Preferencias de cookies”.
+    </div>
+  </noscript>
+
   <script>
-    // Año en footer
+    // =============================================================
+    // UTILIDADES BÁSICAS (ES/EN) – Mantener estructura original
+    // =============================================================
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Drawer
     const drawer = document.getElementById('drawer');
     const openBtn = document.getElementById('openDrawer');
     const closeBtn = document.getElementById('closeDrawer');
-    function openDrawer(){drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false');}
-    function closeDrawer(){drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true');}
+
+    function openDrawer(){
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden','false');
+      openBtn?.setAttribute('aria-expanded','true');
+    }
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden','true');
+      openBtn?.setAttribute('aria-expanded','false');
+    }
+
     openBtn?.addEventListener('click', openDrawer);
     closeBtn?.addEventListener('click', closeDrawer);
     drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
 
-    // ===== Banner de consentimiento (solo una vez por versión) =====
+    // =============================================================
+    // HOVER/TOUCH LOGIC (conservar tu comportamiento)
+    // =============================================================
+    let autoCloseTimer = null;
+    const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+    function setBurgerLabel(){
+      if(!openBtn) return;
+      openBtn.textContent = isDesktop ? 'Menú' : '☰';
+    }
+    setBurgerLabel();
+
+    if (isDesktop){
+      openBtn?.addEventListener('mouseenter', openDrawer);
+      openBtn?.addEventListener('mouseleave', ()=>{
+        setTimeout(()=>{
+          const overDrawer = drawer.matches(':hover');
+          if(!overDrawer) closeDrawer();
+        }, 150);
+      });
+      drawer?.addEventListener('mouseleave', closeDrawer);
+    }
+
+    function startMobileAutoClose(){
+      if(isDesktop) return;
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = setTimeout(()=>{ closeDrawer(); }, 5000);
+    }
+    if(!isDesktop){
+      openBtn?.addEventListener('click', startMobileAutoClose);
+      ['click','touchstart'].forEach(evt=>{
+        drawer?.addEventListener(evt, startMobileAutoClose);
+      });
+    }
+
+    // =============================================================
+    // COOKIES CONSENT (mantén versión cuando cambie la política)
+    // =============================================================
     const CONSENT_KEY = 'lucasConsent';
-    const CONSENT_VERSION = 'v1-2025-09'; // Cambia si actualizas tu política
+    const CONSENT_VERSION = 'v1-2025-09';
 
     function getConsent(){
-      try {
-        const raw = localStorage.getItem(CONSENT_KEY);
-        return raw ? JSON.parse(raw) : null;
-      } catch(e){ return null; }
+      try { const raw = localStorage.getItem(CONSENT_KEY); return raw ? JSON.parse(raw) : null; } catch(e){ return null; }
     }
     function setConsent(status){
       try {
@@ -352,13 +631,12 @@
       } catch(e){}
     }
     function shouldShowBanner(saved){
-      // Mostrar si no hay registro o si la versión cambió (re-consent)
       if(!saved) return true;
       if(saved.version !== CONSENT_VERSION) return true;
       return false;
     }
     function enableAnalytics(){
-      // [Opcional] Inyecta tu script de analítica si consent=granted.
+      // [TOCAR/EDIT] Inyecta tu script solo si consent=granted
       // const s=document.createElement('script'); s.src='https://.../analytics.js'; document.head.appendChild(s);
     }
     function initConsentBanner(){
@@ -367,30 +645,17 @@
       const deny  = document.getElementById('deny');
       const saved = getConsent();
 
-      if(shouldShowBanner(saved)){
-        banner.style.display='block';
-      } else {
-        if(saved.status === 'granted') enableAnalytics();
-      }
+      if(shouldShowBanner(saved)){ banner.style.display='block'; }
+      else if(saved && saved.status === 'granted'){ enableAnalytics(); }
 
-      allow?.addEventListener('click', ()=>{
-        setConsent('granted');
-        banner.style.display='none';
-        enableAnalytics();
-      });
-      deny?.addEventListener('click',  ()=>{
-        setConsent('denied');
-        banner.style.display='none';
-      });
+      allow?.addEventListener('click', ()=>{ setConsent('granted'); banner.style.display='none'; enableAnalytics(); });
+      deny ?.addEventListener('click', ()=>{ setConsent('denied');  banner.style.display='none'; });
 
-      // Botón para reabrir banner manualmente (no cambia el "solo una vez")
       document.getElementById('manageConsent')?.addEventListener('click',(e)=>{
         e.preventDefault();
-        // No borramos el consentimiento automáticamente; solo mostramos el diálogo para cambiarlo.
         banner.style.display='block';
       });
     }
-
     document.addEventListener('DOMContentLoaded', initConsentBanner);
   </script>
 </body>
