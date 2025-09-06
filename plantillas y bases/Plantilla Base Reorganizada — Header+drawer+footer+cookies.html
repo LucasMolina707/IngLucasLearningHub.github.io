@@ -2,17 +2,20 @@
 <html lang="es" dir="ltr">
 <head>
   <!-- =====================================================================
-       CABECERA OPTIMIZADA PARA SEO (v2)
+       CABECERA OPTIMIZADA PARA SEO (v3)
        Notas:
-       - Rellena los [SEO/TODO] con datos reales del proyecto.
-       - El archivo .ai NO se usa como favicon (no lo soportan navegadores).
+       - Rellena los [SEO/TODO] con datos reales del proyecto/página.
+       - Los iconos se sirven desde el MISMO repo (/galeria/logo/...).
        ===================================================================== -->
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
+  <meta name="application-name" content="Ing. Lucas Learning Hub" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
 
-  <!-- [SEO/TODO] TITLE y DESCRIPTION con palabras clave principales -->
+  <!-- [SEO/TODO] TITLE y DESCRIPTION con keywords -->
   <title>Ing. Lucas Molina · Learning Hub — Estudiante de Ingeniería Informática en Colombia</title>
   <meta name="description" content="Portafolio y bitácora de Ing. Lucas Molina (Ing Lucas) — estudiante de Ingeniería Informática. Proyectos, tutoriales y recursos del Ing. Lucas Learning Hub en Colombia." />
 
@@ -24,24 +27,24 @@
   <link rel="alternate" hreflang="es-co" href="https://hub.inglucas.com.co/">
   <link rel="alternate" hreflang="es" href="https://hub.inglucas.com.co/">
 
-  <!-- ====== ICONOGRAFÍA / FAVICONS ====== -->
+  <!-- ====== ICONOGRAFÍA / FAVICONS (desde el mismo repo) ====== -->
   <!-- Favicon clásico -->
-  <link rel="icon" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.ico" sizes="any">
-  <!-- PNGs en varios tamaños -->
-  <link rel="icon" type="image/png" sizes="48x48" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.png">
-  <!-- SVG vectorial (browsers modernos, también usado por algunos motores de búsqueda) -->
-  <link rel="icon" type="image/svg+xml" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.svg">
+  <link rel="icon" href="/galeria/logo/logoingelucas.ico" sizes="any">
+  <!-- SVG vectorial (modernos) -->
+  <link rel="icon" type="image/svg+xml" href="/galeria/logo/logoingelucas.svg">
+  <!-- PNGs en varios tamaños para compatibilidad -->
+  <link rel="icon" type="image/png" sizes="48x48" href="/galeria/logo/logoingelucas.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/galeria/logo/logoingelucas.png">
   <!-- Apple touch icon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.png">
-  <!-- Pinned tab Safari (usar SVG monocromo si tienes) -->
-  <link rel="mask-icon" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.svg" color="#2563eb">
+  <link rel="apple-touch-icon" sizes="180x180" href="/galeria/logo/logoingelucas.png">
+  <!-- Pinned tab Safari -->
+  <link rel="mask-icon" href="/galeria/logo/logoingelucas.svg" color="#2563eb">
   <!-- Windows tiles -->
   <meta name="msapplication-TileColor" content="#0b1730">
-  <meta name="msapplication-config" content="/browserconfig.xml"><!-- opcional -->
-  <!-- Manifest PWA (mínimo para que Chrome y buscadores lean nombre/iconos) -->
+  <meta name="msapplication-config" content="/browserconfig.xml"><!-- [SEO/INFO] opcional -->
+  <!-- Manifest PWA (para que buscadores lean nombre/iconos) -->
   <link rel="manifest" href="/site.webmanifest">
-  <!-- [SEO/INFO] Puedes generar /site.webmanifest con los iconos de arriba. -->
+  <!-- [SEO/INFO] El .ai no se referencia como favicon (no lo soportan). Guárdalo en /galeria/logo/logoingelucas.ai para diseño. -->
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
@@ -50,18 +53,18 @@
   <meta property="og:title" content="Ing. Lucas Molina · Learning Hub">
   <meta property="og:description" content="Proyectos y recursos de Ing. Lucas Molina (Ing Lucas) en Colombia.">
   <meta property="og:url" content="https://hub.inglucas.com.co/">
-  <meta property="og:image" content="https://hub.inglucas.com.co/multimedia/cover-og.webp">
+  <meta property="og:image" content="/multimedia/cover-og.webp"><!-- [SEO/TODO] 1200x630, <300KB -->
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ing. Lucas Molina · Learning Hub">
   <meta name="twitter:description" content="Portafolio, proyectos y tutoriales del Ing Lucas en Colombia.">
-  <meta name="twitter:image" content="https://hub.inglucas.com.co/multimedia/cover-og.webp">
+  <meta name="twitter:image" content="/multimedia/cover-og.webp">
 
   <!-- Color de la UI del navegador -->
   <meta name="theme-color" content="#0d47a1" />
 
   <!-- ====== DATOS ESTRUCTURADOS (JSON-LD) ====== -->
-  <!-- Person + WebSite + Organization con logo (ayuda a que Google muestre tu logo en SERP) -->
+  <!-- Person + WebSite + Organization con logo (para mostrar logo en SERP) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -73,7 +76,7 @@
         "alternateName": ["Lucas Molina", "Ing Lucas", "Ing Lucas Molina", "Lucas Learning Hub", "Ing. Lucas Learning Hub"],
         "description": "Estudiante de Ingeniería Informática y creador de Ing. Lucas Learning Hub en Colombia.",
         "url": "https://hub.inglucas.com.co/",
-        "image": "https://hub.inglucas.com.co/galeria/logo/logoingelucas.jpg",
+        "image": "/galeria/logo/logoingelucas.jpg",
         "sameAs": [
           "https://github.com/IngLucas",
           "https://www.linkedin.com/in/IngLucas",
@@ -106,7 +109,7 @@
         "url": "https://hub.inglucas.com.co/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://hub.inglucas.com.co/galeria/logo/logoingelucas.png"
+          "url": "/galeria/logo/logoingelucas.png"
         },
         "sameAs": [
           "https://github.com/IngLucas",
@@ -117,14 +120,14 @@
   }
   </script>
 
-  <!-- Breadcrumbs opcionales (rellenar dinámicamente por página) -->
+  <!-- Breadcrumbs opcionales (rellena por página) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hub.inglucas.com.co/" }
-      /* [SEO/TODO] Añade más niveles por página:
+      /* [SEO/TODO] Añade niveles por página:
          ,{ "@type":"ListItem","position":2,"name":"Proyectos","item":"https://hub.inglucas.com.co/proyectos/" } */
     ]
   }
@@ -157,6 +160,7 @@
        ============================================================= */
     .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
+
     .logo{
       width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden;
       background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)
@@ -222,8 +226,8 @@
     .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:#eef5ff}
 
     /* =============================================================
-      BANNER COOKIES (alto contraste)
-      ============================================================= */
+       BANNER COOKIES (alto contraste)
+       ============================================================= */
     .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
     .consent .card{ max-width:960px; margin:0 auto; background:#0f172a; color:#e6efff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.28); padding:16px 18px; border:1px solid rgba(96,165,250,.25); }
     .consent .row{ display:flex; gap:16px; align-items:flex-start; }
@@ -249,11 +253,11 @@
        ============================================================= -->
   <div class="topbar">
     <div class="wrap row">
-      <!-- Logo (usa SVG si está disponible; PNG como fallback) -->
+      <!-- Logo usando rutas del MISMO repo -->
       <a class="logo" href="/" aria-label="Inicio · Ing. Lucas Learning Hub">
         <picture>
-          <source srcset="https://hub.inglucas.com.co/galeria/logo/logoingelucas.svg" type="image/svg+xml">
-          <img src="https://hub.inglucas.com.co/galeria/logo/logoingelucas.png" alt="Logo Ing. Lucas" width="36" height="36" loading="eager" fetchpriority="high">
+          <source srcset="/galeria/logo/logoingelucas.svg" type="image/svg+xml">
+          <img src="/galeria/logo/logoingelucas.png" alt="Logo Ing. Lucas" width="36" height="36" loading="eager" fetchpriority="high">
         </picture>
       </a>
 
@@ -268,7 +272,7 @@
         <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
         </button>
-        <!-- Botón: abrir menú (mantiene comportamiento por hover/click en desktop) -->
+        <!-- Botón: abrir menú (hover/click en desktop) -->
         <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
         </button>
@@ -428,7 +432,7 @@
     // Año
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // ========= Menú lateral (con hover en desktop, autocierre en móvil) =========
+    // ========= Menú lateral (hover en desktop, autocierre en móvil) =========
     const drawer = document.getElementById('drawer');
     const openBtn = document.getElementById('openDrawer');
     const closeBtn = document.getElementById('closeDrawer');
@@ -449,7 +453,7 @@
       drawer?.addEventListener('mouseleave', closeDrawer);
     }
 
-    // Auto-cierre en móvil tras 5s si no hay interacción (solo menú)
+    // Auto-cierre del MENÚ en móvil (no afecta comentarios)
     let autoCloseTimer = null;
     function startMobileAutoClose(){
       if(!isMobile) return;
@@ -481,7 +485,7 @@
     }
     document.addEventListener('DOMContentLoaded', initConsentBanner);
 
-    // ========= Panel de comentarios (sin auto-cierre en móviles) =========
+    // ========= Panel de comentarios (SIN auto-cierre en móviles) =========
     const commentsDrawer = document.getElementById('commentsDrawer');
     const openCommentsBtn = document.getElementById('openComments');
     const closeCommentsBtn = document.getElementById('closeComments');
@@ -492,7 +496,7 @@
       if(commentsLoaded) return;
       const s = document.createElement('script');
       s.src = 'https://utteranc.es/client.js';
-      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io');
+      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io'); // [SEO/INFO] Repo de issues
       s.setAttribute('issue-term','pathname');
       s.setAttribute('theme','icy-dark');
       s.setAttribute('crossorigin','anonymous');
@@ -504,14 +508,17 @@
     function openComments(){ commentsDrawer.classList.add('open'); commentsDrawer.setAttribute('aria-hidden','false'); injectUtterances(); if(isDesktop) resetInactivity(); }
     function closeComments(){ commentsDrawer.classList.remove('open'); commentsDrawer.setAttribute('aria-hidden','true'); }
 
-    openCommentsBtn?.addEventListener('click',(e)=>{ e.stopPropagation(); if(commentsDrawer.classList.contains('open')) closeComments(); else openComments(); });
+    openCommentsBtn?.addEventListener('click',(e)=>{
+      e.stopPropagation();
+      if(commentsDrawer.classList.contains('open')) closeComments();
+      else openComments();
+    });
     closeCommentsBtn?.addEventListener('click', closeComments);
     commentsDrawer?.addEventListener('click',(e)=>{ if(e.target===commentsDrawer) closeComments(); });
 
     // Auto-ocultar SOLO en desktop: 5s sin movimiento y sin hover en el panel
     let lastActivity = Date.now();
     let inactivityTimer = null;
-
     function resetInactivity(){
       lastActivity = Date.now();
       if(inactivityTimer || !isDesktop) return;
@@ -522,19 +529,18 @@
         if(!commentsDrawer.classList.contains('open')){ clearInterval(inactivityTimer); inactivityTimer = null; }
       }, 500);
     }
-
     if(isDesktop){
       ['mousemove','keydown','wheel'].forEach(evt=>{
         document.addEventListener(evt, ()=>{ lastActivity = Date.now(); }, {passive:true});
       });
     }
-    // En móvil NO hay auto-cierre del panel de comentarios.
+    // En móvil NO se auto-cierra el panel de comentarios.
 
     // Accesibilidad: ESC cierra ambos paneles
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeDrawer(); closeComments(); }});
   </script>
 
-  <!-- (No cargamos Utterances directo; lo inyectamos cuando se abre el panel) -->
-  <!-- [SEO/INFO] El archivo .ai del logo se mantiene en tu galería pero no se referencia como favicon. -->
+  <!-- (No cargamos Utterances directo; lo inyectamos al abrir el panel) -->
+  <!-- [SEO/INFO] Mantén /site.webmanifest y /browserconfig.xml para branding en dispositivos. -->
 </body>
 </html>
