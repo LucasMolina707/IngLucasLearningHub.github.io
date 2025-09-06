@@ -1,19 +1,49 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="ltr">
 <head>
   <!-- =====================================================================
-       CABECERA OPTIMIZADA PARA SEO
+       CABECERA OPTIMIZADA PARA SEO (v2)
+       Notas:
+       - Rellena los [SEO/TODO] con datos reales del proyecto.
+       - El archivo .ai NO se usa como favicon (no lo soportan navegadores).
        ===================================================================== -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
 
+  <!-- [SEO/TODO] TITLE y DESCRIPTION con palabras clave principales -->
   <title>Ing. Lucas Molina · Learning Hub — Estudiante de Ingeniería Informática en Colombia</title>
   <meta name="description" content="Portafolio y bitácora de Ing. Lucas Molina (Ing Lucas) — estudiante de Ingeniería Informática. Proyectos, tutoriales y recursos del Ing. Lucas Learning Hub en Colombia." />
+
+  <!-- Robots y canónica -->
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="alternate" hreflang="es-co" href="https://hub.inglucas.com.co/">
-  <link rel="alternate" hreflang="es" href="https://hub.inglucas.com.co/">
   <link rel="canonical" href="https://hub.inglucas.com.co/">
 
+  <!-- Señales de país/idioma -->
+  <link rel="alternate" hreflang="es-co" href="https://hub.inglucas.com.co/">
+  <link rel="alternate" hreflang="es" href="https://hub.inglucas.com.co/">
+
+  <!-- ====== ICONOGRAFÍA / FAVICONS ====== -->
+  <!-- Favicon clásico -->
+  <link rel="icon" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.ico" sizes="any">
+  <!-- PNGs en varios tamaños -->
+  <link rel="icon" type="image/png" sizes="48x48" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.png">
+  <!-- SVG vectorial (browsers modernos, también usado por algunos motores de búsqueda) -->
+  <link rel="icon" type="image/svg+xml" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.svg">
+  <!-- Apple touch icon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.png">
+  <!-- Pinned tab Safari (usar SVG monocromo si tienes) -->
+  <link rel="mask-icon" href="https://hub.inglucas.com.co/galeria/logo/logoingelucas.svg" color="#2563eb">
+  <!-- Windows tiles -->
+  <meta name="msapplication-TileColor" content="#0b1730">
+  <meta name="msapplication-config" content="/browserconfig.xml"><!-- opcional -->
+  <!-- Manifest PWA (mínimo para que Chrome y buscadores lean nombre/iconos) -->
+  <link rel="manifest" href="/site.webmanifest">
+  <!-- [SEO/INFO] Puedes generar /site.webmanifest con los iconos de arriba. -->
+
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CO">
   <meta property="og:site_name" content="Ing. Lucas Learning Hub">
@@ -27,9 +57,11 @@
   <meta name="twitter:description" content="Portafolio, proyectos y tutoriales del Ing Lucas en Colombia.">
   <meta name="twitter:image" content="https://hub.inglucas.com.co/multimedia/cover-og.webp">
 
+  <!-- Color de la UI del navegador -->
   <meta name="theme-color" content="#0d47a1" />
 
-  <!-- Datos estructurados (JSON-LD) -->
+  <!-- ====== DATOS ESTRUCTURADOS (JSON-LD) ====== -->
+  <!-- Person + WebSite + Organization con logo (ayuda a que Google muestre tu logo en SERP) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,7 +73,7 @@
         "alternateName": ["Lucas Molina", "Ing Lucas", "Ing Lucas Molina", "Lucas Learning Hub", "Ing. Lucas Learning Hub"],
         "description": "Estudiante de Ingeniería Informática y creador de Ing. Lucas Learning Hub en Colombia.",
         "url": "https://hub.inglucas.com.co/",
-        "image": "https://hub.inglucas.com.co/multimedia/lucas-profile.webp",
+        "image": "https://hub.inglucas.com.co/galeria/logo/logoingelucas.jpg",
         "sameAs": [
           "https://github.com/IngLucas",
           "https://www.linkedin.com/in/IngLucas",
@@ -60,7 +92,7 @@
         "name": "Ing. Lucas Learning Hub",
         "url": "https://hub.inglucas.com.co/",
         "inLanguage": "es-CO",
-        "publisher": { "@id": "https://hub.inglucas.com.co/#lucas" },
+        "publisher": { "@id": "https://hub.inglucas.com.co/#organization" },
         "potentialAction": {
           "@type": "SearchAction",
           "target": "https://hub.inglucas.com.co/?q={search_term_string}",
@@ -69,16 +101,31 @@
       },
       {
         "@type": "Organization",
-        "@id": "https://hub.inglucas.com.co/#network-center",
-        "name": "Network Center",
+        "@id": "https://hub.inglucas.com.co/#organization",
+        "name": "Ing. Lucas Learning Hub",
         "url": "https://hub.inglucas.com.co/",
-        "brand": "Network Center",
-        "areaServed": "CO",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://hub.inglucas.com.co/galeria/logo/logoingelucas.png"
+        },
         "sameAs": [
           "https://github.com/IngLucas",
           "https://www.linkedin.com/in/IngLucas"
         ]
       }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs opcionales (rellenar dinámicamente por página) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hub.inglucas.com.co/" }
+      /* [SEO/TODO] Añade más niveles por página:
+         ,{ "@type":"ListItem","position":2,"name":"Proyectos","item":"https://hub.inglucas.com.co/proyectos/" } */
     ]
   }
   </script>
@@ -106,12 +153,15 @@
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
     /* =============================================================
-       TOPBAR + ACCIONES (botones a la derecha)
+       TOPBAR + ACCIONES (logo + botones a la derecha)
        ============================================================= */
     .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
-    .logo{ width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700; color:white;
-           background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow) }
+    .logo{
+      width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden;
+      background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)
+    }
+    .logo img{width:100%; height:100%; object-fit:cover; display:block}
     .brand{display:flex; flex-direction:column}
     .brand strong{font-size:16px}
     .brand span{font-size:12px; color:var(--muted)}
@@ -172,8 +222,8 @@
     .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:#eef5ff}
 
     /* =============================================================
-       BANNER COOKIES
-       ============================================================= */
+      BANNER COOKIES (alto contraste)
+      ============================================================= */
     .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
     .consent .card{ max-width:960px; margin:0 auto; background:#0f172a; color:#e6efff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.28); padding:16px 18px; border:1px solid rgba(96,165,250,.25); }
     .consent .row{ display:flex; gap:16px; align-items:flex-start; }
@@ -182,7 +232,6 @@
     .btn{padding:8px 12px; border-radius:10px; border:1px solid rgba(96,165,250,.35); background:rgba(37,99,235,.15); color:#eaf2ff; cursor:pointer}
     .btn.primary{ background:var(--blue-500); border-color:transparent; color:white; }
     .btn:hover{ filter:brightness(1.05); }
-    @media (max-width:720px){ .consent{ inset:auto 8px 8px 8px; } .consent .row{ flex-direction:column; } .consent .actions{ margin-left:0 } }
 
     /* =============================================================
        PANEL DE COMENTARIOS (izquierda)
@@ -200,17 +249,26 @@
        ============================================================= -->
   <div class="topbar">
     <div class="wrap row">
-      <div class="logo" aria-hidden="true">IL</div>
+      <!-- Logo (usa SVG si está disponible; PNG como fallback) -->
+      <a class="logo" href="/" aria-label="Inicio · Ing. Lucas Learning Hub">
+        <picture>
+          <source srcset="https://hub.inglucas.com.co/galeria/logo/logoingelucas.svg" type="image/svg+xml">
+          <img src="https://hub.inglucas.com.co/galeria/logo/logoingelucas.png" alt="Logo Ing. Lucas" width="36" height="36" loading="eager" fetchpriority="high">
+        </picture>
+      </a>
+
       <div class="brand">
+        <!-- [SEO/TODO] Marca + claim -->
         <strong>Ing. Lucas Learning Hub</strong>
         <span>Plantilla Base</span>
       </div>
+
       <div class="actions">
         <!-- Botón: abrir comentarios (icono solo) -->
         <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
         </button>
-        <!-- Botón: abrir menú (mantiene comportamiento por hover/click) -->
+        <!-- Botón: abrir menú (mantiene comportamiento por hover/click en desktop) -->
         <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
         </button>
@@ -257,6 +315,7 @@
       <button class="btn" id="closeComments" aria-label="Cerrar comentarios">Cerrar ✕</button>
     </div>
     <div class="bd">
+      <!-- Utterances se inyecta aquí on-demand -->
       <div id="commentsMount" aria-live="polite"></div>
     </div>
   </aside>
@@ -283,6 +342,7 @@
 
       <div class="window-body">
         <section class="pane">
+          <!-- [SEO/TODO] H1 por página con keywords -->
           <h1>Ing. Lucas Molina — Learning Hub de Ingeniería Informática (Colombia)</h1>
           <p>
             Bienvenido a <strong>Ing. Lucas Learning Hub</strong>, el espacio donde recopilo proyectos, apuntes y tutoriales
@@ -295,11 +355,13 @@
           <p>Coloca aquí tu contenido… / Put your content here…</p>
         </section>
 
+        <!-- Pie del proyecto dentro del workspace -->
         <footer class="project-note" aria-label="Nota del proyecto">
           <span class="tag">🧩 Proyecto</span>
           <div>
+            <!-- [UI/TODO] Edita título y nota fija del proyecto -->
             <strong id="projectTitle">[TOCAR] Título breve del proyecto</strong>
-            <div id="projectNote">[TOCAR] Nota fija del proyecto en curso: objetivos, pendientes o mini changelog.</div>
+            <div id="projectNote">[TOCAR] Nota fija del proyecto: objetivos, pendientes o mini changelog.</div>
           </div>
         </footer>
       </div>
@@ -366,10 +428,13 @@
     // Año
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Menú (mantiene hover/auto-cierre como tenías)
+    // ========= Menú lateral (con hover en desktop, autocierre en móvil) =========
     const drawer = document.getElementById('drawer');
     const openBtn = document.getElementById('openDrawer');
     const closeBtn = document.getElementById('closeDrawer');
+
+    const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
+    const isMobile  = matchMedia('(hover:none) and (pointer:coarse)').matches;
 
     function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); openBtn?.setAttribute('aria-expanded','true'); }
     function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); openBtn?.setAttribute('aria-expanded','false'); }
@@ -378,24 +443,31 @@
     closeBtn?.addEventListener('click', closeDrawer);
     drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
 
-    let autoCloseTimer = null;
-    const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
-
     if (isDesktop){
       openBtn?.addEventListener('mouseenter', openDrawer);
       openBtn?.addEventListener('mouseleave', ()=>{ setTimeout(()=>{ const overDrawer = drawer.matches(':hover'); if(!overDrawer) closeDrawer(); }, 150); });
       drawer?.addEventListener('mouseleave', closeDrawer);
     }
-    function startMobileAutoClose(){ if(isDesktop) return; clearTimeout(autoCloseTimer); autoCloseTimer = setTimeout(()=>{ closeDrawer(); }, 5000); }
-    if(!isDesktop){ openBtn?.addEventListener('click', startMobileAutoClose); ['click','touchstart'].forEach(evt=>{ drawer?.addEventListener(evt, startMobileAutoClose); }); }
 
-    // Consentimiento de cookies
+    // Auto-cierre en móvil tras 5s si no hay interacción (solo menú)
+    let autoCloseTimer = null;
+    function startMobileAutoClose(){
+      if(!isMobile) return;
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = setTimeout(()=>{ closeDrawer(); }, 5000);
+    }
+    if(isMobile){
+      openBtn?.addEventListener('click', startMobileAutoClose);
+      ['click','touchstart'].forEach(evt=>{ drawer?.addEventListener(evt, startMobileAutoClose, {passive:true}); });
+    }
+
+    // ========= Cookies Consent =========
     const CONSENT_KEY = 'lucasConsent';
     const CONSENT_VERSION = 'v1-2025-09';
     function getConsent(){ try { const raw = localStorage.getItem(CONSENT_KEY); return raw ? JSON.parse(raw) : null; } catch(e){ return null; } }
     function setConsent(status){ try { const data = { status, version: CONSENT_VERSION, ts: Date.now() }; localStorage.setItem(CONSENT_KEY, JSON.stringify(data)); } catch(e){} }
     function shouldShowBanner(saved){ if(!saved) return true; if(saved.version !== CONSENT_VERSION) return true; return false; }
-    function enableAnalytics(){ /* Inyecta script si consent=granted */ }
+    function enableAnalytics(){ /* [SEO/TODO] Inyecta tu script solo si consent=granted */ }
     function initConsentBanner(){
       const banner = document.getElementById('consent');
       const allow = document.getElementById('allow');
@@ -409,7 +481,7 @@
     }
     document.addEventListener('DOMContentLoaded', initConsentBanner);
 
-    // Panel de comentarios (sin hover para abrir, con auto-ocultar por inactividad)
+    // ========= Panel de comentarios (sin auto-cierre en móviles) =========
     const commentsDrawer = document.getElementById('commentsDrawer');
     const openCommentsBtn = document.getElementById('openComments');
     const closeCommentsBtn = document.getElementById('closeComments');
@@ -429,32 +501,40 @@
       commentsLoaded = true;
     }
 
-    function openComments(){ commentsDrawer.classList.add('open'); commentsDrawer.setAttribute('aria-hidden','false'); injectUtterances(); resetInactivity(); }
+    function openComments(){ commentsDrawer.classList.add('open'); commentsDrawer.setAttribute('aria-hidden','false'); injectUtterances(); if(isDesktop) resetInactivity(); }
     function closeComments(){ commentsDrawer.classList.remove('open'); commentsDrawer.setAttribute('aria-hidden','true'); }
 
     openCommentsBtn?.addEventListener('click',(e)=>{ e.stopPropagation(); if(commentsDrawer.classList.contains('open')) closeComments(); else openComments(); });
     closeCommentsBtn?.addEventListener('click', closeComments);
     commentsDrawer?.addEventListener('click',(e)=>{ if(e.target===commentsDrawer) closeComments(); });
 
-    // ===== Auto-ocultar tras 5s de inactividad si el mouse NO está sobre el panel =====
+    // Auto-ocultar SOLO en desktop: 5s sin movimiento y sin hover en el panel
     let lastActivity = Date.now();
     let inactivityTimer = null;
 
-    function resetInactivity(){ lastActivity = Date.now(); if(inactivityTimer) return; inactivityTimer = setInterval(()=>{
-      const idleMs = Date.now() - lastActivity;
-      const hovering = commentsDrawer.matches(':hover');
-      if(commentsDrawer.classList.contains('open') && idleMs > 5000 && !hovering){ closeComments(); }
-      if(!commentsDrawer.classList.contains('open')){ clearInterval(inactivityTimer); inactivityTimer = null; }
-    }, 500); }
+    function resetInactivity(){
+      lastActivity = Date.now();
+      if(inactivityTimer || !isDesktop) return;
+      inactivityTimer = setInterval(()=>{
+        const idleMs = Date.now() - lastActivity;
+        const hovering = commentsDrawer.matches(':hover');
+        if(commentsDrawer.classList.contains('open') && idleMs > 5000 && !hovering){ closeComments(); }
+        if(!commentsDrawer.classList.contains('open')){ clearInterval(inactivityTimer); inactivityTimer = null; }
+      }, 500);
+    }
 
-    // Contamos movimiento en todo el documento
-    ['mousemove','touchstart','keydown','wheel'].forEach(evt=>{
-      document.addEventListener(evt, ()=>{ lastActivity = Date.now(); }, {passive:true});
-    });
+    if(isDesktop){
+      ['mousemove','keydown','wheel'].forEach(evt=>{
+        document.addEventListener(evt, ()=>{ lastActivity = Date.now(); }, {passive:true});
+      });
+    }
+    // En móvil NO hay auto-cierre del panel de comentarios.
 
-    // ESC cierra ambos
+    // Accesibilidad: ESC cierra ambos paneles
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeDrawer(); closeComments(); }});
   </script>
-  <!-- Utterances se inyecta dinámicamente cuando se abre el panel -->
+
+  <!-- (No cargamos Utterances directo; lo inyectamos cuando se abre el panel) -->
+  <!-- [SEO/INFO] El archivo .ai del logo se mantiene en tu galería pero no se referencia como favicon. -->
 </body>
 </html>
