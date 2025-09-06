@@ -7,23 +7,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Título breve con marca y país -->
   <title>Ing. Lucas Molina · Learning Hub — Estudiante de Ingeniería Informática en Colombia</title>
-
-  <!-- Descripción concisa con variaciones naturales de tu nombre/marca -->
   <meta name="description" content="Portafolio y bitácora de Ing. Lucas Molina (Ing Lucas) — estudiante de Ingeniería Informática. Proyectos, tutoriales y recursos del Ing. Lucas Learning Hub en Colombia." />
-
-  <!-- Robots: indexación amplia y previews grandes -->
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-
-  <!-- Señales de país e idioma -->
   <link rel="alternate" hreflang="es-co" href="https://hub.inglucas.com.co/">
   <link rel="alternate" hreflang="es" href="https://hub.inglucas.com.co/">
-
-  <!-- Canónica para evitar duplicados -->
   <link rel="canonical" href="https://hub.inglucas.com.co/">
 
-  <!-- Open Graph / Twitter para compartir correctamente -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CO">
   <meta property="og:site_name" content="Ing. Lucas Learning Hub">
@@ -37,10 +27,9 @@
   <meta name="twitter:description" content="Portafolio, proyectos y tutoriales del Ing Lucas en Colombia.">
   <meta name="twitter:image" content="https://hub.inglucas.com.co/multimedia/cover-og.webp">
 
-  <!-- Colores del navegador -->
   <meta name="theme-color" content="#0d47a1" />
 
-  <!-- Datos estructurados (JSON-LD) — sin comentarios dentro -->
+  <!-- Datos estructurados (JSON-LD) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -96,12 +85,14 @@
 
   <style>
     /* =============================================================
-       [NO TOCAR / DO NOT TOUCH] – SISTEMA DE DISEÑO (ES/EN)
+       PALETA DE ARMONÍA (alto contraste, sin negros puros)
        ============================================================= */
     :root{
-      --blue-700:#0f3f8a; --blue-600:#1450a3; --blue-500:#1a63c7; --blue-300:#6aa8ff;
-      --purple-600:#6e28c4; --bg:#0e1116; --surface:#131823; --panel:#161d2b;
-      --border:#263349; --soft:#0b0f16; --text:#e7eef7; --muted:#a9b6c7;
+      --blue-900:#0b1730; --blue-800:#0f2346; --blue-700:#153769; --blue-600:#1c4b8c; --blue-500:#2563eb; --blue-400:#60a5fa;
+      --purple-600:#7c3aed; --cyan-400:#22d3ee; --lime-400:#a3e635;
+      --bg:#0e1116; --surface:#121826; --panel:#151d2c; --panel-2:#0f1722;
+      --border:#263349; --soft:#0b0f16; --text:#ecf3ff; --muted:#b4c2d6;
+      --accent-ring: 0 0 0 3px rgba(34,211,238,.25);
       --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35);
       --container:1200px; --gap:16px;
     }
@@ -109,59 +100,38 @@
     html,body{height:100%}
     body{
       margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
-      background:linear-gradient(180deg,#0b1220,#0e1116); color:var(--text)
+      background:linear-gradient(180deg,var(--panel-2),var(--bg)); color:var(--text)
     }
-    a{color:var(--blue-300); text-decoration:none}
+    a{color:var(--blue-400); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
     /* =============================================================
-       [NO TOCAR] – TOPBAR + BOTONES
+       TOPBAR + ACCIONES (botones a la derecha)
        ============================================================= */
-    .topbar{
-      position:sticky; top:0; z-index:60;
-      backdrop-filter:saturate(1.1) blur(8px);
-      background:rgba(12,16,25,.7);
-      border-bottom:1px solid var(--border)
-    }
+    .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
-    .logo{
-      width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700;
-      background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow)
-    }
+    .logo{ width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:700; color:white;
+           background:conic-gradient(from 120deg,var(--blue-600),var(--purple-600)); box-shadow:var(--shadow) }
     .brand{display:flex; flex-direction:column}
     .brand strong{font-size:16px}
     .brand span{font-size:12px; color:var(--muted)}
 
-    /* Botón de menú (base) */
-    .burger{
-      margin-left:auto; display:inline-flex; align-items:center; justify-content:center;
-      min-width:46px; height:40px; padding:0 10px; gap:8px;
-      border-radius:10px; border:2px solid var(--blue-500);
-      background:rgba(18,23,31,.9); color:var(--text);
-      cursor:pointer; transition:transform .15s ease, background .15s ease
+    .actions{ margin-left:auto; display:flex; gap:10px; align-items:center }
+    .icon-btn{
+      --size:40px; width:var(--size); height:var(--size); display:inline-grid; place-items:center;
+      border-radius:12px; border:1.5px solid var(--blue-500);
+      background:linear-gradient(180deg,#0f172a,#0b1220);
+      color:#e8f1ff; cursor:pointer; transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      box-shadow:0 6px 20px rgba(0,0,0,.25);
     }
-    .burger:hover{transform:scale(1.04); background:rgba(26,99,199,.12)}
-
-    /* FAB de menú (solo escritorio) */
-    @media (min-width:1024px){
-      .burger.burger-fab-desktop{
-        position:fixed; right:16px; bottom:88px; z-index:85;
-        width:52px; height:52px; min-width:52px; padding:0;
-        border-radius:50%; border:2px solid var(--blue-500);
-        background:linear-gradient(180deg,#111828,#0b121e);
-      }
-    }
+    .icon-btn:hover{ transform:translateY(-1px); filter:brightness(1.05)}
+    .icon-btn:focus-visible{ outline:none; box-shadow:var(--accent-ring) }
+    .icon-btn svg{ width:22px; height:22px; display:block }
 
     /* =============================================================
-       [NO TOCAR] – DRAWER / MENÚ LATERAL (derecha)
+       DRAWER / MENÚ LATERAL (derecha)
        ============================================================= */
-    .drawer{
-      position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw;
-      background:linear-gradient(180deg,#0e223a,#0a1729);
-      border-left:2px solid var(--blue-500);
-      box-shadow:-20px 0 40px rgba(0,0,0,.45);
-      transform:translateX(100%); transition:.25s ease transform, background-color .25s ease
-    }
+    .drawer{ position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform }
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
     .drawer .bd{padding:12px 16px; display:grid; gap:16px}
@@ -169,10 +139,10 @@
     .nav-group h4{margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)}
     .nav{display:grid}
     .nav a{padding:12px 12px; border-top:1px solid var(--border)}
-    .nav a:hover{background:rgba(26,99,199,.18)}
+    .nav a:hover{background:rgba(37,99,235,.18)}
 
     /* =============================================================
-       [TOCAR] – ESPACIO DE CONTENIDO
+       WORKSPACE
        ============================================================= */
     .workspace{padding:24px 0}
     .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
@@ -189,72 +159,44 @@
     .pane{padding:18px; min-height:420px; background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(12,16,24,.95))}
 
     /* Pie fijo del proyecto dentro del workspace */
-    .project-note{
-      position:sticky; bottom:0; left:0; right:0; z-index:10;
-      border-top:1px dashed var(--border);
-      background:linear-gradient(180deg,rgba(20,26,36,.95),rgba(14,18,26,.95));
-      padding:12px 16px; color:var(--muted); font-size:13px;
-      display:flex; gap:10px; align-items:flex-start
-    }
-    .project-note .tag{padding:2px 8px; border-radius:999px; border:1px solid var(--border); font-size:12px; background:rgba(26,99,199,.10); color:var(--text)}
+    .project-note{ position:sticky; bottom:0; left:0; right:0; z-index:10; border-top:1px dashed var(--border); background:linear-gradient(180deg,rgba(20,26,36,.95),rgba(14,18,26,.95)); padding:12px 16px; color:var(--muted); font-size:13px; display:flex; gap:10px; align-items:flex-start }
+    .project-note .tag{padding:2px 8px; border-radius:999px; border:1px solid var(--border); font-size:12px; background:rgba(37,99,235,.10); color:var(--text)}
 
     /* =============================================================
-       [NO TOCAR] – FOOTER
+       FOOTER
        ============================================================= */
     footer{border-top:1px solid var(--border); color:var(--muted); padding:22px 0; font-size:13px; background:linear-gradient(180deg,#0f1624,#0c121e)}
     .foot{display:grid; gap:12px}
     @media(min-width:860px){.foot{grid-template-columns:1fr auto}}
     .socials{display:flex; gap:10px; flex-wrap:wrap}
-    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8)}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:#eef5ff}
 
     /* =============================================================
-       [NO TOCAR] – BANNER COOKIES
+       BANNER COOKIES
        ============================================================= */
     .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
-    .consent .card{
-      max-width:960px; margin:0 auto; background:#ffffff; color:#111111;
-      border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.18);
-      padding:16px 18px; border:1px solid rgba(0,0,0,.08);
-    }
+    .consent .card{ max-width:960px; margin:0 auto; background:#0f172a; color:#e6efff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.28); padding:16px 18px; border:1px solid rgba(96,165,250,.25); }
     .consent .row{ display:flex; gap:16px; align-items:flex-start; }
     .consent p{ margin:0; line-height:1.5 }
     .consent .actions{ margin-left:auto; display:flex; gap:10px; flex-wrap:wrap; }
-    .btn{padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.08); color:#0e1116; cursor:pointer}
+    .btn{padding:8px 12px; border-radius:10px; border:1px solid rgba(96,165,250,.35); background:rgba(37,99,235,.15); color:#eaf2ff; cursor:pointer}
     .btn.primary{ background:var(--blue-500); border-color:transparent; color:white; }
     .btn:hover{ filter:brightness(1.05); }
-    @media (max-width:720px){
-      .consent{ inset:auto 8px 8px 8px; }
-      .consent .row{ flex-direction:column; }
-      .consent .actions{ margin-left:0 }
-    }
+    @media (max-width:720px){ .consent{ inset:auto 8px 8px 8px; } .consent .row{ flex-direction:column; } .consent .actions{ margin-left:0 } }
 
     /* =============================================================
-       [NUEVO] – PANEL DE COMENTARIOS (izquierda) + FAB comentario
+       PANEL DE COMENTARIOS (izquierda)
        ============================================================= */
-    .comments-drawer{
-      position:fixed; z-index:80; inset:0 auto 0 0; width:420px; max-width:90vw;
-      background:linear-gradient(180deg,#0b1626,#0a1220);
-      border-right:2px solid var(--blue-500);
-      box-shadow:20px 0 40px rgba(0,0,0,.45);
-      transform:translateX(-100%); transition:.25s ease transform;
-      display:flex; flex-direction:column;
-    }
+    .comments-drawer{ position:fixed; z-index:80; inset:0 auto 0 0; width:420px; max-width:92vw; background:linear-gradient(180deg,#0b1626,#0a1220); border-right:2px solid var(--blue-500); box-shadow:20px 0 40px rgba(0,0,0,.45); transform:translateX(-100%); transition:.25s ease transform; display:flex; flex-direction:column; }
     .comments-drawer.open{ transform:translateX(0) }
     .comments-drawer .hd{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border)}
     .comments-drawer .bd{padding:10px 12px; overflow:auto; height:100%}
-
-    .fab{ position:fixed; bottom:16px; left:16px; z-index:85; display:inline-grid; place-items:center; width:52px; height:52px; border-radius:50%; border:2px solid var(--blue-500); background:linear-gradient(180deg,#111828,#0b121e); color:var(--text); cursor:pointer; box-shadow:var(--shadow); }
-    .fab:hover{ transform:translateY(-1px) }
-    .fab svg{ width:24px; height:24px; display:block }
-
-    /* En móviles, sube un poco el FAB para no tapar el banner cookies */
-    @media (max-width:720px){ .fab{ bottom:72px; left:12px } }
   </style>
 </head>
 
 <body>
   <!-- =============================================================
-       TOPBAR
+       TOPBAR con acciones: Comentarios + Menú (derecha)
        ============================================================= -->
   <div class="topbar">
     <div class="wrap row">
@@ -263,7 +205,16 @@
         <strong>Ing. Lucas Learning Hub</strong>
         <span>Plantilla Base</span>
       </div>
-      <button class="burger burger-fab-desktop" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <div class="actions">
+        <!-- Botón: abrir comentarios (icono solo) -->
+        <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+        </button>
+        <!-- Botón: abrir menú (mantiene comportamiento por hover/click) -->
+        <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -306,16 +257,9 @@
       <button class="btn" id="closeComments" aria-label="Cerrar comentarios">Cerrar ✕</button>
     </div>
     <div class="bd">
-      <!-- Aquí se inyecta Utterances en tiempo real -->
       <div id="commentsMount" aria-live="polite"></div>
     </div>
   </aside>
-
-  <!-- Botón flotante para abrir comentarios -->
-  <button class="fab" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios">
-    <!-- Icono comentario -->
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
-  </button>
 
   <!-- =============================================================
        CONTENIDO PRINCIPAL
@@ -351,12 +295,11 @@
           <p>Coloca aquí tu contenido… / Put your content here…</p>
         </section>
 
-        <!-- Pie de proyecto dentro del espacio de trabajo (fijo) -->
         <footer class="project-note" aria-label="Nota del proyecto">
           <span class="tag">🧩 Proyecto</span>
           <div>
             <strong id="projectTitle">[TOCAR] Título breve del proyecto</strong>
-            <div id="projectNote">[TOCAR] Aquí va una nota fija del proyecto en curso. Puedes usarlo para objetivos, pendientes o un mini changelog.</div>
+            <div id="projectNote">[TOCAR] Nota fija del proyecto en curso: objetivos, pendientes o mini changelog.</div>
           </div>
         </footer>
       </div>
@@ -384,21 +327,17 @@
           </a>
           <a class="chip" href="#" id="manageConsent">Preferencias de cookies</a>
         </div>
-        <div style="margin-top:10px">
-          <a href="politicas-privacidad.html">Políticas de Privacidad</a>
-        </div>
+        <div style="margin-top:10px"><a href="politicas-privacidad.html">Políticas de Privacidad</a></div>
       </div>
       <div>
         © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub · Colombia
-        <div id="custom-text" style="margin-top:8px; font-size:0.92em; opacity:.85;">
-          <em>— [TOCAR/EDIT] Mensaje breve de pie de página / Short footer note.</em>
-        </div>
+        <div id="custom-text" style="margin-top:8px; font-size:0.92em; opacity:.85;"><em>— [TOCAR/EDIT] Mensaje breve de pie de página / Short footer note.</em></div>
       </div>
     </div>
   </footer>
 
   <!-- =============================================================
-       BANNER COOKIES
+       BANNER COOKIES (alto contraste)
        ============================================================= -->
   <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
     <div class="card">
@@ -417,88 +356,60 @@
     </div>
   </div>
 
-  <!-- Fallback sin JS -->
   <noscript>
-    <div style="position:fixed;left:0;right:0;bottom:0;background:#fff;color:#111;border-top:1px solid #ddd;padding:10px 14px;font:14px/1.4 system-ui">
+    <div style="position:fixed;left:0;right:0;bottom:0;background:#0f172a;color:#e6efff;border-top:1px solid #243b64;padding:10px 14px;font:14px/1.4 system-ui">
       Este sitio utiliza cookies esenciales. Para analíticas necesitas habilitar JavaScript o dar consentimiento desde “Preferencias de cookies”.
     </div>
   </noscript>
 
   <script>
-    // =============================================================
-    // UTILIDADES BÁSICAS
-    // =============================================================
+    // Año
     document.getElementById('y').textContent = new Date().getFullYear();
 
+    // Menú (mantiene hover/auto-cierre como tenías)
     const drawer = document.getElementById('drawer');
     const openBtn = document.getElementById('openDrawer');
     const closeBtn = document.getElementById('closeDrawer');
 
-    function openDrawer(){
-      drawer.classList.add('open');
-      drawer.setAttribute('aria-hidden','false');
-      openBtn?.setAttribute('aria-expanded','true');
-    }
-    function closeDrawer(){
-      drawer.classList.remove('open');
-      drawer.setAttribute('aria-hidden','true');
-      openBtn?.setAttribute('aria-expanded','false');
-    }
+    function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); openBtn?.setAttribute('aria-expanded','true'); }
+    function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); openBtn?.setAttribute('aria-expanded','false'); }
 
     openBtn?.addEventListener('click', (e)=>{ e.stopPropagation(); openDrawer(); });
     closeBtn?.addEventListener('click', closeDrawer);
     drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
 
-    // HOVER/TOUCH LOGIC (igual que antes)
     let autoCloseTimer = null;
     const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-    function setBurgerLabel(){ if(!openBtn) return; openBtn.textContent = isDesktop ? '☰' : '☰'; }
-    setBurgerLabel();
-
     if (isDesktop){
       openBtn?.addEventListener('mouseenter', openDrawer);
-      openBtn?.addEventListener('mouseleave', ()=>{
-        setTimeout(()=>{ const overDrawer = drawer.matches(':hover'); if(!overDrawer) closeDrawer(); }, 150);
-      });
+      openBtn?.addEventListener('mouseleave', ()=>{ setTimeout(()=>{ const overDrawer = drawer.matches(':hover'); if(!overDrawer) closeDrawer(); }, 150); });
       drawer?.addEventListener('mouseleave', closeDrawer);
     }
-
     function startMobileAutoClose(){ if(isDesktop) return; clearTimeout(autoCloseTimer); autoCloseTimer = setTimeout(()=>{ closeDrawer(); }, 5000); }
-    if(!isDesktop){
-      openBtn?.addEventListener('click', startMobileAutoClose);
-      ['click','touchstart'].forEach(evt=>{ drawer?.addEventListener(evt, startMobileAutoClose); });
-    }
+    if(!isDesktop){ openBtn?.addEventListener('click', startMobileAutoClose); ['click','touchstart'].forEach(evt=>{ drawer?.addEventListener(evt, startMobileAutoClose); }); }
 
-    // =============================================================
-    // COOKIES CONSENT
-    // =============================================================
+    // Consentimiento de cookies
     const CONSENT_KEY = 'lucasConsent';
     const CONSENT_VERSION = 'v1-2025-09';
-
     function getConsent(){ try { const raw = localStorage.getItem(CONSENT_KEY); return raw ? JSON.parse(raw) : null; } catch(e){ return null; } }
     function setConsent(status){ try { const data = { status, version: CONSENT_VERSION, ts: Date.now() }; localStorage.setItem(CONSENT_KEY, JSON.stringify(data)); } catch(e){} }
     function shouldShowBanner(saved){ if(!saved) return true; if(saved.version !== CONSENT_VERSION) return true; return false; }
-    function enableAnalytics(){ /* Inyecta tu script solo si consent=granted */ }
+    function enableAnalytics(){ /* Inyecta script si consent=granted */ }
     function initConsentBanner(){
       const banner = document.getElementById('consent');
       const allow = document.getElementById('allow');
       const deny  = document.getElementById('deny');
       const saved = getConsent();
-
       if(shouldShowBanner(saved)){ banner.style.display='block'; }
       else if(saved && saved.status === 'granted'){ enableAnalytics(); }
-
       allow?.addEventListener('click', ()=>{ setConsent('granted'); banner.style.display='none'; enableAnalytics(); });
       deny ?.addEventListener('click', ()=>{ setConsent('denied');  banner.style.display='none'; });
-
       document.getElementById('manageConsent')?.addEventListener('click',(e)=>{ e.preventDefault(); banner.style.display='block'; });
     }
     document.addEventListener('DOMContentLoaded', initConsentBanner);
 
-    // =============================================================
-    // PANEL DE COMENTARIOS (Utterances on-demand)
-    // =============================================================
+    // Panel de comentarios (sin hover para abrir, con auto-ocultar por inactividad)
     const commentsDrawer = document.getElementById('commentsDrawer');
     const openCommentsBtn = document.getElementById('openComments');
     const closeCommentsBtn = document.getElementById('closeComments');
@@ -518,31 +429,32 @@
       commentsLoaded = true;
     }
 
-    function openComments(){
-      commentsDrawer.classList.add('open');
-      commentsDrawer.setAttribute('aria-hidden','false');
-      injectUtterances();
-    }
-    function closeComments(){
-      commentsDrawer.classList.remove('open');
-      commentsDrawer.setAttribute('aria-hidden','true');
-    }
+    function openComments(){ commentsDrawer.classList.add('open'); commentsDrawer.setAttribute('aria-hidden','false'); injectUtterances(); resetInactivity(); }
+    function closeComments(){ commentsDrawer.classList.remove('open'); commentsDrawer.setAttribute('aria-hidden','true'); }
 
-    openCommentsBtn?.addEventListener('click',(e)=>{ e.stopPropagation(); openComments(); });
+    openCommentsBtn?.addEventListener('click',(e)=>{ e.stopPropagation(); if(commentsDrawer.classList.contains('open')) closeComments(); else openComments(); });
     closeCommentsBtn?.addEventListener('click', closeComments);
     commentsDrawer?.addEventListener('click',(e)=>{ if(e.target===commentsDrawer) closeComments(); });
 
-    // Hover para escritorio (se abre al posar y se oculta al salir)
-    if (isDesktop){
-      openCommentsBtn?.addEventListener('mouseenter', openComments);
-      commentsDrawer?.addEventListener('mouseleave', closeComments);
-    }
+    // ===== Auto-ocultar tras 5s de inactividad si el mouse NO está sobre el panel =====
+    let lastActivity = Date.now();
+    let inactivityTimer = null;
 
-    // Tecla ESC cierra ambos paneles
+    function resetInactivity(){ lastActivity = Date.now(); if(inactivityTimer) return; inactivityTimer = setInterval(()=>{
+      const idleMs = Date.now() - lastActivity;
+      const hovering = commentsDrawer.matches(':hover');
+      if(commentsDrawer.classList.contains('open') && idleMs > 5000 && !hovering){ closeComments(); }
+      if(!commentsDrawer.classList.contains('open')){ clearInterval(inactivityTimer); inactivityTimer = null; }
+    }, 500); }
+
+    // Contamos movimiento en todo el documento
+    ['mousemove','touchstart','keydown','wheel'].forEach(evt=>{
+      document.addEventListener(evt, ()=>{ lastActivity = Date.now(); }, {passive:true});
+    });
+
+    // ESC cierra ambos
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeDrawer(); closeComments(); }});
   </script>
-
-  <!-- (No cargamos Utterances aquí; se inyecta dinámicamente en el panel) -->
+  <!-- Utterances se inyecta dinámicamente cuando se abre el panel -->
 </body>
 </html>
-
