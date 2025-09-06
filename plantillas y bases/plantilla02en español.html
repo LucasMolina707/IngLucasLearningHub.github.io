@@ -3,11 +3,7 @@
 <head>
   <!-- =====================================================================
        CABECERA OPTIMIZADA PARA SEO (v3)
-       Notas:
-       - Rellena los [SEO/TODO] con datos reales del proyecto/página.
-       - Los iconos se sirven desde el MISMO repo (/galeria/logo/...).
        ===================================================================== -->
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
@@ -15,56 +11,41 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
 
-  <!-- [SEO/TODO] TITLE y DESCRIPTION con keywords -->
   <title>Ing. Lucas Molina · Learning Hub — Estudiante de Ingeniería Informática en Colombia</title>
   <meta name="description" content="Portafolio y bitácora de Ing. Lucas Molina (Ing Lucas) — estudiante de Ingeniería Informática. Proyectos, tutoriales y recursos del Ing. Lucas Learning Hub en Colombia." />
 
-  <!-- Robots y canónica -->
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://hub.inglucas.com.co/">
 
-  <!-- Señales de país/idioma -->
   <link rel="alternate" hreflang="es-co" href="https://hub.inglucas.com.co/">
   <link rel="alternate" hreflang="es" href="https://hub.inglucas.com.co/">
 
-  <!-- ====== ICONOGRAFÍA / FAVICONS (desde el mismo repo) ====== -->
-  <!-- Favicon clásico -->
+  <!-- ICONOS -->
   <link rel="icon" href="/galeria/logo/logoinglucas.ico" sizes="any">
-  <!-- SVG vectorial (modernos) -->
   <link rel="icon" type="image/svg+xml" href="/galeria/logo/logoinglucas.svg">
-  <!-- PNGs en varios tamaños para compatibilidad -->
   <link rel="icon" type="image/png" sizes="48x48" href="/galeria/logo/logoinglucas.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/galeria/logo/logoinglucas.png">
-  <!-- Apple touch icon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/galeria/logo/logoinglucas.png">
-  <!-- Pinned tab Safari -->
   <link rel="mask-icon" href="/galeria/logo/logoinglucas.svg" color="#2563eb">
-  <!-- Windows tiles -->
   <meta name="msapplication-TileColor" content="#0b1730">
-  <meta name="msapplication-config" content="/browserconfig.xml"><!-- [SEO/INFO] opcional -->
-  <!-- Manifest PWA (para que buscadores lean nombre/iconos) -->
+  <meta name="msapplication-config" content="/browserconfig.xml">
   <link rel="manifest" href="/site.webmanifest">
-  <!-- [SEO/INFO] El .ai no se referencia como favicon (no lo soportan). Guárdalo en /galeria/logo/logoinglucas.ai para diseño. -->
 
-  <!-- Open Graph / Twitter -->
+  <!-- OG/Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CO">
   <meta property="og:site_name" content="Ing. Lucas Learning Hub">
   <meta property="og:title" content="Ing. Lucas Molina · Learning Hub">
   <meta property="og:description" content="Proyectos y recursos de Ing. Lucas Molina (Ing Lucas) en Colombia.">
   <meta property="og:url" content="https://hub.inglucas.com.co/">
-  <meta property="og:image" content="/multimedia/cover-og.webp"><!-- [SEO/TODO] 1200x630, <300KB -->
-
+  <meta property="og:image" content="/multimedia/cover-og.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ing. Lucas Molina · Learning Hub">
   <meta name="twitter:description" content="Portafolio, proyectos y tutoriales del Ing Lucas en Colombia.">
   <meta name="twitter:image" content="/multimedia/cover-og.webp">
-
-  <!-- Color de la UI del navegador -->
   <meta name="theme-color" content="#0d47a1" />
 
-  <!-- ====== DATOS ESTRUCTURADOS (JSON-LD) ====== -->
-  <!-- Person + WebSite + Organization con logo (para mostrar logo en SERP) -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -107,153 +88,104 @@
         "@id": "https://hub.inglucas.com.co/#organization",
         "name": "Ing. Lucas Learning Hub",
         "url": "https://hub.inglucas.com.co/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "/galeria/logo/logoinglucas.png"
-        },
-        "sameAs": [
-          "https://github.com/IngLucas",
-          "https://www.linkedin.com/in/IngLucas"
-        ]
+        "logo": { "@type": "ImageObject", "url": "/galeria/logo/logoinglucas.png" },
+        "sameAs": ["https://github.com/IngLucas","https://www.linkedin.com/in/IngLucas"]
       }
     ]
   }
   </script>
 
-  <!-- Breadcrumbs opcionales (rellena por página) -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hub.inglucas.com.co/" }
-      /* [SEO/TODO] Añade niveles por página:
-         ,{ "@type":"ListItem","position":2,"name":"Proyectos","item":"https://hub.inglucas.com.co/proyectos/" } */
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      { "@type":"ListItem","position":1,"name":"Inicio","item":"https://hub.inglucas.com.co/" }
     ]
   }
   </script>
 
   <style>
-    /* =============================================================
-       PALETA DE ARMONÍA (alto contraste, sin negros puros)
-       ============================================================= */
     :root{
       --blue-900:#0b1730; --blue-800:#0f2346; --blue-700:#153769; --blue-600:#1c4b8c; --blue-500:#2563eb; --blue-400:#60a5fa;
       --purple-600:#7c3aed; --cyan-400:#22d3ee; --lime-400:#a3e635;
       --bg:#0e1116; --surface:#121826; --panel:#151d2c; --panel-2:#0f1722;
       --border:#263349; --soft:#0b0f16; --text:#ecf3ff; --muted:#b4c2d6;
-      --accent-ring: 0 0 0 3px rgba(34,211,238,.25);
+      --accent-ring:0 0 0 3px rgba(34,211,238,.25);
       --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35);
       --container:1200px; --gap:16px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
-      background:linear-gradient(180deg,var(--panel-2),var(--bg)); color:var(--text)
-    }
-    a{color:var(--blue-400); text-decoration:none}
-    .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--panel-2),var(--bg));color:var(--text)}
+    a{color:var(--blue-400);text-decoration:none}
+    .wrap{max-width:var(--container);margin:0 auto;padding:0 20px}
 
-    /* =============================================================
-       TOPBAR + ACCIONES (logo + botones a la derecha)
-       ============================================================= */
-    .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
-    .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
-
-    .logo{
-      width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden;
-      background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)
-    }
-    .logo img{width:100%; height:100%; object-fit:cover; display:block}
-    .brand{display:flex; flex-direction:column}
+    .topbar{position:sticky;top:0;z-index:60;backdrop-filter:saturate(1.1) blur(8px);background:rgba(13,18,30,.75);border-bottom:1px solid var(--border)}
+    .topbar .row{display:flex;align-items:center;gap:12px;padding:12px 0}
+    .logo{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(180deg,#0f172a,#0b1220);border:1px solid rgba(96,165,250,.25)}
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .brand{display:flex;flex-direction:column}
     .brand strong{font-size:16px}
-    .brand span{font-size:12px; color:var(--muted)}
+    .brand span{font-size:12px;color:var(--muted)}
+    .actions{margin-left:auto;display:flex;gap:10px;align-items:center}
+    .icon-btn{--size:40px;width:var(--size);height:var(--size);display:inline-grid;place-items:center;border-radius:12px;border:1.5px solid var(--blue-500);background:linear-gradient(180deg,#0f172a,#0b1220);color:#e8f1ff;cursor:pointer;transition:transform .15s, filter .15s, box-shadow .15s;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+    .icon-btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+    .icon-btn:focus-visible{outline:none;box-shadow:var(--accent-ring)}
+    .icon-btn svg{width:22px;height:22px;display:block}
 
-    .actions{ margin-left:auto; display:flex; gap:10px; align-items:center }
-    .icon-btn{
-      --size:40px; width:var(--size); height:var(--size); display:inline-grid; place-items:center;
-      border-radius:12px; border:1.5px solid var(--blue-500);
-      background:linear-gradient(180deg,#0f172a,#0b1220);
-      color:#e8f1ff; cursor:pointer; transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
-      box-shadow:0 6px 20px rgba(0,0,0,.25);
-    }
-    .icon-btn:hover{ transform:translateY(-1px); filter:brightness(1.05)}
-    .icon-btn:focus-visible{ outline:none; box-shadow:var(--accent-ring) }
-    .icon-btn svg{ width:22px; height:22px; display:block }
-
-    /* =============================================================
-       DRAWER / MENÚ LATERAL (derecha)
-       ============================================================= */
-    .drawer{ position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform }
+    .drawer{position:fixed;z-index:70;inset:0 0 0 auto;width:320px;max-width:86vw;background:linear-gradient(180deg,#0e223a,#0a1729);border-left:2px solid var(--blue-500);box-shadow:-20px 0 40px rgba(0,0,0,.45);transform:translateX(100%);transition:.25s transform}
     .drawer.open{transform:translateX(0)}
-    .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
-    .drawer .bd{padding:12px 16px; display:grid; gap:16px}
-    .nav-group{border:1px solid var(--border); border-radius:12px; overflow:hidden}
-    .nav-group h4{margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)}
+    .drawer .hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border)}
+    .drawer .bd{padding:12px 16px;display:grid;gap:16px}
+    .nav-group{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .nav-group h4{margin:0;padding:10px 12px;font-size:13px;color:var(--muted);background:#111826;border-bottom:1px solid var(--border)}
     .nav{display:grid}
-    .nav a{padding:12px 12px; border-top:1px solid var(--border)}
+    .nav a{padding:12px 12px;border-top:1px solid var(--border)}
     .nav a:hover{background:rgba(37,99,235,.18)}
 
-    /* =============================================================
-       WORKSPACE
-       ============================================================= */
     .workspace{padding:24px 0}
-    .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
-    .window-titlebar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; background:linear-gradient(180deg,#1a2333,#151c29); border-bottom:1px solid var(--border)}
-    .title-left{display:flex; align-items:center; gap:10px}
-    .traffic{display:flex; gap:8px}
-    .dot{width:12px; height:12px; border-radius:50%}
+    .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96));border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .window-titlebar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;background:linear-gradient(180deg,#1a2333,#151c29);border-bottom:1px solid var(--border)}
+    .title-left{display:flex;align-items:center;gap:10px}
+    .traffic{display:flex;gap:8px}
+    .dot{width:12px;height:12px;border-radius:50%}
     .dot.close{background:#ff5f56}
     .dot.min{background:#ffbd2e}
     .dot.max{background:#27c93f}
-    .window-title{font-size:15px; font-weight:600}
-    .title-meta{font-size:12px; color:var(--muted)}
-    .window-body{display:grid; grid-template-columns:1fr; gap:0}
-    .pane{padding:18px; min-height:420px; background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(12,16,24,.95))}
+    .window-title{font-size:15px;font-weight:600}
+    .title-meta{font-size:12px;color:var(--muted)}
+    .window-body{display:grid;grid-template-columns:1fr;gap:0}
+    .pane{padding:18px;min-height:420px;background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(12,16,24,.95))}
+    .project-note{position:sticky;bottom:0;left:0;right:0;z-index:10;border-top:1px dashed var(--border);background:linear-gradient(180deg,rgba(20,26,36,.95),rgba(14,18,26,.95));padding:12px 16px;color:var(--muted);font-size:13px;display:flex;gap:10px;align-items:flex-start}
+    .project-note .tag{padding:2px 8px;border-radius:999px;border:1px solid var(--border);font-size:12px;background:rgba(37,99,235,.10);color:var(--text)}
 
-    /* Pie fijo del proyecto dentro del workspace */
-    .project-note{ position:sticky; bottom:0; left:0; right:0; z-index:10; border-top:1px dashed var(--border); background:linear-gradient(180deg,rgba(20,26,36,.95),rgba(14,18,26,.95)); padding:12px 16px; color:var(--muted); font-size:13px; display:flex; gap:10px; align-items:flex-start }
-    .project-note .tag{padding:2px 8px; border-radius:999px; border:1px solid var(--border); font-size:12px; background:rgba(37,99,235,.10); color:var(--text)}
-
-    /* =============================================================
-       FOOTER
-       ============================================================= */
-    footer{border-top:1px solid var(--border); color:var(--muted); padding:22px 0; font-size:13px; background:linear-gradient(180deg,#0f1624,#0c121e)}
-    .foot{display:grid; gap:12px}
+    footer{border-top:1px solid var(--border);color:var(--muted);padding:22px 0;font-size:13px;background:linear-gradient(180deg,#0f1624,#0c121e)}
+    .foot{display:grid;gap:12px}
     @media(min-width:860px){.foot{grid-template-columns:1fr auto}}
-    .socials{display:flex; gap:10px; flex-wrap:wrap}
-    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:#eef5ff}
+    .socials{display:flex;gap:10px;flex-wrap:wrap}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:rgba(18,23,31,.8);color:#eef5ff}
 
-    /* =============================================================
-       BANNER COOKIES (alto contraste)
-       ============================================================= */
-    .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
-    .consent .card{ max-width:960px; margin:0 auto; background:#0f172a; color:#e6efff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.28); padding:16px 18px; border:1px solid rgba(96,165,250,.25); }
-    .consent .row{ display:flex; gap:16px; align-items:flex-start; }
-    .consent p{ margin:0; line-height:1.5 }
-    .consent .actions{ margin-left:auto; display:flex; gap:10px; flex-wrap:wrap; }
-    .btn{padding:8px 12px; border-radius:10px; border:1px solid rgba(96,165,250,.35); background:rgba(37,99,235,.15); color:#eaf2ff; cursor:pointer}
-    .btn.primary{ background:var(--blue-500); border-color:transparent; color:white; }
-    .btn:hover{ filter:brightness(1.05); }
+    .consent{display:none;position:fixed;inset:auto 0 16px 0;z-index:1000;}
+    .consent .card{max-width:960px;margin:0 auto;background:#0f172a;color:#e6efff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.28);padding:16px 18px;border:1px solid rgba(96,165,250,.25);}
+    .consent .row{display:flex;gap:16px;align-items:flex-start;}
+    .consent p{margin:0;line-height:1.5}
+    .consent .actions{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap;}
+    .btn{padding:8px 12px;border-radius:10px;border:1px solid rgba(96,165,250,.35);background:rgba(37,99,235,.15);color:#eaf2ff;cursor:pointer}
+    .btn.primary{background:var(--blue-500);border-color:transparent;color:white;}
+    .btn:hover{filter:brightness(1.05)}
 
-    /* =============================================================
-       PANEL DE COMENTARIOS (izquierda)
-       ============================================================= */
-    .comments-drawer{ position:fixed; z-index:80; inset:0 auto 0 0; width:420px; max-width:92vw; background:linear-gradient(180deg,#0b1626,#0a1220); border-right:2px solid var(--blue-500); box-shadow:20px 0 40px rgba(0,0,0,.45); transform:translateX(-100%); transition:.25s ease transform; display:flex; flex-direction:column; }
-    .comments-drawer.open{ transform:translateX(0) }
-    .comments-drawer .hd{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border)}
-    .comments-drawer .bd{padding:10px 12px; overflow:auto; height:100%}
+    .comments-drawer{position:fixed;z-index:80;inset:0 auto 0 0;width:420px;max-width:92vw;background:linear-gradient(180deg,#0b1626,#0a1220);border-right:2px solid var(--blue-500);box-shadow:20px 0 40px rgba(0,0,0,.45);transform:translateX(-100%);transition:.25s transform;display:flex;flex-direction:column;}
+    .comments-drawer.open{transform:translateX(0)}
+    .comments-drawer .hd{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border)}
+    .comments-drawer .bd{padding:10px 12px;overflow:auto;height:100%}
   </style>
 </head>
 
 <body>
-  <!-- =============================================================
-       TOPBAR con acciones: Comentarios + Menú (derecha)
-       ============================================================= -->
+  <!-- TOPBAR -->
   <div class="topbar">
     <div class="wrap row">
-      <!-- Logo usando rutas del MISMO repo -->
       <a class="logo" href="/" aria-label="Inicio · Ing. Lucas Learning Hub">
         <picture>
           <source srcset="/galeria/logo/logoinglucas.svg" type="image/svg+xml">
@@ -262,17 +194,14 @@
       </a>
 
       <div class="brand">
-        <!-- [SEO/TODO] Marca + claim -->
         <strong>Ing. Lucas Learning Hub</strong>
         <span>Plantilla Base</span>
       </div>
 
       <div class="actions">
-        <!-- Botón: abrir comentarios (icono solo) -->
         <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
         </button>
-        <!-- Botón: abrir menú (hover/click en desktop) -->
         <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
         </button>
@@ -280,9 +209,7 @@
     </div>
   </div>
 
-  <!-- =============================================================
-       DRAWER / MENÚ LATERAL (derecha)
-       ============================================================= -->
+  <!-- DRAWER -->
   <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
     <div class="hd">
       <strong>Navegación</strong>
@@ -310,23 +237,36 @@
     </div>
   </aside>
 
-  <!-- =============================================================
-       PANEL DE COMENTARIOS (izquierda)
-       ============================================================= -->
+  <!-- PANEL DE COMENTARIOS -->
   <aside class="comments-drawer" id="commentsDrawer" aria-label="Comentarios" aria-hidden="true">
     <div class="hd">
       <strong>Comentarios</strong>
       <button class="btn" id="closeComments" aria-label="Cerrar comentarios">Cerrar ✕</button>
     </div>
     <div class="bd">
-      <!-- Utterances se inyecta aquí on-demand -->
-      <div id="commentsMount" aria-live="polite"></div>
+      <!-- GISCUS en ESPAÑOL -->
+      <!-- [GISCUS/TODO] Ve a https://giscus.app/es, elige tu repo público y copia los 4 valores -->
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="[GISCUS/TODO] LucasMolina707/IngLucasLearningHub.github.io"
+        data-repo-id="[GISCUS/TODO] REPO_ID"
+        data-category="[GISCUS/TODO] General"
+        data-category-id="[GISCUS/TODO] CATEGORY_ID"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark_dimmed"
+        data-lang="es"
+        crossorigin="anonymous"
+        async>
+      </script>
+      <!-- Fin Giscus -->
     </div>
   </aside>
 
-  <!-- =============================================================
-       CONTENIDO PRINCIPAL
-       ============================================================= -->
+  <!-- CONTENIDO -->
   <div class="wrap workspace">
     <section class="window" role="region" aria-label="Contenido principal">
       <div class="window-titlebar">
@@ -346,7 +286,6 @@
 
       <div class="window-body">
         <section class="pane">
-          <!-- [SEO/TODO] H1 por página con keywords -->
           <h1>Ing. Lucas Molina — Learning Hub de Ingeniería Informática (Colombia)</h1>
           <p>
             Bienvenido a <strong>Ing. Lucas Learning Hub</strong>, el espacio donde recopilo proyectos, apuntes y tutoriales
@@ -359,11 +298,9 @@
           <p>Coloca aquí tu contenido… / Put your content here…</p>
         </section>
 
-        <!-- Pie del proyecto dentro del workspace -->
         <footer class="project-note" aria-label="Nota del proyecto">
           <span class="tag">🧩 Proyecto</span>
           <div>
-            <!-- [UI/TODO] Edita título y nota fija del proyecto -->
             <strong id="projectTitle">[TOCAR] Título breve del proyecto</strong>
             <div id="projectNote">[TOCAR] Nota fija del proyecto: objetivos, pendientes o mini changelog.</div>
           </div>
@@ -372,9 +309,7 @@
     </section>
   </div>
 
-  <!-- =============================================================
-       FOOTER GLOBAL
-       ============================================================= -->
+  <!-- FOOTER -->
   <footer>
     <div class="wrap foot">
       <div>
@@ -397,14 +332,12 @@
       </div>
       <div>
         © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub · Colombia
-        <div id="custom-text" style="margin-top:8px; font-size:0.92em; opacity:.85;"><em>— [TOCAR/EDIT] Mensaje breve de pie de página / Short footer note.</em></div>
+        <div id="custom-text" style="margin-top:8px;font-size:0.92em;opacity:.85;"><em>— [TOCAR/EDIT] Mensaje breve de pie de página / Short footer note.</em></div>
       </div>
     </div>
   </footer>
 
-  <!-- =============================================================
-       BANNER COOKIES (alto contraste)
-       ============================================================= -->
+  <!-- BANNER COOKIES -->
   <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
     <div class="card">
       <div class="row">
@@ -432,168 +365,83 @@
     // Año
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // ========= Menú lateral (hover en desktop, autocierre en móvil) =========
+    // ===== Menú lateral =====
     const drawer = document.getElementById('drawer');
     const openBtn = document.getElementById('openDrawer');
     const closeBtn = document.getElementById('closeDrawer');
-
     const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
     const isMobile  = matchMedia('(hover:none) and (pointer:coarse)').matches;
 
     function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); openBtn?.setAttribute('aria-expanded','true'); }
     function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); openBtn?.setAttribute('aria-expanded','false'); }
-
     openBtn?.addEventListener('click', (e)=>{ e.stopPropagation(); openDrawer(); });
     closeBtn?.addEventListener('click', closeDrawer);
     drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
-
     if (isDesktop){
       openBtn?.addEventListener('mouseenter', openDrawer);
       openBtn?.addEventListener('mouseleave', ()=>{ setTimeout(()=>{ const overDrawer = drawer.matches(':hover'); if(!overDrawer) closeDrawer(); }, 150); });
       drawer?.addEventListener('mouseleave', closeDrawer);
     }
-
-    // Auto-cierre del MENÚ en móvil (no afecta comentarios)
-    let autoCloseTimer = null;
-    function startMobileAutoClose(){
-      if(!isMobile) return;
-      clearTimeout(autoCloseTimer);
-      autoCloseTimer = setTimeout(()=>{ closeDrawer(); }, 5000);
-    }
+    let autoCloseTimer=null;
+    function startMobileAutoClose(){ if(!isMobile) return; clearTimeout(autoCloseTimer); autoCloseTimer=setTimeout(()=>{ closeDrawer(); },5000); }
     if(isMobile){
       openBtn?.addEventListener('click', startMobileAutoClose);
       ['click','touchstart'].forEach(evt=>{ drawer?.addEventListener(evt, startMobileAutoClose, {passive:true}); });
     }
 
-    // ========= Cookies Consent =========
-    const CONSENT_KEY = 'lucasConsent';
-    const CONSENT_VERSION = 'v1-2025-09';
-    function getConsent(){ try { const raw = localStorage.getItem(CONSENT_KEY); return raw ? JSON.parse(raw) : null; } catch(e){ return null; } }
-    function setConsent(status){ try { const data = { status, version: CONSENT_VERSION, ts: Date.now() }; localStorage.setItem(CONSENT_KEY, JSON.stringify(data)); } catch(e){} }
-    function shouldShowBanner(saved){ if(!saved) return true; if(saved.version !== CONSENT_VERSION) return true; return false; }
-    function enableAnalytics(){ /* [SEO/TODO] Inyecta tu script solo si consent=granted */ }
+    // ===== Cookies Consent =====
+    const CONSENT_KEY='lucasConsent';
+    const CONSENT_VERSION='v1-2025-09';
+    function getConsent(){ try{ const raw=localStorage.getItem(CONSENT_KEY); return raw?JSON.parse(raw):null; }catch(e){ return null; } }
+    function setConsent(status){ try{ const data={status,version:CONSENT_VERSION,ts:Date.now()}; localStorage.setItem(CONSENT_KEY,JSON.stringify(data)); }catch(e){} }
+    function shouldShowBanner(saved){ if(!saved) return true; if(saved.version!==CONSENT_VERSION) return true; return false; }
+    function enableAnalytics(){ /* Inyecta analíticas solo si consent=granted */ }
     function initConsentBanner(){
-      const banner = document.getElementById('consent');
-      const allow = document.getElementById('allow');
-      const deny  = document.getElementById('deny');
-      const saved = getConsent();
+      const banner=document.getElementById('consent');
+      const allow=document.getElementById('allow');
+      const deny=document.getElementById('deny');
+      const saved=getConsent();
       if(shouldShowBanner(saved)){ banner.style.display='block'; }
-      else if(saved && saved.status === 'granted'){ enableAnalytics(); }
+      else if(saved && saved.status==='granted'){ enableAnalytics(); }
       allow?.addEventListener('click', ()=>{ setConsent('granted'); banner.style.display='none'; enableAnalytics(); });
       deny ?.addEventListener('click', ()=>{ setConsent('denied');  banner.style.display='none'; });
       document.getElementById('manageConsent')?.addEventListener('click',(e)=>{ e.preventDefault(); banner.style.display='block'; });
     }
     document.addEventListener('DOMContentLoaded', initConsentBanner);
 
-    // ========= Panel de comentarios (SIN auto-cierre en móviles) =========
-    const commentsDrawer = document.getElementById('commentsDrawer');
-    const openCommentsBtn = document.getElementById('openComments');
-    const closeCommentsBtn = document.getElementById('closeComments');
-    const commentsMount = document.getElementById('commentsMount');
-    let commentsLoaded = false;
+    // ===== Panel de comentarios (Giscus no necesita inyección manual) =====
+    const commentsDrawer=document.getElementById('commentsDrawer');
+    const openCommentsBtn=document.getElementById('openComments');
+    const closeCommentsBtn=document.getElementById('closeComments');
 
-    // --- NUEVO: Traductor de UI para Utterances (EN->ES) ---
-    function translateStringsIn(doc){
-      // Textos frecuentes
-      doc.querySelectorAll('h1,h2,h3,h4,h5,h6,span,div,button,a,label').forEach(el=>{
-        const t = el.textContent.trim();
-        if(t === 'Comments') el.textContent = 'Comentarios';
-        if(t === 'Write') el.textContent = 'Escribir';
-        if(t === 'Preview') el.textContent = 'Vista previa';
-        if(t === 'Comment') el.textContent = 'Publicar';
-        if(t === 'Load more') el.textContent = 'Cargar más';
-        if(t === 'powered by utteranc.es') el.textContent = 'con tecnología de utteranc.es';
-        // Variantes que incluyen números/tiempos
-        if(t.endsWith('Comments')) el.textContent = t.replace('Comments','Comentarios');
-      });
-      // Placeholder del textarea
-      const ta = doc.querySelector('textarea');
-      if(ta && ta.placeholder && ta.placeholder.includes('Leave a comment')){
-        ta.placeholder = 'Escribe un comentario';
-      }
-      // Pie que indica Markdown
-      doc.querySelectorAll('small, p, div').forEach(el=>{
-        if(el.textContent.includes('Styling with Markdown is supported')){
-          el.textContent = 'Puedes usar Markdown para dar formato';
-        }
-      });
-    }
-    function attachUtterancesTranslator(){
-      const iframe = document.querySelector('iframe.utterances-frame');
-      if(!iframe) return false;
-      const onLoad = () => {
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if(!doc) return;
-        translateStringsIn(doc);
-        // Observa cambios para retraducir cuando Utterances re-renderiza
-        const obs = new MutationObserver(()=>translateStringsIn(doc));
-        obs.observe(doc.body, { childList:true, subtree:true, characterData:true });
-      };
-      // Si ya cargó, traduce; si no, espera el load
-      try{
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if(doc && doc.readyState === 'complete'){ onLoad(); }
-        else { iframe.addEventListener('load', onLoad, { once:true }); }
-      }catch(_e){ iframe.addEventListener('load', onLoad, { once:true }); }
-      return true;
-    }
-
-    function injectUtterances(){
-      if(commentsLoaded) { attachUtterancesTranslator(); return; }
-      const s = document.createElement('script');
-      s.src = 'https://utteranc.es/client.js';
-      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io'); // [SEO/INFO] Repo de issues
-      s.setAttribute('issue-term','pathname');
-      s.setAttribute('theme','icy-dark');
-      s.setAttribute('crossorigin','anonymous');
-      s.async = true;
-      commentsMount.appendChild(s);
-      commentsLoaded = true;
-
-      // Intento periódico corto para enganchar el iframe cuando aparezca
-      let tries = 0;
-      const poll = setInterval(()=>{
-        if(attachUtterancesTranslator()){ clearInterval(poll); }
-        if(++tries > 40){ clearInterval(poll); } // ~4s de intentos
-      }, 100);
-    }
-
-    function openComments(){ commentsDrawer.classList.add('open'); commentsDrawer.setAttribute('aria-hidden','false'); injectUtterances(); if(isDesktop) resetInactivity(); }
+    function openComments(){ commentsDrawer.classList.add('open'); commentsDrawer.setAttribute('aria-hidden','false'); }
     function closeComments(){ commentsDrawer.classList.remove('open'); commentsDrawer.setAttribute('aria-hidden','true'); }
 
-    openCommentsBtn?.addEventListener('click',(e)=>{
-      e.stopPropagation();
-      if(commentsDrawer.classList.contains('open')) closeComments();
-      else openComments();
-    });
+    openCommentsBtn?.addEventListener('click',(e)=>{ e.stopPropagation(); commentsDrawer.classList.contains('open') ? closeComments() : openComments(); });
     closeCommentsBtn?.addEventListener('click', closeComments);
     commentsDrawer?.addEventListener('click',(e)=>{ if(e.target===commentsDrawer) closeComments(); });
 
-    // Auto-ocultar SOLO en desktop: 5s sin movimiento y sin hover en el panel
-    let lastActivity = Date.now();
-    let inactivityTimer = null;
+    // Auto-ocultar SOLO en desktop
+    let lastActivity=Date.now(), inactivityTimer=null;
     function resetInactivity(){
-      lastActivity = Date.now();
-      if(inactivityTimer || !isDesktop) return;
-      inactivityTimer = setInterval(()=>{
-        const idleMs = Date.now() - lastActivity;
-        const hovering = commentsDrawer.matches(':hover');
-        if(commentsDrawer.classList.contains('open') && idleMs > 5000 && !hovering){ closeComments(); }
-        if(!commentsDrawer.classList.contains('open')){ clearInterval(inactivityTimer); inactivityTimer = null; }
-      }, 500);
+      lastActivity=Date.now();
+      if(inactivityTimer||!isDesktop) return;
+      inactivityTimer=setInterval(()=>{
+        const idleMs=Date.now()-lastActivity;
+        const hovering=commentsDrawer.matches(':hover');
+        if(commentsDrawer.classList.contains('open') && idleMs>5000 && !hovering){ closeComments(); }
+        if(!commentsDrawer.classList.contains('open')){ clearInterval(inactivityTimer); inactivityTimer=null; }
+      },500);
     }
     if(isDesktop){
-      ['mousemove','keydown','wheel'].forEach(evt=>{
-        document.addEventListener(evt, ()=>{ lastActivity = Date.now(); }, {passive:true});
-      });
+      ['mousemove','keydown','wheel'].forEach(evt=>{ document.addEventListener(evt, ()=>{ lastActivity=Date.now(); }, {passive:true}); });
+      openCommentsBtn?.addEventListener('click', resetInactivity);
     }
-    // En móvil NO se auto-cierra el panel de comentarios.
 
     // Accesibilidad: ESC cierra ambos paneles
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeDrawer(); closeComments(); }});
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'){ closeDrawer(); closeComments(); }});
   </script>
 
-  <!-- (No cargamos Utterances directo; lo inyectamos al abrir el panel) -->
-  <!-- [SEO/INFO] Mantén /site.webmanifest y /browserconfig.xml para branding en dispositivos. -->
+  <!-- Giscus ya está embebido arriba dentro del panel -->
 </body>
 </html>
