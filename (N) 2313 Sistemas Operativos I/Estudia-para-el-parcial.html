@@ -987,76 +987,117 @@
         const exp = q.querySelector('.ilh-explain'); if(exp) exp.style.display='block';
       }
 
-      // Diploma (Carta, 2.5cm)
-      function generateCertificate(name, correct, total, pct, five){
-        const today = new Date();
-        const dateStr = today.toLocaleDateString('es-CO', {year:'numeric', month:'long', day:'numeric'});
-        const course = 'Quiz de Sistemas Operativos';
-        const city = 'Villavicencio, Meta';
+// ============================================================
+// Diploma (Letter landscape, márgenes 2.5 cm) – con logos remotos
+// [ES] Genera ventana imprimible en carta horizontal con logos.
+// [EN] Generates a printable Letter-landscape certificate with remote logos.
+// ============================================================
+function generateCertificate(name, correct, total, pct, five){
+  const today   = new Date();
+  const dateStr = today.toLocaleDateString('es-CO', {year:'numeric', month:'long', day:'numeric'});
+  const course  = 'Quiz de Sistemas Operativos';
+  const city    = 'Villavicencio, Meta';
 
-        const w = window.open('', '_blank');
-        const head = `
-          <meta charset="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>Diploma · Ing. Lucas Learning Hub</title>
-          <meta name="description" content="Diploma imprimible en tamaño Carta con márgenes de 2.5 cm." />
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-          <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-          <style>
-            :root{ --primary:#0d47a1; --accent:#7e57c2; --gold:#c6a45a; --ink:#222; --paper:#fcfbf7; --shadow:rgba(0,0,0,.08); }
-            /* Hoja Carta con márgenes de 2.5 cm */
-            @page { size: Letter portrait; margin: 2.5cm; }
-            html,body{height:100%}
-            body{ margin:0; background:#eceff1; font-family:Montserrat, Arial, sans-serif; color:var(--ink); }
-            /* Lienzo reducido para el área imprimible (~16.59×22.94 cm) */
-            .sheet{
-              width:16.2cm; min-height:22cm; background:var(--paper);
-              position:relative; margin:0 auto; box-shadow:0 12px 30px var(--shadow);
-              overflow:hidden; display:flex; align-items:center; justify-content:center; padding:12mm;
-            }
-            .frame{ position:absolute; inset:6mm; background:transparent; border:1.8mm solid var(--gold); box-shadow:inset 0 0 0 2.2mm var(--paper) }
-            .frame::before{ content:""; position:absolute; inset:4mm; border:0.8mm solid var(--accent); border-radius:6px }
-            .watermark{ position:absolute; inset:0; display:grid; place-items:center; pointer-events:none; opacity:.07; filter:grayscale(30%) }
-            .watermark img{ width:60%; max-width:520px; object-fit:contain }
-            .content{ position:relative; width:100%; text-align:center; z-index:1; display:flex; flex-direction:column; align-items:center; gap:8px }
-            .badge img{ height:30mm; width:auto; object-fit:contain; margin-bottom:2mm }
-            .issuer{ letter-spacing:.18em; text-transform:uppercase; color:#546e7a; font-weight:700; font-size:11px }
-            .title{ font-family:Cinzel, serif; font-weight:700; font-size:40px; letter-spacing:.04em; color:#1a237e; margin:2mm 0 0 }
-            .subtitle{ font-family:Libre Baskerville, serif; font-size:16px; color:#37474f; margin:0 }
-            .recipient{ margin:6mm 0 3mm }
-            .label{ font-size:11px; color:#607d8b; letter-spacing:.2em; text-transform:uppercase }
-            .name{ font-family:Cinzel, serif; font-size:30px; font-weight:700; color:#263238; margin:2mm 0 }
-            .body{ font-family:Libre Baskerville, serif; font-size:14px; color:#37474f; max-width:16cm; line-height:1.5; margin:0 auto }
-            @media print{ body{ background:transparent } .sheet{ box-shadow:none } }
-          </style>`;
-        const body = `
-          <section class="sheet" aria-label="Diploma imprimible">
-            <div class="frame" aria-hidden="true"></div>
-            <div class="watermark" aria-hidden="true">
-              <img src="galeria/logo/logoinglucas.png" alt="Marca Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.svg'">
-            </div>
-            <div class="content">
-              <div class="badge">
-                <img src="galeria/logo/logoinglucas.png" alt="Logo Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.png'">
-              </div>
-              <div class="issuer">Ing. Lucas Learning Hub</div>
-              <h1 class="title">Diploma de Reconocimiento</h1>
-              <p class="subtitle">Por desempeño en evaluación académica</p>
-              <div class="recipient">
-                <div class="label">Se confiere a</div>
-                <div class="name">${name||'Anónimo'}</div>
-              </div>
-              <p class="body">
-                Ha obtenido una calificación de <strong>${five.toFixed(1)} / 5.0 (${pct}%)</strong> en <strong>${course}</strong>.<br>
-                Este diploma se expide en <span>${city}</span>, a los <span>${dateStr}</span>.
-              </p>
-            </div>
-          </section>
-          <script>window.onload=()=>{window.print();};<\/script>`;
-        w.document.write(`<html lang="es"><head>${head}</head><body>${body}</body></html>`);
-        w.document.close();
+  // Logos alojados en tu sitio (paréntesis URL-encoded)
+  const LOGO_PNG = 'https://hub.inglucas.com.co/%28N%29%202313%20Sistemas%20Operativos%20I/galeria/logo/logoinglucas.png';
+  const LOGO_SVG = 'https://hub.inglucas.com.co/%28N%29%202313%20Sistemas%20Operativos%20I/galeria/logo/logoinglucas.svg';
+
+  const w = window.open('', '_blank');
+
+  const head = `
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Diploma · Ing. Lucas Learning Hub</title>
+    <meta name="description" content="Diploma imprimible en tamaño Carta horizontal con márgenes de 2.5 cm." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      :root{ --primary:#0d47a1; --accent:#7e57c2; --gold:#c6a45a; --ink:#222; --paper:#fcfbf7; --shadow:rgba(0,0,0,.08); }
+
+      /* [ES] Carta horizontal con margen 2.5 cm
+         [EN] Letter landscape with 2.5 cm margins */
+      @page { size: Letter landscape; margin: 2.5cm; }
+
+      html,body{height:100%}
+      body{ margin:0; background:#eceff1; font-family:Montserrat, Arial, sans-serif; color:var(--ink); }
+
+      /* Área útil (Letter landscape ≈ 27.94×21.59 cm → útil ≈ 22.94×16.59 cm) */
+      .sheet{
+        width:22.6cm;            /* un poco menor al útil para evitar corte */
+        min-height:16.3cm;       /* un poco menor al útil para evitar corte */
+        background:var(--paper);
+        position:relative;
+        margin:0 auto;
+        box-shadow:0 12px 30px var(--shadow);
+        overflow:hidden;
+        display:flex; align-items:center; justify-content:center;
+        padding:10mm;
       }
+
+      /* Marcos decorativos */
+      .frame{ position:absolute; inset:6mm; background:transparent; border:1.8mm solid var(--gold); box-shadow:inset 0 0 0 2.2mm var(--paper) }
+      .frame::before{ content:""; position:absolute; inset:4mm; border:0.8mm solid var(--accent); border-radius:6px }
+
+      /* Marca de agua */
+      .watermark{ position:absolute; inset:0; display:grid; place-items:center; pointer-events:none; opacity:.07; filter:grayscale(30%) }
+      .watermark img{ width:58%; max-width:540px; object-fit:contain }
+
+      /* Contenido */
+      .content{ position:relative; width:100%; text-align:center; z-index:1; display:flex; flex-direction:column; align-items:center; gap:8px }
+      .badge img{ height:26mm; width:auto; object-fit:contain; margin-bottom:2mm }
+      .issuer{ letter-spacing:.18em; text-transform:uppercase; color:#546e7a; font-weight:700; font-size:11px }
+      .title{ font-family:Cinzel, serif; font-weight:700; font-size:38px; letter-spacing:.02em; color:#1a237e; margin:2mm 0 0 }
+      .subtitle{ font-family:Libre Baskerville, serif; font-size:16px; color:#37474f; margin:0 }
+      .recipient{ margin:5mm 0 3mm }
+      .label{ font-size:11px; color:#607d8b; letter-spacing:.2em; text-transform:uppercase }
+      .name{ font-family:Cinzel, serif; font-size:30px; font-weight:700; color:#263238; margin:2mm 0 }
+      .body{ font-family:Libre Baskerville, serif; font-size:14px; color:#37474f; max-width:20cm; line-height:1.5; margin:0 auto }
+
+      @media print{
+        body{ background:transparent }
+        .sheet{ box-shadow:none }
+      }
+    </style>`;
+
+  const body = `
+    <section class="sheet" aria-label="Diploma imprimible">
+      <div class="frame" aria-hidden="true"></div>
+
+      <!-- Watermark con fallback SVG/PNG -->
+      <div class="watermark" aria-hidden="true">
+        <img src="${LOGO_SVG}" alt="Marca Ing. Lucas"
+             onerror="this.onerror=null;this.src='${LOGO_PNG}';">
+      </div>
+
+      <div class="content">
+        <div class="badge">
+          <img src="${LOGO_PNG}" alt="Logo Ing. Lucas"
+               onerror="this.onerror=null;this.src='${LOGO_SVG}';">
+        </div>
+
+        <div class="issuer">Ing. Lucas Learning Hub</div>
+        <h1 class="title">Diploma de Reconocimiento</h1>
+        <p class="subtitle">Por desempeño en evaluación académica</p>
+
+        <div class="recipient">
+          <div class="label">Se confiere a</div>
+          <div class="name">${name || 'Anónimo'}</div>
+        </div>
+
+        <p class="body">
+          Ha obtenido una calificación de <strong>${five.toFixed(1)} / 5.0 (${pct}%)</strong>
+          en <strong>${course}</strong>.<br>
+          Este diploma se expide en <span>${city}</span>, a los <span>${dateStr}</span>.
+        </p>
+      </div>
+    </section>
+    <script>window.onload=()=>{window.print();};<\/script>`;
+
+  w.document.write(`<html lang="es"><head>${head}</head><body>${body}</body></html>`);
+  w.document.close();
+}
+
 
       function evalQuiz(){
         const questions = [...scope.querySelectorAll('.ilh-question')];
