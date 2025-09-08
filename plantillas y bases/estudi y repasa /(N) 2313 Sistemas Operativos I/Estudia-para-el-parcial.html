@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz de Sistemas Operativos 1 — Ing. Lucas</title>
+  <meta name="description" content="Página única con resumen, glosario, quiz autoevaluado y emisión de diploma PDF estilo Ing. Lucas." />
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: #111a2b;
+      --ink: #e8f0ff;
+      --muted:#9bb0d1;
+      --accent:#4cc9f0;
+      --ok:#2bd164;
+      --bad:#ff5964;
+      --border:#23314e;
+    }
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,sans-serif;background:linear-gradient(180deg,var(--bg),#0f1930 70%);color:var(--ink)}
+    .wrap{max-width:980px;margin:auto;padding:24px}
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);z-index:1000}
+    .modal .box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:440px;width:92%}
+    .modal h2{color:var(--accent)}
+    .modal input{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:#0b1430;color:var(--ink)}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; margin:16px 0}
+    .question{margin:12px 0;padding:14px;border:1px solid var(--border);border-radius:14px;background:#0e172a}
+    .options{display:grid;gap:8px}
+    .opt{padding:10px;border:1px solid #1b2743;border-radius:12px;background:#0c1528}
+    .opt.correct{border-color:var(--ok); background:#0c1f17}
+    .opt.incorrect{border-color:var(--bad); background:#27131a}
+    .explain{display:none;color:var(--muted);font-size:.9rem;margin-top:6px}
+    .controls{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+    button{background:var(--accent);color:#062035;border:none;border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer}
+    .secondary{background:#1b2a46;color:var(--ink)}
+    .score{margin-top:12px;padding:12px;border:1px dashed var(--border);border-radius:12px;display:none}
+  </style>
+</head>
+<body>
+  <!-- Modal obligatorio para nombre -->
+  <div id="welcome" class="modal">
+    <div class="box">
+      <h2>Antes de empezar</h2>
+      <p class="hint">Debes ingresar tu nombre para continuar y generar tu certificado.</p>
+      <input id="studentName" type="text" placeholder="Ej.: Lucas Molina" />
+      <div class="controls"><button id="startBtn">Empezar</button></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <h1>SO1 · Resumen, Glosario + Quiz</h1>
+      <p class="hint">Marca tus respuestas y pulsa <b>Mostrar respuestas</b>. <span id="greeter"></span></p>
+    </header>
+
+    <main id="quiz" class="card">
+      <h2>Quiz de práctica</h2>
+      <section class="question" data-qid="q1" data-type="single">
+        <h3>1) ¿Qué es un sistema operativo?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q1" data-correct="true"> Software que actúa como intermediario entre hardware y usuario.</label>
+          <label class="opt"><input type="radio" name="q1"> Programa de ofimática.</label>
+        </div>
+        <div class="explain">Correcto: Intermediario entre hardware y usuario.</div>
+      </section>
+      <!-- aquí irían el resto de preguntas -->
+      <div class="controls">
+        <button id="show">Mostrar respuestas</button>
+        <button id="reset" class="secondary">Reiniciar</button>
+      </div>
+      <div id="result" class="score"></div>
+    </main>
+  </div>
+
+  <script>
+    const welcome=document.getElementById('welcome');
+    const startBtn=document.getElementById('startBtn');
+    const nameInput=document.getElementById('studentName');
+    const greeter=document.getElementById('greeter');
+    function saveName(n){localStorage.setItem('studentName',n);greeter.textContent=`| Estudiante: ${n}`}
+    function loadName(){return localStorage.getItem('studentName')||''}
+    welcome.style.display='flex';
+    startBtn.addEventListener('click',()=>{const n=nameInput.value.trim();if(n.length<2){alert('Ingresa tu nombre completo');return;}saveName(n);welcome.style.display='none';});
+
+    const quizEl=document.getElementById('quiz');
+    const showBtn=document.getElementById('show');
+    const resetBtn=document.getElementById('reset');
+    const resultEl=document.getElementById('result');
+
+    function evalSingle(q){
+      const chosen=q.querySelector('input[type="radio"]:checked');
+      const right=q.querySelector('input[data-correct="true"]');
+      q.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','incorrect'));
+      if(chosen){
+        if(chosen.dataset.correct==='true'){chosen.parentElement.classList.add('correct')}
+        else{chosen.parentElement.classList.add('incorrect')}
+      }
+      if(right) right.parentElement.classList.add('correct');
+      return !!(chosen&&chosen.dataset.correct==='true')
+    }
+    function lockQuestion(q){
+      q.querySelectorAll('input').forEach(i=>i.disabled=true);
+      const exp=q.querySelector('.explain');if(exp)exp.style.display='block'
+    }
+
+    // ===== Diploma: tamaño Carta, márgenes 2.5 cm, contenido más pequeño =====
+    function generateCertificate(name,correct,total,pct,five){
+      const today=new Date();
+      const dateStr=today.toLocaleDateString('es-CO',{year:'numeric',month:'long',day:'numeric'});
+      const course='Quiz de Sistemas Operativos';
+      const city='Villavicencio, Meta';
+
+      const w=window.open('','_blank');
+      const head=`
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Diploma · Ing. Lucas Learning Hub</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+        <style>
+          :root{ --primary:#0d47a1; --accent:#7e57c2; --gold:#c6a45a; --ink:#222; --paper:#fcfbf7; --shadow:rgba(0,0,0,.08); }
+          /* Hoja Carta con márgenes de 2.5 cm */
+          @page { size: Letter portrait; margin: 2.5cm; }
+          html,body{height:100%}
+          body{ margin:0; background:#eceff1; font-family:Montserrat, Arial, sans-serif; color:var(--ink); }
+          /* Contenedor reducido para caber dentro del área imprimible (≈16.2 x 22 cm) */
+          .sheet{
+            width:16.2cm;           /* menor que el ancho imprimible (≈16.59cm) */
+            min-height:22cm;        /* menor que el alto imprimible (≈22.94cm) */
+            background:var(--paper);
+            position:relative;
+            margin:0 auto;
+            box-shadow:0 12px 30px var(--shadow);
+            overflow:hidden;
+            display:flex; align-items:center; justify-content:center;
+            padding:12mm;
+          }
+          .frame{position:absolute; inset:6mm; border:1.8mm solid var(--gold); box-shadow:inset 0 0 0 2.2mm var(--paper)}
+          .frame::before{content:""; position:absolute; inset:4mm; border:0.8mm solid var(--accent); border-radius:6px}
+          .watermark{position:absolute; inset:0; display:grid; place-items:center; pointer-events:none; opacity:.07; filter:grayscale(30%)}
+          .watermark img{width:60%; max-width:520px; object-fit:contain}
+          .content{position:relative; width:100%; text-align:center; z-index:1; display:flex; flex-direction:column; align-items:center; gap:8px}
+          .badge img{height:30mm; width:auto; object-fit:contain; margin-bottom:2mm}
+          .issuer{letter-spacing:.18em; text-transform:uppercase; color:#546e7a; font-weight:700; font-size:11px}
+          .title{font-family:Cinzel, serif; font-weight:700; font-size:40px; letter-spacing:.04em; color:#1a237e; margin:2mm 0 0}
+          .subtitle{font-family:Libre Baskerville, serif; font-size:16px; color:#37474f; margin:0}
+          .recipient{margin:6mm 0 3mm}
+          .label{font-size:11px; color:#607d8b; letter-spacing:.2em; text-transform:uppercase}
+          .name{font-family:Cinzel, serif; font-size:30px; font-weight:700; color:#263238; margin:2mm 0}
+          .body{font-family:Libre Baskerville, serif; font-size:14px; color:#37474f; max-width:16cm; line-height:1.5; margin:0 auto}
+          @media print{
+            body{ background:transparent }
+            .sheet{ box-shadow:none }
+          }
+        </style>`;
+      const body=`
+        <section class="sheet" aria-label="Diploma imprimible">
+          <div class="frame" aria-hidden="true"></div>
+          <div class="watermark" aria-hidden="true">
+            <img src="galeria/logo/logoinglucas.svg" alt="Marca Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.svg'">
+          </div>
+          <div class="content">
+            <div class="badge">
+              <img src="galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.png'">
+            </div>
+            <div class="issuer">Ing. Lucas Learning Hub</div>
+            <h1 class="title">Diploma de Reconocimiento</h1>
+            <p class="subtitle">Por desempeño en evaluación académica</p>
+            <div class="recipient">
+              <div class="label">Se confiere a</div>
+              <div class="name">${name||'Anónimo'}</div>
+            </div>
+            <p class="body">
+              Ha obtenido una calificación de <strong>${five.toFixed(1)} / 5.0 (${pct}%)</strong> en <strong>${course}</strong>.
+              Este diploma se expide en <span>${city}</span>, a los <span>${dateStr}</span>.
+            </p>
+          </div>
+        </section>
+        <script>window.onload=()=>{window.print();};<\/script>`;
+      w.document.write(`<html lang="es"><head>${head}</head><body>${body}</body></html>`);
+      w.document.close();
+    }
+
+    function evalQuiz(){
+      const questions=[...quizEl.querySelectorAll('.question')];
+      let correct=0;
+      questions.forEach(q=>{let ok=false;if(q.dataset.type==='single') ok=evalSingle(q);if(ok)correct++;lockQuestion(q)});
+      const total=questions.length;
+      const pct=Math.round((correct/total)*100);
+      const fiveScale=Math.round((correct/total)*50)/10;
+      resultEl.innerHTML=`Resultado: ${correct}/${total} - ${pct}% - ${fiveScale.toFixed(1)}/5.0`;
+      resultEl.style.display='block';
+      const name=loadName()||'Anónimo';
+      generateCertificate(name,correct,total,pct,fiveScale)
+    }
+
+    function resetQuiz(){
+      resultEl.style.display='none';
+      quizEl.querySelectorAll('.question').forEach(q=>{
+        q.querySelectorAll('input').forEach(i=>{i.checked=false;i.disabled=false});
+        q.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','incorrect'));
+        const exp=q.querySelector('.explain');if(exp)exp.style.display='none'
+      })
+    }
+
+    showBtn.addEventListener('click',evalQuiz);
+    resetBtn.addEventListener('click',resetQuiz);
+  </script>
+</body>
+</html>
