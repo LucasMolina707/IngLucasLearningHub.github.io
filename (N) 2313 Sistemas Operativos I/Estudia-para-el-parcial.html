@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -484,7 +484,7 @@
       const exp = q.querySelector('.explain'); if(exp) exp.style.display='block';
     }
 
-    // ===== Diploma (A4 landscape, estilo Lucas) =====
+    // ===== Diploma (Carta portrait, márgenes 2.5 cm, lienzo reducido) =====
     function generateCertificate(name, correct, total, pct, five){
       const today = new Date();
       const dateStr = today.toLocaleDateString('es-CO', {year:'numeric', month:'long', day:'numeric'});
@@ -496,57 +496,76 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Diploma · Ing. Lucas Learning Hub</title>
-        <meta name="description" content="Plantilla de diploma imprimible en PDF/A4." />
+        <meta name="description" content="Diploma imprimible en tamaño Carta con márgenes de 2.5 cm." />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
         <style>
           :root{ --primary:#0d47a1; --accent:#7e57c2; --gold:#c6a45a; --ink:#222; --paper:#fcfbf7; --shadow:rgba(0,0,0,.08); }
-          @page { size: A4 landscape; margin: 12mm; }
+          /* Hoja Carta con márgenes de 2.5 cm */
+          @page { size: Letter portrait; margin: 2.5cm; }
+
+          html,body{height:100%}
           body{ margin:0; background:#eceff1; font-family:Montserrat, Arial, sans-serif; color:var(--ink); }
-          .wrap{ min-height:100%; display:flex; align-items:center; justify-content:center; padding:24px; }
-          .sheet{ width:297mm; height:210mm; background:var(--paper); position:relative; box-shadow:0 18px 40px var(--shadow); overflow:hidden; display:flex; align-items:center; justify-content:center; }
-          .frame{ position:absolute; inset:10mm; background:transparent; border:1.8mm solid var(--gold); box-shadow:inset 0 0 0 2.2mm var(--paper) }
-          .frame::before{ content:""; position:absolute; inset:6mm; border:0.8mm solid var(--accent); border-radius:6px }
+
+          /* Lienzo reducido: cabe dentro del área imprimible (≈ 16.59 × 22.94 cm) */
+          .sheet{
+            width:16.2cm;          /* < ancho útil */
+            min-height:22cm;       /* < alto útil */
+            background:var(--paper);
+            position:relative;
+            margin:0 auto;
+            box-shadow:0 12px 30px var(--shadow);
+            overflow:hidden;
+            display:flex; align-items:center; justify-content:center;
+            padding:12mm;
+          }
+
+          .frame{ position:absolute; inset:6mm; background:transparent; border:1.8mm solid var(--gold); box-shadow:inset 0 0 0 2.2mm var(--paper) }
+          .frame::before{ content:""; position:absolute; inset:4mm; border:0.8mm solid var(--accent); border-radius:6px }
+
           .watermark{ position:absolute; inset:0; display:grid; place-items:center; pointer-events:none; opacity:.07; filter:grayscale(30%) }
-          .watermark img{ width:55%; max-width:680px; object-fit:contain }
-          .content{ position:relative; width:85%; text-align:center; z-index:1; display:flex; flex-direction:column; align-items:center; gap:10px }
-          .badge img{ height:38mm; width:auto; object-fit:contain; margin-bottom:2mm }
-          .issuer{ letter-spacing:.18em; text-transform:uppercase; color:#546e7a; font-weight:700; font-size:12px }
-          .title{ font-family:Cinzel, serif; font-weight:700; font-size:48px; letter-spacing:.06em; color:#1a237e; margin:2mm 0 0 }
-          .subtitle{ font-family:Libre Baskerville, serif; font-size:18px; color:#37474f; margin:0 }
+          .watermark img{ width:60%; max-width:520px; object-fit:contain }
+
+          .content{ position:relative; width:100%; text-align:center; z-index:1; display:flex; flex-direction:column; align-items:center; gap:8px }
+          .badge img{ height:30mm; width:auto; object-fit:contain; margin-bottom:2mm }
+          .issuer{ letter-spacing:.18em; text-transform:uppercase; color:#546e7a; font-weight:700; font-size:11px }
+          .title{ font-family:Cinzel, serif; font-weight:700; font-size:40px; letter-spacing:.04em; color:#1a237e; margin:2mm 0 0 }
+          .subtitle{ font-family:Libre Baskerville, serif; font-size:16px; color:#37474f; margin:0 }
           .recipient{ margin:6mm 0 3mm }
-          .label{ font-size:12px; color:#607d8b; letter-spacing:.2em; text-transform:uppercase }
-          .name{ font-family:Cinzel, serif; font-size:38px; font-weight:700; color:#263238; margin:2mm 0 }
-          .body{ font-family:Libre Baskerville, serif; font-size:16px; color:#37474f; max-width:900px; line-height:1.5 }
-          @media print{ body{ background:transparent } .sheet{ box-shadow:none } }
+          .label{ font-size:11px; color:#607d8b; letter-spacing:.2em; text-transform:uppercase }
+          .name{ font-family:Cinzel, serif; font-size:30px; font-weight:700; color:#263238; margin:2mm 0 }
+          .body{ font-family:Libre Baskerville, serif; font-size:14px; color:#37474f; max-width:16cm; line-height:1.5; margin:0 auto }
+
+          @media print{
+            body{ background:transparent }
+            .sheet{ box-shadow:none }
+          }
         </style>`;
 
       const body = `
-        <div class="wrap">
-          <section class="sheet" aria-label="Diploma imprimible">
-            <div class="frame" aria-hidden="true"></div>
-            <div class="watermark" aria-hidden="true">
-              <img src="galeria/logo/logoinglucas.svg" alt="Marca Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.svg'">
+        <section class="sheet" aria-label="Diploma imprimible">
+          <div class="frame" aria-hidden="true"></div>
+          <div class="watermark" aria-hidden="true">
+            <img src="galeria/logo/logoinglucas.svg" alt="Marca Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.svg'">
+          </div>
+          <div class="content">
+            <div class="badge">
+              <img src="galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.png'">
             </div>
-            <div class="content">
-              <div class="badge">
-                <img src="galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.png'">
-              </div>
-              <div class="issuer">Ing. Lucas Learning Hub</div>
-              <h1 class="title">Diploma de Reconocimiento</h1>
-              <p class="subtitle">Por desempeño en evaluación académica</p>
-              <div class="recipient">
-                <div class="label">Se confiere a</div>
-                <div class="name">${name||'Anónimo'}</div>
-              </div>
-              <p class="body">
-                Ha obtenido una calificación de <strong>${five.toFixed(1)} / 5.0 (${pct}%)</strong> en <strong>${course}</strong>.
-                Este diploma se expide en <span>${city}</span>, a los <span>${dateStr}</span>.
-              </p>
+            <div class="issuer">Ing. Lucas Learning Hub</div>
+            <h1 class="title">Diploma de Reconocimiento</h1>
+            <p class="subtitle">Por desempeño en evaluación académica</p>
+            <div class="recipient">
+              <div class="label">Se confiere a</div>
+              <div class="name">${name||'Anónimo'}</div>
             </div>
-          </section>
-        </div>
+            <p class="body">
+              Ha obtenido una calificación de <strong>${five.toFixed(1)} / 5.0 (${pct}%)</strong> en <strong>${course}</strong>.
+              Este diploma se expide en <span>${city}</span>, a los <span>${dateStr}</span>.
+            </p>
+          </div>
+        </section>
         <script>window.onload=()=>{window.print();};<\/script>`;
 
       w.document.write(`<html lang="es"><head>${head}</head><body>${body}</body></html>`);
