@@ -7,204 +7,605 @@
   <meta name="description" content="Página única con resumen, glosario, quiz autoevaluado y emisión de diploma PDF estilo Ing. Lucas." />
   <style>
     :root{
-      --bg: #0b1220;
-      --card: #111a2b;
-      --ink: #e8f0ff;
+      --bg:#0b1220;
+      --card:#111a2b;
+      --ink:#e8f0ff;
       --muted:#9bb0d1;
       --accent:#4cc9f0;
       --ok:#2bd164;
       --bad:#ff5964;
       --border:#23314e;
     }
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,sans-serif;background:linear-gradient(180deg,var(--bg),#0f1930 70%);color:var(--ink)}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,sans-serif;
+      background:linear-gradient(180deg,var(--bg),#0f1930 70%);
+      color:var(--ink)
+    }
     .wrap{max-width:980px;margin:auto;padding:24px}
-    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);z-index:1000}
-    .modal .box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:440px;width:92%}
-    .modal h2{color:var(--accent)}
-    .modal input{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:#0b1430;color:var(--ink)}
+    header{display:grid;gap:8px;margin-bottom:18px}
+    h1{margin:0;font-size:clamp(1.4rem,2.8vw,2rem)}
+    .hint{color:var(--muted);font-size:.95rem}
+
+    .grid{display:grid;gap:16px}
+    @media(min-width:800px){.grid{grid-template-columns:1.1fr .9fr}}
+
     .card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; margin:16px 0}
-    .question{margin:12px 0;padding:14px;border:1px solid var(--border);border-radius:14px;background:#0e172a}
+    .card h2{margin:.2rem 0 .6rem 0; font-size:1.05rem; color:var(--accent)}
+    .k{display:grid;gap:8px}
+    .k li{margin:.18rem 0}
+    ul,ol{padding-left:1.1rem}
+
+    .question{border:1px solid var(--border);border-radius:14px;padding:14px;margin:12px 0;background:#0e172a}
+    .question h3{margin:.2rem 0 .6rem 0;font-size:1rem}
     .options{display:grid;gap:8px}
-    .opt{padding:10px;border:1px solid #1b2743;border-radius:12px;background:#0c1528}
+    .opt{display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid #1b2743;border-radius:12px;background:#0c1528}
+    .opt input,.opt select{margin-top:2px;accent-color:var(--accent)}
     .opt.correct{border-color:var(--ok); background:#0c1f17}
     .opt.incorrect{border-color:var(--bad); background:#27131a}
-    .explain{display:none;color:var(--muted);font-size:.9rem;margin-top:6px}
-    .controls{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
-    button{background:var(--accent);color:#062035;border:none;border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer}
-    .secondary{background:#1b2a46;color:var(--ink)}
+    .explain{font-size:.92rem;color:var(--muted);margin-top:6px;display:none}
+    .explain b{color:var(--ink)}
+
+    .controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    button{background:var(--accent); color:#062035; border:none; border-radius:12px; padding:10px 14px; font-weight:600; cursor:pointer}
+    button.secondary{background:#1b2a46;color:var(--ink);border:1px solid var(--border)}
+
     .score{margin-top:12px;padding:12px;border:1px dashed var(--border);border-radius:12px;display:none}
+    .score b{color:var(--accent)}
+    .badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:.85rem;margin-left:6px}
+    .badge.ok{background:rgba(43,209,100,.15); color:var(--ok); border:1px solid rgba(43,209,100,.35)}
+    .badge.bad{background:rgba(255,89,100,.15); color:var(--bad); border:1px solid rgba(255,89,100,.35)}
+
+    footer{margin:28px 0 12px;color:var(--muted);font-size:.9rem}
+    code{background:#0f223a;padding:2px 6px;border-radius:8px;border:1px solid #1c2d4c}
+
+    /* Glosario */
+    .glossary{columns:1;column-gap:18px}
+    @media(min-width:720px){.glossary{columns:2}}
+    .term{break-inside:avoid;padding:8px 10px;margin:6px 0;border-left:3px solid var(--border);background:#0d1830;border-radius:8px}
+    .term b{color:var(--accent)}
+
+    /* Modal de bienvenida obligatorio */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);z-index:1000}
+    .modal .box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:440px;width:92%}
+    .modal h2{margin:.2rem 0 .6rem 0;color:var(--accent);font-size:1.2rem}
+    .modal label{display:block;margin:10px 0 6px;color:var(--muted)}
+    .modal input{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:#0b1430;color:var(--ink)}
   </style>
 </head>
 <body>
-  <!-- Modal obligatorio para nombre -->
+  <!-- Modal nombre obligatorio -->
   <div id="welcome" class="modal">
     <div class="box">
       <h2>Antes de empezar</h2>
       <p class="hint">Debes ingresar tu nombre para continuar y generar tu certificado.</p>
+      <label for="studentName">Nombre y apellido</label>
       <input id="studentName" type="text" placeholder="Ej.: Lucas Molina" />
-      <div class="controls"><button id="startBtn">Empezar</button></div>
+      <div class="controls" style="margin-top:12px">
+        <button id="startBtn">Empezar</button>
+      </div>
     </div>
   </div>
 
   <div class="wrap">
     <header>
       <h1>SO1 · Resumen, Glosario + Quiz</h1>
-      <p class="hint">Marca tus respuestas y pulsa <b>Mostrar respuestas</b>. <span id="greeter"></span></p>
+      <p class="hint">Repasa lo esencial, consulta el glosario y comprueba tu nivel. Marca lo que creas… luego pulsa <b>Mostrar respuestas</b>. <span id="greeter"></span></p>
     </header>
 
-    <main id="quiz" class="card">
+    <section class="grid">
+      <article class="card">
+        <h2>Temario clave</h2>
+        <ul class="k">
+          <li><b>¿Qué es un SO?</b> Intermediario entre hardware y usuario; administra recursos.</li>
+          <li><b>Funciones:</b> procesos, memoria, archivos, dispositivos/E/S, seguridad, interfaz.</li>
+          <li><b>Tipos:</b> monousuario/multiusuario; monotarea/multitarea; CLI/GUI; tiempo real; distribuidos; de red.</li>
+          <li><b>Historia rápida:</b> mainframes (50–70); Unix → Linux; MS-DOS → Windows.</li>
+          <li><b>Ejemplos:</b> Windows 11, Ubuntu, Android, macOS.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Cómo usar este mini-simulacro</h2>
+        <ol class="k">
+          <li>Responde libremente. El sistema no bloquea respuestas erróneas.</li>
+          <li>Pulsa <b>Mostrar respuestas</b>: verás la correcta y el conteo de puntos.</li>
+          <li>El puntaje se muestra en <b>%</b> y en escala <b>0.0–5.0</b>.</li>
+          <li>Con <b>Reiniciar</b> dejas todo en cero para otro intento.</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="card" style="margin-top:16px">
+      <h2>Glosario para principiantes</h2>
+      <div class="glossary">
+        <div class="term"><b>Proceso</b>: programa en ejecución con su estado (PC, registros, memoria asignada).</div>
+        <div class="term"><b>Hilo (thread)</b>: unidad ligera de ejecución dentro de un proceso que comparte memoria.</div>
+        <div class="term"><b>Planificador (scheduler)</b>: componente del SO que decide qué proceso/hilo se ejecuta y cuándo.</div>
+        <div class="term"><b>Interrupción</b>: señal del hardware/CPU que altera el flujo normal para atender eventos (E/S, temporizador).</div>
+        <div class="term"><b>Concurrencia</b>: progreso alternado de varias tareas; no implica ejecución simultánea real.</div>
+        <div class="term"><b>Paralelismo</b>: ejecución simultánea real en varios núcleos/procesadores.</div>
+        <div class="term"><b>Memoria virtual</b>: técnica que da a cada proceso la ilusión de tener su propio espacio de direcciones.</div>
+        <div class="term"><b>Swapping/Paginación</b>: mover páginas entre RAM y almacenamiento secundario para extender memoria usable.</div>
+        <div class="term"><b>Sistema de archivos</b>: estructura y reglas para nombrar, almacenar y acceder a datos en disco.</div>
+        <div class="term"><b>Permisos (ACL/Unix)</b>: reglas de acceso (lectura/escritura/ejecución) por usuario/grupo/otros.</div>
+        <div class="term"><b>Kernel</b>: núcleo del SO; gestiona recursos y ofrece servicios básicos.</div>
+        <div class="term"><b>Monolítico vs. Microkernel</b>: todo en un único binario con espacio de kernel vs. servicios mínimos y drivers en espacio de usuario.</div>
+        <div class="term"><b>Tiempo real</b>: respuestas dentro de plazos deterministas; prioridad a la predictibilidad.</div>
+        <div class="term"><b>CLI/GUI</b>: interfaz de línea de comandos vs. interfaz gráfica de usuario.</div>
+        <div class="term"><b>Usuario root/Administrador</b>: cuenta con privilegios máximos para gestión del sistema.</div>
+        <div class="term"><b>Distribución Linux</b>: empaquetado del kernel + utilidades (ej.: Ubuntu, Fedora, Arch).</div>
+        <div class="term"><b>Driver</b>: software que permite al SO comunicarse con el hardware específico.</div>
+        <div class="term"><b>API del SO</b>: conjunto de funciones/llamadas del sistema que usan los programas (open, read, fork...).</div>
+      </div>
+    </section>
+
+    <main id="quiz" class="card" style="margin-top:16px">
       <h2>Quiz de práctica</h2>
+
+      <!-- Tipo: opción única (radio) -->
       <section class="question" data-qid="q1" data-type="single">
         <h3>1) ¿Qué es un sistema operativo?</h3>
         <div class="options">
-          <label class="opt"><input type="radio" name="q1" data-correct="true"> Software que actúa como intermediario entre hardware y usuario.</label>
-          <label class="opt"><input type="radio" name="q1"> Programa de ofimática.</label>
+          <label class="opt"><input type="radio" name="q1" value="a" data-correct="true"> Un software que actúa como intermediario entre hardware y usuario y administra recursos.</label>
+          <label class="opt"><input type="radio" name="q1" value="b"> Un programa de ofimática para editar documentos.</label>
+          <label class="opt"><input type="radio" name="q1" value="c"> Un dispositivo físico que conecta periféricos.</label>
+          <label class="opt"><input type="radio" name="q1" value="d"> Un lenguaje de programación.</label>
         </div>
-        <div class="explain">Correcto: Intermediario entre hardware y usuario.</div>
+        <div class="explain">Correcto: <b>a</b>. El SO orquesta recursos y ofrece servicios al resto de programas.</div>
       </section>
-      <!-- aquí irían el resto de preguntas -->
+
+      <section class="question" data-qid="q2" data-type="single">
+        <h3>2) ¿Cuál <em>NO</em> es una función del sistema operativo?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q2" value="a"> Gestión de memoria.</label>
+          <label class="opt"><input type="radio" name="q2" value="b"> Administración de procesos.</label>
+          <label class="opt"><input type="radio" name="q2" value="c" data-correct="true"> Edición profesional de video.</label>
+          <label class="opt"><input type="radio" name="q2" value="d"> Manejo de archivos y dispositivos.</label>
+        </div>
+        <div class="explain">Correcto: <b>c</b>. Editar video es tarea de aplicaciones; el SO provee la base.</div>
+      </section>
+
+      <section class="question" data-qid="q3" data-type="single">
+        <h3>3) ¿Qué describe a un sistema <b>multiusuario</b>?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q3" value="a"> Soporta una sola tarea a la vez.</label>
+          <label class="opt"><input type="radio" name="q3" value="b" data-correct="true"> Permite que varios usuarios trabajen de forma concurrente.</label>
+          <label class="opt"><input type="radio" name="q3" value="c"> Solo interfaz de línea de comandos.</label>
+          <label class="opt"><input type="radio" name="q3" value="d"> Requiere hardware especializado en tiempo real.</label>
+        </div>
+        <div class="explain">Correcto: <b>b</b>. Múltiples usuarios, sesiones y permisos coexistiendo.</div>
+      </section>
+
+      <section class="question" data-qid="q4" data-type="single">
+        <h3>4) ¿Qué ejemplo corresponde a un entorno <b>CLI</b>?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q4" value="a" data-correct="true"> MS-DOS.</label>
+          <label class="opt"><input type="radio" name="q4" value="b"> Windows 11.</label>
+          <label class="opt"><input type="radio" name="q4" value="c"> GNOME en Ubuntu.</label>
+          <label class="opt"><input type="radio" name="q4" value="d"> macOS Sonoma.</label>
+        </div>
+        <div class="explain">Correcto: <b>a</b>. MS-DOS es un sistema de línea de comandos.</div>
+      </section>
+
+      <section class="question" data-qid="q5" data-type="single">
+        <h3>5) ¿Qué significa <b>multitarea</b>?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q5" value="a"> Capacidad de un usuario para abrir sesión.</label>
+          <label class="opt"><input type="radio" name="q5" value="b" data-correct="true"> Ejecutar varios procesos de manera concurrente.</label>
+          <label class="opt"><input type="radio" name="q5" value="c"> Trabajar sin interfaz gráfica.</label>
+          <label class="opt"><input type="radio" name="q5" value="d"> Soporte para varios discos.</label>
+        </div>
+        <div class="explain">Correcto: <b>b</b>. Concurrencia y planificación por el scheduler.</div>
+      </section>
+
+      <section class="question" data-qid="q6" data-type="single">
+        <h3>6) ¿Qué sistema influyó directamente en la creación de <b>Linux</b>?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q6" value="a"> Windows.</label>
+          <label class="opt"><input type="radio" name="q6" value="b" data-correct="true"> Unix.</label>
+          <label class="opt"><input type="radio" name="q6" value="c"> AmigaOS.</label>
+          <label class="opt"><input type="radio" name="q6" value="d"> BeOS.</label>
+        </div>
+        <div class="explain">Correcto: <b>b</b>. Linux adopta muchas ideas y conceptos de Unix.</div>
+      </section>
+
+      <section class="question" data-qid="q7" data-type="single">
+        <h3>7) ¿Cuál fue el primer SO de Microsoft ampliamente usado?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q7" value="a" data-correct="true"> MS-DOS.</label>
+          <label class="opt"><input type="radio" name="q7" value="b"> Windows NT 4.0.</label>
+          <label class="opt"><input type="radio" name="q7" value="c"> Windows XP.</label>
+          <label class="opt"><input type="radio" name="q7" value="d"> OS/2.</label>
+        </div>
+        <div class="explain">Correcto: <b>a</b>. MS-DOS dominó la era PC previa a Windows 95.</div>
+      </section>
+
+      <section class="question" data-qid="q8" data-type="single">
+        <h3>8) ¿Cómo clasificarías <b>Android</b>?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q8" value="a"> Propietario, monotarea, CLI.</label>
+          <label class="opt"><input type="radio" name="q8" value="b" data-correct="true"> Basado en Linux, multitarea, multiusuario, interfaz gráfica.</label>
+          <label class="opt"><input type="radio" name="q8" value="c"> Tiempo real estricto.</label>
+          <label class="opt"><input type="radio" name="q8" value="d"> Distribuido puro sin interfaz.</label>
+        </div>
+        <div class="explain">Correcto: <b>b</b>. Kernel Linux + framework gráfico y cuentas de usuario.</div>
+      </section>
+
+      <section class="question" data-qid="q9" data-type="single">
+        <h3>9) ¿Cuál afirmación es correcta sobre <b>Windows vs. Linux</b>?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q9" value="a"> Ambos son software libre.</label>
+          <label class="opt"><input type="radio" name="q9" value="b" data-correct="true"> Windows es propietario; Linux es software libre.</label>
+          <label class="opt"><input type="radio" name="q9" value="c"> Linux es solo para servidores y no tiene GUI.</label>
+          <label class="opt"><input type="radio" name="q9" value="d"> Windows carece de multitarea.</label>
+        </div>
+        <div class="explain">Correcto: <b>b</b>. Modelo propietario vs. licencias libres (GPL y otras).</div>
+      </section>
+
+      <section class="question" data-qid="q10" data-type="single">
+        <h3>10) ¿Qué es un SO de <b>tiempo real</b>?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q10" value="a"> Uno que tiene la interfaz más moderna.</label>
+          <label class="opt"><input type="radio" name="q10" value="b"> Uno que arranca en menos de 3 segundos.</label>
+          <label class="opt"><input type="radio" name="q10" value="c" data-correct="true"> Aquel que responde dentro de tiempos deterministas y predecibles.</label>
+          <label class="opt"><input type="radio" name="q10" value="d"> Un sistema distribuido sin usuarios.</label>
+        </div>
+        <div class="explain">Correcto: <b>c</b>. Prioriza plazos garantizados, no “velocidad” bruta.</div>
+      </section>
+
+      <!-- Tipo: múltiple respuesta (checkbox) -->
+      <section class="question" data-qid="q11" data-type="multi">
+        <h3>11) Marca <b>todas</b> las funciones del sistema operativo (puede haber varias correctas).</h3>
+        <div class="options">
+          <label class="opt"><input type="checkbox" value="a" data-correct="true"> Gestión de memoria.</label>
+          <label class="opt"><input type="checkbox" value="b" data-correct="true"> Administración de procesos.</label>
+          <label class="opt"><input type="checkbox" value="c"> Edición de video profesional.</label>
+          <label class="opt"><input type="checkbox" value="d" data-correct="true"> Manejo de archivos/dispositivos de E/S.</label>
+          <label class="opt"><input type="checkbox" value="e" data-correct="true"> Seguridad y control de accesos.</label>
+        </div>
+        <div class="explain">Correctas: <b>a, b, d, e</b>. “Edición de video” no es función del SO.</div>
+      </section>
+
+      <!-- Tipo: emparejar (matching) -->
+      <section class="question" data-qid="q12" data-type="match">
+        <h3>12) Empareja <b>término</b> con <b>definición</b> (selecciona la opción correcta).</h3>
+        <div class="options">
+          <div class="opt">Scheduler →
+            <select data-answer="b">
+              <option value="">— elige —</option>
+              <option value="a">Administra memoria virtual</option>
+              <option value="b">Decide qué proceso/hilo corre y cuándo</option>
+              <option value="c">Traduce llamadas del SO a los drivers</option>
+            </select>
+          </div>
+          <div class="opt">Memoria virtual →
+            <select data-answer="a">
+              <option value="">— elige —</option>
+              <option value="a">Da a cada proceso su propio espacio de direcciones</option>
+              <option value="b">Planifica hilos en CPU</option>
+              <option value="c">Permite acceso a disco sin sistema de archivos</option>
+            </select>
+          </div>
+          <div class="opt">Driver →
+            <select data-answer="c">
+              <option value="">— elige —</option>
+              <option value="a">Define permisos de usuarios</option>
+              <option value="b">Crea interfaces gráficas</option>
+              <option value="c">Software que comunica SO ↔ hardware específico</option>
+            </select>
+          </div>
+        </div>
+        <div class="explain">Correctas: Scheduler→<b>b</b>, Memoria virtual→<b>a</b>, Driver→<b>c</b>.</div>
+      </section>
+
+      <!-- Tipo: completar (fill-in) -->
+      <section class="question" data-qid="q13" data-type="fill">
+        <h3>13) Completa: “<em>Linux</em> es un sistema derivado de ____ y distribuido bajo licencias de tipo ____.”</h3>
+        <div class="options">
+          <label class="opt">Blank 1: <input type="text" data-answers="unix" placeholder="palabra"/></label>
+          <label class="opt">Blank 2: <input type="text" data-answers="libre|gpl|software libre" placeholder="palabra"/></label>
+        </div>
+        <div class="explain">Correcto: <b>Unix</b> y licencias <b>libres (p.ej., GPL)</b>.</div>
+      </section>
+
+      <!-- ==== Bloque histórico (fechas, nombres, desarrolladores) ==== -->
+      <section class="question" data-qid="q14" data-type="single">
+        <h3>14) ¿En qué laboratorio y año se originó <b>Unix</b>?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q14" value="a" data-correct="true"> Bell Labs, 1969.</label>
+          <label class="opt"><input type="radio" name="q14" value="b"> Xerox PARC, 1973.</label>
+          <label class="opt"><input type="radio" name="q14" value="c"> MIT AI Lab, 1965.</label>
+          <label class="opt"><input type="radio" name="q14" value="d"> IBM Research, 1971.</label>
+        </div>
+        <div class="explain">Correcto: <b>Bell Labs, 1969</b> (Thompson y Ritchie).</div>
+      </section>
+
+      <section class="question" data-qid="q15" data-type="single">
+        <h3>15) ¿Quién inició el desarrollo del <b>kernel Linux</b> y en qué año lo anunció públicamente?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q15" value="a"> Richard Stallman, 1983.</label>
+          <label class="opt"><input type="radio" name="q15" value="b" data-correct="true"> Linus Torvalds, 1991.</label>
+          <label class="opt"><input type="radio" name="q15" value="c"> Ken Thompson, 1970.</label>
+          <label class="opt"><input type="radio" name="q15" value="d"> Bill Joy, 1978.</label>
+        </div>
+        <div class="explain">Correcto: <b>Linus Torvalds</b> lo anunció en 1991.</div>
+      </section>
+
+      <section class="question" data-qid="q16" data-type="single">
+        <h3>16) ¿Qué versión de Windows introdujo el <b>botón Inicio</b> y una adopción masiva del entorno de 32 bits?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q16" value="a"> Windows 3.1 (1992).</label>
+          <label class="opt"><input type="radio" name="q16" value="b" data-correct="true"> Windows 95 (1995).</label>
+          <label class="opt"><input type="radio" name="q16" value="c"> Windows NT 3.1 (1993).</label>
+          <label class="opt"><input type="radio" name="q16" value="d"> Windows XP (2001).</label>
+        </div>
+        <div class="explain">Correcto: <b>Windows 95</b>, lanzado en 1995.</div>
+      </section>
+
+      <section class="question" data-qid="q17" data-type="single">
+        <h3>17) ¿Quién fundó el <b>Proyecto GNU</b> y en qué año?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q17" value="a" data-correct="true"> Richard Stallman, 1983.</label>
+          <label class="opt"><input type="radio" name="q17" value="b"> Brian Kernighan, 1978.</label>
+          <label class="opt"><input type="radio" name="q17" value="c"> Steve Jobs, 1984.</label>
+          <label class="opt"><input type="radio" name="q17" value="d"> Tim Berners-Lee, 1990.</label>
+        </div>
+        <div class="explain">Correcto: <b>Richard Stallman</b> en 1983.</div>
+      </section>
+
+      <section class="question" data-qid="q18" data-type="single">
+        <h3>18) ¿En qué año se lanzó la primera versión pública de <b>Android</b>?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q18" value="a"> 2005.</label>
+          <label class="opt"><input type="radio" name="q18" value="b" data-correct="true"> 2008.</label>
+          <label class="opt"><input type="radio" name="q18" value="c"> 2010.</label>
+          <label class="opt"><input type="radio" name="q18" value="d"> 2003.</label>
+        </div>
+        <div class="explain">Correcto: <b>2008</b>.</div>
+      </section>
+
+      <section class="question" data-qid="q19" data-type="fill">
+        <h3>19) Completa: “MS-DOS (1981) se basó en ____-DOS adquirido a Seattle Computer Products.”</h3>
+        <div class="options">
+          <label class="opt">Respuesta: <input type="text" data-answers="86|86-dos|qdos|86 dos|86dos" placeholder="siglas"/></label>
+        </div>
+        <div class="explain">Correcto: <b>86-DOS</b> (conocido como QDOS).</div>
+      </section>
+
+      <section class="question" data-qid="q20" data-type="single">
+        <h3>20) ¿En qué año Apple lanzó <b>Mac OS X 10.0</b> (Cheetah), base de macOS moderno?</h3>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q20" value="a"> 1999.</label>
+          <label class="opt"><input type="radio" name="q20" value="b" data-correct="true"> 2001.</label>
+          <label class="opt"><input type="radio" name="q20" value="c"> 2003.</label>
+          <label class="opt"><input type="radio" name="q20" value="d"> 1997.</label>
+        </div>
+        <div class="explain">Correcto: <b>2001</b>.</div>
+      </section>
+
       <div class="controls">
         <button id="show">Mostrar respuestas</button>
         <button id="reset" class="secondary">Reiniciar</button>
       </div>
+
       <div id="result" class="score"></div>
     </main>
+
+    <footer>
+      Hecho para estudiar rápido. Tip: si puedes explicarlo con tus palabras, ya lo tienes. — Ing. Lucas
+    </footer>
   </div>
 
   <script>
-    const welcome=document.getElementById('welcome');
-    const startBtn=document.getElementById('startBtn');
-    const nameInput=document.getElementById('studentName');
-    const greeter=document.getElementById('greeter');
-    function saveName(n){localStorage.setItem('studentName',n);greeter.textContent=`| Estudiante: ${n}`}
-    function loadName(){return localStorage.getItem('studentName')||''}
-    welcome.style.display='flex';
-    startBtn.addEventListener('click',()=>{const n=nameInput.value.trim();if(n.length<2){alert('Ingresa tu nombre completo');return;}saveName(n);welcome.style.display='none';});
+    // ===== Modal y almacenamiento del nombre (obligatorio) =====
+    const welcome = document.getElementById('welcome');
+    const startBtn = document.getElementById('startBtn');
+    const nameInput = document.getElementById('studentName');
+    const greeter = document.getElementById('greeter');
 
-    const quizEl=document.getElementById('quiz');
-    const showBtn=document.getElementById('show');
-    const resetBtn=document.getElementById('reset');
-    const resultEl=document.getElementById('result');
+    function saveName(n){ localStorage.setItem('studentName', n); greeter.textContent = `| Estudiante: ${n}`; }
+    function loadName(){ return localStorage.getItem('studentName') || ''; }
+
+    // Bloquea el inicio sin nombre (mínimo nombre + apellido)
+    welcome.style.display='flex';
+    startBtn.addEventListener('click', ()=>{
+      const n = (nameInput.value||'').trim();
+      if(n.split(/\s+/).filter(Boolean).length < 2){
+        alert('Por favor ingresa nombre y apellido.');
+        nameInput.focus();
+        return;
+      }
+      saveName(n);
+      welcome.style.display='none';
+    });
+
+    // ===== Elementos del quiz =====
+    const quizEl = document.getElementById('quiz');
+    const showBtn = document.getElementById('show');
+    const resetBtn = document.getElementById('reset');
+    const resultEl = document.getElementById('result');
+
+    function normalize(s){return (s||'').toString().trim().toLowerCase();}
 
     function evalSingle(q){
-      const chosen=q.querySelector('input[type="radio"]:checked');
-      const right=q.querySelector('input[data-correct="true"]');
+      const chosen = q.querySelector('input[type="radio"]:checked');
+      const right = q.querySelector('input[data-correct="true"]');
       q.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','incorrect'));
       if(chosen){
-        if(chosen.dataset.correct==='true'){chosen.parentElement.classList.add('correct')}
-        else{chosen.parentElement.classList.add('incorrect')}
+        if(chosen.dataset.correct==='true'){ chosen.parentElement.classList.add('correct'); }
+        else{ chosen.parentElement.classList.add('incorrect'); }
       }
       if(right) right.parentElement.classList.add('correct');
-      return !!(chosen&&chosen.dataset.correct==='true')
+      return !!(chosen && chosen.dataset.correct==='true');
     }
+
+    function evalMulti(q){
+      const checks = [...q.querySelectorAll('input[type="checkbox"]')];
+      let allGood = true; let anyChecked = false;
+      checks.forEach(ch=>{
+        const isRight = ch.dataset.correct==='true';
+        if(ch.checked){ anyChecked=true; }
+        if(isRight && ch.checked){ ch.parentElement.classList.add('correct'); }
+        if(!isRight && ch.checked){ ch.parentElement.classList.add('incorrect'); allGood=false; }
+        if(isRight && !ch.checked){ allGood=false; }
+      });
+      checks.filter(ch=>ch.dataset.correct==='true').forEach(ch=>ch.parentElement.classList.add('correct'));
+      return allGood && (anyChecked || checks.some(ch=>ch.dataset.correct==='true'));
+    }
+
+    function evalMatch(q){
+      const selects = [...q.querySelectorAll('select')];
+      let ok = true;
+      selects.forEach(sel=>{
+        const expected = sel.dataset.answer;
+        if(sel.value===expected){ sel.parentElement.classList.add('correct'); }
+        else{ sel.parentElement.classList.add('incorrect'); ok=false; }
+      });
+      return ok;
+    }
+
+    function evalFill(q){
+      const inputs = [...q.querySelectorAll('input[type="text"]')];
+      let ok = true;
+      inputs.forEach(inp=>{
+        const answers = (inp.dataset.answers||'').split('|').map(normalize);
+        const user = normalize(inp.value);
+        if(answers.includes(user)){ inp.parentElement.classList.add('correct'); }
+        else{ inp.parentElement.classList.add('incorrect'); ok=false; }
+      });
+      return ok;
+    }
+
     function lockQuestion(q){
-      q.querySelectorAll('input').forEach(i=>i.disabled=true);
-      const exp=q.querySelector('.explain');if(exp)exp.style.display='block'
+      q.querySelectorAll('input, select').forEach(i=>i.disabled=true);
+      const exp = q.querySelector('.explain'); if(exp) exp.style.display='block';
     }
 
-    // ===== Diploma: tamaño Carta, márgenes 2.5 cm, contenido más pequeño =====
-    function generateCertificate(name,correct,total,pct,five){
-      const today=new Date();
-      const dateStr=today.toLocaleDateString('es-CO',{year:'numeric',month:'long',day:'numeric'});
-      const course='Quiz de Sistemas Operativos';
-      const city='Villavicencio, Meta';
+    // ===== Diploma (A4 landscape, estilo Lucas) =====
+    function generateCertificate(name, correct, total, pct, five){
+      const today = new Date();
+      const dateStr = today.toLocaleDateString('es-CO', {year:'numeric', month:'long', day:'numeric'});
+      const course = 'Quiz de Sistemas Operativos';
+      const city = 'Villavicencio, Meta';
 
-      const w=window.open('','_blank');
-      const head=`
-        <meta charset="utf-8">
+      const w = window.open('', '_blank');
+      const head = `
+        <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Diploma · Ing. Lucas Learning Hub</title>
+        <meta name="description" content="Plantilla de diploma imprimible en PDF/A4." />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
         <style>
           :root{ --primary:#0d47a1; --accent:#7e57c2; --gold:#c6a45a; --ink:#222; --paper:#fcfbf7; --shadow:rgba(0,0,0,.08); }
-          /* Hoja Carta con márgenes de 2.5 cm */
-          @page { size: Letter portrait; margin: 2.5cm; }
-          html,body{height:100%}
+          @page { size: A4 landscape; margin: 12mm; }
           body{ margin:0; background:#eceff1; font-family:Montserrat, Arial, sans-serif; color:var(--ink); }
-          /* Contenedor reducido para caber dentro del área imprimible (≈16.2 x 22 cm) */
-          .sheet{
-            width:16.2cm;           /* menor que el ancho imprimible (≈16.59cm) */
-            min-height:22cm;        /* menor que el alto imprimible (≈22.94cm) */
-            background:var(--paper);
-            position:relative;
-            margin:0 auto;
-            box-shadow:0 12px 30px var(--shadow);
-            overflow:hidden;
-            display:flex; align-items:center; justify-content:center;
-            padding:12mm;
-          }
-          .frame{position:absolute; inset:6mm; border:1.8mm solid var(--gold); box-shadow:inset 0 0 0 2.2mm var(--paper)}
-          .frame::before{content:""; position:absolute; inset:4mm; border:0.8mm solid var(--accent); border-radius:6px}
-          .watermark{position:absolute; inset:0; display:grid; place-items:center; pointer-events:none; opacity:.07; filter:grayscale(30%)}
-          .watermark img{width:60%; max-width:520px; object-fit:contain}
-          .content{position:relative; width:100%; text-align:center; z-index:1; display:flex; flex-direction:column; align-items:center; gap:8px}
-          .badge img{height:30mm; width:auto; object-fit:contain; margin-bottom:2mm}
-          .issuer{letter-spacing:.18em; text-transform:uppercase; color:#546e7a; font-weight:700; font-size:11px}
-          .title{font-family:Cinzel, serif; font-weight:700; font-size:40px; letter-spacing:.04em; color:#1a237e; margin:2mm 0 0}
-          .subtitle{font-family:Libre Baskerville, serif; font-size:16px; color:#37474f; margin:0}
-          .recipient{margin:6mm 0 3mm}
-          .label{font-size:11px; color:#607d8b; letter-spacing:.2em; text-transform:uppercase}
-          .name{font-family:Cinzel, serif; font-size:30px; font-weight:700; color:#263238; margin:2mm 0}
-          .body{font-family:Libre Baskerville, serif; font-size:14px; color:#37474f; max-width:16cm; line-height:1.5; margin:0 auto}
-          @media print{
-            body{ background:transparent }
-            .sheet{ box-shadow:none }
-          }
+          .wrap{ min-height:100%; display:flex; align-items:center; justify-content:center; padding:24px; }
+          .sheet{ width:297mm; height:210mm; background:var(--paper); position:relative; box-shadow:0 18px 40px var(--shadow); overflow:hidden; display:flex; align-items:center; justify-content:center; }
+          .frame{ position:absolute; inset:10mm; background:transparent; border:1.8mm solid var(--gold); box-shadow:inset 0 0 0 2.2mm var(--paper) }
+          .frame::before{ content:""; position:absolute; inset:6mm; border:0.8mm solid var(--accent); border-radius:6px }
+          .watermark{ position:absolute; inset:0; display:grid; place-items:center; pointer-events:none; opacity:.07; filter:grayscale(30%) }
+          .watermark img{ width:55%; max-width:680px; object-fit:contain }
+          .content{ position:relative; width:85%; text-align:center; z-index:1; display:flex; flex-direction:column; align-items:center; gap:10px }
+          .badge img{ height:38mm; width:auto; object-fit:contain; margin-bottom:2mm }
+          .issuer{ letter-spacing:.18em; text-transform:uppercase; color:#546e7a; font-weight:700; font-size:12px }
+          .title{ font-family:Cinzel, serif; font-weight:700; font-size:48px; letter-spacing:.06em; color:#1a237e; margin:2mm 0 0 }
+          .subtitle{ font-family:Libre Baskerville, serif; font-size:18px; color:#37474f; margin:0 }
+          .recipient{ margin:6mm 0 3mm }
+          .label{ font-size:12px; color:#607d8b; letter-spacing:.2em; text-transform:uppercase }
+          .name{ font-family:Cinzel, serif; font-size:38px; font-weight:700; color:#263238; margin:2mm 0 }
+          .body{ font-family:Libre Baskerville, serif; font-size:16px; color:#37474f; max-width:900px; line-height:1.5 }
+          @media print{ body{ background:transparent } .sheet{ box-shadow:none } }
         </style>`;
-      const body=`
-        <section class="sheet" aria-label="Diploma imprimible">
-          <div class="frame" aria-hidden="true"></div>
-          <div class="watermark" aria-hidden="true">
-            <img src="galeria/logo/logoinglucas.svg" alt="Marca Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.svg'">
-          </div>
-          <div class="content">
-            <div class="badge">
-              <img src="galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.png'">
+
+      const body = `
+        <div class="wrap">
+          <section class="sheet" aria-label="Diploma imprimible">
+            <div class="frame" aria-hidden="true"></div>
+            <div class="watermark" aria-hidden="true">
+              <img src="galeria/logo/logoinglucas.svg" alt="Marca Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.svg'">
             </div>
-            <div class="issuer">Ing. Lucas Learning Hub</div>
-            <h1 class="title">Diploma de Reconocimiento</h1>
-            <p class="subtitle">Por desempeño en evaluación académica</p>
-            <div class="recipient">
-              <div class="label">Se confiere a</div>
-              <div class="name">${name||'Anónimo'}</div>
+            <div class="content">
+              <div class="badge">
+                <img src="galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas" onerror="this.onerror=null;this.src='logoinglucas.png'">
+              </div>
+              <div class="issuer">Ing. Lucas Learning Hub</div>
+              <h1 class="title">Diploma de Reconocimiento</h1>
+              <p class="subtitle">Por desempeño en evaluación académica</p>
+              <div class="recipient">
+                <div class="label">Se confiere a</div>
+                <div class="name">${name||'Anónimo'}</div>
+              </div>
+              <p class="body">
+                Ha obtenido una calificación de <strong>${five.toFixed(1)} / 5.0 (${pct}%)</strong> en <strong>${course}</strong>.
+                Este diploma se expide en <span>${city}</span>, a los <span>${dateStr}</span>.
+              </p>
             </div>
-            <p class="body">
-              Ha obtenido una calificación de <strong>${five.toFixed(1)} / 5.0 (${pct}%)</strong> en <strong>${course}</strong>.
-              Este diploma se expide en <span>${city}</span>, a los <span>${dateStr}</span>.
-            </p>
-          </div>
-        </section>
+          </section>
+        </div>
         <script>window.onload=()=>{window.print();};<\/script>`;
+
       w.document.write(`<html lang="es"><head>${head}</head><body>${body}</body></html>`);
       w.document.close();
     }
 
+    // ===== Evaluación completa =====
     function evalQuiz(){
-      const questions=[...quizEl.querySelectorAll('.question')];
-      let correct=0;
-      questions.forEach(q=>{let ok=false;if(q.dataset.type==='single') ok=evalSingle(q);if(ok)correct++;lockQuestion(q)});
-      const total=questions.length;
-      const pct=Math.round((correct/total)*100);
-      const fiveScale=Math.round((correct/total)*50)/10;
-      resultEl.innerHTML=`Resultado: ${correct}/${total} - ${pct}% - ${fiveScale.toFixed(1)}/5.0`;
-      resultEl.style.display='block';
-      const name=loadName()||'Anónimo';
-      generateCertificate(name,correct,total,pct,fiveScale)
+      const questions = [...document.querySelectorAll('.question')];
+      let correct = 0;
+
+      questions.forEach(q => {
+        q.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','incorrect'));
+        let ok=false;
+        const type = q.dataset.type||'single';
+        if(type==='single') ok = evalSingle(q);
+        else if(type==='multi') ok = evalMulti(q);
+        else if(type==='match') ok = evalMatch(q);
+        else if(type==='fill') ok = evalFill(q);
+        if(ok) correct++;
+        lockQuestion(q);
+      });
+
+      const total = questions.length;
+      const pct = Math.round((correct/total)*100);
+      const fiveScale = Math.round((correct/total)*50)/10; // 0.0 – 5.0
+
+      resultEl.innerHTML = `
+        <div><b>Resultado:</b> ${correct} / ${total}
+          <span class="badge ${pct>=60?'ok':'bad'}">${pct}%</span>
+          <span class="badge ${fiveScale>=3?'ok':'bad'}">${fiveScale.toFixed(1)} / 5.0</span>
+        </div>
+        <div style="margin-top:6px;color:var(--muted)">
+          Meta sugerida: ≥ 80% (≥ 4.0). Revisa las explicaciones y vuelve a intentar.
+        </div>`;
+      resultEl.style.display = 'block';
+
+      const name = loadName() || 'Anónimo';
+      generateCertificate(name, correct, total, pct, fiveScale);
     }
 
     function resetQuiz(){
-      resultEl.style.display='none';
-      quizEl.querySelectorAll('.question').forEach(q=>{
-        q.querySelectorAll('input').forEach(i=>{i.checked=false;i.disabled=false});
+      resultEl.style.display = 'none';
+      document.querySelectorAll('.question').forEach(q =>{
+        q.querySelectorAll('input').forEach(i => {
+          if(i.type==='radio'||i.type==='checkbox'){i.checked=false;}
+          else if(i.type==='text'){i.value='';}
+          i.disabled=false;
+        });
+        q.querySelectorAll('select').forEach(s=>{s.value=''; s.disabled=false;});
         q.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','incorrect'));
-        const exp=q.querySelector('.explain');if(exp)exp.style.display='none'
-      })
+        const exp = q.querySelector('.explain'); if(exp) exp.style.display='none';
+      });
+      window.scrollTo({top:0,behavior:'smooth'});
+      if(!loadName()){ welcome.style.display='flex'; }
     }
 
-    showBtn.addEventListener('click',evalQuiz);
-    resetBtn.addEventListener('click',resetQuiz);
+    document.getElementById('show').addEventListener('click', evalQuiz);
+    document.getElementById('reset').addEventListener('click', resetQuiz);
   </script>
 </body>
 </html>
