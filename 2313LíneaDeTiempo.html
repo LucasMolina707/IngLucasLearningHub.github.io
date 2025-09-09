@@ -28,23 +28,15 @@
   <link rel="alternate" hreflang="es" href="https://hub.inglucas.com.co/">
 
   <!-- ====== ICONOGRAFÍA / FAVICONS (desde el mismo repo) ====== -->
-  <!-- Favicon clásico -->
   <link rel="icon" href="/galeria/logo/logoinglucas.ico" sizes="any">
-  <!-- SVG vectorial (modernos) -->
   <link rel="icon" type="image/svg+xml" href="/galeria/logo/logoinglucas.svg">
-  <!-- PNGs en varios tamaños para compatibilidad -->
   <link rel="icon" type="image/png" sizes="48x48" href="/galeria/logo/logoinglucas.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/galeria/logo/logoinglucas.png">
-  <!-- Apple touch icon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/galeria/logo/logoinglucas.png">
-  <!-- Pinned tab Safari -->
   <link rel="mask-icon" href="/galeria/logo/logoinglucas.svg" color="#2563eb">
-  <!-- Windows tiles -->
   <meta name="msapplication-TileColor" content="#0b1730">
-  <meta name="msapplication-config" content="/browserconfig.xml"><!-- [SEO/INFO] opcional -->
-  <!-- Manifest PWA (para que buscadores lean nombre/iconos) -->
+  <meta name="msapplication-config" content="/browserconfig.xml">
   <link rel="manifest" href="/site.webmanifest">
-  <!-- [SEO/INFO] El .ai no se referencia como favicon (no lo soportan). Guárdalo en /galeria/logo/logoinglucas.ai para diseño. -->
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
@@ -53,18 +45,16 @@
   <meta property="og:title" content="Ing. Lucas Molina · Learning Hub">
   <meta property="og:description" content="Proyectos y recursos de Ing. Lucas Molina (Ing Lucas) en Colombia.">
   <meta property="og:url" content="https://hub.inglucas.com.co/">
-  <meta property="og:image" content="/multimedia/cover-og.webp"><!-- [SEO/TODO] 1200x630, <300KB -->
+  <meta property="og:image" content="/multimedia/cover-og.webp">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ing. Lucas Molina · Learning Hub">
   <meta name="twitter:description" content="Portafolio, proyectos y tutoriales del Ing Lucas en Colombia.">
   <meta name="twitter:image" content="/multimedia/cover-og.webp">
 
-  <!-- Color de la UI del navegador -->
   <meta name="theme-color" content="#0d47a1" />
 
   <!-- ====== DATOS ESTRUCTURADOS (JSON-LD) ====== -->
-  <!-- Person + WebSite + Organization con logo (para mostrar logo en SERP) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -107,33 +97,23 @@
         "@id": "https://hub.inglucas.com.co/#organization",
         "name": "Ing. Lucas Learning Hub",
         "url": "https://hub.inglucas.com.co/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "/galeria/logo/logoinglucas.png"
-        },
-        "sameAs": [
-          "https://github.com/IngLucas",
-          "https://www.linkedin.com/in/IngLucas"
-        ]
+        "logo": { "@type": "ImageObject", "url": "/galeria/logo/logoinglucas.png" },
+        "sameAs": [ "https://github.com/IngLucas", "https://www.linkedin.com/in/IngLucas" ]
       }
     ]
   }
   </script>
 
-  <!-- Breadcrumbs opcionales (rellena por página) -->
+  <!-- Breadcrumbs opcionales -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hub.inglucas.com.co/" }
-    ]
-  }
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    { "@type":"ListItem","position":1,"name":"Inicio","item":"https://hub.inglucas.com.co/" }
+  ]}
   </script>
 
   <style>
     /* =============================================================
-       PALETA DE ARMONÍA (alto contraste, sin negros puros)
+       PALETA DE ARMONÍA
        ============================================================= */
     :root{
       --blue-900:#0b1730; --blue-800:#0f2346; --blue-700:#153769; --blue-600:#1c4b8c; --blue-500:#2563eb; --blue-400:#60a5fa;
@@ -146,28 +126,19 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
-      background:linear-gradient(180deg,var(--panel-2),var(--bg)); color:var(--text)
-    }
+    body{ margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg,var(--panel-2),var(--bg)); color:var(--text) }
     a{color:var(--blue-400); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
-    /* =============================================================
-       TOPBAR + ACCIONES (logo + botones a la derecha)
-       ============================================================= */
+    /* TOPBAR */
     .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
-
-    .logo{
-      width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden;
-      background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)
-    }
+    .logo{ width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25) }
     .logo img{width:100%; height:100%; object-fit:cover; display:block}
     .brand{display:flex; flex-direction:column}
     .brand strong{font-size:16px}
     .brand span{font-size:12px; color:var(--muted)}
-
     .actions{ margin-left:auto; display:flex; gap:10px; align-items:center }
     .icon-btn{
       --size:40px; width:var(--size); height:var(--size); display:inline-grid; place-items:center;
@@ -180,9 +151,7 @@
     .icon-btn:focus-visible{ outline:none; box-shadow:var(--accent-ring) }
     .icon-btn svg{ width:22px; height:22px; display:block }
 
-    /* =============================================================
-       DRAWER / MENÚ LATERAL (derecha)
-       ============================================================= */
+    /* DRAWER */
     .drawer{ position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform }
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
@@ -193,9 +162,7 @@
     .nav a{padding:12px 12px; border-top:1px solid var(--border)}
     .nav a:hover{background:rgba(37,99,235,.18)}
 
-    /* =============================================================
-       WORKSPACE
-       ============================================================= */
+    /* WORKSPACE */
     .workspace{padding:24px 0}
     .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
     .window-titlebar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; background:linear-gradient(180deg,#1a2333,#151c29); border-bottom:1px solid var(--border)}
@@ -210,22 +177,18 @@
     .window-body{display:grid; grid-template-columns:1fr; gap:0}
     .pane{padding:18px; min-height:420px; background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(12,16,24,.95))}
 
-    /* Pie fijo del proyecto dentro del workspace */
+    /* Nota inferior del proyecto */
     .project-note{ position:sticky; bottom:0; left:0; right:0; z-index:10; border-top:1px dashed var(--border); background:linear-gradient(180deg,rgba(20,26,36,.95),rgba(14,18,26,.95)); padding:12px 16px; color:var(--muted); font-size:13px; display:flex; gap:10px; align-items:flex-start }
     .project-note .tag{padding:2px 8px; border-radius:999px; border:1px solid var(--border); font-size:12px; background:rgba(37,99,235,.10); color:var(--text)}
 
-    /* =============================================================
-       FOOTER
-       ============================================================= */
+    /* FOOTER */
     footer{border-top:1px solid var(--border); color:var(--muted); padding:22px 0; font-size:13px; background:linear-gradient(180deg,#0f1624,#0c121e)}
     .foot{display:grid; gap:12px}
     @media(min-width:860px){.foot{grid-template-columns:1fr auto}}
     .socials{display:flex; gap:10px; flex-wrap:wrap}
     .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:#eef5ff}
 
-    /* =============================================================
-       BANNER COOKIES (alto contraste)
-       ============================================================= */
+    /* COOKIES */
     .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
     .consent .card{ max-width:960px; margin:0 auto; background:#0f172a; color:#e6efff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.28); padding:16px 18px; border:1px solid rgba(96,165,250,.25); }
     .consent .row{ display:flex; gap:16px; align-items:flex-start; }
@@ -235,9 +198,7 @@
     .btn.primary{ background:var(--blue-500); border-color:transparent; color:white; }
     .btn:hover{ filter:brightness(1.05); }
 
-    /* =============================================================
-       PANEL DE COMENTARIOS (izquierda)
-       ============================================================= */
+    /* COMMENTS DRAWER */
     .comments-drawer{ position:fixed; z-index:80; inset:0 auto 0 0; width:420px; max-width:92vw; background:linear-gradient(180deg,#0b1626,#0a1220); border-right:2px solid var(--blue-500); box-shadow:20px 0 40px rgba(0,0,0,.45); transform:translateX(-100%); transition:.25s ease transform; display:flex; flex-direction:column; }
     .comments-drawer.open{ transform:translateX(0) }
     .comments-drawer .hd{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border)}
@@ -251,7 +212,6 @@
        ============================================================= -->
   <div class="topbar">
     <div class="wrap row">
-      <!-- Logo usando rutas del MISMO repo -->
       <a class="logo" href="/" aria-label="Inicio · Ing. Lucas Learning Hub">
         <picture>
           <source srcset="/galeria/logo/logoinglucas.svg" type="image/svg+xml">
@@ -260,17 +220,16 @@
       </a>
 
       <div class="brand">
-        <!-- [SEO/TODO] Marca + claim -->
         <strong>Ing. Lucas Learning Hub</strong>
         <span>Plantilla Base</span>
       </div>
 
       <div class="actions">
-        <!-- Botón: abrir comentarios (icono solo) -->
-        <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios">
+        <!-- Botón comentarios -->
+        <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
         </button>
-        <!-- Botón: abrir menú (hover/click en desktop) -->
+        <!-- Botón menú -->
         <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
         </button>
@@ -309,7 +268,7 @@
   </aside>
 
   <!-- =============================================================
-       PANEL DE COMENTARIOS (izquierda)
+       PANEL DE COMENTARIOS (izquierda) — Utterances on-demand
        ============================================================= -->
   <aside class="comments-drawer" id="commentsDrawer" aria-label="Comentarios" aria-hidden="true">
     <div class="hd">
@@ -317,7 +276,6 @@
       <button class="btn" id="closeComments" aria-label="Cerrar comentarios">Cerrar ✕</button>
     </div>
     <div class="bd">
-      <!-- Utterances se inyecta aquí on-demand -->
       <div id="commentsMount" aria-live="polite"></div>
     </div>
   </aside>
@@ -330,9 +288,7 @@
       <div class="window-titlebar">
         <div class="title-left">
           <div class="traffic" aria-hidden="true">
-            <span class="dot close"></span>
-            <span class="dot min"></span>
-            <span class="dot max"></span>
+            <span class="dot close"></span><span class="dot min"></span><span class="dot max"></span>
           </div>
           <div>
             <div class="window-title">Inicio · Ing. Lucas Learning Hub</div>
@@ -344,8 +300,8 @@
 
       <div class="window-body">
         <section class="pane">
-          <!-- [ADD][ES] Bloque integrado del proyecto con estructura académica, completamente encapsulado bajo data-scope="ilh" para evitar fugas de estilo/JS.
-               [ADD][EN] Integrated project block with academic structure, fully namespaced under data-scope="ilh" to avoid style/JS leakage. -->
+          <!-- [ADD][ES] Bloque integrado del proyecto con estructura académica, encapsulado en data-scope="ilh".
+               [ADD][EN] Integrated project block with academic structure, namespaced under data-scope="ilh". -->
 
           <article data-scope="ilh" class="ilh-wrap" aria-labelledby="ilh-h1">
             <!-- ========================= Introducción ========================= -->
@@ -362,8 +318,6 @@
             </header>
 
             <!-- ========================== Desarrollo ========================== -->
-            <!-- [ADD][ES] Contenedor con desplazamiento horizontal seguro en móvil
-                 [ADD][EN] Horizontal-scroll container safe for mobile layouts -->
             <section class="ilh-dev">
               <div class="ilh-controls">
                 <div class="ilh-legend" aria-hidden="true">
@@ -560,9 +514,7 @@
 
           <!-- =================== ESTILOS ENCAPSULADOS (.ilh-*) =================== -->
           <style>
-            /* [ADD][ES] Todo lo de .ilh-* queda confinado dentro de [data-scope="ilh"].
-               [ADD][EN] All .ilh-* styles are confined within [data-scope="ilh"]. */
-
+            /* [ADD][ES] Estilos confinados dentro de [data-scope="ilh"] */
             [data-scope="ilh"]{display:grid; gap:18px}
             .ilh-head h1{margin:0; font-size:clamp(22px,3.8vw,34px); line-height:1.2}
             .ilh-sub{color:var(--muted); margin:6px 0 0}
@@ -572,72 +524,47 @@
             .ilh-legend{display:flex; gap:14px; flex-wrap:wrap; color:#bcd1ff; opacity:.9; font-size:12px}
             .ilh-legend i{display:inline-block; width:14px; height:4px; border-radius:2px; margin-right:6px}
             .ilh-buttons{display:flex; gap:10px}
-            .ilh-btn{
-              padding:8px 12px; border-radius:999px; border:1px solid var(--border);
-              background:rgba(255,255,255,.06); color:var(--text); cursor:pointer
-            }
+            .ilh-btn{ padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--text); cursor:pointer }
             .ilh-btn:hover{filter:brightness(1.06)}
             .ilh-primary{background:linear-gradient(90deg,var(--blue-600),var(--purple-600)); border-color:transparent; font-weight:600}
 
             .ilh-timeline{position:relative; display:grid; gap:10px}
-            .ilh-line{
-              position:absolute; left:0; right:0; top:50%; transform:translateY(-50%);
-              height:2px; border-radius:999px;
-              background:linear-gradient(90deg,#1e40af,#3b82f6,#06b6d4,#10b981,#f59e0b,#ef4444,#8b5cf6,#ec4899);
-              opacity:.7
-            }
+            .ilh-line{ position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); height:2px; border-radius:999px;
+              background:linear-gradient(90deg,#1e40af,#3b82f6,#06b6d4,#10b981,#f59e0b,#ef4444,#8b5cf6,#ec4899); opacity:.7 }
 
-            .ilh-rail{
-              position:relative; overflow-x:auto; overflow-y:visible; scroll-snap-type:x mandatory;
-              display:flex; gap:16px; padding:18px 2px 26px 2px
-            }
+            .ilh-rail{ position:relative; overflow-x:auto; overflow-y:visible; scroll-snap-type:x mandatory; display:flex; gap:16px; padding:18px 2px 26px 2px }
             .ilh-rail::-webkit-scrollbar{height:10px}
             .ilh-rail::-webkit-scrollbar-track{background:rgba(255,255,255,.04); border-radius:999px}
             .ilh-rail::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18); border-radius:999px}
 
-            .ilh-item{
-              scroll-snap-align:center; position:relative; min-width:min(82vw,420px);
-              transition:transform .3s ease, opacity .3s ease; opacity:0; transform:translateY(30px)
-            }
+            .ilh-item{ scroll-snap-align:center; position:relative; min-width:min(82vw,420px);
+              transition:transform .3s ease, opacity .3s ease; opacity:0; transform:translateY(30px) }
             .ilh-item.is-in{opacity:1; transform:translateY(0)}
             @media (min-width:980px){ .ilh-item{min-width:460px} }
 
-            .ilh-dot{
-              position:absolute; left:50%; top:-6px; transform:translateX(-50%);
-              width:28px; height:28px; border-radius:999px; border:4px solid #fff; display:grid; place-items:center;
-              background:var(--dot,#1a63c7); box-shadow:0 10px 20px rgba(0,0,0,.35); transition:transform .3s ease, box-shadow .3s ease
-            }
+            .ilh-dot{ position:absolute; left:50%; top:-6px; transform:translateX(-50%); width:28px; height:28px; border-radius:999px; border:4px solid #fff; display:grid; place-items:center;
+              background:var(--dot,#1a63c7); box-shadow:0 10px 20px rgba(0,0,0,.35); transition:transform .3s ease, box-shadow .3s ease }
             .ilh-dot span{color:#fff; font-size:12px; font-weight:700}
             .ilh-pulse{animation:ilhPulse 2s infinite}
             @keyframes ilhPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.2)}}
 
-            .ilh-card{
-              margin-top:22px; background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));
+            .ilh-card{ margin-top:22px; background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));
               border:1px solid rgba(255,255,255,.18); border-radius:16px; padding:16px; backdrop-filter:blur(8px);
-              transition:transform .25s ease, box-shadow .25s ease
-            }
+              transition:transform .25s ease, box-shadow .25s ease }
             .ilh-item:hover .ilh-card{transform:translateY(-6px) scale(1.02); box-shadow:0 12px 28px rgba(0,0,0,.35)}
             .ilh-item:hover .ilh-dot{transform:translateX(-50%) scale(1.15); box-shadow:0 0 24px rgba(59,130,246,.6)}
 
-            .ilh-badge{
-              display:inline-block; font-size:12px; color:#fff; font-weight:700; margin-bottom:8px;
-              padding:6px 10px; border-radius:999px;
-              background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)
-            }
+            .ilh-badge{ display:inline-block; font-size:12px; color:#fff; font-weight:700; margin-bottom:8px; padding:6px 10px; border-radius:999px;
+              background:linear-gradient(135deg,#667eea 0%,#764ba2 100%) }
             .ilh-card h3{margin:6px 0 8px; font-size:20px}
             .ilh-card p{margin:0 0 8px; color:#d7e3f5}
             .ilh-card ul{margin:0 0 10px 16px; padding:0; color:#c8d6ec}
             .ilh-card li{margin:4px 0}
             .ilh-tags{display:flex; gap:8px; flex-wrap:wrap}
-            .ilh-tags span{
-              display:inline-block; font-size:11px; color:#b9d5ff;
-              padding:6px 10px; border-radius:999px; background:rgba(59,130,246,.18); border:1px solid rgba(59,130,246,.32)
-            }
+            .ilh-tags span{ display:inline-block; font-size:11px; color:#b9d5ff; padding:6px 10px; border-radius:999px; background:rgba(59,130,246,.18); border:1px solid rgba(59,130,246,.32) }
 
             .ilh-scrollbar{padding:0 6px}
-            .ilh-scrollbar input[type="range"]{
-              width:100%; accent-color:var(--blue-500); cursor:pointer
-            }
+            .ilh-scrollbar input[type="range"]{ width:100%; accent-color:var(--blue-500); cursor:pointer }
 
             .ilh-conc h2, .ilh-refs h2{margin:8px 0 6px}
             .ilh-conc ol{margin:0 0 0 18px}
@@ -655,7 +582,6 @@
               const btnA   = document.getElementById('ilh-animate');
               const slider = document.getElementById('ilh-scroll');
               const items  = Array.from(document.querySelectorAll('.ilh-item'));
-
               if(!rail) return;
 
               // Animación por lotes
@@ -718,7 +644,6 @@
         <footer class="project-note" aria-label="Nota del proyecto">
           <span class="tag">🧩 Proyecto</span>
           <div>
-            <!-- [UI/TODO] Edita título y nota fija del proyecto -->
             <strong id="projectTitle">Línea de Tiempo (2313)</strong>
             <div id="projectNote">Evolución: de programación manual a era móvil/IA. Controles: ◀/▶ y slider inferior.</div>
           </div>
@@ -758,7 +683,7 @@
   </footer>
 
   <!-- =============================================================
-       BANNER COOKIES (alto contraste)
+       BANNER COOKIES
        ============================================================= -->
   <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
     <div class="card">
@@ -784,7 +709,7 @@
   </noscript>
 
   <script>
-    // Año
+    // Año en footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
     // ========= Menú lateral (hover en desktop, autocierre en móvil) =========
@@ -795,8 +720,16 @@
     const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
     const isMobile  = matchMedia('(hover:none) and (pointer:coarse)').matches;
 
-    function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); openBtn?.setAttribute('aria-expanded','true'); }
-    function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); openBtn?.setAttribute('aria-expanded','false'); }
+    function openDrawer(){
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden','false');
+      openBtn?.setAttribute('aria-expanded','true');
+    }
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden','true');
+      openBtn?.setAttribute('aria-expanded','false');
+    }
 
     openBtn?.addEventListener('click', (e)=>{ e.stopPropagation(); openDrawer(); });
     closeBtn?.addEventListener('click', closeDrawer);
@@ -804,7 +737,9 @@
 
     if (isDesktop){
       openBtn?.addEventListener('mouseenter', openDrawer);
-      openBtn?.addEventListener('mouseleave', ()=>{ setTimeout(()=>{ const overDrawer = drawer.matches(':hover'); if(!overDrawer) closeDrawer(); }, 150); });
+      openBtn?.addEventListener('mouseleave', ()=>{
+        setTimeout(()=>{ const overDrawer = drawer.matches(':hover'); if(!overDrawer) closeDrawer(); }, 150);
+      });
       drawer?.addEventListener('mouseleave', closeDrawer);
     }
 
@@ -835,8 +770,11 @@
       if(shouldShowBanner(saved)){ banner.style.display='block'; }
       else if(saved && saved.status === 'granted'){ enableAnalytics(); }
       allow?.addEventListener('click', ()=>{ setConsent('granted'); banner.style.display='none'; enableAnalytics(); });
-      deny ?.addEventListener('click', ()=>{ setConsent('denied');  banner.style.display='none'); });
-      document.getElementById('manageConsent')?.addEventListener('click',(e)=>{ e.preventDefault(); banner.style.display='block'; });
+      // FIX: eliminación de paréntesis extra
+      deny ?.addEventListener('click', ()=>{ setConsent('denied');  banner.style.display='none'; });
+      document.getElementById('manageConsent')?.addEventListener('click',(e)=>{
+        e.preventDefault(); banner.style.display='block';
+      });
     }
     document.addEventListener('DOMContentLoaded', initConsentBanner);
 
@@ -851,7 +789,7 @@
       if(commentsLoaded) return;
       const s = document.createElement('script');
       s.src = 'https://utteranc.es/client.js';
-      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io'); // [SEO/INFO] Repo de issues
+      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io'); // [ADD][ES] Repo de issues
       s.setAttribute('issue-term','pathname');
       s.setAttribute('theme','icy-dark');
       s.setAttribute('crossorigin','anonymous');
@@ -860,8 +798,18 @@
       commentsLoaded = true;
     }
 
-    function openComments(){ commentsDrawer.classList.add('open'); commentsDrawer.setAttribute('aria-hidden','false'); injectUtterances(); if(isDesktop) resetInactivity(); }
-    function closeComments(){ commentsDrawer.classList.remove('open'); commentsDrawer.setAttribute('aria-hidden','true'); }
+    function openComments(){
+      commentsDrawer.classList.add('open');
+      commentsDrawer.setAttribute('aria-hidden','false');
+      openCommentsBtn?.setAttribute('aria-expanded','true');
+      injectUtterances();
+      if(isDesktop) resetInactivity();
+    }
+    function closeComments(){
+      commentsDrawer.classList.remove('open');
+      commentsDrawer.setAttribute('aria-hidden','true');
+      openCommentsBtn?.setAttribute('aria-expanded','false');
+    }
 
     openCommentsBtn?.addEventListener('click',(e)=>{
       e.stopPropagation();
@@ -889,7 +837,6 @@
         document.addEventListener(evt, ()=>{ lastActivity = Date.now(); }, {passive:true});
       });
     }
-    // En móvil NO se auto-cierra el panel de comentarios.
 
     // Accesibilidad: ESC cierra ambos paneles
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeDrawer(); closeComments(); }});
