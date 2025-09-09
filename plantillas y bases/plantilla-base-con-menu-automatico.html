@@ -157,7 +157,7 @@
 
     /* =============================================================
        TOPBAR + ACCIONES (logo + botones a la derecha)
-       ============================================================= */
+    ============================================================= */
     .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
 
@@ -269,11 +269,11 @@
 
       <div class="actions">
         <!-- Botón: abrir comentarios (icono solo) -->
-        <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios">
+        <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios" aria-expanded="false" aria-controls="commentsDrawer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
         </button>
         <!-- Botón: abrir menú (hover/click en desktop) -->
-        <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false">
+        <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
         </button>
       </div>
@@ -422,68 +422,116 @@
     // Año
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // ========= Menú lateral (hover en desktop, autocierre en móvil) =========
-    const drawer = document.getElementById('drawer');
-    const openBtn = document.getElementById('openDrawer');
-    const closeBtn = document.getElementById('closeDrawer');
+    // ============================================================
+    // Helpers de accesibilidad / estado
+    // ============================================================
+    const qs = sel => document.querySelector(sel);
+    const $drawer = qs('#drawer');
+    const $comments = qs('#commentsDrawer');
+    const $btnDrawer = qs('#openDrawer');
+    const $btnComments = qs('#openComments');
 
     const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
     const isMobile  = matchMedia('(hover:none) and (pointer:coarse)').matches;
 
-    function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); openBtn?.setAttribute('aria-expanded','true'); }
-    function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); openBtn?.setAttribute('aria-expanded','false'); }
+    function setOpen(el, btn, open){
+      el.classList.toggle('open', open);
+      el.setAttribute('aria-hidden', open ? 'false' : 'true');
+      btn?.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
 
-    openBtn?.addEventListener('click', (e)=>{ e.stopPropagation(); openDrawer(); });
-    closeBtn?.addEventListener('click', closeDrawer);
-    drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
+    // ============================================================
+    // Drawer (menú)
+    // ============================================================
+    const $closeDrawer = qs('#closeDrawer');
+    let drawerTimer = null;
+
+    function openDrawer(){
+      setOpen($drawer, $btnDrawer, true);
+      if (isMobile){
+        clearTimeout(drawerTimer);
+        drawerTimer = setTimeout(()=> closeDrawer(), 5000);
+      }
+    }
+    function closeDrawer(){
+      setOpen($drawer, $btnDrawer, false);
+      clearTimeout(drawerTimer);
+    }
+
+    $btnDrawer?.addEventListener('click', (e)=>{ e.stopPropagation(); ($drawer.classList.contains('open') ? closeDrawer() : openDrawer()); });
+    $closeDrawer?.addEventListener('click', closeDrawer);
 
     if (isDesktop){
-      openBtn?.addEventListener('mouseenter', openDrawer);
-      openBtn?.addEventListener('mouseleave', ()=>{ setTimeout(()=>{ const overDrawer = drawer.matches(':hover'); if(!overDrawer) closeDrawer(); }, 150); });
-      drawer?.addEventListener('mouseleave', closeDrawer);
+      $btnDrawer?.addEventListener('mouseenter', openDrawer);
+      $drawer?.addEventListener('mouseleave', closeDrawer);
     }
 
-    // Auto-cierre del MENÚ en móvil (no afecta comentarios)
-    let autoCloseTimer = null;
-    function startMobileAutoClose(){
-      if(!isMobile) return;
-      clearTimeout(autoCloseTimer);
-      autoCloseTimer = setTimeout(()=>{ closeDrawer(); }, 5000);
-    }
-    if(isMobile){
-      openBtn?.addEventListener('click', startMobileAutoClose);
-      ['click','touchstart'].forEach(evt=>{ drawer?.addEventListener(evt, startMobileAutoClose, {passive:true}); });
-    }
+    // Clic fuera cierra (pero no si haces clic en el interior)
+    document.addEventListener('click', (e)=>{
+      if ($drawer.classList.contains('open') && !e.composedPath().includes($drawer) && !e.composedPath().includes($btnDrawer)){
+        closeDrawer();
+      }
+    }, {passive:true});
 
-    // ========= Cookies Consent =========
+    // ============================================================
+    // Cookies Consent
+    // ============================================================
     const CONSENT_KEY = 'lucasConsent';
     const CONSENT_VERSION = 'v1-2025-09';
-    function getConsent(){ try { const raw = localStorage.getItem(CONSENT_KEY); return raw ? JSON.parse(raw) : null; } catch(e){ return null; } }
-    function setConsent(status){ try { const data = { status, version: CONSENT_VERSION, ts: Date.now() }; localStorage.setItem(CONSENT_KEY, JSON.stringify(data)); } catch(e){} }
-    function shouldShowBanner(saved){ if(!saved) return true; if(saved.version !== CONSENT_VERSION) return true; return false; }
-    function enableAnalytics(){ /* [SEO/TODO] Inyecta tu script solo si consent=granted */ }
+    const $consent = qs('#consent');
+    const $allow = qs('#allow');
+    const $deny  = qs('#deny');
+
+    function getConsent(){
+      try { return JSON.parse(localStorage.getItem(CONSENT_KEY) || 'null'); } catch(e){ return null; }
+    }
+    function setConsent(status){
+      try {
+        localStorage.setItem(CONSENT_KEY, JSON.stringify({ status, version: CONSENT_VERSION, ts: Date.now() }));
+      } catch(e){}
+    }
+    function shouldShowBanner(saved){
+      if(!saved) return true;
+      if(saved.version !== CONSENT_VERSION) return true;
+      return false;
+    }
+    function enableAnalytics(){
+      // [SEO/TODO] Inyecta aquí tu script de analíticas si status === 'granted'
+    }
     function initConsentBanner(){
-      const banner = document.getElementById('consent');
-      const allow = document.getElementById('allow');
-      const deny  = document.getElementById('deny');
       const saved = getConsent();
-      if(shouldShowBanner(saved)){ banner.style.display='block'; }
-      else if(saved && saved.status === 'granted'){ enableAnalytics(); }
-      allow?.addEventListener('click', ()=>{ setConsent('granted'); banner.style.display='none'; enableAnalytics(); });
-      deny ?.addEventListener('click', ()=>{ setConsent('denied');  banner.style.display='none'); });
-      document.getElementById('manageConsent')?.addEventListener('click',(e)=>{ e.preventDefault(); banner.style.display='block'; });
+      if (shouldShowBanner(saved)) {
+        $consent.style.display = 'block';
+      } else {
+        if (saved.status === 'granted') enableAnalytics();
+      }
+      $allow?.addEventListener('click', ()=>{
+        setConsent('granted');
+        $consent.style.display = 'none';
+        enableAnalytics();
+      });
+      $deny ?.addEventListener('click', ()=>{
+        setConsent('denied');
+        $consent.style.display = 'none';
+      });
+      qs('#manageConsent')?.addEventListener('click',(e)=>{
+        e.preventDefault();
+        $consent.style.display = 'block';
+      });
     }
     document.addEventListener('DOMContentLoaded', initConsentBanner);
 
-    // ========= Panel de comentarios (SIN auto-cierre en móviles) =========
-    const commentsDrawer = document.getElementById('commentsDrawer');
-    const openCommentsBtn = document.getElementById('openComments');
-    const closeCommentsBtn = document.getElementById('closeComments');
-    const commentsMount = document.getElementById('commentsMount');
+    // ============================================================
+    // Comentarios (Utterances on demand, sin fugas)
+    // ============================================================
+    const $closeComments = qs('#closeComments');
+    const $commentsMount = qs('#commentsMount');
     let commentsLoaded = false;
+    let inactivityTimer = null;
+    let lastActivity = Date.now();
 
     function injectUtterances(){
-      if(commentsLoaded) return;
+      if (commentsLoaded) return;
       const s = document.createElement('script');
       s.src = 'https://utteranc.es/client.js';
       s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io'); // [SEO/INFO] Repo de issues
@@ -491,63 +539,136 @@
       s.setAttribute('theme','icy-dark');
       s.setAttribute('crossorigin','anonymous');
       s.async = true;
-      commentsMount.appendChild(s);
+      $commentsMount.appendChild(s);
       commentsLoaded = true;
     }
 
-    function openComments(){ commentsDrawer.classList.add('open'); commentsDrawer.setAttribute('aria-hidden','false'); injectUtterances(); if(isDesktop) resetInactivity(); }
-    function closeComments(){ commentsDrawer.classList.remove('open'); commentsDrawer.setAttribute('aria-hidden','true'); }
+    function openComments(){
+      setOpen($comments, $btnComments, true);
+      injectUtterances();
+      if (isDesktop) startInactivityWatcher();
+    }
+    function closeComments(){
+      setOpen($comments, $btnComments, false);
+      stopInactivityWatcher();
+    }
 
-    openCommentsBtn?.addEventListener('click',(e)=>{
+    $btnComments?.addEventListener('click',(e)=>{
       e.stopPropagation();
-      if(commentsDrawer.classList.contains('open')) closeComments();
-      else openComments();
+      ($comments.classList.contains('open') ? closeComments() : openComments());
     });
-    closeCommentsBtn?.addEventListener('click', closeComments);
-    commentsDrawer?.addEventListener('click',(e)=>{ if(e.target===commentsDrawer) closeComments(); });
+    $closeComments?.addEventListener('click', closeComments);
 
-    // Auto-ocultar SOLO en desktop: 5s sin movimiento y sin hover en el panel
-    let lastActivity = Date.now();
-    let inactivityTimer = null;
-    function resetInactivity(){
+    // Clic fuera cierra
+    document.addEventListener('click', (e)=>{
+      if ($comments.classList.contains('open') && !e.composedPath().includes($comments) && !e.composedPath().includes($btnComments)){
+        closeComments();
+      }
+    }, {passive:true});
+
+    // Inactividad (solo desktop)
+    function startInactivityWatcher(){
       lastActivity = Date.now();
-      if(inactivityTimer || !isDesktop) return;
+      if (inactivityTimer) return;
       inactivityTimer = setInterval(()=>{
         const idleMs = Date.now() - lastActivity;
-        const hovering = commentsDrawer.matches(':hover');
-        if(commentsDrawer.classList.contains('open') && idleMs > 5000 && !hovering){ closeComments(); }
-        if(!commentsDrawer.classList.contains('open')){ clearInterval(inactivityTimer); inactivityTimer = null; }
+        const hovering = $comments.matches(':hover');
+        if($comments.classList.contains('open') && idleMs > 5000 && !hovering){
+          closeComments();
+        }
+        if(!$comments.classList.contains('open')){
+          stopInactivityWatcher();
+        }
       }, 500);
     }
-    if(isDesktop){
-      ['mousemove','keydown','wheel'].forEach(evt=>{
-        document.addEventListener(evt, ()=>{ lastActivity = Date.now(); }, {passive:true});
-      });
+    function stopInactivityWatcher(){
+      clearInterval(inactivityTimer);
+      inactivityTimer = null;
     }
-    // En móvil NO se auto-cierra el panel de comentarios.
+    ['mousemove','keydown','wheel'].forEach(evt=>{
+      document.addEventListener(evt, ()=>{ lastActivity = Date.now(); }, {passive:true});
+    });
 
-    // Accesibilidad: ESC cierra ambos paneles
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeDrawer(); closeComments(); }});
-  </script>
+    // ============================================================
+    // Accesibilidad global
+    // ============================================================
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        closeDrawer();
+        closeComments();
+      }
+    });
 
-  <!-- Bloque para pintar el menú automático desde /nav.json -->
-  <script>
-  (async () => {
-    try {
-      const res = await fetch('/nav.json', { cache: 'no-cache' });
-      if (!res.ok) throw new Error('nav.json no disponible');
-      const data = await res.json();
-      const paint = (id, list=[]) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.innerHTML = list.map(i => `<a href="${i.href}">${i.label}</a>`).join('');
-      };
-      paint('nav-pages', data.pages || []);
-      paint('nav-projects', data.projects || []);
-    } catch (e) {
-      console.warn('[menu] No se pudo cargar nav.json', e);
-    }
-  })();
+    // ============================================================
+    // Menú automático desde /nav.json (con fallback GitHub API)
+    // ============================================================
+    (async function initAutoMenu(){
+      const elPages = document.getElementById('nav-pages');
+      const elProjects = document.getElementById('nav-projects');
+      const CACHE_KEY = 'navjson-cache';
+      const MAX_AGE = 24 * 60 * 60 * 1000;
+
+      async function githubFallback(){
+        try{
+          const owner = 'LucasMolina707';
+          const repo  = 'IngLucasLearningHub.github.io';
+          const branch = 'main';
+          const api = `https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`;
+          const r = await fetch(api);
+          const j = await r.json();
+          const files = (j.tree || []).filter(x => x.type === 'blob' && x.path.endsWith('.html'));
+          const skip = p => p.startsWith('templates/') || p.startsWith('multimedia/') || p.startsWith('galeria/') || p.startsWith('assets/') || p.includes('/draft');
+          const pretty = s => s.replace(/\.html$/,'').split('/').pop().replace(/[-_]+/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+          const pages=[], projects=[];
+          for (const f of files){
+            if (skip(f.path)) continue;
+            const item = { href: '/' + f.path, label: pretty(f.path) };
+            if (f.path === 'index.html' || f.path === 'contacto.html' || f.path === 'politicas-privacidad.html' || !f.path.includes('/')) pages.push(item);
+            else projects.push(item);
+          }
+          pages.sort((a,b)=> a.label.localeCompare(b.label,'es'));
+          projects.sort((a,b)=> a.label.localeCompare(b.label,'es'));
+          pages.sort((a,b)=> a.href.endsWith('/index.html')||a.href==='/index.html' ? -1 : b.href.endsWith('/index.html')||b.href==='/index.html' ? 1 : 0);
+          return { pages, projects };
+        }catch(err){
+          console.warn('[menu] Fallback GitHub API falló', err);
+          return { pages:[], projects:[] };
+        }
+      }
+
+      async function fetchNav(){
+        try{
+          const cached = localStorage.getItem(CACHE_KEY);
+          if (cached){
+            const obj = JSON.parse(cached);
+            if (Date.now() - obj.ts < MAX_AGE && obj.data) return obj.data;
+          }
+          const res = await fetch('/nav.json', { cache: 'no-cache' });
+          if (!res.ok) throw new Error('nav.json no disponible');
+          const data = await res.json();
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+          return data;
+        }catch(e){
+          console.warn('[menu] Usando fallback GitHub API');
+          const data = await githubFallback();
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+          return data;
+        }
+      }
+
+      function renderList(container, list){
+        if (!container) return;
+        container.innerHTML = list.map(i => `<a href="${i.href}">${i.label}</a>`).join('');
+      }
+
+      try{
+        const nav = await fetchNav();
+        renderList(elPages, nav.pages || []);
+        renderList(elProjects, nav.projects || []);
+      }catch(e){
+        console.error('[menu] error:', e);
+      }
+    })();
   </script>
 
   <!-- (No cargamos Utterances directo; lo inyectamos al abrir el panel) -->
