@@ -1,0 +1,76 @@
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { join, extname, basename, dirname, relative } from 'node:path';
+
+const ROOT = process.cwd();
+const IGNORE_DIRS = new Set([
+  '.git', '.github', 'node_modules',
+  'multimedia', 'galeria', 'assets', 'css', 'js', 'img', 'fonts',
+  '.vscode', '.idea'
+]);
+
+function walk(dir) {
+  let out = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const abs = join(dir, entry.name);
+    const rel = relative(ROOT, abs).replace(/\\/g, '/');
+    if (entry.isDirectory()) {
+      if (IGNORE_DIRS.has(entry.name)) continue;
+      out = out.concat(walk(abs));
+    } else if (entry.isFile()) {
+      if (extname(entry.name).toLowerCase() === '.html') {
+        if (entry.name.startsWith('_') || rel.startsWith('templates/') || rel.includes('/draft')) continue;
+        out.push(rel);
+      }
+    }
+  }
+  return out;
+}
+
+function prettyFromFilename(filePath) {
+  return basename(filePath, '.html')
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function getTitle(filePath) {
+  try {
+    const html = readFileSync(join(ROOT, filePath), 'utf8');
+    const meta = html.match(/<meta[^>]+name=["']nav-title["'][^>]*content=["']([^"']+)["'][^>]*>/i);
+    if (meta) return meta[1].trim();
+    const m = html.match(/<title>([^<]+)<\/title>/i);
+    if (m) return m[1].trim();
+    return prettyFromFilename(filePath);
+  } catch {
+    return prettyFromFilename(filePath);
+  }
+}
+
+function groupFor(relPath) {
+  if (relPath === 'index.html') return 'pages';
+  if (['contacto.html', 'politicas-privacidad.html'].includes(relPath)) return 'pages';
+  if (dirname(relPath) === '.') return 'pages';         // archivos en raíz
+  if (relPath.startsWith('proyectos/')) return 'projects';
+  return 'projects';
+}
+
+const files = walk(ROOT);
+const items = files.map(p => ({
+  href: p.startsWith('/') ? p : '/' + p,
+  label: getTitle(p),
+  group: groupFor(p),
+}));
+
+items.sort((a, b) => {
+  if (a.href === '/index.html') return -1;
+  if (b.href === '/index.html') return 1;
+  return a.label.localeCompare(b.label, 'es');
+});
+
+const nav = {
+  generatedAt: new Date().toISOString(),
+  pages: items.filter(i => i.group === 'pages'),
+  projects: items.filter(i => i.group === 'projects')
+};
+
+writeFileSync(join(ROOT, 'nav.json'), JSON.stringify(nav, null, 2));
+console.log(`nav.json -> ${nav.pages.length + nav.projects.length} entradas`);
