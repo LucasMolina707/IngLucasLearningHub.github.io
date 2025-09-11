@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es" dir="ltr">
+<head>
+  <!-- =====================================================================
+       PLANTILLA BASE + PORTADA INTEGRADA · Ing. Lucas Learning Hub (ES/EN)
+       ===================================================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="application-name" content="Ing. Lucas Learning Hub" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- SEO -->
+  <title>Ing. Lucas Molina · Learning Hub — Estudiante de Ingeniería Informática en Colombia</title>
+  <meta name="description" content="Portafolio y bitácora de Ing. Lucas Molina (Ing Lucas) — estudiante de Ingeniería Informática. Proyectos, tutoriales y recursos del Ing. Lucas Learning Hub en Colombia." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://hub.inglucas.com.co/">
+
+  <!-- Señales de país/idioma -->
+  <link rel="alternate" hreflang="es-co" href="https://hub.inglucas.com.co/">
+  <link rel="alternate" hreflang="es" href="https://hub.inglucas.com.co/">
+
+  <!-- Iconografía -->
+  <link rel="icon" href="/galeria/logo/logoinglucas.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/galeria/logo/logoinglucas.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/galeria/logo/logoinglucas.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/galeria/logo/logoinglucas.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/galeria/logo/logoinglucas.png">
+  <link rel="mask-icon" href="/galeria/logo/logoinglucas.svg" color="#2563eb">
+  <meta name="msapplication-TileColor" content="#0b1730">
+  <meta name="msapplication-config" content="/browserconfig.xml">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Ing. Lucas Learning Hub">
+  <meta property="og:title" content="Ing. Lucas Molina · Learning Hub">
+  <meta property="og:description" content="Proyectos y recursos de Ing. Lucas Molina (Ing Lucas) en Colombia.">
+  <meta property="og:url" content="https://hub.inglucas.com.co/">
+  <meta property="og:image" content="/multimedia/cover-og.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ing. Lucas Molina · Learning Hub">
+  <meta name="twitter:description" content="Portafolio, proyectos y tutoriales del Ing Lucas en Colombia.">
+  <meta name="twitter:image" content="/multimedia/cover-og.webp">
+
+  <meta name="theme-color" content="#0d47a1" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://hub.inglucas.com.co/#lucas",
+        "name": "Ing. Lucas Molina",
+        "alternateName": ["Lucas Molina", "Ing Lucas", "Ing Lucas Molina", "Lucas Learning Hub", "Ing. Lucas Learning Hub"],
+        "description": "Estudiante de Ingeniería Informática y creador de Ing. Lucas Learning Hub en Colombia.",
+        "url": "https://hub.inglucas.com.co/",
+        "image": "/galeria/logo/logoinglucas.jpg",
+        "sameAs": [
+          "https://github.com/IngLucas",
+          "https://www.linkedin.com/in/IngLucas",
+          "https://instagram.com/IngLucas",
+          "https://facebook.com/IngLucas"
+        ],
+        "nationality": "CO",
+        "knowsAbout": [
+          "Ingeniería Informática", "Linux", "Ubuntu", "Windows", "Desarrollo web",
+          "Automatización con scripts", "Servidores", "AppSheet", "Excel macros"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://hub.inglucas.com.co/#website",
+        "name": "Ing. Lucas Learning Hub",
+        "url": "https://hub.inglucas.com.co/",
+        "inLanguage": "es-CO",
+        "publisher": { "@id": "https://hub.inglucas.com.co/#organization" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://hub.inglucas.com.co/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://hub.inglucas.com.co/#organization",
+        "name": "Ing. Lucas Learning Hub",
+        "url": "https://hub.inglucas.com.co/",
+        "logo": { "@type": "ImageObject", "url": "/galeria/logo/logoinglucas.png" },
+        "sameAs": [
+          "https://github.com/IngLucas",
+          "https://www.linkedin.com/in/IngLucas"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb básico -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hub.inglucas.com.co/" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* =============================================================
+       PALETA + LAYOUT BASE
+       ============================================================= */
+    :root{
+      --blue-900:#0b1730; --blue-800:#0f2346; --blue-700:#153769; --blue-600:#1c4b8c; --blue-500:#2563eb; --blue-400:#60a5fa;
+      --purple-600:#7c3aed; --cyan-400:#22d3ee; --lime-400:#a3e635;
+      --bg:#0e1116; --surface:#121826; --panel:#151d2c; --panel-2:#0f1722;
+      --border:#263349; --soft:#0b0f16; --text:#ecf3ff; --muted:#b4c2d6;
+      --accent-ring: 0 0 0 3px rgba(34,211,238,.25);
+      --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35);
+      --container:1200px; --gap:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif; background:linear-gradient(180deg,var(--panel-2),var(--bg)); color:var(--text)}
+    a{color:var(--blue-400); text-decoration:none}
+    .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
+
+    /* ========= I18N: mostrar solo un idioma a la vez ========= */
+    html[data-lang="es"] .i18n-en{display:none !important}
+    html[data-lang="en"] .i18n-es{display:none !important}
+
+    /* =============================================================
+       TOPBAR
+       ============================================================= */
+    .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
+    .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
+    .logo{ width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)}
+    .logo img{width:100%; height:100%; object-fit:cover; display:block}
+    .brand{display:flex; flex-direction:column}
+    .brand strong{font-size:16px}
+    .brand span{font-size:12px; color:var(--muted)}
+    .actions{ margin-left:auto; display:flex; gap:10px; align-items:center }
+    .icon-btn{
+      --size:40px; width:var(--size); height:var(--size); display:inline-grid; place-items:center;
+      border-radius:12px; border:1.5px solid var(--blue-500);
+      background:linear-gradient(180deg,#0f172a,#0b1220);
+      color:#e8f1ff; cursor:pointer; transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      box-shadow:0 6px 20px rgba(0,0,0,.25);
+    }
+    .icon-btn:hover{ transform:translateY(-1px); filter:brightness(1.05)}
+    .icon-btn:focus-visible{ outline:none; box-shadow:var(--accent-ring) }
+    .icon-btn svg{ width:22px; height:22px; display:block }
+    .lang-chip{font-size:12px; font-weight:700; letter-spacing:.3px}
+
+    /* =============================================================
+       DRAWER / MENÚ LATERAL
+       ============================================================= */
+    .drawer{ position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform }
+    .drawer.open{transform:translateX(0)}
+    .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
+    .drawer .bd{padding:12px 16px; display:grid; gap:16px}
+    .nav-group{border:1px solid var(--border); border-radius:12px; overflow:hidden}
+    .nav-group h4{margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)}
+    .nav{display:grid}
+    .nav a{padding:12px 12px; border-top:1px solid var(--border)}
+    .nav a:hover{background:rgba(37,99,235,.18)}
+
+    /* =============================================================
+       WORKSPACE
+       ============================================================= */
+    .workspace{padding:24px 0}
+    .window{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+    .window-titlebar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; background:linear-gradient(180deg,#1a2333,#151c29); border-bottom:1px solid var(--border)}
+    .title-left{display:flex; align-items:center; gap:10px}
+    .traffic{display:flex; gap:8px}
+    .dot{width:12px; height:12px; border-radius:50%}
+    .dot.close{background:#ff5f56}
+    .dot.min{background:#ffbd2e}
+    .dot.max{background:#27c93f}
+    .window-title{font-size:15px; font-weight:600}
+    .title-meta{font-size:12px; color:var(--muted)}
+    .window-body{display:grid; grid-template-columns:1fr; gap:0}
+    .pane{padding:18px; min-height:420px; background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(12,16,24,.95))}
+
+    /* Pie fijo del proyecto dentro del workspace (opcional) */
+    .project-note{ position:sticky; bottom:0; left:0; right:0; z-index:10; border-top:1px dashed var(--border); background:linear-gradient(180deg,rgba(20,26,36,.95),rgba(14,18,26,.95)); padding:12px 16px; color:var(--muted); font-size:13px; display:flex; gap:10px; align-items:flex-start }
+    .project-note .tag{padding:2px 8px; border-radius:999px; border:1px solid var(--border); font-size:12px; background:rgba(37,99,235,.10); color:var(--text)}
+
+    /* =============================================================
+       FOOTER
+       ============================================================= */
+    footer{border-top:1px solid var(--border); color:var(--muted); padding:22px 0; font-size:13px; background:linear-gradient(180deg,#0f1624,#0c121e)}
+    .foot{display:grid; gap:12px}
+    @media(min-width:860px){.foot{grid-template-columns:1fr auto}}
+    .socials{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:#eef5ff}
+
+    /* =============================================================
+       BANNER COOKIES
+       ============================================================= */
+    .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
+    .consent .card{ max-width:960px; margin:0 auto; background:#0f172a; color:#e6efff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.28); padding:16px 18px; border:1px solid rgba(96,165,250,.25); }
+    .consent .row{ display:flex; gap:16px; align-items:flex-start; }
+    .consent p{ margin:0; line-height:1.5 }
+    .consent .actions{ margin-left:auto; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{padding:8px 12px; border-radius:10px; border:1px solid rgba(96,165,250,.35); background:rgba(37,99,235,.15); color:#eaf2ff; cursor:pointer}
+    .btn.primary{ background:var(--blue-500); border-color:transparent; color:white; }
+    .btn:hover{ filter:brightness(1.05); }
+
+    /* =============================================================
+       PANEL DE COMENTARIOS (desktop: lateral izquierdo)
+       ============================================================= */
+    .comments-drawer{ position:fixed; z-index:80; inset:0 auto 0 0; width:420px; max-width:92vw; background:linear-gradient(180deg,#0b1626,#0a1220); border-right:2px solid var(--blue-500); box-shadow:20px 0 40px rgba(0,0,0,.45); transform:translateX(-100%); transition:.25s ease transform; display:flex; flex-direction:column; }
+    .comments-drawer.open{ transform:translateX(0) }
+    .comments-drawer .hd{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border)}
+    .comments-drawer .bd{padding:10px 12px; overflow:auto; height:100%}
+
+    /* ===== MOBILE: comentarios como bottom sheet habilitado ===== */
+    @media (max-width: 760px){
+      .comments-drawer{
+        inset:auto 0 0 0; /* desde abajo */
+        width:100vw; max-width:100vw; height:60vh;
+        border-right:none; border-top:2px solid var(--blue-500);
+        box-shadow:0 -20px 40px rgba(0,0,0,.45);
+        transform:translateY(100%); /* oculto abajo */
+      }
+      .comments-drawer.open{ transform:translateY(0) }
+      .comments-drawer .bd{ height:calc(60vh - 50px); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =============================================================
+       TOPBAR
+       ============================================================= -->
+  <div class="topbar">
+    <div class="wrap row">
+      <!-- Logo -->
+      <a class="logo" href="/" aria-label="Inicio · Ing. Lucas Learning Hub">
+        <picture>
+          <source srcset="/galeria/logo/logoinglucas.svg" type="image/svg+xml">
+          <img src="/galeria/logo/logoinglucas.png" alt="Logo Ing. Lucas" width="36" height="36" loading="eager" fetchpriority="high">
+        </picture>
+      </a>
+
+      <div class="brand">
+        <strong>Ing. Lucas Learning Hub</strong>
+        <span class="i18n-es">Portada</span>
+        <span class="i18n-en">Home</span>
+      </div>
+
+      <div class="actions">
+        <!-- Botón comentarios -->
+        <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios" aria-expanded="false" aria-controls="commentsDrawer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+        </button>
+        <!-- Botón menú -->
+        <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+        </button>
+        <!-- Botón idioma ES/EN -->
+        <button class="icon-btn" id="langToggle" title="Cambiar idioma" aria-label="Cambiar idioma" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.73 6h-3.46a15.9 15.9 0 0 0-1.6-3.63A8.03 8.03 0 0 1 19.73 8zM12 4c.88 0 2.39 1.88 3.23 4H8.77C9.61 5.88 11.12 4 12 4zM4.27 8A8.03 8.03 0 0 1 9.33 4.37 15.9 15.9 0 0 0 7.73 8H4.27zM4 10h3.16c-.08.66-.13 1.32-.13 2s.05 1.34.13 2H4a8 8 0 0 1 0-4zm.27 6h3.46c.4 1.28.95 2.49 1.6 3.63A8.03 8.03 0 0 1 4.27 16zM12 20c-.88 0-2.39-1.88-3.23-4h6.46C14.39 18.12 12.88 20 12 20zm2.67-.37c.65-1.14 1.2-2.35 1.6-3.63h3.46a8.03 8.03 0 0 1-5.06 3.63zM20 14h-3.16c.08-.66.13-1.32.13-2s-.05-1.34-.13-2H20a8 8 0 0 1 0 4z"/></svg>
+          <span class="lang-chip" id="langChip" aria-hidden="true">ES</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       DRAWER / MENÚ LATERAL (dinámico)
+       ============================================================= -->
+  <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
+    <div class="hd">
+      <strong class="i18n-es">Navegación</strong>
+      <strong class="i18n-en">Navigation</strong>
+      <button class="btn" id="closeDrawer" aria-label="Cerrar">Cerrar ✕</button>
+    </div>
+    <div class="bd">
+      <div class="nav-group">
+        <h4 class="i18n-es">Páginas</h4>
+        <h4 class="i18n-en">Pages</h4>
+        <nav class="nav" id="nav-pages"></nav>
+      </div>
+      <div class="nav-group">
+        <h4 class="i18n-es">Ventanas / Proyectos</h4>
+        <h4 class="i18n-en">Windows / Projects</h4>
+        <nav class="nav" id="nav-projects"></nav>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =============================================================
+       PANEL DE COMENTARIOS
+       ============================================================= -->
+  <aside class="comments-drawer" id="commentsDrawer" aria-label="Comentarios" aria-hidden="true">
+    <div class="hd">
+      <strong class="i18n-es">Comentarios</strong>
+      <strong class="i18n-en">Comments</strong>
+      <button class="btn" id="closeComments" aria-label="Cerrar comentarios">Cerrar ✕</button>
+    </div>
+    <div class="bd">
+      <div id="commentsMount" aria-live="polite"></div>
+    </div>
+  </aside>
+
+  <!-- =============================================================
+       CONTENIDO PRINCIPAL (PORTADA integrada)
+       ============================================================= -->
+  <div class="wrap workspace">
+    <section class="window" role="region" aria-label="Contenido principal" id="mainRegion">
+      <div class="window-titlebar">
+        <div class="title-left">
+          <div class="traffic" aria-hidden="true">
+            <span class="dot close"></span>
+            <span class="dot min"></span>
+            <span class="dot max"></span>
+          </div>
+          <div>
+            <div class="window-title i18n-es">Portada del sitio · Inicio</div>
+            <div class="window-title i18n-en">Site home · Landing</div>
+            <div class="title-meta i18n-es">Ruta > Inicio · Activo</div>
+            <div class="title-meta i18n-en">Path > Home · Active</div>
+          </div>
+        </div>
+        <div class="title-right"></div>
+      </div>
+
+      <div class="window-body">
+        <section class="pane">
+          <!-- =====================================================
+               PORTADA (contenido integrado, encapsulado .idx-*)
+               ===================================================== -->
+          <article class="idx" aria-labelledby="idx-ttl">
+            <!-- Subnavegación local -->
+            <nav class="idx__subnav" aria-label="Secciones de la portada" id="idxSubnav">
+              <a class="idx__pill" href="#idx-intro">
+                <span class="i18n-es">Introducción</span>
+                <span class="i18n-en">Introduction</span>
+              </a>
+              <a class="idx__pill" href="#idx-desarrollo">
+                <span class="i18n-es">Desarrollo</span>
+                <span class="i18n-en">Body</span>
+              </a>
+              <a class="idx__pill" href="#idx-conclusiones">
+                <span class="i18n-es">Conclusiones</span>
+                <span class="i18n-en">Conclusions</span>
+              </a>
+              <a class="idx__pill" href="#idx-referencias">
+                <span class="i18n-es">Referencias</span>
+                <span class="i18n-en">References</span>
+              </a>
+              <span class="idx__spacer"></span>
+              <button class="idx__navbtn" id="idxPrev" title="Anterior" aria-label="Anterior">◀</button>
+              <button class="idx__navbtn" id="idxNext" title="Siguiente" aria-label="Siguiente">▶</button>
+            </nav>
+
+            <!-- Hero / encabezado -->
+            <header class="idx__hero">
+              <h1 id="idx-ttl">
+                <span class="i18n-es">Ing. Lucas Learning Hub · Portada</span>
+                <span class="i18n-en">Ing. Lucas Learning Hub · Cover</span>
+              </h1>
+              <p class="idx__lead">
+                <span class="i18n-es">Portafolio y bitácora de proyectos. Esta portada integra <em>presentación</em>, <em>proyectos</em> y <em>contacto</em> dentro de una misma “ventana” uniforme.</span>
+                <span class="i18n-en">Project portfolio and logbook. This cover brings together <em>introduction</em>, <em>projects</em>, and <em>contact</em> in a single, consistent “window”.</span>
+              </p>
+            </header>
+
+            <div class="idx__content" id="idxContent" role="region" aria-label="Contenido portada">
+              <!-- =================== INTRODUCCIÓN =================== -->
+              <section class="idx__section" id="idx-intro" aria-labelledby="idx-intro-h">
+                <div class="idx__hd">
+                  <h2 id="idx-intro-h">
+                    <span class="i18n-es">Introducción</span>
+                    <span class="i18n-en">Introduction</span>
+                  </h2>
+                </div>
+                <div class="idx__card">
+                  <p class="i18n-es">
+                    Este documento funciona como <strong>Index/Portada</strong> del sitio. Presenta el enfoque del autor, las áreas de interés y el mapa de navegación a “ventanas” temáticas. El propósito académico es <em>organizar la evidencia</em> de aprendizaje y <em>comunicar</em> soluciones de manera clara y evaluable.
+                  </p>
+                  <p class="i18n-en">
+                    This document serves as the site’s <strong>Index/Cover</strong>. It outlines the author’s focus, areas of interest, and the navigation map to thematic “windows”. The academic aim is to <em>organize evidence</em> of learning and <em>communicate</em> solutions clearly and evaluably.
+                  </p>
+                  <p class="idx__muted i18n-es">Metas: visibilidad de proyectos, coherencia visual, accesibilidad básica y rutas de contacto.</p>
+                  <p class="idx__muted i18n-en">Goals: project visibility, visual consistency, basic accessibility, and clear contact paths.</p>
+                </div>
+              </section>
+
+              <!-- ==================== DESARROLLO ==================== -->
+              <section class="idx__section" id="idx-desarrollo" aria-labelledby="idx-desarrollo-h">
+                <div class="idx__hd">
+                  <h2 id="idx-desarrollo-h">
+                    <span class="i18n-es">Hola, soy Lucas Molina.</span>
+                    <span class="i18n-en">Hi, I’m Lucas Molina.</span>
+                  </h2>
+                </div>
+
+                <!-- Bloque saludo + CTA -->
+                <div class="idx__card idx__card--grid">
+                  <div>
+                    <h3 class="idx__h3">
+                      <span class="i18n-es">“Aprendiendo a ser ingeniero, <strong>un proyecto a la vez</strong>”.</span>
+                      <span class="i18n-en">“Learning to be an engineer, <strong>one project at a time</strong>.”</span>
+                    </h3>
+                    <p class="idx__muted">
+                      <span class="i18n-es">“Para ustedes”</span>
+                      <span class="i18n-en">“For you”</span>
+                    </p>
+                    <div class="idx__chips" aria-label="Público principal">
+                      <span class="idx__chip">
+                        <span class="i18n-es">Profesores AUNAR</span>
+                        <span class="i18n-en">AUNAR professors</span>
+                      </span>
+                      <span class="idx__chip">
+                        <span class="i18n-es">Compañeros</span>
+                        <span class="i18n-en">Classmates</span>
+                      </span>
+                      <span class="idx__chip">
+                        <span class="i18n-es">Clientes potenciales</span>
+                        <span class="i18n-en">Prospective clients</span>
+                      </span>
+                      <span class="idx__chip">
+                        <span class="i18n-es">Comunidad tech</span>
+                        <span class="i18n-en">Tech community</span>
+                      </span>
+                    </div>
+                    <div class="idx__cta">
+                      <a class="idx__btn idx__btn--primary" href="#idx-proyectos">
+                        <span class="i18n-es">Ver proyectos destacados</span>
+                        <span class="i18n-en">See featured projects</span>
+                      </a>
+                      <a class="idx__btn idx__btn--accent" href="#idx-contacto">
+                        <span class="i18n-es">Portafolio / Contacto</span>
+                        <span class="i18n-en">Portfolio / Contact</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="idx__cardInner" role="img" aria-label="Ilustración de aprendizaje continuo">
+                      <h3 class="idx__h3">
+                        <span class="i18n-es">Bitácora en construcción</span>
+                        <span class="i18n-en">Logbook in progress</span>
+                      </h3>
+                      <p class="idx__muted i18n-es">Este sitio compila prácticas, retos y soluciones reales. Cada enlace abre una “ventana” con estructura uniforme para facilitar evaluación y mejora.</p>
+                      <p class="idx__muted i18n-en">This site compiles exercises, challenges, and real solutions. Each link opens a “window” with a consistent structure for easier evaluation and iteration.</p>
+                      <div class="idx__tagrow">
+                        <span class="idx__tag">HTML/CSS</span>
+                        <span class="idx__tag">
+                          <span class="i18n-es">Algoritmia</span>
+                          <span class="i18n-en">Algorithms</span>
+                        </span>
+                        <span class="idx__tag">Linux/Servers</span>
+                        <span class="idx__tag">Excel/VBA</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SOBRE MÍ -->
+                <div class="idx__card" id="idx-sobre">
+                  <h3 class="idx__h3">
+                    <span class="i18n-es">Sobre mí</span>
+                    <span class="i18n-en">About me</span>
+                  </h3>
+                  <p class="i18n-es">Soy estudiante de <strong>Ingeniería Informática</strong> (AUNAR). Uso este espacio para documentar mi proceso, compartir código y mostrar evidencias de aprendizaje. Me interesa el desarrollo web, automatización con Excel/VBA y administración de servidores Linux.</p>
+                  <p class="i18n-en">I’m an <strong>Information Engineering</strong> student (AUNAR). Here I document my process, share code, and present learning evidence. I’m into web development, Excel/VBA automation, and Linux server administration.</p>
+                </div>
+
+                <!-- PROYECTOS DESTACADOS -->
+                <div class="idx__card" id="idx-proyectos">
+                  <div class="idx__rowhd">
+                    <h3 class="idx__h3">
+                      <span class="i18n-es">Proyectos destacados</span>
+                      <span class="i18n-en">Featured projects</span>
+                    </h3>
+                    <a class="idx__link" href="#idx-contacto">
+                      <span class="i18n-es">¿Comentarios? Escríbeme →</span>
+                      <span class="i18n-en">Feedback? Write me →</span>
+                    </a>
+                  </div>
+                  <div class="idx__cards">
+                    <article class="idx__mini">
+                      <h4 class="idx__h4">
+                        <span class="i18n-es">PSeInt · Promedio de notas</span>
+                        <span class="i18n-en">PSeInt · Grade average</span>
+                      </h4>
+                      <p class="i18n-es">Algoritmo parametrizable + explicación paso a paso.</p>
+                      <p class="i18n-en">Parametrizable algorithm + step-by-step explanation.</p>
+                      <div class="idx__tagrow">
+                        <span class="idx__tag">
+                          <span class="i18n-es">Algoritmia</span><span class="i18n-en">Algorithms</span>
+                        </span>
+                        <span class="idx__tag">PSeInt</span>
+                      </div>
+                      <a class="idx__btn" href="proyectos/pseint-promedio.html">
+                        <span class="i18n-es">Abrir ventana</span>
+                        <span class="i18n-en">Open window</span>
+                      </a>
+                    </article>
+                    <article class="idx__mini">
+                      <h4 class="idx__h4">
+                        <span class="i18n-es">Servidor Ubuntu · Render/Cloud + Local</span>
+                        <span class="i18n-en">Ubuntu Server · Render/Cloud + Local</span>
+                      </h4>
+                      <p class="i18n-es">Guía práctica: despliegue estático y troubleshooting.</p>
+                      <p class="i18n-en">Hands-on guide: static deploys and troubleshooting.</p>
+                      <div class="idx__tagrow"><span class="idx__tag">Linux</span><span class="idx__tag">DevOps</span></div>
+                      <a class="idx__btn" href="proyectos/servidor-ubuntu.html">
+                        <span class="i18n-es">Abrir ventana</span>
+                        <span class="i18n-en">Open window</span>
+                      </a>
+                    </article>
+                    <article class="idx__mini">
+                      <h4 class="idx__h4">
+                        <span class="i18n-es">Excel Macros · Inventario minorista</span>
+                        <span class="i18n-en">Excel Macros · Retail inventory</span>
+                      </h4>
+                      <p class="i18n-es">Libro con menús, macros comentadas y flujos.</p>
+                      <p class="i18n-en">Workbook with menus, commented macros, and flows.</p>
+                      <div class="idx__tagrow"><span class="idx__tag">Excel/VBA</span><span class="idx__tag">Retail</span></div>
+                      <a class="idx__btn" href="proyectos/excel-macros.html">
+                        <span class="i18n-es">Abrir ventana</span>
+                        <span class="i18n-en">Open window</span>
+                      </a>
+                    </article>
+                  </div>
+                </div>
+
+                <!-- RUTA DE APRENDIZAJE -->
+                <div class="idx__card" id="idx-ruta">
+                  <h3 class="idx__h3">
+                    <span class="i18n-es">Ruta de aprendizaje</span>
+                    <span class="i18n-en">Learning path</span>
+                  </h3>
+                  <div class="idx__timeline">
+                    <div class="idx__tl-item">
+                      <strong>
+                        <span class="i18n-es">Algoritmia y PSeInt</span>
+                        <span class="i18n-en">Algorithms & PSeInt</span>
+                      </strong>
+                      <span class="i18n-es">Condicionales, ciclos, modularización. Evidencias en ventanas PSeInt.</span>
+                      <span class="i18n-en">Conditionals, loops, modularization. Evidence in PSeInt windows.</span>
+                    </div>
+                    <div class="idx__tl-item">
+                      <strong>
+                        <span class="i18n-es">Web básica (HTML/CSS)</span>
+                        <span class="i18n-en">Basic web (HTML/CSS)</span>
+                      </strong>
+                      <span class="i18n-es">Layouts responsivos y componentes reutilizables (la portada lo demuestra).</span>
+                      <span class="i18n-en">Responsive layouts and reusable components (this cover shows it).</span>
+                    </div>
+                    <div class="idx__tl-item">
+                      <strong>
+                        <span class="i18n-es">Sistemas / Linux</span>
+                        <span class="i18n-en">Systems / Linux</span>
+                      </strong>
+                      <span class="i18n-es">Instalación, servicios web y despliegues (Render / GitHub Pages / Cloudflare).</span>
+                      <span class="i18n-en">Installations, web services and deployments (Render / GitHub Pages / Cloudflare).</span>
+                    </div>
+                    <div class="idx__tl-item">
+                      <strong>
+                        <span class="i18n-es">Automatización con Excel/VBA</span>
+                        <span class="i18n-en">Automation with Excel/VBA</span>
+                      </strong>
+                      <span class="i18n-es">Macros documentadas y flujos para comercio minorista.</span>
+                      <span class="i18n-en">Documented macros and flows for retail.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- COLABORACIÓN -->
+                <div class="idx__card" id="idx-colabora">
+                  <h3 class="idx__h3">
+                    <span class="i18n-es">Colabora conmigo</span>
+                    <span class="i18n-en">Collaborate with me</span>
+                  </h3>
+                  <p class="idx__muted">
+                    <span class="i18n-es"><strong>Este sitio es práctica en progreso.</strong> Si ves algo que pueda mejorar, dime o abre un issue.</span>
+                    <span class="i18n-en"><strong>This site is practice in progress.</strong> If you see something to improve, tell me or open an issue.</span>
+                  </p>
+                  <div class="idx__cta">
+                    <a class="idx__btn" href="https://github.com/IngLucas" target="_blank" rel="noopener">
+                      <span class="i18n-es">Abrir GitHub</span>
+                      <span class="i18n-en">Open GitHub</span>
+                    </a>
+                    <a class="idx__btn" href="#idx-contacto">
+                      <span class="i18n-es">Enviar sugerencia</span>
+                      <span class="i18n-en">Send suggestion</span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- CONTACTO -->
+                <div class="idx__card" id="idx-contacto">
+                  <h3 class="idx__h3">
+                    <span class="i18n-es">Portafolio y contacto</span>
+                    <span class="i18n-en">Portfolio & contact</span>
+                  </h3>
+                  <div class="idx__cards idx__cards--2">
+                    <div class="idx__mini">
+                      <h4 class="idx__h4">
+                        <span class="i18n-es">Contacto directo</span>
+                        <span class="i18n-en">Direct contact</span>
+                      </h4>
+                      <p class="i18n-es">¿Feedback, propuestas o colaboraciones? Estoy atento.</p>
+                      <p class="i18n-en">Feedback, proposals, or collaborations? I’m listening.</p>
+                      <div class="idx__cta">
+                        <a class="idx__btn" href="mailto:contacto@inglucas.com.co">contacto@inglucas.com.co</a>
+                        <a class="idx__btn" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener me">LinkedIn</a>
+                      </div>
+                    </div>
+                    <div class="idx__mini">
+                      <h4 class="idx__h4">
+                        <span class="i18n-es">Más trabajos</span>
+                        <span class="i18n-en">More work</span>
+                      </h4>
+                      <p class="i18n-es">Explora mis repos y bocetos en curso.</p>
+                      <p class="i18n-en">Browse my repos and work in progress.</p>
+                      <a class="idx__btn" href="https://github.com/IngLucas" target="_blank" rel="noopener me">GitHub</a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- =================== CONCLUSIONES =================== -->
+              <section class="idx__section" id="idx-conclusiones" aria-labelledby="idx-conc-h">
+                <div class="idx__hd">
+                  <h2 id="idx-conc-h">
+                    <span class="i18n-es">Conclusiones</span>
+                    <span class="i18n-en">Conclusions</span>
+                  </h2>
+                </div>
+                <div class="idx__card">
+                  <ol class="i18n-es">
+                    <li>La portada unifica <strong>presentación, evidencias y contacto</strong> en un flujo legible.</li>
+                    <li>Se preserva una <strong>identidad visual consistente</strong> y una estructura evaluable.</li>
+                    <li>La navegación local y los componentes reutilizables facilitan la <strong>escalabilidad</strong> del sitio.</li>
+                  </ol>
+                  <ol class="i18n-en">
+                    <li>The cover brings together <strong>introduction, evidence, and contact</strong> in a readable flow.</li>
+                    <li>It preserves a <strong>consistent visual identity</strong> and an assessable structure.</li>
+                    <li>Local navigation and reusable components enable site <strong>scalability</strong>.</li>
+                  </ol>
+                </div>
+              </section>
+
+              <!-- =================== REFERENCIAS =================== -->
+              <section class="idx__section" id="idx-referencias" aria-labelledby="idx-ref-h">
+                <div class="idx__hd">
+                  <h2 id="idx-ref-h">
+                    <span class="i18n-es">Referencias</span>
+                    <span class="i18n-en">References</span>
+                  </h2>
+                </div>
+                <div class="idx__card">
+                  <ul class="idx__refs">
+                    <li>W3C. (2018). <em>Web Content Accessibility Guidelines (WCAG) 2.1</em>. World Wide Web Consortium.</li>
+                    <li>Nielsen, J. (1994). <em>10 Usability Heuristics for User Interface Design</em>. Nielsen Norman Group.</li>
+                    <li>Krug, S. (2014). <em>Don't Make Me Think, Revisited</em>. New Riders.</li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+
+            <!-- Área de estado accesible (si se usa en el futuro) -->
+            <p class="idx__sr" id="idxStatus" role="status" aria-live="polite"></p>
+          </article>
+
+          <!-- ===== Estilos encapsulados de la portada (.idx-*) ===== -->
+          <style>
+            .idx{display:grid; gap:16px}
+            .idx__hero{
+              padding:16px; border:1px solid var(--border); border-radius:var(--radius);
+              background:linear-gradient(180deg,rgba(20,26,38,.85),rgba(12,16,24,.85)); box-shadow:var(--shadow)
+            }
+            .idx__lead{margin:.25rem 0 0; color:var(--muted); font-size:14.5px}
+
+            .idx__subnav{
+              display:flex; gap:10px; align-items:center; overflow:auto; padding:6px;
+              border:1px solid var(--border); border-radius:var(--radius);
+              background:linear-gradient(180deg,rgba(25,31,45,.9),rgba(18,23,33,.9))
+            }
+            .idx__pill{
+              white-space:nowrap; padding:6px 10px; border-radius:999px;
+              border:1px solid var(--border); color:var(--muted); background:rgba(18,23,31,.12)
+            }
+            .idx__pill:hover{background:rgba(26,99,199,.12); color:var(--text)}
+            .idx__pill.is-active{border-color:var(--blue-500); color:#fff; background:rgba(26,99,199,.18)}
+            .idx__spacer{flex:1}
+            .idx__navbtn{
+              min-width:40px; height:32px; border-radius:10px; border:1px solid var(--border);
+              background:rgba(18,23,31,.2); color:var(--text); cursor:pointer
+            }
+
+            .idx__content{display:grid; gap:16px}
+            .idx__section{scroll-margin-top:14px}
+            .idx__hd{display:flex; align-items:flex-end; justify-content:space-between; gap:10px; margin-bottom:8px}
+
+            .idx__card{
+              background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96));
+              border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px
+            }
+            .idx__card--grid{display:grid; gap:16px}
+            @media(min-width:860px){.idx__card--grid{grid-template-columns:1.2fr .8fr; align-items:center}}
+            .idx__cardInner{background:linear-gradient(180deg,rgba(16,22,34,.96),rgba(12,16,24,.96)); border:1px dashed var(--border); border-radius:var(--radius); padding:14px}
+
+            .idx__muted{color:var(--muted)}
+            .idx__h3{margin:0 0 8px}
+            .idx__h4{margin:0 0 6px}
+
+            .idx__chips{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 0}
+            .idx__chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8)}
+            .idx__cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+            .idx__btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:var(--text); cursor:pointer; text-decoration:none}
+            .idx__btn:hover{transform:translateY(-1px)}
+            .idx__btn--primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
+            .idx__btn--accent{background:linear-gradient(180deg,#d39e00,#f0b800); color:#1a1400; border-color:transparent}
+
+            .idx__rowhd{display:flex; align-items:end; justify-content:space-between; gap:10px; margin-bottom:10px}
+            .idx__link{color:var(--blue-300)}
+            .idx__cards{display:grid; gap:16px}
+            .idx__cards--2{grid-template-columns:1fr}
+            @media(min-width:760px){
+              .idx__cards{grid-template-columns:repeat(3,1fr)}
+              .idx__cards--2{grid-template-columns:repeat(2,1fr)}
+            }
+            .idx__mini{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; display:grid; gap:8px}
+
+            .idx__tagrow{display:flex; gap:8px; flex-wrap:wrap}
+            .idx__tag{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted)}
+
+            .idx__timeline{display:grid; gap:14px}
+            .idx__tl-item{display:grid; gap:6px; border-left:2px dashed var(--border); padding-left:12px}
+            .idx__tl-item strong{font-size:14px}
+
+            @media (max-width: 860px){
+              .idx__subnav{scroll-snap-type:x proximity}
+              .idx__pill{scroll-snap-align:center}
+            }
+            .idx__sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
+          </style>
+
+          <!-- ===== JS encapsulado de la portada (.idx-*) ===== -->
+          <script>
+            (function(){
+              const rail = document.getElementById('idxContent');
+              const prev = document.getElementById('idxPrev');
+              const next = document.getElementById('idxNext');
+
+              function sections(){ return Array.from(rail.querySelectorAll('.idx__section')); }
+              function currentIndex(){
+                const rect = rail.getBoundingClientRect();
+                const mid = rect.top + rect.height/3;
+                const idx = sections().findIndex(s=>{
+                  const r = s.getBoundingClientRect();
+                  return r.top <= mid && r.bottom >= mid;
+                });
+                return Math.max(0, idx);
+              }
+              prev?.addEventListener('click', ()=>{
+                const idx = currentIndex();
+                if(idx>0) sections()[idx-1].scrollIntoView({behavior:'smooth', block:'start'});
+              });
+              next?.addEventListener('click', ()=>{
+                const idx = currentIndex();
+                const list = sections();
+                if(idx<list.length-1) list[idx+1].scrollIntoView({behavior:'smooth', block:'start'});
+              });
+
+              // Enlaces activos en subnav
+              const links = Array.from(document.querySelectorAll('.idx__subnav .idx__pill'));
+              const targets = links.map(a => document.querySelector(a.getAttribute('href')));
+              const io = new IntersectionObserver(entries=>{
+                entries.forEach(e=>{
+                  if(e.isIntersecting){
+                    const id = '#'+e.target.id;
+                    links.forEach(l => l.classList.toggle('is-active', l.getAttribute('href')===id));
+                  }
+                });
+              }, {root:null, threshold:0.55});
+              targets.forEach(t => t && io.observe(t));
+            })();
+          </script>
+          <!-- ======================= FIN CONTENIDO PORTADA ======================= -->
+        </section>
+
+        <!-- Pie de proyecto opcional -->
+        <footer class="project-note" aria-label="Nota del proyecto">
+          <span class="tag">🧩 Proyecto</span>
+          <div>
+            <strong id="projectTitle">[TOCAR] Título del proyecto</strong>
+            <div id="projectNote">[TOCAR] Nota fija: objetivos, pendientes o changelog.</div>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </div>
+
+  <!-- =============================================================
+       FOOTER
