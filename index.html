@@ -1,12 +1,8 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="es" data-lang="es" dir="ltr">
 <head>
   <!-- =====================================================================
-       PLANTILLA BASE + PORTADA INTEGRADA · Ing. Lucas Learning Hub
+       PLANTILLA BASE + PORTADA INTEGRADA · Ing. Lucas Learning Hub (ES/EN)
        ===================================================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +11,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
 
-  <!-- SEO (actualizado a la portada) -->
+  <!-- SEO -->
   <title>Ing. Lucas Molina · Learning Hub — Estudiante de Ingeniería Informática en Colombia</title>
   <meta name="description" content="Portafolio y bitácora de Ing. Lucas Molina (Ing Lucas) — estudiante de Ingeniería Informática. Proyectos, tutoriales y recursos del Ing. Lucas Learning Hub en Colombia." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -51,7 +47,7 @@
 
   <meta name="theme-color" content="#0d47a1" />
 
-  <!-- JSON-LD (con knowsAbout de la portada) -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -265,7 +261,7 @@
   </div>
 
   <!-- =============================================================
-       DRAWER / MENÚ LATERAL (dinámico: nav.json o fallback GitHub)
+       DRAWER / MENÚ LATERAL (dinámico)
        ============================================================= -->
   <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
     <div class="hd">
@@ -305,7 +301,7 @@
        CONTENIDO PRINCIPAL (PORTADA integrada)
        ============================================================= -->
   <div class="wrap workspace">
-    <section class="window" role="region" aria-label="Contenido principal">
+    <section class="window" role="region" aria-label="Contenido principal" id="mainRegion">
       <div class="window-titlebar">
         <div class="title-left">
           <div class="traffic" aria-hidden="true">
@@ -314,8 +310,10 @@
             <span class="dot max"></span>
           </div>
           <div>
-            <div class="window-title">Portada del sitio · Inicio</div>
-            <div class="title-meta">Ruta > Inicio · Activo</div>
+            <div class="window-title i18n-es">Portada del sitio · Inicio</div>
+            <div class="window-title i18n-en">Site home · Landing</div>
+            <div class="title-meta i18n-es">Ruta > Inicio · Activo</div>
+            <div class="title-meta i18n-en">Path > Home · Active</div>
           </div>
         </div>
         <div class="title-right"></div>
@@ -328,11 +326,23 @@
                ===================================================== -->
           <article class="idx" aria-labelledby="idx-ttl">
             <!-- Subnavegación local -->
-            <nav class="idx__subnav" aria-label="Secciones de la portada">
-              <a class="idx__pill" href="#idx-intro">Introducción</a>
-              <a class="idx__pill" href="#idx-desarrollo">Desarrollo</a>
-              <a class="idx__pill" href="#idx-conclusiones">Conclusiones</a>
-              <a class="idx__pill" href="#idx-referencias">Referencias </a>
+            <nav class="idx__subnav" aria-label="Secciones de la portada" id="idxSubnav">
+              <a class="idx__pill" href="#idx-intro">
+                <span class="i18n-es">Introducción</span>
+                <span class="i18n-en">Introduction</span>
+              </a>
+              <a class="idx__pill" href="#idx-desarrollo">
+                <span class="i18n-es">Desarrollo</span>
+                <span class="i18n-en">Body</span>
+              </a>
+              <a class="idx__pill" href="#idx-conclusiones">
+                <span class="i18n-es">Conclusiones</span>
+                <span class="i18n-en">Conclusions</span>
+              </a>
+              <a class="idx__pill" href="#idx-referencias">
+                <span class="i18n-es">Referencias</span>
+                <span class="i18n-en">References</span>
+              </a>
               <span class="idx__spacer"></span>
               <button class="idx__navbtn" id="idxPrev" title="Anterior" aria-label="Anterior">◀</button>
               <button class="idx__navbtn" id="idxNext" title="Siguiente" aria-label="Siguiente">▶</button>
@@ -340,51 +350,100 @@
 
             <!-- Hero / encabezado -->
             <header class="idx__hero">
-              <h1 id="idx-ttl">Ing. Lucas Learning Hub · Portada</h1>
-              <p class="idx__lead">Portafolio y bitácora de proyectos. Esta portada integra <em>presentación</em>, <em>proyectos</em> y <em>contacto</em> dentro de una misma “ventana” uniforme.</p>
+              <h1 id="idx-ttl">
+                <span class="i18n-es">Ing. Lucas Learning Hub · Portada</span>
+                <span class="i18n-en">Ing. Lucas Learning Hub · Cover</span>
+              </h1>
+              <p class="idx__lead">
+                <span class="i18n-es">Portafolio y bitácora de proyectos. Esta portada integra <em>presentación</em>, <em>proyectos</em> y <em>contacto</em> dentro de una misma “ventana” uniforme.</span>
+                <span class="i18n-en">Project portfolio and logbook. This cover brings together <em>introduction</em>, <em>projects</em>, and <em>contact</em> in a single, consistent “window”.</span>
+              </p>
             </header>
 
             <div class="idx__content" id="idxContent" role="region" aria-label="Contenido portada">
               <!-- =================== INTRODUCCIÓN =================== -->
               <section class="idx__section" id="idx-intro" aria-labelledby="idx-intro-h">
                 <div class="idx__hd">
-                  <h2 id="idx-intro-h">Introducción</h2>
+                  <h2 id="idx-intro-h">
+                    <span class="i18n-es">Introducción</span>
+                    <span class="i18n-en">Introduction</span>
+                  </h2>
                 </div>
                 <div class="idx__card">
-                  <p>Este documento funciona como <strong>Index/Portada</strong> del sitio. Presenta el enfoque del autor, las áreas de interés y el mapa de navegación a “ventanas” temáticas. El propósito académico es <em>organizar la evidencia</em> de aprendizaje y <em>comunicar</em> soluciones de manera clara y evaluable.</p>
-                  <p class="idx__muted">Metas: visibilidad de proyectos, coherencia visual, accesibilidad básica y rutas de contacto.</p>
+                  <p class="i18n-es">
+                    Este documento funciona como <strong>Index/Portada</strong> del sitio. Presenta el enfoque del autor, las áreas de interés y el mapa de navegación a “ventanas” temáticas. El propósito académico es <em>organizar la evidencia</em> de aprendizaje y <em>comunicar</em> soluciones de manera clara y evaluable.
+                  </p>
+                  <p class="i18n-en">
+                    This document serves as the site’s <strong>Index/Cover</strong>. It outlines the author’s focus, areas of interest, and the navigation map to thematic “windows”. The academic aim is to <em>organize evidence</em> of learning and <em>communicate</em> solutions clearly and evaluably.
+                  </p>
+                  <p class="idx__muted i18n-es">Metas: visibilidad de proyectos, coherencia visual, accesibilidad básica y rutas de contacto.</p>
+                  <p class="idx__muted i18n-en">Goals: project visibility, visual consistency, basic accessibility, and clear contact paths.</p>
                 </div>
               </section>
 
               <!-- ==================== DESARROLLO ==================== -->
               <section class="idx__section" id="idx-desarrollo" aria-labelledby="idx-desarrollo-h">
                 <div class="idx__hd">
-                  <h2 id="idx-desarrollo-h">Hola, soy Lucas Molina.</h2>
+                  <h2 id="idx-desarrollo-h">
+                    <span class="i18n-es">Hola, soy Lucas Molina.</span>
+                    <span class="i18n-en">Hi, I’m Lucas Molina.</span>
+                  </h2>
                 </div>
 
                 <!-- Bloque saludo + CTA -->
                 <div class="idx__card idx__card--grid">
                   <div>
-                    <h3 class="idx__h3">“Aprendiendo a ser ingeniero, <strong>un proyecto a la vez.”</strong>.</h3>
-                    <p class="idx__muted">“Para ustedes”</p>
+                    <h3 class="idx__h3">
+                      <span class="i18n-es">“Aprendiendo a ser ingeniero, <strong>un proyecto a la vez</strong>”.</span>
+                      <span class="i18n-en">“Learning to be an engineer, <strong>one project at a time</strong>.”</span>
+                    </h3>
+                    <p class="idx__muted">
+                      <span class="i18n-es">“Para ustedes”</span>
+                      <span class="i18n-en">“For you”</span>
+                    </p>
                     <div class="idx__chips" aria-label="Público principal">
-                      <span class="idx__chip">Profesores AUNAR</span>
-                      <span class="idx__chip">Compañeros</span>
-                      <span class="idx__chip">Clientes potenciales</span>
-                      <span class="idx__chip">Comunidad tech</span>
+                      <span class="idx__chip">
+                        <span class="i18n-es">Profesores AUNAR</span>
+                        <span class="i18n-en">AUNAR professors</span>
+                      </span>
+                      <span class="idx__chip">
+                        <span class="i18n-es">Compañeros</span>
+                        <span class="i18n-en">Classmates</span>
+                      </span>
+                      <span class="idx__chip">
+                        <span class="i18n-es">Clientes potenciales</span>
+                        <span class="i18n-en">Prospective clients</span>
+                      </span>
+                      <span class="idx__chip">
+                        <span class="i18n-es">Comunidad tech</span>
+                        <span class="i18n-en">Tech community</span>
+                      </span>
                     </div>
                     <div class="idx__cta">
-                      <a class="idx__btn idx__btn--primary" href="#idx-proyectos">Ver proyectos destacados</a>
-                      <a class="idx__btn idx__btn--accent" href="#idx-contacto">Portafolio / Contacto</a>
+                      <a class="idx__btn idx__btn--primary" href="#idx-proyectos">
+                        <span class="i18n-es">Ver proyectos destacados</span>
+                        <span class="i18n-en">See featured projects</span>
+                      </a>
+                      <a class="idx__btn idx__btn--accent" href="#idx-contacto">
+                        <span class="i18n-es">Portafolio / Contacto</span>
+                        <span class="i18n-en">Portfolio / Contact</span>
+                      </a>
                     </div>
                   </div>
                   <div>
                     <div class="idx__cardInner" role="img" aria-label="Ilustración de aprendizaje continuo">
-                      <h3 class="idx__h3">Bitácora en construcción</h3>
-                      <p class="idx__muted">Este sitio compila prácticas, retos y soluciones reales. Cada enlace abre una “ventana” con estructura uniforme para facilitar evaluación y mejora.</p>
+                      <h3 class="idx__h3">
+                        <span class="i18n-es">Bitácora en construcción</span>
+                        <span class="i18n-en">Logbook in progress</span>
+                      </h3>
+                      <p class="idx__muted i18n-es">Este sitio compila prácticas, retos y soluciones reales. Cada enlace abre una “ventana” con estructura uniforme para facilitar evaluación y mejora.</p>
+                      <p class="idx__muted i18n-en">This site compiles exercises, challenges, and real solutions. Each link opens a “window” with a consistent structure for easier evaluation and iteration.</p>
                       <div class="idx__tagrow">
                         <span class="idx__tag">HTML/CSS</span>
-                        <span class="idx__tag">Algoritmia</span>
+                        <span class="idx__tag">
+                          <span class="i18n-es">Algoritmia</span>
+                          <span class="i18n-en">Algorithms</span>
+                        </span>
                         <span class="idx__tag">Linux/Servers</span>
                         <span class="idx__tag">Excel/VBA</span>
                       </div>
@@ -394,86 +453,164 @@
 
                 <!-- SOBRE MÍ -->
                 <div class="idx__card" id="idx-sobre">
-                  <h3 class="idx__h3">Sobre mí</h3>
-                  <p>Soy estudiante de <strong>Ingeniería Informática</strong> (AUNAR). Uso este espacio para documentar mi proceso, compartir código y mostrar evidencias de aprendizaje. Me interesa el desarrollo web, automatización con Excel/VBA y administración de servidores Linux.</p>
+                  <h3 class="idx__h3">
+                    <span class="i18n-es">Sobre mí</span>
+                    <span class="i18n-en">About me</span>
+                  </h3>
+                  <p class="i18n-es">Soy estudiante de <strong>Ingeniería Informática</strong> (AUNAR). Uso este espacio para documentar mi proceso, compartir código y mostrar evidencias de aprendizaje. Me interesa el desarrollo web, automatización con Excel/VBA y administración de servidores Linux.</p>
+                  <p class="i18n-en">I’m an <strong>Information Engineering</strong> student (AUNAR). Here I document my process, share code, and present learning evidence. I’m into web development, Excel/VBA automation, and Linux server administration.</p>
                 </div>
 
                 <!-- PROYECTOS DESTACADOS -->
                 <div class="idx__card" id="idx-proyectos">
                   <div class="idx__rowhd">
-                    <h3 class="idx__h3">Proyectos destacados</h3>
-                    <a class="idx__link" href="#idx-contacto">¿Comentarios? Escríbeme →</a>
+                    <h3 class="idx__h3">
+                      <span class="i18n-es">Proyectos destacados</span>
+                      <span class="i18n-en">Featured projects</span>
+                    </h3>
+                    <a class="idx__link" href="#idx-contacto">
+                      <span class="i18n-es">¿Comentarios? Escríbeme →</span>
+                      <span class="i18n-en">Feedback? Write me →</span>
+                    </a>
                   </div>
                   <div class="idx__cards">
                     <article class="idx__mini">
-                      <h4 class="idx__h4">PSeInt · Promedio de notas</h4>
-                      <p>Algoritmo parametrizable + explicación paso a paso.</p>
-                      <div class="idx__tagrow"><span class="idx__tag">Algoritmia</span><span class="idx__tag">PSeInt</span></div>
-                      <a class="idx__btn" href="proyectos/pseint-promedio.html">Abrir ventana</a>
+                      <h4 class="idx__h4">
+                        <span class="i18n-es">PSeInt · Promedio de notas</span>
+                        <span class="i18n-en">PSeInt · Grade average</span>
+                      </h4>
+                      <p class="i18n-es">Algoritmo parametrizable + explicación paso a paso.</p>
+                      <p class="i18n-en">Parametrizable algorithm + step-by-step explanation.</p>
+                      <div class="idx__tagrow">
+                        <span class="idx__tag">
+                          <span class="i18n-es">Algoritmia</span><span class="i18n-en">Algorithms</span>
+                        </span>
+                        <span class="idx__tag">PSeInt</span>
+                      </div>
+                      <a class="idx__btn" href="proyectos/pseint-promedio.html">
+                        <span class="i18n-es">Abrir ventana</span>
+                        <span class="i18n-en">Open window</span>
+                      </a>
                     </article>
                     <article class="idx__mini">
-                      <h4 class="idx__h4">Servidor Ubuntu · Render/Cloud + Local</h4>
-                      <p>Guía práctica: despliegue estático y troubleshooting.</p>
+                      <h4 class="idx__h4">
+                        <span class="i18n-es">Servidor Ubuntu · Render/Cloud + Local</span>
+                        <span class="i18n-en">Ubuntu Server · Render/Cloud + Local</span>
+                      </h4>
+                      <p class="i18n-es">Guía práctica: despliegue estático y troubleshooting.</p>
+                      <p class="i18n-en">Hands-on guide: static deploys and troubleshooting.</p>
                       <div class="idx__tagrow"><span class="idx__tag">Linux</span><span class="idx__tag">DevOps</span></div>
-                      <a class="idx__btn" href="proyectos/servidor-ubuntu.html">Abrir ventana</a>
+                      <a class="idx__btn" href="proyectos/servidor-ubuntu.html">
+                        <span class="i18n-es">Abrir ventana</span>
+                        <span class="i18n-en">Open window</span>
+                      </a>
                     </article>
                     <article class="idx__mini">
-                      <h4 class="idx__h4">Excel Macros · Inventario minorista</h4>
-                      <p>Libro con menús, macros comentadas y flujos.</p>
+                      <h4 class="idx__h4">
+                        <span class="i18n-es">Excel Macros · Inventario minorista</span>
+                        <span class="i18n-en">Excel Macros · Retail inventory</span>
+                      </h4>
+                      <p class="i18n-es">Libro con menús, macros comentadas y flujos.</p>
+                      <p class="i18n-en">Workbook with menus, commented macros, and flows.</p>
                       <div class="idx__tagrow"><span class="idx__tag">Excel/VBA</span><span class="idx__tag">Retail</span></div>
-                      <a class="idx__btn" href="proyectos/excel-macros.html">Abrir ventana</a>
+                      <a class="idx__btn" href="proyectos/excel-macros.html">
+                        <span class="i18n-es">Abrir ventana</span>
+                        <span class="i18n-en">Open window</span>
+                      </a>
                     </article>
                   </div>
                 </div>
 
                 <!-- RUTA DE APRENDIZAJE -->
                 <div class="idx__card" id="idx-ruta">
-                  <h3 class="idx__h3">Ruta de aprendizaje</h3>
+                  <h3 class="idx__h3">
+                    <span class="i18n-es">Ruta de aprendizaje</span>
+                    <span class="i18n-en">Learning path</span>
+                  </h3>
                   <div class="idx__timeline">
                     <div class="idx__tl-item">
-                      <strong>Algoritmia y PSeInt</strong>
-                      <span>Condicionales, ciclos, modularización. Evidencias en ventanas PSeInt.</span>
+                      <strong>
+                        <span class="i18n-es">Algoritmia y PSeInt</span>
+                        <span class="i18n-en">Algorithms & PSeInt</span>
+                      </strong>
+                      <span class="i18n-es">Condicionales, ciclos, modularización. Evidencias en ventanas PSeInt.</span>
+                      <span class="i18n-en">Conditionals, loops, modularization. Evidence in PSeInt windows.</span>
                     </div>
                     <div class="idx__tl-item">
-                      <strong>Web básica (HTML/CSS)</strong>
-                      <span>Layouts responsivos y componentes reutilizables (la portada lo demuestra).</span>
+                      <strong>
+                        <span class="i18n-es">Web básica (HTML/CSS)</span>
+                        <span class="i18n-en">Basic web (HTML/CSS)</span>
+                      </strong>
+                      <span class="i18n-es">Layouts responsivos y componentes reutilizables (la portada lo demuestra).</span>
+                      <span class="i18n-en">Responsive layouts and reusable components (this cover shows it).</span>
                     </div>
                     <div class="idx__tl-item">
-                      <strong>Sistemas / Linux</strong>
-                      <span>Instalación, servicios web y despliegues (Render / GitHub Pages / Cloudflare).</span>
+                      <strong>
+                        <span class="i18n-es">Sistemas / Linux</span>
+                        <span class="i18n-en">Systems / Linux</span>
+                      </strong>
+                      <span class="i18n-es">Instalación, servicios web y despliegues (Render / GitHub Pages / Cloudflare).</span>
+                      <span class="i18n-en">Installations, web services and deployments (Render / GitHub Pages / Cloudflare).</span>
                     </div>
                     <div class="idx__tl-item">
-                      <strong>Automatización con Excel/VBA</strong>
-                      <span>Macros documentadas y flujos para comercio minorista.</span>
+                      <strong>
+                        <span class="i18n-es">Automatización con Excel/VBA</span>
+                        <span class="i18n-en">Automation with Excel/VBA</span>
+                      </strong>
+                      <span class="i18n-es">Macros documentadas y flujos para comercio minorista.</span>
+                      <span class="i18n-en">Documented macros and flows for retail.</span>
                     </div>
                   </div>
                 </div>
 
                 <!-- COLABORACIÓN -->
                 <div class="idx__card" id="idx-colabora">
-                  <h3 class="idx__h3">Colabora conmigo</h3>
-                  <p class="idx__muted"><strong>Este sitio es práctica en progreso.</strong> Si ves algo que pueda mejorar, dime o abre un issue.</p>
+                  <h3 class="idx__h3">
+                    <span class="i18n-es">Colabora conmigo</span>
+                    <span class="i18n-en">Collaborate with me</span>
+                  </h3>
+                  <p class="idx__muted">
+                    <span class="i18n-es"><strong>Este sitio es práctica en progreso.</strong> Si ves algo que pueda mejorar, dime o abre un issue.</span>
+                    <span class="i18n-en"><strong>This site is practice in progress.</strong> If you see something to improve, tell me or open an issue.</span>
+                  </p>
                   <div class="idx__cta">
-                    <a class="idx__btn" href="https://github.com/IngLucas" target="_blank" rel="noopener">Abrir GitHub</a>
-                    <a class="idx__btn" href="#idx-contacto">Enviar sugerencia</a>
+                    <a class="idx__btn" href="https://github.com/IngLucas" target="_blank" rel="noopener">
+                      <span class="i18n-es">Abrir GitHub</span>
+                      <span class="i18n-en">Open GitHub</span>
+                    </a>
+                    <a class="idx__btn" href="#idx-contacto">
+                      <span class="i18n-es">Enviar sugerencia</span>
+                      <span class="i18n-en">Send suggestion</span>
+                    </a>
                   </div>
                 </div>
 
                 <!-- CONTACTO -->
                 <div class="idx__card" id="idx-contacto">
-                  <h3 class="idx__h3">Portafolio y contacto</h3>
+                  <h3 class="idx__h3">
+                    <span class="i18n-es">Portafolio y contacto</span>
+                    <span class="i18n-en">Portfolio & contact</span>
+                  </h3>
                   <div class="idx__cards idx__cards--2">
                     <div class="idx__mini">
-                      <h4 class="idx__h4">Contacto directo</h4>
-                      <p>¿Feedback, propuestas o colaboraciones? Estoy atento.</p>
+                      <h4 class="idx__h4">
+                        <span class="i18n-es">Contacto directo</span>
+                        <span class="i18n-en">Direct contact</span>
+                      </h4>
+                      <p class="i18n-es">¿Feedback, propuestas o colaboraciones? Estoy atento.</p>
+                      <p class="i18n-en">Feedback, proposals, or collaborations? I’m listening.</p>
                       <div class="idx__cta">
                         <a class="idx__btn" href="mailto:contacto@inglucas.com.co">contacto@inglucas.com.co</a>
                         <a class="idx__btn" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener me">LinkedIn</a>
                       </div>
                     </div>
                     <div class="idx__mini">
-                      <h4 class="idx__h4">Más trabajos</h4>
-                      <p>Explora mis repos y bocetos en curso.</p>
+                      <h4 class="idx__h4">
+                        <span class="i18n-es">Más trabajos</span>
+                        <span class="i18n-en">More work</span>
+                      </h4>
+                      <p class="i18n-es">Explora mis repos y bocetos en curso.</p>
+                      <p class="i18n-en">Browse my repos and work in progress.</p>
                       <a class="idx__btn" href="https://github.com/IngLucas" target="_blank" rel="noopener me">GitHub</a>
                     </div>
                   </div>
@@ -483,13 +620,21 @@
               <!-- =================== CONCLUSIONES =================== -->
               <section class="idx__section" id="idx-conclusiones" aria-labelledby="idx-conc-h">
                 <div class="idx__hd">
-                  <h2 id="idx-conc-h">Conclusiones</h2>
+                  <h2 id="idx-conc-h">
+                    <span class="i18n-es">Conclusiones</span>
+                    <span class="i18n-en">Conclusions</span>
+                  </h2>
                 </div>
                 <div class="idx__card">
-                  <ol>
+                  <ol class="i18n-es">
                     <li>La portada unifica <strong>presentación, evidencias y contacto</strong> en un flujo legible.</li>
                     <li>Se preserva una <strong>identidad visual consistente</strong> y una estructura evaluable.</li>
-                    <li>La navegación local y los componentes reutilizables facilitan <strong>escalabilidad</strong> del sitio.</li>
+                    <li>La navegación local y los componentes reutilizables facilitan la <strong>escalabilidad</strong> del sitio.</li>
+                  </ol>
+                  <ol class="i18n-en">
+                    <li>The cover brings together <strong>introduction, evidence, and contact</strong> in a readable flow.</li>
+                    <li>It preserves a <strong>consistent visual identity</strong> and an assessable structure.</li>
+                    <li>Local navigation and reusable components enable site <strong>scalability</strong>.</li>
                   </ol>
                 </div>
               </section>
@@ -497,7 +642,10 @@
               <!-- =================== REFERENCIAS =================== -->
               <section class="idx__section" id="idx-referencias" aria-labelledby="idx-ref-h">
                 <div class="idx__hd">
-                  <h2 id="idx-ref-h">Referencias</h2>
+                  <h2 id="idx-ref-h">
+                    <span class="i18n-es">Referencias</span>
+                    <span class="i18n-en">References</span>
+                  </h2>
                 </div>
                 <div class="idx__card">
                   <ul class="idx__refs">
@@ -580,10 +728,13 @@
             .idx__tl-item{display:grid; gap:6px; border-left:2px dashed var(--border); padding-left:12px}
             .idx__tl-item strong{font-size:14px}
 
+            /* Móvil: subnav con scroll lateral si no entra */
             @media (max-width: 860px){
               .idx__subnav{scroll-snap-type:x proximity}
               .idx__pill{scroll-snap-align:center}
             }
+
+            /* Accesible, solo lectura */
             .idx__sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
           </style>
 
@@ -662,9 +813,15 @@
           <a class="chip" href="https://www.linkedin.com/in/IngLucas" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.6c0-1.34-.03-3.07-1.87-3.07-1.88 0-2.17 1.46-2.17 2.97v5.7H9.31V9h3.56v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.42v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
           </a>
-          <a class="chip" href="#" id="manageConsent">Preferencias de cookies</a>
+          <a class="chip" href="#" id="manageConsent">
+            <span class="i18n-es">Preferencias de cookies</span>
+            <span class="i18n-en">Cookie preferences</span>
+          </a>
         </div>
-        <div style="margin-top:10px"><a href="politicas-privacidad.html">Políticas de Privacidad</a></div>
+        <div style="margin-top:10px"><a href="politicas-privacidad.html">
+          <span class="i18n-es">Políticas de Privacidad</span>
+          <span class="i18n-en">Privacy Policy</span>
+        </a></div>
       </div>
       <div>
         © <span id="y"></span> <strong>IngLucas</strong> · Ing. Lucas Learning Hub · Colombia
@@ -953,11 +1110,57 @@
     })();
 
     // ============================================================
-    // I18N: Botón de idioma (ES ↔ EN)
+    // I18N: Botón de idioma (ES ↔ EN) + ARIA dinámico clave
     (function(){
       const LANG_KEY = 'hubLang';
       const $btn = document.getElementById('langToggle');
       const $chip = document.getElementById('langChip');
+
+      function setAriaForLang(L){
+        // Botones prev/next del índice
+        const prev = document.getElementById('idxPrev');
+        const next = document.getElementById('idxNext');
+        if(prev){ const t = L==='en'?'Previous':'Anterior'; prev.title=t; prev.setAttribute('aria-label',t); }
+        if(next){ const t = L==='en'?'Next':'Siguiente'; next.title=t; next.setAttribute('aria-label',t); }
+        // Subnav aria-label
+        const subnav = document.getElementById('idxSubnav');
+        if(subnav) subnav.setAttribute('aria-label', L==='en'?'Cover sections':'Secciones de la portada');
+        // Región principal
+        const mainR = document.getElementById('mainRegion');
+        if(mainR) mainR.setAttribute('aria-label', L==='en'?'Main content':'Contenido principal');
+        // Drawer/Comments aria-labels
+        const drawer = document.getElementById('drawer');
+        if(drawer) drawer.setAttribute('aria-label', L==='en'?'Navigation menu':'Menú de navegación');
+        const comments = document.getElementById('commentsDrawer');
+        if(comments) comments.setAttribute('aria-label', L==='en'?'Comments':'Comentarios');
+        // Títulos/labels de botones base
+        const openComments = document.getElementById('openComments');
+        if(openComments){
+          const t = L==='en'?'Open comments':'Abrir comentarios';
+          openComments.title = t; openComments.setAttribute('aria-label',t);
+        }
+        const openDrawer = document.getElementById('openDrawer');
+        if(openDrawer){
+          const t = L==='en'?'Open menu':'Abrir menú';
+          openDrawer.title = t; openDrawer.setAttribute('aria-label',t);
+        }
+        const closeDrawer = document.getElementById('closeDrawer');
+        if(closeDrawer){
+          closeDrawer.setAttribute('aria-label', L==='en'?'Close':'Cerrar');
+          closeDrawer.textContent = L==='en'?'Close ✕':'Cerrar ✕';
+        }
+        const closeComments = document.getElementById('closeComments');
+        if(closeComments){
+          closeComments.setAttribute('aria-label', L==='en'?'Close comments':'Cerrar comentarios');
+          closeComments.textContent = L==='en'?'Close ✕':'Cerrar ✕';
+        }
+        // Consent aria-label del diálogo
+        const consent = document.getElementById('consent');
+        if(consent) consent.setAttribute('aria-label', L==='en'?'Cookie preferences':'Preferencias de cookies');
+        // Enlace gestionar cookies
+        const m = document.getElementById('manageConsent');
+        if(m) m.textContent = L==='en'?'Cookie preferences':'Preferencias de cookies';
+      }
 
       function applyLang(lang){
         const L = (lang === 'en') ? 'en' : 'es';
@@ -968,6 +1171,7 @@
         $btn.setAttribute('aria-label', L === 'en' ? 'Switch language to Spanish' : 'Cambiar idioma a inglés');
         $btn.setAttribute('title', L === 'en' ? 'Switch to Spanish' : 'Cambiar a English');
         $btn.setAttribute('aria-pressed', L === 'en');
+        setAriaForLang(L);
       }
 
       const saved = localStorage.getItem(LANG_KEY) || 'es';
@@ -983,3 +1187,4 @@
   <!-- (Utterances se inyecta al abrir el panel) -->
 </body>
 </html>
+
