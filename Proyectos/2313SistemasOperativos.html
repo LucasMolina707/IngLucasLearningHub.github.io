@@ -3,11 +3,7 @@
 <head>
   <!-- =====================================================================
        CABECERA OPTIMIZADA PARA SEO (v3)
-       Notas:
-       - Rellena los [SEO/TODO] con datos reales del proyecto/página.
-       - Los iconos se sirven desde el MISMO repo (/galeria/logo/...).
        ===================================================================== -->
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
@@ -15,11 +11,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
 
-  <!-- [SEO/TODO] TITLE y DESCRIPTION con keywords -->
   <title>Ing. Lucas Molina · Learning Hub — Estudiante de Ingeniería Informática en Colombia</title>
   <meta name="description" content="Portafolio y bitácora de Ing. Lucas Molina (Ing Lucas) — estudiante de Ingeniería Informática. Proyectos, tutoriales y recursos del Ing. Lucas Learning Hub en Colombia." />
-
-  <!-- Robots y canónica -->
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://hub.inglucas.com.co/">
 
@@ -27,24 +20,16 @@
   <link rel="alternate" hreflang="es-co" href="https://hub.inglucas.com.co/">
   <link rel="alternate" hreflang="es" href="https://hub.inglucas.com.co/">
 
-  <!-- ====== ICONOGRAFÍA / FAVICONS (desde el mismo repo) ====== -->
-  <!-- Favicon clásico -->
+  <!-- ICONOS -->
   <link rel="icon" href="/galeria/logo/logoinglucas.ico" sizes="any">
-  <!-- SVG vectorial (modernos) -->
   <link rel="icon" type="image/svg+xml" href="/galeria/logo/logoinglucas.svg">
-  <!-- PNGs en varios tamaños para compatibilidad -->
   <link rel="icon" type="image/png" sizes="48x48" href="/galeria/logo/logoinglucas.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/galeria/logo/logoinglucas.png">
-  <!-- Apple touch icon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/galeria/logo/logoinglucas.png">
-  <!-- Pinned tab Safari -->
   <link rel="mask-icon" href="/galeria/logo/logoinglucas.svg" color="#2563eb">
-  <!-- Windows tiles -->
   <meta name="msapplication-TileColor" content="#0b1730">
-  <meta name="msapplication-config" content="/browserconfig.xml"><!-- [SEO/INFO] opcional -->
-  <!-- Manifest PWA (para que buscadores lean nombre/iconos) -->
+  <meta name="msapplication-config" content="/browserconfig.xml">
   <link rel="manifest" href="/site.webmanifest">
-  <!-- [SEO/INFO] El .ai no se referencia como favicon (no lo soportan). Guárdalo en /galeria/logo/logoinglucas.ai para diseño. -->
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
@@ -53,18 +38,15 @@
   <meta property="og:title" content="Ing. Lucas Molina · Learning Hub">
   <meta property="og:description" content="Proyectos y recursos de Ing. Lucas Molina (Ing Lucas) en Colombia.">
   <meta property="og:url" content="https://hub.inglucas.com.co/">
-  <meta property="og:image" content="/multimedia/cover-og.webp"><!-- [SEO/TODO] 1200x630, <300KB -->
-
+  <meta property="og:image" content="/multimedia/cover-og.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ing. Lucas Molina · Learning Hub">
   <meta name="twitter:description" content="Portafolio, proyectos y tutoriales del Ing Lucas en Colombia.">
   <meta name="twitter:image" content="/multimedia/cover-og.webp">
 
-  <!-- Color de la UI del navegador -->
   <meta name="theme-color" content="#0d47a1" />
 
-  <!-- ====== DATOS ESTRUCTURADOS (JSON-LD) ====== -->
-  <!-- Person + WebSite + Organization con logo (para mostrar logo en SERP) -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -120,22 +102,20 @@
   }
   </script>
 
-  <!-- Breadcrumbs opcionales (rellena por página) -->
+  <!-- Breadcrumbs -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hub.inglucas.com.co/" }
-      /* [SEO/TODO] Añade niveles por página:
-         ,{ "@type":"ListItem","position":2,"name":"Proyectos","item":"https://hub.inglucas.com.co/proyectos/" } */
     ]
   }
   </script>
 
   <style>
     /* =============================================================
-       PALETA DE ARMONÍA (alto contraste, sin negros puros)
+       PALETA + LAYOUT BASE
        ============================================================= */
     :root{
       --blue-900:#0b1730; --blue-800:#0f2346; --blue-700:#153769; --blue-600:#1c4b8c; --blue-500:#2563eb; --blue-400:#60a5fa;
@@ -148,28 +128,24 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
-      background:linear-gradient(180deg,var(--panel-2),var(--bg)); color:var(--text)
-    }
+    body{margin:0; font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif; background:linear-gradient(180deg,var(--panel-2),var(--bg)); color:var(--text)}
     a{color:var(--blue-400); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
+    /* ========= I18N: mostrar solo un idioma a la vez ========= */
+    html[data-lang="es"] .i18n-en{display:none !important}
+    html[data-lang="en"] .i18n-es{display:none !important}
+
     /* =============================================================
-       TOPBAR + ACCIONES (logo + botones a la derecha)
-    ============================================================= */
+       TOPBAR
+       ============================================================= */
     .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
-
-    .logo{
-      width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden;
-      background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)
-    }
+    .logo{ width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)}
     .logo img{width:100%; height:100%; object-fit:cover; display:block}
     .brand{display:flex; flex-direction:column}
     .brand strong{font-size:16px}
     .brand span{font-size:12px; color:var(--muted)}
-
     .actions{ margin-left:auto; display:flex; gap:10px; align-items:center }
     .icon-btn{
       --size:40px; width:var(--size); height:var(--size); display:inline-grid; place-items:center;
@@ -181,9 +157,10 @@
     .icon-btn:hover{ transform:translateY(-1px); filter:brightness(1.05)}
     .icon-btn:focus-visible{ outline:none; box-shadow:var(--accent-ring) }
     .icon-btn svg{ width:22px; height:22px; display:block }
+    .lang-chip{font-size:12px; font-weight:700; letter-spacing:.3px}
 
     /* =============================================================
-       DRAWER / MENÚ LATERAL (derecha)
+       DRAWER / MENÚ LATERAL
        ============================================================= */
     .drawer{ position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform }
     .drawer.open{transform:translateX(0)}
@@ -226,7 +203,7 @@
     .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:#eef5ff}
 
     /* =============================================================
-       BANNER COOKIES (alto contraste)
+       BANNER COOKIES
        ============================================================= */
     .consent{ display:none; position:fixed; inset:auto 0 16px 0; z-index:1000; }
     .consent .card{ max-width:960px; margin:0 auto; background:#0f172a; color:#e6efff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.28); padding:16px 18px; border:1px solid rgba(96,165,250,.25); }
@@ -238,7 +215,7 @@
     .btn:hover{ filter:brightness(1.05); }
 
     /* =============================================================
-       PANEL DE COMENTARIOS (izquierda)
+       PANEL DE COMENTARIOS
        ============================================================= */
     .comments-drawer{ position:fixed; z-index:80; inset:0 auto 0 0; width:420px; max-width:92vw; background:linear-gradient(180deg,#0b1626,#0a1220); border-right:2px solid var(--blue-500); box-shadow:20px 0 40px rgba(0,0,0,.45); transform:translateX(-100%); transition:.25s ease transform; display:flex; flex-direction:column; }
     .comments-drawer.open{ transform:translateX(0) }
@@ -249,11 +226,11 @@
 
 <body>
   <!-- =============================================================
-       TOPBAR con acciones: Comentarios + Menú (derecha)
+       TOPBAR
        ============================================================= -->
   <div class="topbar">
     <div class="wrap row">
-      <!-- Logo usando rutas del MISMO repo -->
+      <!-- Logo -->
       <a class="logo" href="/" aria-label="Inicio · Ing. Lucas Learning Hub">
         <picture>
           <source srcset="/galeria/logo/logoinglucas.svg" type="image/svg+xml">
@@ -262,26 +239,30 @@
       </a>
 
       <div class="brand">
-        <!-- [SEO/TODO] Marca + claim -->
         <strong>Ing. Lucas Learning Hub</strong>
         <span>Plantilla Base</span>
       </div>
 
       <div class="actions">
-        <!-- Botón: abrir comentarios (icono solo) -->
+        <!-- Botón comentarios -->
         <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios" aria-expanded="false" aria-controls="commentsDrawer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
         </button>
-        <!-- Botón: abrir menú (hover/click en desktop) -->
+        <!-- Botón menú -->
         <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+        </button>
+        <!-- Botón idioma ES/EN -->
+        <button class="icon-btn" id="langToggle" title="Cambiar idioma" aria-label="Cambiar idioma" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.73 6h-3.46a15.9 15.9 0 0 0-1.6-3.63A8.03 8.03 0 0 1 19.73 8zM12 4c.88 0 2.39 1.88 3.23 4H8.77C9.61 5.88 11.12 4 12 4zM4.27 8A8.03 8.03 0 0 1 9.33 4.37 15.9 15.9 0 0 0 7.73 8H4.27zM4 10h3.16c-.08.66-.13 1.32-.13 2s.05 1.34.13 2H4a8 8 0 0 1 0-4zm.27 6h3.46c.4 1.28.95 2.49 1.6 3.63A8.03 8.03 0 0 1 4.27 16zM12 20c-.88 0-2.39-1.88-3.23-4h6.46C14.39 18.12 12.88 20 12 20zm2.67-.37c.65-1.14 1.2-2.35 1.6-3.63h3.46a8.03 8.03 0 0 1-5.06 3.63zM20 14h-3.16c.08-.66.13-1.32.13-2s-.05-1.34-.13-2H20a8 8 0 0 1 0 4z"/></svg>
+          <span class="lang-chip" id="langChip" aria-hidden="true">ES</span>
         </button>
       </div>
     </div>
   </div>
 
   <!-- =============================================================
-       DRAWER / MENÚ LATERAL (derecha)
+       DRAWER / MENÚ LATERAL
        ============================================================= -->
   <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
     <div class="hd">
@@ -301,7 +282,7 @@
   </aside>
 
   <!-- =============================================================
-       PANEL DE COMENTARIOS (izquierda)
+       PANEL DE COMENTARIOS
        ============================================================= -->
   <aside class="comments-drawer" id="commentsDrawer" aria-label="Comentarios" aria-hidden="true">
     <div class="hd">
@@ -309,7 +290,6 @@
       <button class="btn" id="closeComments" aria-label="Cerrar comentarios">Cerrar ✕</button>
     </div>
     <div class="bd">
-      <!-- Utterances se inyecta aquí on-demand -->
       <div id="commentsMount" aria-live="polite"></div>
     </div>
   </aside>
@@ -336,56 +316,67 @@
 
       <div class="window-body">
         <section class="pane">
-          <!-- ✅ Inserción única dentro de section.pane -->
-          <!-- ES: Línea de tiempo — bloque autónomo y encapsulado con introducción, objetivos y conclusión.
-               EN: Timeline — self-contained block with introduction, objectives and conclusion. -->
+          <!-- ✅ Bloque encapsulado: data-scope="ilh" -->
           <article data-scope="ilh" class="ilh-wrap" aria-labelledby="ilh-h1">
             <!-- ========================= Header ========================= -->
             <header class="ilh-head">
-              <h1 id="ilh-h1">📜 Línea de Tiempo de la Computación</h1>
+              <h1 id="ilh-h1">
+                <span class="i18n-es">📜 Línea de Tiempo de la Computación</span>
+                <span class="i18n-en">📜 Computing Timeline</span>
+              </h1>
               <p class="ilh-sub">
-                <!-- ES -->De los tableros de cables y tarjetas perforadas a la web, la nube y la IA.
-                <!-- EN --><span class="ilh-en">(EN) From patch panels and punch cards to the web, cloud, and AI.</span>
+                <span class="i18n-es">De los tableros de cables y tarjetas perforadas a la web, la nube y la IA.</span>
+                <span class="i18n-en">From patch panels and punch cards to the web, cloud and AI.</span>
               </p>
             </header>
 
             <!-- ======================== Introducción ======================== -->
             <section class="ilh-intro" aria-labelledby="ilh-intro-h2">
-              <h2 id="ilh-intro-h2">Introducción / Introduction</h2>
+              <h2 id="ilh-intro-h2">
+                <span class="i18n-es">Introducción</span>
+                <span class="i18n-en">Introduction</span>
+              </h2>
               <p>
-                <!-- ES -->
-                Esta línea de tiempo presenta los <strong>hitos clave de la historia de la computación</strong> desde los años 40 hasta la década de 2020.
-                El objetivo es ofrecer una vista clara y navegable de cómo <em>hardware, software y redes</em> evolucionaron hasta
-                habilitar la era de <strong>aplicaciones móviles, nube e inteligencia artificial</strong>.
-                <!-- EN -->
-                <span class="ilh-en">(EN) This timeline highlights key milestones in computing from the 1940s to the 2020s, showing how hardware, software, and networks evolved to enable the mobile, cloud, and AI era.</span>
+                <span class="i18n-es">
+                  Esta línea de tiempo reúne <strong>hitos técnicos y sociales</strong> que explican cómo la computación
+                  pasó de equipos experimentales a plataformas globales. Se cubren <em>arquitecturas</em>, <em>lenguajes</em>,
+                  <em>redes</em> y <em>modelos de uso</em> (PC, web, móviles, nube e IA).
+                </span>
+                <span class="i18n-en">
+                  This timeline collects <strong>technical and social milestones</strong> showing how computing evolved
+                  from experimental machines to global platforms. It spans <em>architectures</em>, <em>languages</em>,
+                  <em>networks</em>, and <em>usage models</em> (PC, web, mobile, cloud, and AI).
+                </span>
               </p>
             </section>
 
             <!-- ========================= Objetivos ========================== -->
             <section class="ilh-objectives" aria-labelledby="ilh-obj-h2">
-              <h2 id="ilh-obj-h2">Objetivos del proyecto / Project Objectives</h2>
+              <h2 id="ilh-obj-h2">
+                <span class="i18n-es">Objetivos del proyecto</span>
+                <span class="i18n-en">Project Objectives</span>
+              </h2>
               <ul class="ilh-list">
                 <li>
-                  <!-- ES -->Visualizar cronológicamente eventos y tecnologías influyentes.
-                  <!-- EN --><span class="ilh-en">(EN) Visualize influential events and technologies chronologically.</span>
+                  <span class="i18n-es">Visualizar cronológicamente eventos y tecnologías influyentes con contexto.</span>
+                  <span class="i18n-en">Chronologically visualize influential events and technologies with context.</span>
                 </li>
                 <li>
-                  <!-- ES -->Resumir el impacto de cada década en el ecosistema de computación.
-                  <!-- EN --><span class="ilh-en">(EN) Summarize each decade’s impact on the computing ecosystem.</span>
+                  <span class="i18n-es">Resumir el impacto por década sobre hardware, software y redes.</span>
+                  <span class="i18n-en">Summarize per-decade impact across hardware, software, and networks.</span>
                 </li>
                 <li>
-                  <!-- ES -->Proveer una interfaz accesible y responsive sin librerías externas.
-                  <!-- EN --><span class="ilh-en">(EN) Provide an accessible, responsive interface without external libraries.</span>
+                  <span class="i18n-es">Mantener accesibilidad y <em>responsive</em> sin librerías externas.</span>
+                  <span class="i18n-en">Provide an accessible, responsive UI without external libraries.</span>
                 </li>
                 <li>
-                  <!-- ES -->Mantener compatibilidad con la plantilla base (header, drawer, comentarios, footer, cookies).
-                  <!-- EN --><span class="ilh-en">(EN) Preserve base template compatibility (header, drawer, comments, footer, cookies).</span>
+                  <span class="i18n-es">Conservar compatibilidad con la plantilla base (header, drawer, comentarios, cookies).</span>
+                  <span class="i18n-en">Preserve compatibility with the base template (header, drawer, comments, cookies).</span>
                 </li>
               </ul>
             </section>
 
-            <!-- ===================== Controls + Legend =================== -->
+            <!-- ===================== Controles + Leyenda =================== -->
             <div class="ilh-controls" role="group" aria-label="Controles de navegación de la línea de tiempo">
               <div class="ilh-legend" aria-hidden="true">
                 <span><i style="background:#2f6fd6"></i> 1940s</span>
@@ -409,21 +400,28 @@
             <section class="ilh-timeline" aria-label="Línea de tiempo de hitos">
               <div class="ilh-line" aria-hidden="true"></div>
 
-              <!-- Nota: IDs únicos con sufijo -1 para evitar colisión global -->
               <div id="ilh-rail-1" class="ilh-rail" role="list" tabindex="0" aria-label="Carril de eventos">
                 <!-- 1940s -->
                 <article class="ilh-item" role="listitem" data-decade="1940s">
-                  <!-- ES/EN: Inline style para color por década (justificado por personalización). -->
                   <div class="ilh-dot" style="--dot:#2f6fd6"><span>40</span></div>
                   <div class="ilh-card">
-                    <span class="ilh-badge">1940s · Programación manual</span>
-                    <h3>🔧 Pioneros</h3>
-                    <p>Interruptores, cableado y tarjetas perforadas.</p>
+                    <span class="ilh-badge">
+                      <span class="i18n-es">1940s · Programación manual</span>
+                      <span class="i18n-en">1940s · Manual programming</span>
+                    </span>
+                    <h3>
+                      <span class="i18n-es">🔧 Pioneros</span>
+                      <span class="i18n-en">🔧 Pioneers</span>
+                    </h3>
+                    <p class="i18n-es">Computación con <strong>tubos de vacío</strong>, paneles de cables e <strong>interfaces físicas</strong>. Nacen los conceptos de programa almacenado y arquitectura de von Neumann.</p>
+                    <p class="i18n-en">Computing with <strong>vacuum tubes</strong>, patch panels, and <strong>physical interfaces</strong>. Stored-program concept and the von Neumann architecture emerge.</p>
                     <ul>
-                      <li>ENIAC (tubos de vacío)</li>
-                      <li>Colossus (criptoanálisis)</li>
+                      <li><span class="i18n-es">ENIAC (1945): cálculo numérico general con reconfiguración manual.</span><span class="i18n-en">ENIAC (1945): general-purpose numerical computing via manual reconfiguration.</span></li>
+                      <li><span class="i18n-es">Colossus (1943–44): criptoanálisis en Bletchley Park.</span><span class="i18n-en">Colossus (1943–44): code-breaking at Bletchley Park.</span></li>
+                      <li><span class="i18n-es">Informe EDVAC (1945): base del modelo de programa almacenado.</span><span class="i18n-en">EDVAC report (1945): foundation of the stored-program model.</span></li>
+                      <li><span class="i18n-es">Tarjetas perforadas y memorias de líneas de retardo/mercurio.</span><span class="i18n-en">Punch cards; delay-line and mercury memories.</span></li>
                     </ul>
-                    <div class="ilh-tags"><span>ENIAC</span><span>Colossus</span></div>
+                    <div class="ilh-tags"><span>ENIAC</span><span>Colossus</span><span>EDVAC</span></div>
                   </div>
                 </article>
 
@@ -431,14 +429,19 @@
                 <article class="ilh-item" role="listitem" data-decade="1950s">
                   <div class="ilh-dot" style="--dot:#19b5d1"><span>50</span></div>
                   <div class="ilh-card">
-                    <span class="ilh-badge">1950s · Lenguajes</span>
-                    <h3>💻 Alto nivel</h3>
-                    <p>Transistores, ensamblador y Fortran/COBOL.</p>
+                    <span class="ilh-badge">
+                      <span class="i18n-es">1950s · Lenguajes y transistores</span>
+                      <span class="i18n-en">1950s · Languages & transistors</span>
+                    </span>
+                    <h3><span class="i18n-es">💻 Alto nivel</span><span class="i18n-en">💻 High level</span></h3>
+                    <p class="i18n-es">Transición de tubos a <strong>transistores</strong>. Surgen compiladores y lenguajes de alto nivel que democratizan la programación.</p>
+                    <p class="i18n-en">Move from tubes to <strong>transistors</strong>. Compilers and high-level languages democratize programming.</p>
                     <ul>
-                      <li>Fortran (1957)</li>
-                      <li>COBOL (1959)</li>
+                      <li><span class="i18n-es">UNIVAC I (1951) y cinta magnética para I/O masivo.</span><span class="i18n-en">UNIVAC I (1951) and magnetic tape for bulk I/O.</span></li>
+                      <li><span class="i18n-es">FORTRAN (1957) para cómputo científico; COBOL (1959) para negocios.</span><span class="i18n-en">FORTRAN (1957) for science; COBOL (1959) for business.</span></li>
+                      <li><span class="i18n-es">Batch processing y bibliotecas estándar iniciales.</span><span class="i18n-en">Batch processing and early standard libraries.</span></li>
                     </ul>
-                    <div class="ilh-tags"><span>Fortran</span><span>COBOL</span></div>
+                    <div class="ilh-tags"><span>FORTRAN</span><span>COBOL</span><span>UNIVAC</span></div>
                   </div>
                 </article>
 
@@ -446,14 +449,20 @@
                 <article class="ilh-item" role="listitem" data-decade="1960s">
                   <div class="ilh-dot" style="--dot:#22c55e"><span>60</span></div>
                   <div class="ilh-card">
-                    <span class="ilh-badge">1960s · Mainframes</span>
-                    <h3>🖥️ Time-sharing</h3>
-                    <p>SO, CI y System/360.</p>
+                    <span class="ilh-badge">
+                      <span class="i18n-es">1960s · Mainframes y time-sharing</span>
+                      <span class="i18n-en">1960s · Mainframes & time-sharing</span>
+                    </span>
+                    <h3><span class="i18n-es">🖥️ Multiprogramación</span><span class="i18n-en">🖥️ Multiprogramming</span></h3>
+                    <p class="i18n-es">Estandarización con <strong>System/360</strong>; nacimiento del <strong>time-sharing</strong> que permite múltiples usuarios interactivos.</p>
+                    <p class="i18n-en">Standardization with <strong>System/360</strong>; rise of <strong>time-sharing</strong> enabling multi-user interactivity.</p>
                     <ul>
-                      <li>IBM System/360</li>
-                      <li>Circuitos integrados</li>
+                      <li><span class="i18n-es">IBM System/360 (1964): familia compatible por primera vez.</span><span class="i18n-en">IBM System/360 (1964): first compatible family line.</span></li>
+                      <li><span class="i18n-es">CTSS/Multics: semillas de seguridad, archivos y shells.</span><span class="i18n-en">CTSS/Multics: seeds of security, files, and shells.</span></li>
+                      <li><span class="i18n-es">ARPANET (1969): pre-Internet.</span><span class="i18n-en">ARPANET (1969): pre-Internet.</span></li>
+                      <li><span class="i18n-es">ASCII (1963/67) y los <strong>circuitos integrados</strong> se masifican.</span><span class="i18n-en">ASCII (1963/67) and widespread <strong>integrated circuits</strong>.</span></li>
                     </ul>
-                    <div class="ilh-tags"><span>System/360</span><span>CI</span></div>
+                    <div class="ilh-tags"><span>System/360</span><span>Multics</span><span>ARPANET</span></div>
                   </div>
                 </article>
 
@@ -461,14 +470,21 @@
                 <article class="ilh-item" role="listitem" data-decade="1970s">
                   <div class="ilh-dot" style="--dot:#eab308"><span>70</span></div>
                   <div class="ilh-card">
-                    <span class="ilh-badge">1970s · Unix y C</span>
-                    <h3>🚀 Portabilidad</h3>
-                    <p>Filosofía “todo es archivo”.</p>
+                    <span class="ilh-badge">
+                      <span class="i18n-es">1970s · UNIX, C y microprocesadores</span>
+                      <span class="i18n-en">1970s · UNIX, C & microprocessors</span>
+                    </span>
+                    <h3><span class="i18n-es">🚀 Portabilidad</span><span class="i18n-en">🚀 Portability</span></h3>
+                    <p class="i18n-es"><strong>UNIX</strong> y <strong>C</strong> introducen una filosofía simple y portable. Aparecen los primeros <strong>microprocesadores</strong> y redes locales.</p>
+                    <p class="i18n-en"><strong>UNIX</strong> and <strong>C</strong> bring a simple, portable philosophy. Early <strong>microprocessors</strong> and local networks emerge.</p>
                     <ul>
-                      <li>Intel 4004/8008</li>
-                      <li>Ethernet (1973)</li>
+                      <li><span class="i18n-es">Intel 4004 (1971), 8008 (1972), 8080 (1974).</span><span class="i18n-en">Intel 4004 (1971), 8008 (1972), 8080 (1974).</span></li>
+                      <li><span class="i18n-es">MITS Altair 8800 (1975): arranque del hobby computing.</span><span class="i18n-en">MITS Altair 8800 (1975): hobby computing kicks off.</span></li>
+                      <li><span class="i18n-es">Ethernet (1973) y primeras LAN.</span><span class="i18n-en">Ethernet (1973) and early LANs.</span></li>
+                      <li><span class="i18n-es">Modelo relacional (Codd, 1970) y SQL.</span><span class="i18n-en">Relational model (Codd, 1970) and SQL.</span></li>
+                      <li><span class="i18n-es">TCP/IP especificado a mediados de los 70 (adopción amplia en 1983).</span><span class="i18n-en">TCP/IP specified mid-70s (widely adopted by 1983).</span></li>
                     </ul>
-                    <div class="ilh-tags"><span>Unix</span><span>C</span><span>Ethernet</span></div>
+                    <div class="ilh-tags"><span>UNIX</span><span>C</span><span>Ethernet</span><span>SQL</span></div>
                   </div>
                 </article>
 
@@ -476,14 +492,20 @@
                 <article class="ilh-item" role="listitem" data-decade="1980s">
                   <div class="ilh-dot" style="--dot:#ef4444"><span>80</span></div>
                   <div class="ilh-card">
-                    <span class="ilh-badge">1980s · PC y GUI</span>
-                    <h3>🖱️ Escritorio</h3>
-                    <p>IBM PC, Macintosh, C++.</p>
+                    <span class="ilh-badge">
+                      <span class="i18n-es">1980s · PC, GUI y redes</span>
+                      <span class="i18n-en">1980s · PCs, GUIs & networking</span>
+                    </span>
+                    <h3><span class="i18n-es">🖱️ Escritorio</span><span class="i18n-en">🖱️ Desktop</span></h3>
+                    <p class="i18n-es">El <strong>PC</strong> y las <strong>interfaces gráficas</strong> popularizan la computación personal; Internet madura en el mundo académico.</p>
+                    <p class="i18n-en"><strong>PCs</strong> and <strong>GUIs</strong> popularize personal computing; the Internet matures in academia.</p>
                     <ul>
-                      <li>MS-DOS</li>
-                      <li>C++ (OOP)</li>
+                      <li><span class="i18n-es">IBM PC (1981) + MS-DOS; Macintosh (1984) con GUI.</span><span class="i18n-en">IBM PC (1981) + MS-DOS; Macintosh (1984) with GUI.</span></li>
+                      <li><span class="i18n-es">C++ (mediados de 80) y POO.</span><span class="i18n-en">C++ (mid-80s) and OOP.</span></li>
+                      <li><span class="i18n-es">DNS (1983), NSFNET (1986), estandarización TCP/IP (1983).</span><span class="i18n-en">DNS (1983), NSFNET (1986), TCP/IP standardization (1983).</span></li>
+                      <li><span class="i18n-es">CD-ROM (1982) y gráficos 2D/3D tempranos.</span><span class="i18n-en">CD-ROM (1982) and early 2D/3D graphics.</span></li>
                     </ul>
-                    <div class="ilh-tags"><span>IBM PC</span><span>Mac</span></div>
+                    <div class="ilh-tags"><span>IBM PC</span><span>Mac</span><span>C++</span><span>DNS</span></div>
                   </div>
                 </article>
 
@@ -491,14 +513,20 @@
                 <article class="ilh-item" role="listitem" data-decade="1990s">
                   <div class="ilh-dot ilh-pulse" style="--dot:#8b5cf6"><span>90</span></div>
                   <div class="ilh-card">
-                    <span class="ilh-badge">1990s · Internet</span>
-                    <h3>🌐 La Web</h3>
-                    <p>HTML/HTTP/URL + navegadores.</p>
+                    <span class="ilh-badge">
+                      <span class="i18n-es">1990s · Internet y la Web</span>
+                      <span class="i18n-en">1990s · Internet & the Web</span>
+                    </span>
+                    <h3><span class="i18n-es">🌐 La Web</span><span class="i18n-en">🌐 The Web</span></h3>
+                    <p class="i18n-es">La Web pasa de proyecto académico a plataforma mundial. Nacen <strong>Java</strong> y <strong>JavaScript</strong>; Linux impulsa el software libre.</p>
+                    <p class="i18n-en">The Web moves from academia to a global platform. <strong>Java</strong> and <strong>JavaScript</strong> debut; Linux fuels open source.</p>
                     <ul>
-                      <li>Windows 95</li>
-                      <li>Java & JavaScript</li>
+                      <li><span class="i18n-es">WWW/HTML/HTTP/URL (1990–93) y navegadores (Mosaic, Netscape).</span><span class="i18n-en">WWW/HTML/HTTP/URL (1990–93) and browsers (Mosaic, Netscape).</span></li>
+                      <li><span class="i18n-es">Windows 95 (1995) y TCP/IP de serie.</span><span class="i18n-en">Windows 95 (1995) with built-in TCP/IP.</span></li>
+                      <li><span class="i18n-es">Java (1995) y JavaScript (1995); Linux (1991).</span><span class="i18n-en">Java (1995) and JavaScript (1995); Linux (1991).</span></li>
+                      <li><span class="i18n-es">Wi-Fi 802.11b (1999) y auge de LAMP.</span><span class="i18n-en">Wi-Fi 802.11b (1999) and the LAMP stack rises.</span></li>
                     </ul>
-                    <div class="ilh-tags"><span>WWW</span><span>Java</span></div>
+                    <div class="ilh-tags"><span>WWW</span><span>Java</span><span>Linux</span><span>Wi-Fi</span></div>
                   </div>
                 </article>
 
@@ -506,14 +534,20 @@
                 <article class="ilh-item" role="listitem" data-decade="2000s">
                   <div class="ilh-dot" style="--dot:#ec4899"><span>00</span></div>
                   <div class="ilh-card">
-                    <span class="ilh-badge">2000s · Conectividad</span>
-                    <h3>📱 Móviles</h3>
-                    <p>Banda ancha y Web 2.0.</p>
+                    <span class="ilh-badge">
+                      <span class="i18n-es">2000s · Conectividad y móviles</span>
+                      <span class="i18n-en">2000s · Connectivity & mobile</span>
+                    </span>
+                    <h3><span class="i18n-es">📱 Web 2.0</span><span class="i18n-en">📱 Web 2.0</span></h3>
+                    <p class="i18n-es">Banda ancha, AJAX y contenido generado por usuarios. El smartphone redefine la computación personal.</p>
+                    <p class="i18n-en">Broadband, AJAX, and user-generated content. Smartphones redefine personal computing.</p>
                     <ul>
-                      <li>iPhone (2007)</li>
-                      <li>Android (2008)</li>
+                      <li><span class="i18n-es">iPhone (2007) y Android (2008) con <em>app stores</em>.</span><span class="i18n-en">iPhone (2007) and Android (2008) with app stores.</span></li>
+                      <li><span class="i18n-es">AWS (2006) inicia la nube pública moderna.</span><span class="i18n-en">AWS (2006) kickstarts modern public cloud.</span></li>
+                      <li><span class="i18n-es">Redes sociales y APIs abiertas; RSS/Atom.</span><span class="i18n-en">Social networks and open APIs; RSS/Atom.</span></li>
+                      <li><span class="i18n-es">Virtualización generalizada en centros de datos.</span><span class="i18n-en">Widespread data-center virtualization.</span></li>
                     </ul>
-                    <div class="ilh-tags"><span>iPhone</span><span>Android</span></div>
+                    <div class="ilh-tags"><span>iPhone</span><span>Android</span><span>AWS</span></div>
                   </div>
                 </article>
 
@@ -521,14 +555,20 @@
                 <article class="ilh-item" role="listitem" data-decade="2010s">
                   <div class="ilh-dot ilh-pulse" style="--dot:#6366f1"><span>10</span></div>
                   <div class="ilh-card">
-                    <span class="ilh-badge">2010s · Apps + Nube</span>
-                    <h3>📲 Cloud</h3>
-                    <p>Tiendas, mensajería, DevOps.</p>
+                    <span class="ilh-badge">
+                      <span class="i18n-es">2010s · Apps, nube y DevOps</span>
+                      <span class="i18n-en">2010s · Apps, cloud & DevOps</span>
+                    </span>
+                    <h3><span class="i18n-es">📲 Cloud</span><span class="i18n-en">📲 Cloud</span></h3>
+                    <p class="i18n-es">Surgen <strong>microservicios</strong>, <strong>contenedores</strong> y <strong>CI/CD</strong>; la IA profunda gana tracción con GPU.</p>
+                    <p class="i18n-en"><strong>Microservices</strong>, <strong>containers</strong>, and <strong>CI/CD</strong> take off; deep learning accelerates with GPUs.</p>
                     <ul>
-                      <li>App Store / Play</li>
-                      <li>AWS / Azure</li>
+                      <li><span class="i18n-es">Docker (2013) y Kubernetes (2014).</span><span class="i18n-en">Docker (2013) and Kubernetes (2014).</span></li>
+                      <li><span class="i18n-es">Servidor <em>serverless</em>: AWS Lambda (2014).</span><span class="i18n-en">Serverless: AWS Lambda (2014).</span></li>
+                      <li><span class="i18n-es">4G/LTE masivo y <em>push</em> móvil.</span><span class="i18n-en">Mass 4G/LTE and mobile push.</span></li>
+                      <li><span class="i18n-es">IA: ImageNet (2012) cataliza visión por computador.</span><span class="i18n-en">AI: ImageNet (2012) catalyzes computer vision.</span></li>
                     </ul>
-                    <div class="ilh-tags"><span>Cloud</span><span>Git</span></div>
+                    <div class="ilh-tags"><span>Docker</span><span>K8s</span><span>Serverless</span><span>4G</span></div>
                   </div>
                 </article>
 
@@ -536,14 +576,19 @@
                 <article class="ilh-item" role="listitem" data-decade="2020s">
                   <div class="ilh-dot ilh-pulse" style="--dot:linear-gradient(90deg,#3b82f6,#8b5cf6)"><span>20</span></div>
                   <div class="ilh-card">
-                    <span class="ilh-badge">2020s · IA y 5G</span>
-                    <h3>🤖 Generativa</h3>
-                    <p>Asistentes de código, edge/IoT.</p>
+                    <span class="ilh-badge">
+                      <span class="i18n-es">2020s · IA generativa y 5G</span>
+                      <span class="i18n-en">2020s · Generative AI & 5G</span>
+                    </span>
+                    <h3><span class="i18n-es">🤖 Modelos fundacionales</span><span class="i18n-en">🤖 Foundation models</span></h3>
+                    <p class="i18n-es"><strong>LLMs</strong> y copilotos de código; expansión de <strong>edge/IoT</strong> y <strong>5G</strong>. WebAssembly gana tracción.</p>
+                    <p class="i18n-en"><strong>LLMs</strong> and code copilots; expansion of <strong>edge/IoT</strong> and <strong>5G</strong>. WebAssembly gains traction.</p>
                     <ul>
-                      <li>RN / Flutter</li>
-                      <li>LLMs</li>
+                      <li><span class="i18n-es">Transformers dominan NLP y visión multimodal.</span><span class="i18n-en">Transformers dominate NLP and multimodal vision.</span></li>
+                      <li><span class="i18n-es">MLOps, vectores/embeddings y búsqueda semántica.</span><span class="i18n-en">MLOps, vectors/embeddings, semantic search.</span></li>
+                      <li><span class="i18n-es">Privacidad y ética: foco en seguridad de modelos.</span><span class="i18n-en">Privacy and ethics: model safety in focus.</span></li>
                     </ul>
-                    <div class="ilh-tags"><span>IA</span><span>5G</span><span>IoT</span></div>
+                    <div class="ilh-tags"><span>LLM</span><span>5G</span><span>Edge</span><span>WASM</span></div>
                   </div>
                 </article>
               </div>
@@ -556,28 +601,52 @@
 
             <!-- ========================= Conclusión ========================= -->
             <section class="ilh-outro" aria-labelledby="ilh-outro-h2">
-              <h2 id="ilh-outro-h2">Conclusión / Conclusion</h2>
+              <h2 id="ilh-outro-h2">
+                <span class="i18n-es">Conclusión</span>
+                <span class="i18n-en">Conclusion</span>
+              </h2>
               <p>
-                <!-- ES -->
-                La progresión histórica muestra una <strong>aceleración constante</strong>: de computación manual a sistemas
-                distribuidos e IA generativa. Comprender estas etapas ayuda a contextualizar decisiones técnicas actuales
-                (lenguajes, arquitecturas, conectividad) y anticipar tendencias como <em>edge</em>, <em>IoT</em> y
-                <strong>modelos fundacionales</strong>.
-                <!-- EN -->
-                <span class="ilh-en">(EN) The trajectory reveals continuous acceleration—from manual computing to distributed systems and generative AI—informing today’s technical choices and future trends such as edge, IoT, and foundation models.</span>
+                <span class="i18n-es">
+                  La progresión histórica revela una <strong>aceleración</strong> de capacidades —de hardware discreto a
+                  <em>cloud</em> e <strong>IA generativa</strong>. Entender cada etapa orienta decisiones sobre lenguajes,
+                  arquitecturas, seguridad y experiencia de usuario.
+                </span>
+                <span class="i18n-en">
+                  History shows accelerating capability—from discrete hardware to <em>cloud</em> and <strong>generative AI</strong>.
+                  Knowing each era informs choices about languages, architectures, security, and UX.
+                </span>
               </p>
+            </section>
+
+            <!-- ========================= Referencias ========================= -->
+            <section class="ilh-intro" aria-labelledby="ilh-ref-h2">
+              <h2 id="ilh-ref-h2">
+                <span class="i18n-es">Referencias</span>
+                <span class="i18n-en">References</span>
+              </h2>
+              <ol>
+                <li><a href="https://en.wikipedia.org/wiki/ENIAC" target="_blank" rel="noopener">ENIAC</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Colossus_computer" target="_blank" rel="noopener">Colossus computer</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture" target="_blank" rel="noopener">Von Neumann architecture</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/UNIVAC_I" target="_blank" rel="noopener">UNIVAC I</a>; <a href="https://en.wikipedia.org/wiki/Fortran" target="_blank" rel="noopener">FORTRAN</a>; <a href="https://en.wikipedia.org/wiki/COBOL" target="_blank" rel="noopener">COBOL</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/IBM_System/360" target="_blank" rel="noopener">IBM System/360</a>; <a href="https://en.wikipedia.org/wiki/Multics" target="_blank" rel="noopener">Multics</a>; <a href="https://en.wikipedia.org/wiki/ARPANET" target="_blank" rel="noopener">ARPANET</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Unix" target="_blank" rel="noopener">UNIX</a>; <a href="https://en.wikipedia.org/wiki/C_(programming_language)" target="_blank" rel="noopener">C language</a>; <a href="https://en.wikipedia.org/wiki/Ethernet" target="_blank" rel="noopener">Ethernet</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Altair_8800" target="_blank" rel="noopener">Altair 8800</a>; <a href="https://en.wikipedia.org/wiki/Relational_model" target="_blank" rel="noopener">Relational model</a>; <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol" target="_blank" rel="noopener">TCP/IP</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/IBM_Personal_Computer" target="_blank" rel="noopener">IBM PC</a>; <a href="https://en.wikipedia.org/wiki/Macintosh" target="_blank" rel="noopener">Macintosh</a>; <a href="https://en.wikipedia.org/wiki/C%2B%2B" target="_blank" rel="noopener">C++</a>; <a href="https://en.wikipedia.org/wiki/Domain_Name_System" target="_blank" rel="noopener">DNS</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/World_Wide_Web" target="_blank" rel="noopener">World Wide Web</a>; <a href="https://en.wikipedia.org/wiki/Java_(programming_language)" target="_blank" rel="noopener">Java</a>; <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener">JavaScript</a>; <a href="https://en.wikipedia.org/wiki/Linux" target="_blank" rel="noopener">Linux</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/IPhone_(1st_generation)" target="_blank" rel="noopener">iPhone (2007)</a>; <a href="https://en.wikipedia.org/wiki/Android_(operating_system)" target="_blank" rel="noopener">Android</a>; <a href="https://en.wikipedia.org/wiki/Amazon_Web_Services" target="_blank" rel="noopener">AWS</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Docker_(software)" target="_blank" rel="noopener">Docker</a>; <a href="https://en.wikipedia.org/wiki/Kubernetes" target="_blank" rel="noopener">Kubernetes</a>; <a href="https://en.wikipedia.org/wiki/Serverless_computing" target="_blank" rel="noopener">Serverless</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)" target="_blank" rel="noopener">Transformer models</a>; <a href="https://en.wikipedia.org/wiki/Fifth-generation_wireless" target="_blank" rel="noopener">5G</a>; <a href="https://en.wikipedia.org/wiki/Large_language_model" target="_blank" rel="noopener">Large language model</a></li>
+              </ol>
             </section>
           </article>
 
           <!-- =================== Estilos encapsulados (.ilh-*) =================== -->
           <style>
-            /* ES: Todos los estilos limitados a [data-scope="ilh"] para no tocar la plantilla.
-               EN: Scope all styles under [data-scope="ilh"] to avoid leaking into the base theme. */
             [data-scope="ilh"]{display:grid; gap:18px}
             [data-scope="ilh"] .ilh-head h1{margin:0; font-size:clamp(22px,3.6vw,32px); line-height:1.2}
             [data-scope="ilh"] .ilh-sub{color:var(--muted); margin:6px 0 0}
 
-            /* Secciones de texto (intro/objetivos/conclusión) */
             [data-scope="ilh"] .ilh-intro,
             [data-scope="ilh"] .ilh-objectives,
             [data-scope="ilh"] .ilh-outro{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:14px}
@@ -585,7 +654,6 @@
             [data-scope="ilh"] .ilh-list{margin:0; padding-left:18px}
             [data-scope="ilh"] .ilh-list li{margin:6px 0; color:#d9e6ff}
 
-            /* Controles y leyenda */
             [data-scope="ilh"] .ilh-controls{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between}
             [data-scope="ilh"] .ilh-legend{display:flex; gap:14px; flex-wrap:wrap; color:#bcd1ff; opacity:.9; font-size:12px}
             [data-scope="ilh"] .ilh-legend i{display:inline-block; width:14px; height:4px; border-radius:2px; margin-right:6px}
@@ -594,7 +662,6 @@
             [data-scope="ilh"] .ilh-btn:hover{filter:brightness(1.06)}
             [data-scope="ilh"] .ilh-primary{background:linear-gradient(90deg,var(--blue-600),var(--purple-600)); border-color:transparent; font-weight:600}
 
-            /* Timeline */
             [data-scope="ilh"] .ilh-timeline{position:relative; display:grid; gap:10px}
             [data-scope="ilh"] .ilh-line{
               position:absolute; left:0; right:0; top:50%; transform:translateY(-50%);
@@ -650,7 +717,6 @@
           <!-- ===================== LÓGICA ENCAPSULADA (JS) ===================== -->
           <script>
             (function(){
-              // ES/EN: Scope limitado al artículo actual dentro de esta .pane
               const scope = document.currentScript.closest('.pane').querySelector('[data-scope="ilh"]');
               if(!scope) return;
 
@@ -663,7 +729,6 @@
               const line   = scope.querySelector('.ilh-line');
               if(!rail) return;
 
-              // Animación secuencial
               function animateIn(){
                 items.forEach(i=>i.classList.remove('is-in'));
                 items.forEach((i,idx)=>{ setTimeout(()=>i.classList.add('is-in'), idx*150); });
@@ -671,13 +736,11 @@
               window.addEventListener('load', ()=> setTimeout(animateIn, 300), { once:true });
               btnA?.addEventListener('click', animateIn);
 
-              // IntersectionObserver en carril
               const io = new IntersectionObserver((entries)=>{
                 entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('is-in'); });
               }, { root: rail, threshold: .35 });
               items.forEach(i=> io.observe(i));
 
-              // Desplazamiento con botones
               function stepSize(){
                 const w = rail.clientWidth;
                 return Math.max(280, Math.min(460, Math.floor(w*0.6)));
@@ -685,7 +748,6 @@
               btnL?.addEventListener('click',()=> rail.scrollBy({left:-stepSize(),behavior:'smooth'}));
               btnR?.addEventListener('click',()=> rail.scrollBy({left: stepSize(),behavior:'smooth'}));
 
-              // Slider vinculado
               function updateSlider(){
                 const max = rail.scrollWidth - rail.clientWidth;
                 const val = max>0 ? Math.round(rail.scrollLeft / max * 100) : 0;
@@ -698,10 +760,8 @@
               rail.addEventListener('scroll', updateSlider, {passive:true});
               slider?.addEventListener('input', scrollToSlider);
 
-              // Parallax suave de la línea
               window.addEventListener('scroll',()=>{ if(line){ line.style.transform = 'translateY(calc(-50% + '+ (window.pageYOffset*0.06) +'px))'; } }, {passive:true});
 
-              // Micro feedback
               items.forEach(item=>{
                 item.addEventListener('click',()=>{
                   const dot  = item.querySelector('.ilh-dot');
@@ -715,14 +775,13 @@
               });
             })();
           </script>
-          <!-- ================= FIN BLOQUE INTEGRADO (data-scope="ilh") ================= -->
+          <!-- ================= FIN BLOQUE ILH ================= -->
         </section>
 
-        <!-- Pie del proyecto dentro del workspace (SE MANTIENE INTACTO / DO NOT TOUCH) -->
+        <!-- Pie del proyecto dentro del workspace (SE MANTIENE INTACTO) -->
         <footer class="project-note" aria-label="Nota del proyecto">
           <span class="tag">🧩 Proyecto</span>
           <div>
-            <!-- [UI/TODO] Edita título y nota fija del proyecto -->
             <strong id="projectTitle">[TOCAR] Título breve del proyecto</strong>
             <div id="projectNote">[TOCAR] Nota fija del proyecto: objetivos, pendientes o mini changelog.</div>
           </div>
@@ -762,7 +821,7 @@
   </footer>
 
   <!-- =============================================================
-       BANNER COOKIES (alto contraste)
+       BANNER COOKIES
        ============================================================= -->
   <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
     <div class="card">
@@ -788,11 +847,11 @@
   </noscript>
 
   <script>
-    // Año
+    // Año del footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
     // ============================================================
-    // Helpers de accesibilidad / estado
+    // Helpers / estado
     // ============================================================
     const qs = sel => document.querySelector(sel);
     const $drawer = qs('#drawer');
@@ -835,7 +894,6 @@
       $drawer?.addEventListener('mouseleave', closeDrawer);
     }
 
-    // Clic fuera cierra (pero no si haces clic en el interior)
     document.addEventListener('click', (e)=>{
       if ($drawer.classList.contains('open') && !e.composedPath().includes($drawer) && !e.composedPath().includes($btnDrawer)){
         closeDrawer();
@@ -855,9 +913,7 @@
       try { return JSON.parse(localStorage.getItem(CONSENT_KEY) || 'null'); } catch(e){ return null; }
     }
     function setConsent(status){
-      try {
-        localStorage.setItem(CONSENT_KEY, JSON.stringify({ status, version: CONSENT_VERSION, ts: Date.now() }));
-      } catch(e){}
+      try { localStorage.setItem(CONSENT_KEY, JSON.stringify({ status, version: CONSENT_VERSION, ts: Date.now() })); } catch(e){}
     }
     function shouldShowBanner(saved){
       if(!saved) return true;
@@ -865,7 +921,7 @@
       return false;
     }
     function enableAnalytics(){
-      // [SEO/TODO] Inyecta aquí tu script de analíticas si status === 'granted'
+      // [SEO/TODO] Agrega tu script de analíticas si status === 'granted'
     }
     function initConsentBanner(){
       const saved = getConsent();
@@ -891,7 +947,7 @@
     document.addEventListener('DOMContentLoaded', initConsentBanner);
 
     // ============================================================
-    // Comentarios (Utterances on demand, sin fugas)
+    // Comentarios (Utterances on demand)
     // ============================================================
     const $closeComments = qs('#closeComments');
     const $commentsMount = qs('#commentsMount');
@@ -903,7 +959,7 @@
       if (commentsLoaded) return;
       const s = document.createElement('script');
       s.src = 'https://utteranc.es/client.js';
-      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io'); // [SEO/INFO] Repo de issues
+      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io');
       s.setAttribute('issue-term','pathname');
       s.setAttribute('theme','icy-dark');
       s.setAttribute('crossorigin','anonymous');
@@ -928,14 +984,12 @@
     });
     $closeComments?.addEventListener('click', closeComments);
 
-    // Clic fuera cierra
     document.addEventListener('click', (e)=>{
       if ($comments.classList.contains('open') && !e.composedPath().includes($comments) && !e.composedPath().includes($btnComments)){
         closeComments();
       }
     }, {passive:true});
 
-    // Inactividad (solo desktop)
     function startInactivityWatcher(){
       lastActivity = Date.now();
       if (inactivityTimer) return;
@@ -1038,9 +1092,36 @@
         console.error('[menu] error:', e);
       }
     })();
+
+    // ============================================================
+    // I18N: Botón de idioma (ES ↔ EN)
+    // ============================================================
+    (function(){
+      const LANG_KEY = 'hubLang';
+      const $btn = document.getElementById('langToggle');
+      const $chip = document.getElementById('langChip');
+
+      function applyLang(lang){
+        const L = (lang === 'en') ? 'en' : 'es';
+        document.documentElement.setAttribute('data-lang', L);
+        document.documentElement.setAttribute('lang', L);
+        localStorage.setItem(LANG_KEY, L);
+        $chip.textContent = L.toUpperCase();
+        $btn.setAttribute('aria-label', L === 'en' ? 'Switch language to Spanish' : 'Cambiar idioma a inglés');
+        $btn.setAttribute('title', L === 'en' ? 'Switch to Spanish' : 'Cambiar a English');
+        $btn.setAttribute('aria-pressed', L === 'en');
+      }
+
+      const saved = localStorage.getItem(LANG_KEY) || 'es';
+      applyLang(saved);
+
+      $btn?.addEventListener('click', ()=>{
+        const current = document.documentElement.getAttribute('data-lang') || 'es';
+        applyLang(current === 'es' ? 'en' : 'es');
+      });
+    })();
   </script>
 
-  <!-- (No cargamos Utterances directo; lo inyectamos al abrir el panel) -->
-  <!-- [SEO/INFO] Mantén /site.webmanifest y /browserconfig.xml para branding en dispositivos. -->
+  <!-- (Utterances se inyecta al abrir el panel) -->
 </body>
 </html>
