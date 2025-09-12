@@ -1,488 +1,194 @@
 <!DOCTYPE html>
-<html lang="es" data-lang="es" dir="ltr">
+<html lang="es">
 <head>
-  <!-- ============================================================
-       404 · Ing. Lucas Learning Hub (splash + patrón + caída 404)
-       ============================================================ -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark light" />
-  <meta name="application-name" content="Ing. Lucas Learning Hub" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="mobile-web-app-capable" content="yes" />
-
-  <title>404 · Página no encontrada — Ing. Lucas Learning Hub</title>
-  <meta name="description" content="No encontramos esta página. Verás una animación y te redirigiremos al inicio." />
-  <meta name="robots" content="noindex, follow" />
-  <meta name="theme-color" content="#0d47a1" />
-
-  <!-- Iconos -->
-  <link rel="icon" href="/galeria/logo/logoinglucas.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="/galeria/logo/logoinglucas.svg">
-  <link rel="apple-touch-icon" sizes="180x180" href="/galeria/logo/logoinglucas.png">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 · Página perdida en el espacio</title>
   <style>
-    /* ======== Variables y base ======== */
-    :root{
-      --blue-900:#0b1730; --blue-800:#0f2346; --blue-700:#153769; --blue-600:#1c4b8c; --blue-500:#2563eb; --blue-400:#60a5fa;
-      --bg:#0e1116; --panel-2:#0f1722; --border:#263349; --text:#ecf3ff; --muted:#b4c2d6;
-      --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.35);
-      --container:980px;
-      --logo-url: url("/galeria/logo/logoinglucas.svg"); /* patrón y splash */
-      --accent-ring: 0 0 0 3px rgba(34,211,238,.25);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg,var(--panel-2),#0b1220);
-      position:relative; overflow-x:hidden;
-    }
-    a{color:var(--blue-400); text-decoration:none}
-    .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
-
-    /* ======== Patrón de fondo con el logo ======== */
-    body::before{
-      content:""; position:fixed; inset:0;
-      background-image: var(--logo-url);
-      background-repeat: repeat;
-      background-size: 96px 96px;
-      opacity:.06; filter:grayscale(1) contrast(1.1);
-      pointer-events:none; z-index:0;
+    /* ======= VARIABLES ======= */
+    :root {
+      --bg: #0e1116;
+      --text: #ecf3ff;
+      --muted: #b4c2d6;
+      --border: #263349;
+      --blue: #60a5fa;
+      --purple: #7c3aed;
     }
 
-    /* ======== I18N ======== */
-    html[data-lang="es"] .i18n-en{display:none!important}
-    html[data-lang="en"] .i18n-es{display:none!important}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); }
 
-    /* ======== Topbar ======== */
-    .topbar{position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
-    .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
-    .logo{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)}
-    .logo img{width:100%; height:100%; object-fit:cover; display:block}
-    .brand{display:flex; flex-direction:column}
-    .brand strong{font-size:16px}
-    .brand span{font-size:12px; color:var(--muted)}
-    .actions{margin-left:auto; display:flex; gap:10px; align-items:center}
-    .icon-btn{
-      --size:40px; width:var(--size); height:var(--size); display:inline-grid; place-items:center;
-      border-radius:12px; border:1.5px solid var(--blue-500);
-      background:linear-gradient(180deg,#0f172a,#0b1220); color:#e8f1ff; cursor:pointer;
-      transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
-      box-shadow:0 6px 20px rgba(0,0,0,.25);
-    }
-    .icon-btn:hover{transform:translateY(-1px); filter:brightness(1.05)}
-    .icon-btn:focus-visible{outline:none; box-shadow:var(--accent-ring)}
-    .icon-btn svg{width:22px; height:22px}
-    .lang-chip{font-size:12px; font-weight:700; letter-spacing:.3px}
-
-    /* ======== Drawer (menú) ======== */
-    .drawer{position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform}
-    .drawer.open{transform:translateX(0)}
-    .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
-    .drawer .bd{padding:12px 16px; display:grid; gap:16px}
-    .nav-group{border:1px solid var(--border); border-radius:12px; overflow:hidden}
-    .nav{display:grid}
-    .nav a{padding:12px 12px; border-top:1px solid var(--border)}
-    .nav a:hover{background:rgba(37,99,235,.18)}
-
-    /* ======== Drawer de comentarios (desktop lateral / móvil bottom-sheet) ======== */
-    .comments-drawer{position:fixed; z-index:80; inset:0 auto 0 0; width:420px; max-width:92vw; background:linear-gradient(180deg,#0b1626,#0a1220); border-right:2px solid var(--blue-500); box-shadow:20px 0 40px rgba(0,0,0,.45); transform:translateX(-100%); transition:.25s ease transform; display:flex; flex-direction:column}
-    .comments-drawer.open{transform:translateX(0)}
-    .comments-drawer .hd{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border)}
-    .comments-drawer .bd{padding:10px 12px; overflow:auto; height:100%}
-    @media (max-width:760px){
-      .comments-drawer{inset:auto 0 0 0; width:100vw; height:60vh; border-right:none; border-top:2px solid var(--blue-500); box-shadow:0 -20px 40px rgba(0,0,0,.45); transform:translateY(100%)}
-      .comments-drawer.open{transform:translateY(0)}
-      .comments-drawer .bd{height:calc(60vh - 50px)}
+    .wrap {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      height: 100%;
+      position: relative;
+      z-index: 1;
     }
 
-    /* ======== Contenido ======== */
-    .e404{position:relative; z-index:1; display:grid; gap:16px; padding:26px 0 36px}
-    .card{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
-    .hero{display:grid; gap:14px; text-align:center; padding:22px; border:1px dashed var(--border); border-radius:var(--radius)}
-    .lead{color:var(--muted); margin:0}
-
-    /* ======== Animación de caída 404 ======== */
-    .fall-wrap{position:relative; display:flex; justify-content:center; gap:12px; height:140px; margin-top:4px}
-    .digit{
-      width:90px; height:110px; display:grid; place-items:center; font-size:64px; font-weight:900;
-      background:linear-gradient(180deg,rgba(37,99,235,.18),rgba(37,99,235,.06));
-      border:1px solid rgba(96,165,250,.35); border-radius:18px; color:#eaf2ff;
-      box-shadow:0 10px 24px rgba(0,0,0,.35);
-      transform:translateY(-140vh) rotate(-6deg);
-      animation: fallIn 1100ms cubic-bezier(.2,.85,.25,1) var(--d,0ms) forwards, thud 120ms ease-out calc(var(--d,0ms) + 1100ms) 1;
-    }
-    .digit:nth-child(1){ --d: 120ms }
-    .digit:nth-child(2){ --d: 320ms }
-    .digit:nth-child(3){ --d: 520ms }
-    @keyframes fallIn{
-      0%{ transform:translateY(-140vh) rotate(-6deg) }
-      85%{ transform:translateY(0) rotate(0deg) }
-      92%{ transform:translateY(-18px) rotate(0deg) }
-      100%{ transform:translateY(0) rotate(0deg) }
-    }
-    @keyframes thud{
-      from{ box-shadow:0 10px 24px rgba(0,0,0,.35) }
-      to  { box-shadow:0 28px 48px rgba(0,0,0,.5) }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 12px;
     }
 
-    /* Glitch suave del texto “no encontrada” */
-    .glitch{position:relative; display:inline-block}
-    .glitch::before,.glitch::after{
-      content:attr(data-text); position:absolute; inset:0; opacity:.5; clip-path:inset(0 0 0 0);
+    .glitch {
+      position: relative;
+      display: inline-block;
     }
-    .glitch::before{ transform:translate(1px,-1px); color:#60a5fa; animation:gl1 2.4s infinite }
-    .glitch::after{  transform:translate(-1px,1px); color:#7c3aed; animation:gl2 2.4s infinite }
-    @keyframes gl1{ 0%,100%{clip-path:inset(0 0 0 0)} 10%{clip-path:inset(0 60% 60% 0)} 20%{clip-path:inset(40% 0 0 40%)} 30%{clip-path:inset(0 0 50% 0)} 40%{clip-path:inset(10% 10% 30% 0)} 50%{clip-path:inset(0 0 0 0)} }
-    @keyframes gl2{ 0%,100%{clip-path:inset(0 0 0 0)} 15%{clip-path:inset(50% 0 0 0)} 25%{clip-path:inset(0 20% 40% 0)} 35%{clip-path:inset(0 0 0 60%)} 45%{clip-path:inset(20% 0 0 20%)} 55%{clip-path:inset(0 0 0 0)} }
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    .glitch::before {
+      text-shadow: 1px 0 var(--blue);
+      animation: glitchTop 2s infinite;
+    }
+    .glitch::after {
+      text-shadow: -1px 0 var(--purple);
+      animation: glitchBottom 2s infinite;
+    }
 
-    .timer{height:10px; width:100%; border-radius:999px; background:rgba(96,165,250,.12); overflow:hidden; border:1px solid rgba(96,165,250,.25)}
-    .timer .bar{height:100%; width:0%}
+    @keyframes glitchTop {
+      0% { clip-path: inset(0 0 85% 0); }
+      50% { clip-path: inset(0 0 10% 0); }
+      100% { clip-path: inset(0 0 85% 0); }
+    }
+    @keyframes glitchBottom {
+      0% { clip-path: inset(85% 0 0 0); }
+      50% { clip-path: inset(10% 0 0 0); }
+      100% { clip-path: inset(85% 0 0 0); }
+    }
 
-    .cta-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
-    .btn-inline{
-      padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8);
-      color:var(--text); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 20px auto;
+      background: radial-gradient(circle, var(--blue) 10%, transparent 70%);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 2px solid rgba(96, 165, 250, 0.5);
+      box-shadow: 0 0 20px rgba(96,165,250,0.3);
+      transition: filter 0.4s ease;
     }
-    .btn-inline.primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
-    .btn-inline:hover{transform:translateY(-1px)}
 
-    /* ======== Splash (animación del logo ANTES de todo) ======== */
-    .splash{
-      position:fixed; inset:0; z-index:999;
-      display:grid; place-items:center;
-      background:radial-gradient(1200px 600px at 50% -10%, rgba(37,99,235,.16), transparent 60%), linear-gradient(180deg,var(--panel-2),#0b1220);
+    .logo img {
+      width: 80%;
+      height: auto;
+      display: block;
+      transform: scale(0.95);
     }
-    .splash::before{
-      content:""; position:absolute; inset:0; pointer-events:none; opacity:.08;
-      background-image: var(--logo-url); background-repeat:repeat; background-size:110px 110px;
-      filter:grayscale(1) contrast(1.1);
-    }
-    .splash-logo{
-      width:min(160px,40vw); height:min(160px,40vw);
-      display:grid; place-items:center; border-radius:24px;
-      background:rgba(15,23,42,.35); border:1px solid rgba(96,165,250,.25);
-      box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(96,165,250,.35);
-      animation: popIn 350ms ease-out forwards, glowPulse 2.1s ease-in-out 0.35s 1 forwards;
-      overflow:hidden;
-    }
-    .splash-logo img{
-      width:72%; height:72%; object-fit:contain; display:block;
-      transform:scale(.92) rotate(-6deg);
-      animation: logoDance 1.9s cubic-bezier(.19,1,.22,1) .15s 1 forwards;
-      filter:drop-shadow(0 6px 18px rgba(37,99,235,.35));
-    }
-    @keyframes popIn{ from{transform:scale(.8); opacity:0} to{transform:scale(1); opacity:1} }
-    @keyframes glowPulse{
-      0%{ box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(96,165,250,.35) }
-      50%{ box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 40px 10px rgba(96,165,250,.28) }
-      100%{ box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(96,165,250,.0) }
-    }
-    @keyframes logoDance{
-      0%{ transform:scale(.92) rotate(-6deg) }
-      30%{ transform:scale(1.08) rotate(3deg) }
-      60%{ transform:scale(1) rotate(0deg) }
-      100%{ transform:scale(1) rotate(0deg) }
-    }
-    .skip{
-      position:absolute; bottom:18px; right:18px; font-size:13px; color:#e6f0ff; opacity:.85;
-      border:1px solid rgba(96,165,250,.35); background:rgba(15,23,42,.5); padding:8px 12px; border-radius:10px; cursor:pointer;
-    }
-    .skip:hover{ filter:brightness(1.05) }
 
-    /* Respeta reducir movimiento (sin cambiar la espera) */
-    @media (prefers-reduced-motion: reduce){
-      .splash-logo, .splash-logo img, .digit, .glitch::before, .glitch::after{ animation:none !important }
-      .digit{ transform:none }
+    /* === Nave === */
+    .ufo {
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%) rotate(15deg);
+      width: 120px;
+      height: 60px;
+      background: radial-gradient(circle at center, var(--blue), #0f172a);
+      border: 3px solid rgba(96,165,250,0.5);
+      border-radius: 50% 50% 40% 40%;
+      box-shadow: 0 0 60px rgba(124,58,237,0.35), 0 20px 40px rgba(0,0,0,0.5);
+      z-index: 1000;
+      animation: ufoFly 3s ease-in forwards;
+    }
+
+    @keyframes ufoFly {
+      0% { top: -200px; opacity: 0; }
+      50% { top: 40%; opacity: 1; }
+      80% { top: 60%; transform: translateX(-50%) rotate(-10deg) scale(1.1); }
+      100% { top: 62%; transform: translateX(-50%) rotate(0deg) scale(1); }
+    }
+
+    /* === Glitch logo después del choque === */
+    .logo-glitch {
+      animation: glitchCrash 0.5s infinite steps(2, end);
+      filter: contrast(1.8) brightness(0.8);
+    }
+
+    @keyframes glitchCrash {
+      0% { transform: translate(1px, 0); }
+      25% { transform: translate(-2px, 1px); }
+      50% { transform: translate(2px, -1px); }
+      75% { transform: translate(-1px, 2px); }
+      100% { transform: translate(0); }
+    }
+
+    /* === Pantalla sin señal === */
+    .no-signal {
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        var(--bg),
+        var(--bg) 2px,
+        #101319 2px,
+        #101319 4px
+      );
+      opacity: 0;
+      z-index: 9999;
+      pointer-events: none;
+      animation: signalLost 3s forwards 3s;
+    }
+
+    @keyframes signalLost {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .btn {
+      margin-top: 20px;
+      background: var(--blue);
+      color: #0e1116;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 10px rgba(96,165,250,0.5);
     }
   </style>
 </head>
-
 <body>
-  <!-- ===== Topbar ===== -->
-  <div class="topbar">
-    <div class="wrap row">
-      <a class="logo" href="/" aria-label="Inicio · Ing. Lucas Learning Hub">
-        <picture>
-          <source srcset="/galeria/logo/logoinglucas.svg" type="image/svg+xml">
-          <img src="/galeria/logo/logoinglucas.png" alt="Logo Ing. Lucas" width="36" height="36" loading="eager" fetchpriority="high">
-        </picture>
-      </a>
-      <div class="brand">
-        <strong>Ing. Lucas Learning Hub</strong>
-        <span class="i18n-es">Error 404</span>
-        <span class="i18n-en">Error 404</span>
-      </div>
-      <div class="actions">
-        <!-- Comentarios -->
-        <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios" aria-expanded="false" aria-controls="commentsDrawer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
-        </button>
-        <!-- Menú -->
-        <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
-        </button>
-        <!-- Idioma -->
-        <button class="icon-btn" id="langToggle" title="Cambiar idioma" aria-label="Cambiar idioma" aria-pressed="false">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.73 6h-3.46a15.9 15.9 0 0 0-1.6-3.63A8.03 8.03 0 0 1 19.73 8zM12 4c.88 0 2.39 1.88 3.23 4H8.77C9.61 5.88 11.12 4 12 4zM4.27 8A8.03 8.03 0 0 1 9.33 4.37 15.9 15.9 0 0 0 7.73 8H4.27zM4 10h3.16c-.08.66-.13 1.32-.13 2s.05 1.34.13 2H4a8 8 0 0 1 0-4zm.27 6h3.46c.4 1.28.95 2.49 1.6 3.63A8.03 8.03 0 0 1 4.27 16zM12 20c-.88 0-2.39-1.88-3.23-4h6.46C14.39 18.12 12.88 20 12 20zm2.67-.37c.65-1.14 1.2-2.35 1.6-3.63h3.46a8.03 8.03 0 0 1-5.06 3.63zM20 14h-3.16c.08-.66.13-1.32.13-2s-.05-1.34-.13-2H20a8 8 0 0 1 0 4z"/></svg>
-          <span class="lang-chip" id="langChip" aria-hidden="true">ES</span>
-        </button>
-      </div>
+  <div class="wrap">
+    <div class="logo" id="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Logo_de_la_UNAL_%28Colombia%29.svg" alt="Logo">
     </div>
+    <h1><span class="glitch" data-text="Página no encontrada">Página no encontrada</span></h1>
+    <p class="lead">Parece que una nave alienígena dañó esta página.</p>
+    <a href="/" class="btn">Volver al inicio</a>
   </div>
 
-  <!-- ===== Drawer Menú ===== -->
-  <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
-    <div class="hd">
-      <strong class="i18n-es">Navegación</strong>
-      <strong class="i18n-en">Navigation</strong>
-      <button class="btn" id="closeDrawer" aria-label="Cerrar" style="padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.6); color:#eaf2ff">Cerrar ✕</button>
-    </div>
-    <div class="bd">
-      <div class="nav-group">
-        <h4 class="i18n-es" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Páginas</h4>
-        <h4 class="i18n-en" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Pages</h4>
-        <nav class="nav" id="nav-pages"></nav>
-      </div>
-      <div class="nav-group">
-        <h4 class="i18n-es" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Ventanas / Proyectos</h4>
-        <h4 class="i18n-en" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Windows / Projects</h4>
-        <nav class="nav" id="nav-projects"></nav>
-      </div>
-    </div>
-  </aside>
+  <!-- Nave -->
+  <div class="ufo" id="alienUFO" aria-hidden="true"></div>
 
-  <!-- ===== Drawer Comentarios ===== -->
-  <aside class="comments-drawer" id="commentsDrawer" aria-label="Comentarios" aria-hidden="true">
-    <div class="hd">
-      <strong class="i18n-es">Comentarios</strong>
-      <strong class="i18n-en">Comments</strong>
-      <button class="btn" id="closeComments" aria-label="Cerrar comentarios" style="padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.6); color:#eaf2ff">Cerrar ✕</button>
-    </div>
-    <div class="bd">
-      <div id="commentsMount" aria-live="polite"></div>
-    </div>
-  </aside>
-
-  <!-- ===== Contenido 404 ===== -->
-  <div class="wrap e404" aria-live="polite" aria-atomic="true">
-    <section class="card hero">
-      <div class="fall-wrap" aria-hidden="true">
-        <div class="digit">4</div>
-        <div class="digit">0</div>
-        <div class="digit">4</div>
-      </div>
-
-      <h1 class="i18n-es"><span class="glitch" data-text="Página no encontrada">Página no encontrada</span></h1>
-      <h1 class="i18n-en"><span class="glitch" data-text="Page not found">Page not found</span></h1>
-
-      <p class="lead i18n-es">Te llevaremos al <strong>inicio</strong> en <b><span id="count">25</span>s</b>…</p>
-      <p class="lead i18n-en">You’ll be redirected to <strong>home</strong> in <b><span id="count-en">25</span>s</b>…</p>
-
-      <div class="timer" aria-hidden="true"><div class="bar" id="bar"></div></div>
-
-      <div class="cta-row" style="margin-top:10px">
-        <a class="btn-inline primary" href="/" id="goNow">
-          <span class="i18n-es">Ir al inicio ahora</span>
-          <span class="i18n-en">Go to home now</span>
-        </a>
-        <a class="btn-inline" href="#" id="openCta">
-          💬 <span class="i18n-es">Abrir comentarios</span>
-          <span class="i18n-en">Open comments</span>
-        </a>
-        <button class="btn-inline" id="openMenu">
-          ☰ <span class="i18n-es">Abrir menú</span>
-          <span class="i18n-en">Open menu</span>
-        </button>
-      </div>
-    </section>
-  </div>
-
-  <!-- ===== Splash con animación del logo (antes de todo) ===== -->
-  <div class="splash" id="splash" role="dialog" aria-label="Animación de inicio">
-    <div class="splash-logo">
-      <img src="/galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas" width="160" height="160">
-    </div>
-    <button class="skip" id="skipBtn" type="button">Saltar ▶</button>
-  </div>
-
-  <!-- ===== Footer simple ===== -->
-  <footer style="border-top:1px solid var(--border); color:var(--muted); padding:22px 0; background:linear-gradient(180deg,#0f1624,#0c121e)">
-    <div class="wrap" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
-      <div>© <span id="y"></span> <strong>IngLucas</strong> · Colombia</div>
-      <div><a href="/politicas-privacidad.html" style="color:inherit">Políticas de Privacidad</a></div>
-    </div>
-  </footer>
+  <!-- Pantalla de interferencia -->
+  <div class="no-signal" id="signalCrash"></div>
 
   <script>
-    // ===== Config
-    const HOME_URL = '/';
-    const ANIM_MS  = 25000; // 25 segundos
+    setTimeout(() => {
+      const logo = document.getElementById('logo');
+      const overlay = document.getElementById('signalCrash');
 
-    // Año footer
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // ===== Helpers
-    const qs = s => document.querySelector(s);
-    const $drawer = qs('#drawer');
-    const $comments = qs('#commentsDrawer');
-    const $btnDrawer = qs('#openDrawer');
-    const $btnComments = qs('#openComments');
-    const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
-    const isMobile  = matchMedia('(hover:none) and (pointer:coarse)').matches;
-    function setOpen(el, btn, open){
-      el.classList.toggle('open', open);
-      el.setAttribute('aria-hidden', open ? 'false' : 'true');
-      btn?.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-
-    // Accesos rápidos desde CTA
-    qs('#openCta')?.addEventListener('click', (e)=>{ e.preventDefault(); qs('#openComments')?.click(); });
-    qs('#openMenu')?.addEventListener('click', ()=> qs('#openDrawer')?.click());
-
-    // ===== Drawer Menú
-    const $closeDrawer = qs('#closeDrawer'); let drawerTimer = null;
-    function openDrawer(){ setOpen($drawer,$btnDrawer,true); if(isMobile){ clearTimeout(drawerTimer); drawerTimer=setTimeout(()=>closeDrawer(),5000);} }
-    function closeDrawer(){ setOpen($drawer,$btnDrawer,false); clearTimeout(drawerTimer); }
-    $btnDrawer?.addEventListener('click', e=>{ e.stopPropagation(); ($drawer.classList.contains('open')?closeDrawer():openDrawer()); });
-    $closeDrawer?.addEventListener('click', closeDrawer);
-    if(isDesktop){ $btnDrawer?.addEventListener('mouseenter', openDrawer); $drawer?.addEventListener('mouseleave', closeDrawer); }
-    document.addEventListener('click', e=>{ if($drawer.classList.contains('open') && !e.composedPath().includes($drawer) && !e.composedPath().includes($btnDrawer)) closeDrawer(); }, {passive:true});
-
-    // ===== Comentarios (Utterances on demand)
-    const $closeComments = qs('#closeComments');
-    const $commentsMount = qs('#commentsMount');
-    let commentsLoaded=false, inactivityTimer=null, lastActivity=Date.now();
-    function injectUtterances(){
-      if(commentsLoaded) return;
-      const s=document.createElement('script');
-      s.src='https://utteranc.es/client.js';
-      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io');
-      s.setAttribute('issue-term','pathname');
-      s.setAttribute('theme','icy-dark');
-      s.setAttribute('crossorigin','anonymous');
-      s.async=true;
-      $commentsMount.appendChild(s);
-      commentsLoaded=true;
-    }
-    function openComments(){ setOpen($comments,$btnComments,true); injectUtterances(); if(isDesktop) startInactivityWatcher(); }
-    function closeComments(){ setOpen($comments,$btnComments,false); stopInactivityWatcher(); }
-    $btnComments?.addEventListener('click', e=>{ e.stopPropagation(); ($comments.classList.contains('open')?closeComments():openComments()); });
-    $closeComments?.addEventListener('click', closeComments);
-    document.addEventListener('click', (e)=>{ if($comments.classList.contains('open') && !e.composedPath().includes($comments) && !e.composedPath().includes($btnComments)) closeComments(); }, {passive:true});
-    function startInactivityWatcher(){ lastActivity=Date.now(); if(inactivityTimer) return; inactivityTimer=setInterval(()=>{ const idle=Date.now()-lastActivity, hov=$comments.matches(':hover'); if($comments.classList.contains('open') && idle>5000 && !hov){ closeComments(); } if(!$comments.classList.contains('open')) stopInactivityWatcher(); },500); }
-    function stopInactivityWatcher(){ clearInterval(inactivityTimer); inactivityTimer=null; }
-    ['mousemove','keydown','wheel','touchstart','touchmove'].forEach(evt=>document.addEventListener(evt,()=>{ lastActivity=Date.now(); },{passive:true}));
-
-    // ===== I18N toggle (ES ↔ EN)
-    (function(){
-      const LANG_KEY='hubLang'; const $btn=qs('#langToggle'); const $chip=qs('#langChip');
-      function setAriaForLang(L){
-        const openCommentsBtn=qs('#openComments'); if(openCommentsBtn){ const t=L==='en'?'Open comments':'Abrir comentarios'; openCommentsBtn.title=t; openCommentsBtn.setAttribute('aria-label',t); }
-        const openDrawerBtn=qs('#openDrawer'); if(openDrawerBtn){ const t=L==='en'?'Open menu':'Abrir menú'; openDrawerBtn.title=t; openDrawerBtn.setAttribute('aria-label',t); }
-        const closeDrawerBtn=qs('#closeDrawer'); if(closeDrawerBtn){ closeDrawerBtn.setAttribute('aria-label', L==='en'?'Close':'Cerrar'); closeDrawerBtn.textContent = L==='en'?'Close ✕':'Cerrar ✕'; }
-        const closeCommentsBtn=qs('#closeComments'); if(closeCommentsBtn){ closeCommentsBtn.setAttribute('aria-label', L==='en'?'Close comments':'Cerrar comentarios'); closeCommentsBtn.textContent = L==='en'?'Close ✕':'Cerrar ✕'; }
+      if (logo) {
+        logo.classList.add('logo-glitch');
+        setTimeout(() => {
+          logo.style.opacity = '0.2';
+          logo.style.filter = 'grayscale(1) contrast(1.5)';
+          overlay.style.opacity = '1';
+        }, 2500);
       }
-      function applyLang(lang){
-        const L = (lang==='en')?'en':'es';
-        document.documentElement.setAttribute('data-lang',L);
-        document.documentElement.setAttribute('lang',L);
-        localStorage.setItem(LANG_KEY,L);
-        $chip.textContent = L.toUpperCase();
-        $btn.setAttribute('aria-label', L==='en'?'Switch language to Spanish':'Cambiar idioma a inglés');
-        $btn.setAttribute('title', L==='en'?'Switch to Spanish':'Cambiar a English');
-        $btn.setAttribute('aria-pressed', L==='en');
-        setAriaForLang(L);
-      }
-      const saved = localStorage.getItem(LANG_KEY)||'es'; applyLang(saved);
-      $btn?.addEventListener('click',()=>{ const cur=document.documentElement.getAttribute('data-lang')||'es'; applyLang(cur==='es'?'en':'es'); });
-    })();
-
-    // ===== Sugerencias en el menú (nav.json con fallback GitHub)
-    (async function initAutoMenu(){
-      const elPages = document.getElementById('nav-pages');
-      const elProjects = document.getElementById('nav-projects');
-      const CACHE_KEY='navjson-cache', MAX_AGE=24*60*60*1000;
-      async function githubFallback(){
-        try{
-          const owner='LucasMolina707', repo='IngLucasLearningHub.github.io', branch='main';
-          const api=`https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`;
-          const r=await fetch(api); const j=await r.json();
-          const files=(j.tree||[]).filter(x=>x.type==='blob' && x.path.endsWith('.html'));
-          const skip=p=>p.startsWith('templates/')||p.startsWith('multimedia/')||p.startsWith('galeria/')||p.startsWith('assets/')||p.includes('/draft');
-          const pretty=s=>s.replace(/\.html$/,'').split('/').pop().replace(/[-_]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-          const pages=[], projects=[];
-          for(const f of files){
-            if(skip(f.path)) continue;
-            const item={ href:'/'+f.path, label:pretty(f.path) };
-            if (f.path==='index.html' || f.path==='contacto.html' || f.path==='politicas-privacidad.html' || !f.path.includes('/')) pages.push(item);
-            else projects.push(item);
-          }
-          pages.sort((a,b)=>a.label.localeCompare(b.label,'es'));
-          projects.sort((a,b)=>a.label.localeCompare(b.label,'es'));
-          pages.sort((a,b)=> a.href.endsWith('/index.html')||a.href==='/index.html' ? -1 : b.href.endsWith('/index.html')||b.href==='/index.html' ? 1 : 0);
-          return {pages,projects};
-        }catch(e){ return {pages:[],projects:[]}; }
-      }
-      async function fetchNav(){
-        try{
-          const cached=localStorage.getItem(CACHE_KEY);
-          if(cached){ const obj=JSON.parse(cached); if(Date.now()-obj.ts<MAX_AGE && obj.data) return obj.data; }
-          const res=await fetch('/nav.json',{cache:'no-cache'});
-          if(!res.ok) throw new Error('nav.json unavailable');
-          const data=await res.json(); localStorage.setItem(CACHE_KEY, JSON.stringify({ts:Date.now(), data})); return data;
-        }catch(e){ const data=await githubFallback(); localStorage.setItem(CACHE_KEY, JSON.stringify({ts:Date.now(), data})); return data; }
-      }
-      function renderList(container, list){ if(!container) return; container.innerHTML=list.map(i=>`<a href="${i.href}">${i.label}</a>`).join(''); }
-      try{ const nav=await fetchNav(); renderList(elPages, nav.pages||[]); renderList(elProjects, nav.projects||[]); }catch(e){}
-    })();
-
-    // ===== Splash + Redirección + Contador
-    (function(){
-      const splash = document.getElementById('splash');
-      const skip   = document.getElementById('skipBtn');
-      const countES = document.getElementById('count');
-      const countEN = document.getElementById('count-en');
-      const bar    = document.getElementById('bar');
-      const goNow  = document.getElementById('goNow');
-
-      let remaining = Math.ceil(ANIM_MS/1000); // 25
-      function tick(){
-        remaining--;
-        if(remaining < 0) remaining = 0;
-        if(countES) countES.textContent = remaining;
-        if(countEN) countEN.textContent = remaining;
-        const pct = ((ANIM_MS - remaining*1000) / ANIM_MS) * 100;
-        if(bar) bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
-      }
-      // inicia valores
-      if(countES) countES.textContent = remaining;
-      if(countEN) countEN.textContent = remaining;
-      if(bar){ bar.style.width='0%'; bar.style.background='linear-gradient(90deg, rgba(96,165,250,.6), rgba(124,58,237,.6))'; }
-
-      // contador cada segundo
-      const interval = setInterval(tick, 1000);
-
-      let timer = setTimeout(()=>{ clearInterval(interval); window.location.assign(HOME_URL); }, ANIM_MS);
-
-      // Saltar manual / CTA ir ahora
-      function go(){ clearInterval(interval); clearTimeout(timer); window.location.assign(HOME_URL); }
-      skip?.addEventListener('click', go);
-      goNow?.addEventListener('click', (e)=>{ e.preventDefault(); go(); });
-
-      // Falla del logo => no bloquear
-      const img = splash.querySelector('img');
-      img?.addEventListener('error', go);
-
-      // Cerrar con Esc
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ go(); }});
-    })();
-
-    // ===== Accesibilidad global (cerrar paneles con Esc)
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ const dOpen=$drawer?.classList.contains('open'); const cOpen=$comments?.classList.contains('open'); if(dOpen) { const $close=qs('#closeDrawer'); $close?.click(); } if(cOpen){ const $closeC=qs('#closeComments'); $closeC?.click(); } }});
+    }, 1000);
   </script>
 </body>
 </html>
+
 
