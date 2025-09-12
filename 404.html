@@ -2,7 +2,7 @@
 <html lang="es" data-lang="es" dir="ltr">
 <head>
   <!-- ============================================================
-       404 · Ing. Lucas Learning Hub (splash con logo + patrón)
+       404 · Ing. Lucas Learning Hub (splash + patrón + caída 404)
        ============================================================ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,8 +28,8 @@
       --bg:#0e1116; --panel-2:#0f1722; --border:#263349; --text:#ecf3ff; --muted:#b4c2d6;
       --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.35);
       --container:980px;
-      /* Ruta del logo usado para patrón y splash */
-      --logo-url: url("/galeria/logo/logoinglucas.svg");
+      --logo-url: url("/galeria/logo/logoinglucas.svg"); /* patrón y splash */
+      --accent-ring: 0 0 0 3px rgba(34,211,238,.25);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -37,23 +37,19 @@
       margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:linear-gradient(180deg,var(--panel-2),#0b1220);
-      position:relative;
-      overflow-x:hidden;
+      position:relative; overflow-x:hidden;
     }
     a{color:var(--blue-400); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
     /* ======== Patrón de fondo con el logo ======== */
     body::before{
-      content:"";
-      position:fixed; inset:0;
+      content:""; position:fixed; inset:0;
       background-image: var(--logo-url);
       background-repeat: repeat;
-      background-size: 96px 96px; /* ajústalo al tamaño deseado del patrón */
-      opacity:.06;                /* intensidad del patrón */
-      filter:grayscale(1) contrast(1.1);
-      pointer-events:none;
-      z-index:0;
+      background-size: 96px 96px;
+      opacity:.06; filter:grayscale(1) contrast(1.1);
+      pointer-events:none; z-index:0;
     }
 
     /* ======== I18N ======== */
@@ -77,6 +73,7 @@
       box-shadow:0 6px 20px rgba(0,0,0,.25);
     }
     .icon-btn:hover{transform:translateY(-1px); filter:brightness(1.05)}
+    .icon-btn:focus-visible{outline:none; box-shadow:var(--accent-ring)}
     .icon-btn svg{width:22px; height:22px}
     .lang-chip{font-size:12px; font-weight:700; letter-spacing:.3px}
 
@@ -104,21 +101,63 @@
     /* ======== Contenido ======== */
     .e404{position:relative; z-index:1; display:grid; gap:16px; padding:26px 0 36px}
     .card{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
-    .hero{display:grid; gap:10px; text-align:center; padding:22px; border:1px dashed var(--border); border-radius:var(--radius)}
-    .code{font-size:64px; line-height:1; letter-spacing:1px; margin:6px 0 0}
+    .hero{display:grid; gap:14px; text-align:center; padding:22px; border:1px dashed var(--border); border-radius:var(--radius)}
     .lead{color:var(--muted); margin:0}
+
+    /* ======== Animación de caída 404 ======== */
+    .fall-wrap{position:relative; display:flex; justify-content:center; gap:12px; height:140px; margin-top:4px}
+    .digit{
+      width:90px; height:110px; display:grid; place-items:center; font-size:64px; font-weight:900;
+      background:linear-gradient(180deg,rgba(37,99,235,.18),rgba(37,99,235,.06));
+      border:1px solid rgba(96,165,250,.35); border-radius:18px; color:#eaf2ff;
+      box-shadow:0 10px 24px rgba(0,0,0,.35);
+      transform:translateY(-140vh) rotate(-6deg);
+      animation: fallIn 1100ms cubic-bezier(.2,.85,.25,1) var(--d,0ms) forwards, thud 120ms ease-out calc(var(--d,0ms) + 1100ms) 1;
+    }
+    .digit:nth-child(1){ --d: 120ms }
+    .digit:nth-child(2){ --d: 320ms }
+    .digit:nth-child(3){ --d: 520ms }
+    @keyframes fallIn{
+      0%{ transform:translateY(-140vh) rotate(-6deg) }
+      85%{ transform:translateY(0) rotate(0deg) }
+      92%{ transform:translateY(-18px) rotate(0deg) }
+      100%{ transform:translateY(0) rotate(0deg) }
+    }
+    @keyframes thud{
+      from{ box-shadow:0 10px 24px rgba(0,0,0,.35) }
+      to  { box-shadow:0 28px 48px rgba(0,0,0,.5) }
+    }
+
+    /* Glitch suave del texto “no encontrada” */
+    .glitch{position:relative; display:inline-block}
+    .glitch::before,.glitch::after{
+      content:attr(data-text); position:absolute; inset:0; opacity:.5; clip-path:inset(0 0 0 0);
+    }
+    .glitch::before{ transform:translate(1px,-1px); color:#60a5fa; animation:gl1 2.4s infinite }
+    .glitch::after{  transform:translate(-1px,1px); color:#7c3aed; animation:gl2 2.4s infinite }
+    @keyframes gl1{ 0%,100%{clip-path:inset(0 0 0 0)} 10%{clip-path:inset(0 60% 60% 0)} 20%{clip-path:inset(40% 0 0 40%)} 30%{clip-path:inset(0 0 50% 0)} 40%{clip-path:inset(10% 10% 30% 0)} 50%{clip-path:inset(0 0 0 0)} }
+    @keyframes gl2{ 0%,100%{clip-path:inset(0 0 0 0)} 15%{clip-path:inset(50% 0 0 0)} 25%{clip-path:inset(0 20% 40% 0)} 35%{clip-path:inset(0 0 0 60%)} 45%{clip-path:inset(20% 0 0 20%)} 55%{clip-path:inset(0 0 0 0)} }
+
+    .timer{height:10px; width:100%; border-radius:999px; background:rgba(96,165,250,.12); overflow:hidden; border:1px solid rgba(96,165,250,.25)}
+    .timer .bar{height:100%; width:0%}
+
+    .cta-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+    .btn-inline{
+      padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8);
+      color:var(--text); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    }
+    .btn-inline.primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
+    .btn-inline:hover{transform:translateY(-1px)}
 
     /* ======== Splash (animación del logo ANTES de todo) ======== */
     .splash{
       position:fixed; inset:0; z-index:999;
       display:grid; place-items:center;
       background:radial-gradient(1200px 600px at 50% -10%, rgba(37,99,235,.16), transparent 60%), linear-gradient(180deg,var(--panel-2),#0b1220);
-      /* también con patrón de logo en el splash */
     }
     .splash::before{
       content:""; position:absolute; inset:0; pointer-events:none; opacity:.08;
-      background-image: var(--logo-url);
-      background-repeat:repeat; background-size:110px 110px;
+      background-image: var(--logo-url); background-repeat:repeat; background-size:110px 110px;
       filter:grayscale(1) contrast(1.1);
     }
     .splash-logo{
@@ -148,16 +187,15 @@
       100%{ transform:scale(1) rotate(0deg) }
     }
     .skip{
-      position:absolute; bottom:18px; right:18px;
-      font-size:13px; color:#e6f0ff; opacity:.8;
-      border:1px solid rgba(96,165,250,.35); background:rgba(15,23,42,.5);
-      padding:8px 12px; border-radius:10px; cursor:pointer;
+      position:absolute; bottom:18px; right:18px; font-size:13px; color:#e6f0ff; opacity:.85;
+      border:1px solid rgba(96,165,250,.35); background:rgba(15,23,42,.5); padding:8px 12px; border-radius:10px; cursor:pointer;
     }
     .skip:hover{ filter:brightness(1.05) }
 
-    /* Respeta reducir movimiento */
+    /* Respeta reducir movimiento (sin cambiar la espera) */
     @media (prefers-reduced-motion: reduce){
-      .splash-logo, .splash-logo img{ animation:none !important }
+      .splash-logo, .splash-logo img, .digit, .glitch::before, .glitch::after{ animation:none !important }
+      .digit{ transform:none }
     }
   </style>
 </head>
@@ -228,16 +266,41 @@
     </div>
   </aside>
 
-  <!-- ===== Contenido 404 (solo se verá un instante después del splash) ===== -->
+  <!-- ===== Contenido 404 ===== -->
   <div class="wrap e404" aria-live="polite" aria-atomic="true">
     <section class="card hero">
-      <h1 class="code">404</h1>
-      <p class="lead i18n-es">No encontramos esta página. En breve te llevaremos al <strong>inicio</strong>…</p>
-      <p class="lead i18n-en">We can’t find this page. You’ll be redirected to the <strong>home</strong> shortly…</p>
+      <div class="fall-wrap" aria-hidden="true">
+        <div class="digit">4</div>
+        <div class="digit">0</div>
+        <div class="digit">4</div>
+      </div>
+
+      <h1 class="i18n-es"><span class="glitch" data-text="Página no encontrada">Página no encontrada</span></h1>
+      <h1 class="i18n-en"><span class="glitch" data-text="Page not found">Page not found</span></h1>
+
+      <p class="lead i18n-es">Te llevaremos al <strong>inicio</strong> en <b><span id="count">25</span>s</b>…</p>
+      <p class="lead i18n-en">You’ll be redirected to <strong>home</strong> in <b><span id="count-en">25</span>s</b>…</p>
+
+      <div class="timer" aria-hidden="true"><div class="bar" id="bar"></div></div>
+
+      <div class="cta-row" style="margin-top:10px">
+        <a class="btn-inline primary" href="/" id="goNow">
+          <span class="i18n-es">Ir al inicio ahora</span>
+          <span class="i18n-en">Go to home now</span>
+        </a>
+        <a class="btn-inline" href="#" id="openCta">
+          💬 <span class="i18n-es">Abrir comentarios</span>
+          <span class="i18n-en">Open comments</span>
+        </a>
+        <button class="btn-inline" id="openMenu">
+          ☰ <span class="i18n-es">Abrir menú</span>
+          <span class="i18n-en">Open menu</span>
+        </button>
+      </div>
     </section>
   </div>
 
-  <!-- ===== Splash con animación del logo (se muestra ANTES de todo) ===== -->
+  <!-- ===== Splash con animación del logo (antes de todo) ===== -->
   <div class="splash" id="splash" role="dialog" aria-label="Animación de inicio">
     <div class="splash-logo">
       <img src="/galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas" width="160" height="160">
@@ -256,7 +319,7 @@
   <script>
     // ===== Config
     const HOME_URL = '/';
-    const ANIM_MS  = 2400; // duración de la animación antes de redirigir (ms)
+    const ANIM_MS  = 25000; // 25 segundos
 
     // Año footer
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -274,6 +337,10 @@
       el.setAttribute('aria-hidden', open ? 'false' : 'true');
       btn?.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
+
+    // Accesos rápidos desde CTA
+    qs('#openCta')?.addEventListener('click', (e)=>{ e.preventDefault(); qs('#openComments')?.click(); });
+    qs('#openMenu')?.addEventListener('click', ()=> qs('#openDrawer')?.click());
 
     // ===== Drawer Menú
     const $closeDrawer = qs('#closeDrawer'); let drawerTimer = null;
@@ -372,29 +439,48 @@
       try{ const nav=await fetchNav(); renderList(elPages, nav.pages||[]); renderList(elProjects, nav.projects||[]); }catch(e){}
     })();
 
-    // ===== Splash + Redirección
+    // ===== Splash + Redirección + Contador
     (function(){
       const splash = document.getElementById('splash');
       const skip   = document.getElementById('skipBtn');
+      const countES = document.getElementById('count');
+      const countEN = document.getElementById('count-en');
+      const bar    = document.getElementById('bar');
+      const goNow  = document.getElementById('goNow');
 
-      // Respeta "reducir movimiento": acelera salida
-      const prefersReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const delay = prefersReduce ? 300 : ANIM_MS;
+      let remaining = Math.ceil(ANIM_MS/1000); // 25
+      function tick(){
+        remaining--;
+        if(remaining < 0) remaining = 0;
+        if(countES) countES.textContent = remaining;
+        if(countEN) countEN.textContent = remaining;
+        const pct = ((ANIM_MS - remaining*1000) / ANIM_MS) * 100;
+        if(bar) bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      }
+      // inicia valores
+      if(countES) countES.textContent = remaining;
+      if(countEN) countEN.textContent = remaining;
+      if(bar){ bar.style.width='0%'; bar.style.background='linear-gradient(90deg, rgba(96,165,250,.6), rgba(124,58,237,.6))'; }
 
-      let timer = setTimeout(()=>{ window.location.assign(HOME_URL); }, delay);
+      // contador cada segundo
+      const interval = setInterval(tick, 1000);
 
-      // Permite saltar manualmente
-      skip?.addEventListener('click', ()=>{ clearTimeout(timer); window.location.assign(HOME_URL); });
+      let timer = setTimeout(()=>{ clearInterval(interval); window.location.assign(HOME_URL); }, ANIM_MS);
 
-      // Si la imagen falla, no bloquees la navegación
+      // Saltar manual / CTA ir ahora
+      function go(){ clearInterval(interval); clearTimeout(timer); window.location.assign(HOME_URL); }
+      skip?.addEventListener('click', go);
+      goNow?.addEventListener('click', (e)=>{ e.preventDefault(); go(); });
+
+      // Falla del logo => no bloquear
       const img = splash.querySelector('img');
-      img?.addEventListener('error', ()=>{ clearTimeout(timer); window.location.assign(HOME_URL); });
+      img?.addEventListener('error', go);
 
-      // Por si quiere cerrar con Esc
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ clearTimeout(timer); window.location.assign(HOME_URL); }});
+      // Cerrar con Esc
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ go(); }});
     })();
 
-    // ===== Accesibilidad global
+    // ===== Accesibilidad global (cerrar paneles con Esc)
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ const dOpen=$drawer?.classList.contains('open'); const cOpen=$comments?.classList.contains('open'); if(dOpen) { const $close=qs('#closeDrawer'); $close?.click(); } if(cOpen){ const $closeC=qs('#closeComments'); $closeC?.click(); } }});
   </script>
 </body>
