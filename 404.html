@@ -2,7 +2,7 @@
 <html lang="es" data-lang="es" dir="ltr">
 <head>
   <!-- ============================================================
-       404 · Ing. Lucas Learning Hub
+       404 · Ing. Lucas Learning Hub (splash con logo + patrón)
        ============================================================ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,35 +10,57 @@
   <meta name="application-name" content="Ing. Lucas Learning Hub" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <!-- SEO -->
+
   <title>404 · Página no encontrada — Ing. Lucas Learning Hub</title>
-  <meta name="description" content="La página que buscas no existe. Te guiamos al inicio o a otras secciones del Ing. Lucas Learning Hub." />
-  <!-- Importante para 404 -->
+  <meta name="description" content="No encontramos esta página. Verás una animación y te redirigiremos al inicio." />
   <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#0d47a1" />
 
-  <!-- Iconografía -->
+  <!-- Iconos -->
   <link rel="icon" href="/galeria/logo/logoinglucas.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/galeria/logo/logoinglucas.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/galeria/logo/logoinglucas.png">
 
   <style>
+    /* ======== Variables y base ======== */
     :root{
       --blue-900:#0b1730; --blue-800:#0f2346; --blue-700:#153769; --blue-600:#1c4b8c; --blue-500:#2563eb; --blue-400:#60a5fa;
       --bg:#0e1116; --panel-2:#0f1722; --border:#263349; --text:#ecf3ff; --muted:#b4c2d6;
-      --radius:16px; --radius-sm:12px; --shadow:0 12px 28px rgba(0,0,0,.35);
+      --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.35);
       --container:980px;
+      /* Ruta del logo usado para patrón y splash */
+      --logo-url: url("/galeria/logo/logoinglucas.svg");
     }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; background:linear-gradient(180deg,var(--panel-2),#0b1220); color:var(--text)}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--panel-2),#0b1220);
+      position:relative;
+      overflow-x:hidden;
+    }
     a{color:var(--blue-400); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
-    /* i18n toggle */
+    /* ======== Patrón de fondo con el logo ======== */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      background-image: var(--logo-url);
+      background-repeat: repeat;
+      background-size: 96px 96px; /* ajústalo al tamaño deseado del patrón */
+      opacity:.06;                /* intensidad del patrón */
+      filter:grayscale(1) contrast(1.1);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    /* ======== I18N ======== */
     html[data-lang="es"] .i18n-en{display:none!important}
     html[data-lang="en"] .i18n-es{display:none!important}
 
-    /* Topbar */
+    /* ======== Topbar ======== */
     .topbar{position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
     .logo{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)}
@@ -58,7 +80,7 @@
     .icon-btn svg{width:22px; height:22px}
     .lang-chip{font-size:12px; font-weight:700; letter-spacing:.3px}
 
-    /* Drawer */
+    /* ======== Drawer (menú) ======== */
     .drawer{position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform}
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
@@ -68,7 +90,7 @@
     .nav a{padding:12px 12px; border-top:1px solid var(--border)}
     .nav a:hover{background:rgba(37,99,235,.18)}
 
-    /* Comments (desktop left) + mobile bottom-sheet */
+    /* ======== Drawer de comentarios (desktop lateral / móvil bottom-sheet) ======== */
     .comments-drawer{position:fixed; z-index:80; inset:0 auto 0 0; width:420px; max-width:92vw; background:linear-gradient(180deg,#0b1626,#0a1220); border-right:2px solid var(--blue-500); box-shadow:20px 0 40px rgba(0,0,0,.45); transform:translateX(-100%); transition:.25s ease transform; display:flex; flex-direction:column}
     .comments-drawer.open{transform:translateX(0)}
     .comments-drawer .hd{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border)}
@@ -79,29 +101,69 @@
       .comments-drawer .bd{height:calc(60vh - 50px)}
     }
 
-    /* 404 hero */
-    .e404{display:grid; gap:16px; padding:26px 0 36px}
+    /* ======== Contenido ======== */
+    .e404{position:relative; z-index:1; display:grid; gap:16px; padding:26px 0 36px}
     .card{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
-    .hero{display:grid; gap:10px; text-align:center; padding:20px; border:1px dashed var(--border); border-radius:var(--radius)}
+    .hero{display:grid; gap:10px; text-align:center; padding:22px; border:1px dashed var(--border); border-radius:var(--radius)}
     .code{font-size:64px; line-height:1; letter-spacing:1px; margin:6px 0 0}
     .lead{color:var(--muted); margin:0}
-    .cta{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:10px}
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:var(--text); cursor:pointer; text-decoration:none}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
-    .grid{display:grid; gap:16px}
-    @media(min-width:860px){.grid{grid-template-columns:1.1fr .9fr}}
-    .small{font-size:13px; color:var(--muted)}
-    .list{display:grid}
-    .list a{padding:10px 12px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px; background:rgba(18,23,31,.5)}
-    .search{display:flex; gap:8px; flex-wrap:wrap; justify-content:center}
-    .search input{flex:1 1 240px; min-width:220px; padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:#0f172a; color:#eaf2ff}
-    .countdown{font-variant-numeric:tabular-nums; font-weight:700}
+
+    /* ======== Splash (animación del logo ANTES de todo) ======== */
+    .splash{
+      position:fixed; inset:0; z-index:999;
+      display:grid; place-items:center;
+      background:radial-gradient(1200px 600px at 50% -10%, rgba(37,99,235,.16), transparent 60%), linear-gradient(180deg,var(--panel-2),#0b1220);
+      /* también con patrón de logo en el splash */
+    }
+    .splash::before{
+      content:""; position:absolute; inset:0; pointer-events:none; opacity:.08;
+      background-image: var(--logo-url);
+      background-repeat:repeat; background-size:110px 110px;
+      filter:grayscale(1) contrast(1.1);
+    }
+    .splash-logo{
+      width:min(160px,40vw); height:min(160px,40vw);
+      display:grid; place-items:center; border-radius:24px;
+      background:rgba(15,23,42,.35); border:1px solid rgba(96,165,250,.25);
+      box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(96,165,250,.35);
+      animation: popIn 350ms ease-out forwards, glowPulse 2.1s ease-in-out 0.35s 1 forwards;
+      overflow:hidden;
+    }
+    .splash-logo img{
+      width:72%; height:72%; object-fit:contain; display:block;
+      transform:scale(.92) rotate(-6deg);
+      animation: logoDance 1.9s cubic-bezier(.19,1,.22,1) .15s 1 forwards;
+      filter:drop-shadow(0 6px 18px rgba(37,99,235,.35));
+    }
+    @keyframes popIn{ from{transform:scale(.8); opacity:0} to{transform:scale(1); opacity:1} }
+    @keyframes glowPulse{
+      0%{ box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(96,165,250,.35) }
+      50%{ box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 40px 10px rgba(96,165,250,.28) }
+      100%{ box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(96,165,250,.0) }
+    }
+    @keyframes logoDance{
+      0%{ transform:scale(.92) rotate(-6deg) }
+      30%{ transform:scale(1.08) rotate(3deg) }
+      60%{ transform:scale(1) rotate(0deg) }
+      100%{ transform:scale(1) rotate(0deg) }
+    }
+    .skip{
+      position:absolute; bottom:18px; right:18px;
+      font-size:13px; color:#e6f0ff; opacity:.8;
+      border:1px solid rgba(96,165,250,.35); background:rgba(15,23,42,.5);
+      padding:8px 12px; border-radius:10px; cursor:pointer;
+    }
+    .skip:hover{ filter:brightness(1.05) }
+
+    /* Respeta reducir movimiento */
+    @media (prefers-reduced-motion: reduce){
+      .splash-logo, .splash-logo img{ animation:none !important }
+    }
   </style>
 </head>
 
 <body>
-  <!-- Topbar -->
+  <!-- ===== Topbar ===== -->
   <div class="topbar">
     <div class="wrap row">
       <a class="logo" href="/" aria-label="Inicio · Ing. Lucas Learning Hub">
@@ -115,7 +177,6 @@
         <span class="i18n-es">Error 404</span>
         <span class="i18n-en">Error 404</span>
       </div>
-
       <div class="actions">
         <!-- Comentarios -->
         <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios" aria-expanded="false" aria-controls="commentsDrawer">
@@ -134,94 +195,74 @@
     </div>
   </div>
 
-  <!-- Drawer -->
+  <!-- ===== Drawer Menú ===== -->
   <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
     <div class="hd">
       <strong class="i18n-es">Navegación</strong>
       <strong class="i18n-en">Navigation</strong>
-      <button class="btn" id="closeDrawer" aria-label="Cerrar">Cerrar ✕</button>
+      <button class="btn" id="closeDrawer" aria-label="Cerrar" style="padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.6); color:#eaf2ff">Cerrar ✕</button>
     </div>
     <div class="bd">
       <div class="nav-group">
-        <h4 class="i18n-es">Páginas</h4>
-        <h4 class="i18n-en">Pages</h4>
+        <h4 class="i18n-es" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Páginas</h4>
+        <h4 class="i18n-en" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Pages</h4>
         <nav class="nav" id="nav-pages"></nav>
       </div>
       <div class="nav-group">
-        <h4 class="i18n-es">Ventanas / Proyectos</h4>
-        <h4 class="i18n-en">Windows / Projects</h4>
+        <h4 class="i18n-es" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Ventanas / Proyectos</h4>
+        <h4 class="i18n-en" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Windows / Projects</h4>
         <nav class="nav" id="nav-projects"></nav>
       </div>
     </div>
   </aside>
 
-  <!-- Comments Drawer -->
+  <!-- ===== Drawer Comentarios ===== -->
   <aside class="comments-drawer" id="commentsDrawer" aria-label="Comentarios" aria-hidden="true">
     <div class="hd">
       <strong class="i18n-es">Comentarios</strong>
       <strong class="i18n-en">Comments</strong>
-      <button class="btn" id="closeComments" aria-label="Cerrar comentarios">Cerrar ✕</button>
+      <button class="btn" id="closeComments" aria-label="Cerrar comentarios" style="padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.6); color:#eaf2ff">Cerrar ✕</button>
     </div>
     <div class="bd">
       <div id="commentsMount" aria-live="polite"></div>
     </div>
   </aside>
 
-  <!-- 404 Content -->
-  <div class="wrap e404">
-    <section class="card hero" role="alert" aria-live="polite">
-      <div class="i18n-es">
-        <h1 class="code">404</h1>
-        <p class="lead">No encontramos esta página. Te llevaremos al <strong>inicio</strong> en <span id="cd" class="countdown">8</span> s.</p>
-      </div>
-      <div class="i18n-en">
-        <h1 class="code">404</h1>
-        <p class="lead">We can’t find this page. Redirecting to the <strong>home</strong> in <span id="cdEn" class="countdown">8</span> s.</p>
-      </div>
-      <div class="cta">
-        <a class="btn primary" href="/" id="goHome">🏠 <span class="i18n-es">Ir al inicio</span><span class="i18n-en">Go home</span></a>
-        <button class="btn" id="stopRedirect">⏸️ <span class="i18n-es">Detener redirección</span><span class="i18n-en">Stop redirect</span></button>
-        <button class="btn" id="goBack">↩️ <span class="i18n-es">Volver atrás</span><span class="i18n-en">Go back</span></button>
-        <a class="btn" id="reportLink" target="_blank" rel="noopener">🐞 <span class="i18n-es">Reportar enlace roto</span><span class="i18n-en">Report broken link</span></a>
-        <button class="btn" id="openComments2">💬 <span class="i18n-es">Abrir comentarios</span><span class="i18n-en">Open comments</span></button>
-      </div>
-      <form class="search" id="searchForm" role="search" aria-label="Buscar">
-        <input id="q" name="q" type="search" placeholder="Buscar en el sitio…" aria-label="Buscar en el sitio">
-        <button class="btn" type="submit">🔎 <span class="i18n-es">Buscar</span><span class="i18n-en">Search</span></button>
-      </form>
-      <p class="small i18n-es">Sugerencias abajo o usa el menú (☰) para navegar.</p>
-      <p class="small i18n-en">See suggestions below or use the menu (☰) to navigate.</p>
-    </section>
-
-    <section class="grid">
-      <div class="card">
-        <h2 class="i18n-es" style="margin:0 0 8px">Sugerencias rápidas</h2>
-        <h2 class="i18n-en" style="margin:0 0 8px">Quick suggestions</h2>
-        <nav class="list" id="suggestPages"></nav>
-      </div>
-      <div class="card">
-        <h2 class="i18n-es" style="margin:0 0 8px">Proyectos recientes</h2>
-        <h2 class="i18n-en" style="margin:0 0 8px">Recent projects</h2>
-        <nav class="list" id="suggestProjects"></nav>
-      </div>
+  <!-- ===== Contenido 404 (solo se verá un instante después del splash) ===== -->
+  <div class="wrap e404" aria-live="polite" aria-atomic="true">
+    <section class="card hero">
+      <h1 class="code">404</h1>
+      <p class="lead i18n-es">No encontramos esta página. En breve te llevaremos al <strong>inicio</strong>…</p>
+      <p class="lead i18n-en">We can’t find this page. You’ll be redirected to the <strong>home</strong> shortly…</p>
     </section>
   </div>
 
-  <!-- Footer (simple) -->
+  <!-- ===== Splash con animación del logo (se muestra ANTES de todo) ===== -->
+  <div class="splash" id="splash" role="dialog" aria-label="Animación de inicio">
+    <div class="splash-logo">
+      <img src="/galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas" width="160" height="160">
+    </div>
+    <button class="skip" id="skipBtn" type="button">Saltar ▶</button>
+  </div>
+
+  <!-- ===== Footer simple ===== -->
   <footer style="border-top:1px solid var(--border); color:var(--muted); padding:22px 0; background:linear-gradient(180deg,#0f1624,#0c121e)">
     <div class="wrap" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
       <div>© <span id="y"></span> <strong>IngLucas</strong> · Colombia</div>
-      <div><a href="politicas-privacidad.html" style="color:inherit">Políticas de Privacidad</a></div>
+      <div><a href="/politicas-privacidad.html" style="color:inherit">Políticas de Privacidad</a></div>
     </div>
   </footer>
 
   <script>
     // ===== Config
     const HOME_URL = '/';
+    const ANIM_MS  = 2400; // duración de la animación antes de redirigir (ms)
+
+    // Año footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
     // ===== Helpers
-    const qs = (s)=>document.querySelector(s);
+    const qs = s => document.querySelector(s);
     const $drawer = qs('#drawer');
     const $comments = qs('#commentsDrawer');
     const $btnDrawer = qs('#openDrawer');
@@ -234,8 +275,8 @@
       btn?.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
-    // ===== Drawer
-    const $closeDrawer = qs('#closeDrawer'); let drawerTimer=null;
+    // ===== Drawer Menú
+    const $closeDrawer = qs('#closeDrawer'); let drawerTimer = null;
     function openDrawer(){ setOpen($drawer,$btnDrawer,true); if(isMobile){ clearTimeout(drawerTimer); drawerTimer=setTimeout(()=>closeDrawer(),5000);} }
     function closeDrawer(){ setOpen($drawer,$btnDrawer,false); clearTimeout(drawerTimer); }
     $btnDrawer?.addEventListener('click', e=>{ e.stopPropagation(); ($drawer.classList.contains('open')?closeDrawer():openDrawer()); });
@@ -243,7 +284,7 @@
     if(isDesktop){ $btnDrawer?.addEventListener('mouseenter', openDrawer); $drawer?.addEventListener('mouseleave', closeDrawer); }
     document.addEventListener('click', e=>{ if($drawer.classList.contains('open') && !e.composedPath().includes($drawer) && !e.composedPath().includes($btnDrawer)) closeDrawer(); }, {passive:true});
 
-    // ===== Comments (Utterances on demand)
+    // ===== Comentarios (Utterances on demand)
     const $closeComments = qs('#closeComments');
     const $commentsMount = qs('#commentsMount');
     let commentsLoaded=false, inactivityTimer=null, lastActivity=Date.now();
@@ -263,139 +304,99 @@
     function closeComments(){ setOpen($comments,$btnComments,false); stopInactivityWatcher(); }
     $btnComments?.addEventListener('click', e=>{ e.stopPropagation(); ($comments.classList.contains('open')?closeComments():openComments()); });
     $closeComments?.addEventListener('click', closeComments);
-    document.getElementById('openComments2')?.addEventListener('click', openComments);
     document.addEventListener('click', (e)=>{ if($comments.classList.contains('open') && !e.composedPath().includes($comments) && !e.composedPath().includes($btnComments)) closeComments(); }, {passive:true});
-    function startInactivityWatcher(){
-      lastActivity=Date.now();
-      if(inactivityTimer) return;
-      inactivityTimer=setInterval(()=>{
-        const idleMs=Date.now()-lastActivity, hovering=$comments.matches(':hover');
-        if($comments.classList.contains('open') && idleMs>5000 && !hovering) closeComments();
-        if(!$comments.classList.contains('open')) stopInactivityWatcher();
-      },500);
-    }
+    function startInactivityWatcher(){ lastActivity=Date.now(); if(inactivityTimer) return; inactivityTimer=setInterval(()=>{ const idle=Date.now()-lastActivity, hov=$comments.matches(':hover'); if($comments.classList.contains('open') && idle>5000 && !hov){ closeComments(); } if(!$comments.classList.contains('open')) stopInactivityWatcher(); },500); }
     function stopInactivityWatcher(){ clearInterval(inactivityTimer); inactivityTimer=null; }
     ['mousemove','keydown','wheel','touchstart','touchmove'].forEach(evt=>document.addEventListener(evt,()=>{ lastActivity=Date.now(); },{passive:true}));
 
-    // ===== I18N toggle
+    // ===== I18N toggle (ES ↔ EN)
     (function(){
       const LANG_KEY='hubLang'; const $btn=qs('#langToggle'); const $chip=qs('#langChip');
       function setAriaForLang(L){
-        const openComments=qs('#openComments'); if(openComments){ const t=L==='en'?'Open comments':'Abrir comentarios'; openComments.title=t; openComments.setAttribute('aria-label',t); }
-        const openDrawer=qs('#openDrawer'); if(openDrawer){ const t=L==='en'?'Open menu':'Abrir menú'; openDrawer.title=t; openDrawer.setAttribute('aria-label',t); }
-        const closeDrawer=qs('#closeDrawer'); if(closeDrawer){ closeDrawer.setAttribute('aria-label', L==='en'?'Close':'Cerrar'); closeDrawer.textContent = L==='en'?'Close ✕':'Cerrar ✕'; }
-        const closeComments=qs('#closeComments'); if(closeComments){ closeComments.setAttribute('aria-label', L==='en'?'Close comments':'Cerrar comentarios'); closeComments.textContent = L==='en'?'Close ✕':'Cerrar ✕'; }
+        const openCommentsBtn=qs('#openComments'); if(openCommentsBtn){ const t=L==='en'?'Open comments':'Abrir comentarios'; openCommentsBtn.title=t; openCommentsBtn.setAttribute('aria-label',t); }
+        const openDrawerBtn=qs('#openDrawer'); if(openDrawerBtn){ const t=L==='en'?'Open menu':'Abrir menú'; openDrawerBtn.title=t; openDrawerBtn.setAttribute('aria-label',t); }
+        const closeDrawerBtn=qs('#closeDrawer'); if(closeDrawerBtn){ closeDrawerBtn.setAttribute('aria-label', L==='en'?'Close':'Cerrar'); closeDrawerBtn.textContent = L==='en'?'Close ✕':'Cerrar ✕'; }
+        const closeCommentsBtn=qs('#closeComments'); if(closeCommentsBtn){ closeCommentsBtn.setAttribute('aria-label', L==='en'?'Close comments':'Cerrar comentarios'); closeCommentsBtn.textContent = L==='en'?'Close ✕':'Cerrar ✕'; }
       }
       function applyLang(lang){
-        const L=(lang==='en')?'en':'es';
+        const L = (lang==='en')?'en':'es';
         document.documentElement.setAttribute('data-lang',L);
         document.documentElement.setAttribute('lang',L);
         localStorage.setItem(LANG_KEY,L);
-        $chip.textContent=L.toUpperCase();
+        $chip.textContent = L.toUpperCase();
         $btn.setAttribute('aria-label', L==='en'?'Switch language to Spanish':'Cambiar idioma a inglés');
         $btn.setAttribute('title', L==='en'?'Switch to Spanish':'Cambiar a English');
         $btn.setAttribute('aria-pressed', L==='en');
         setAriaForLang(L);
       }
-      const saved=localStorage.getItem(LANG_KEY)||'es'; applyLang(saved);
+      const saved = localStorage.getItem(LANG_KEY)||'es'; applyLang(saved);
       $btn?.addEventListener('click',()=>{ const cur=document.documentElement.getAttribute('data-lang')||'es'; applyLang(cur==='es'?'en':'es'); });
     })();
 
-    // ===== 404 Redirect logic
-    const $cd = qs('#cd'), $cdEn = qs('#cdEn');
-    const $stop = qs('#stopRedirect'), $back = qs('#goBack'), $home = qs('#goHome');
-    let secs = 8, timer = null, cancelled = false;
-    function tick(){
-      if (cancelled) return;
-      ($cd||{}).textContent = String(secs);
-      ($cdEn||{}).textContent = String(secs);
-      if(secs<=0){ window.location.assign(HOME_URL); return; }
-      secs--; timer = setTimeout(tick, 1000);
-    }
-    timer = setTimeout(tick, 1000);
-    $stop?.addEventListener('click', ()=>{ cancelled = true; clearTimeout(timer); });
-    $back?.addEventListener('click', ()=>{ if(history.length>1) history.back(); else window.location.assign(HOME_URL); });
-    // Report broken link prefilled
-    (function(){
-      const path = location.pathname + location.search;
-      const title = encodeURIComponent('404: Broken link → ' + path);
-      const body = encodeURIComponent(`Página que falló: ${location.href}\n\nNavegador: ${navigator.userAgent}\n\nComentario: `);
-      const url = `https://github.com/LucasMolina707/IngLucasLearningHub.github.io/issues/new?title=${title}&body=${body}`;
-      const a = document.getElementById('reportLink'); if(a) a.href = url;
-    })();
-
-    // Search → send to home with ?q=
-    qs('#searchForm')?.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const q = (qs('#q')?.value||'').trim();
-      if(q) window.location.assign(`${HOME_URL}?q=${encodeURIComponent(q)}`);
-      else window.location.assign(HOME_URL);
-    });
-
-    // ===== Auto menu + suggestions (nav.json with GitHub fallback)
+    // ===== Sugerencias en el menú (nav.json con fallback GitHub)
     (async function initAutoMenu(){
       const elPages = document.getElementById('nav-pages');
       const elProjects = document.getElementById('nav-projects');
-      const sugPages = document.getElementById('suggestPages');
-      const sugProjects = document.getElementById('suggestProjects');
-      const CACHE_KEY = 'navjson-cache'; const MAX_AGE = 24*60*60*1000;
-
+      const CACHE_KEY='navjson-cache', MAX_AGE=24*60*60*1000;
       async function githubFallback(){
         try{
           const owner='LucasMolina707', repo='IngLucasLearningHub.github.io', branch='main';
           const api=`https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`;
-          const r = await fetch(api); const j = await r.json();
-          const files = (j.tree||[]).filter(x=>x.type==='blob' && x.path.endsWith('.html'));
-          const skip = p => p.startsWith('templates/')||p.startsWith('multimedia/')||p.startsWith('galeria/')||p.startsWith('assets/')||p.includes('/draft');
-          const pretty = s => s.replace(/\.html$/,'').split('/').pop().replace(/[-_]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+          const r=await fetch(api); const j=await r.json();
+          const files=(j.tree||[]).filter(x=>x.type==='blob' && x.path.endsWith('.html'));
+          const skip=p=>p.startsWith('templates/')||p.startsWith('multimedia/')||p.startsWith('galeria/')||p.startsWith('assets/')||p.includes('/draft');
+          const pretty=s=>s.replace(/\.html$/,'').split('/').pop().replace(/[-_]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
           const pages=[], projects=[];
           for(const f of files){
             if(skip(f.path)) continue;
-            const item = { href:'/'+f.path, label:pretty(f.path) };
+            const item={ href:'/'+f.path, label:pretty(f.path) };
             if (f.path==='index.html' || f.path==='contacto.html' || f.path==='politicas-privacidad.html' || !f.path.includes('/')) pages.push(item);
             else projects.push(item);
           }
           pages.sort((a,b)=>a.label.localeCompare(b.label,'es'));
           projects.sort((a,b)=>a.label.localeCompare(b.label,'es'));
           pages.sort((a,b)=> a.href.endsWith('/index.html')||a.href==='/index.html' ? -1 : b.href.endsWith('/index.html')||b.href==='/index.html' ? 1 : 0);
-          return { pages, projects };
-        }catch(e){ console.warn('[menu] fallback fail', e); return {pages:[], projects:[]}; }
+          return {pages,projects};
+        }catch(e){ return {pages:[],projects:[]}; }
       }
       async function fetchNav(){
         try{
-          const cached = localStorage.getItem(CACHE_KEY);
+          const cached=localStorage.getItem(CACHE_KEY);
           if(cached){ const obj=JSON.parse(cached); if(Date.now()-obj.ts<MAX_AGE && obj.data) return obj.data; }
-          const res = await fetch('/nav.json', {cache:'no-cache'});
+          const res=await fetch('/nav.json',{cache:'no-cache'});
           if(!res.ok) throw new Error('nav.json unavailable');
-          const data = await res.json();
-          localStorage.setItem(CACHE_KEY, JSON.stringify({ts:Date.now(), data}));
-          return data;
-        }catch(e){
-          const data = await githubFallback();
-          localStorage.setItem(CACHE_KEY, JSON.stringify({ts:Date.now(), data}));
-          return data;
-        }
+          const data=await res.json(); localStorage.setItem(CACHE_KEY, JSON.stringify({ts:Date.now(), data})); return data;
+        }catch(e){ const data=await githubFallback(); localStorage.setItem(CACHE_KEY, JSON.stringify({ts:Date.now(), data})); return data; }
       }
-      function renderList(container, list, limit=null){
-        if(!container) return;
-        const items = (limit? list.slice(0,limit) : list)
-          .map(i=>`<a href="${i.href}">${i.label}</a>`).join('');
-        container.innerHTML = items || `<span class="small i18n-es">Sin datos</span><span class="small i18n-en">No data</span>`;
-      }
-      try{
-        const nav = await fetchNav();
-        renderList(elPages, nav.pages||[]);
-        renderList(elProjects, nav.projects||[]);
-        renderList(sugPages, (nav.pages||[]).filter(p=>/index\.html$|contacto\.html$|politicas-privacidad\.html$/.test(p.href) || p.href.endsWith('/index.html')), 6);
-        renderList(sugProjects, nav.projects||[], 6);
-      }catch(e){ console.error('[menu] error:', e); }
+      function renderList(container, list){ if(!container) return; container.innerHTML=list.map(i=>`<a href="${i.href}">${i.label}</a>`).join(''); }
+      try{ const nav=await fetchNav(); renderList(elPages, nav.pages||[]); renderList(elProjects, nav.projects||[]); }catch(e){}
     })();
 
-    // ===== Accessibility
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeDrawer(); closeComments(); } });
+    // ===== Splash + Redirección
+    (function(){
+      const splash = document.getElementById('splash');
+      const skip   = document.getElementById('skipBtn');
 
-    // ===== Language chip init text
-    (function(){ const L = document.documentElement.getAttribute('data-lang')||'es'; const chip=qs('#langChip'); if(chip) chip.textContent=L.toUpperCase(); })();
+      // Respeta "reducir movimiento": acelera salida
+      const prefersReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const delay = prefersReduce ? 300 : ANIM_MS;
+
+      let timer = setTimeout(()=>{ window.location.assign(HOME_URL); }, delay);
+
+      // Permite saltar manualmente
+      skip?.addEventListener('click', ()=>{ clearTimeout(timer); window.location.assign(HOME_URL); });
+
+      // Si la imagen falla, no bloquees la navegación
+      const img = splash.querySelector('img');
+      img?.addEventListener('error', ()=>{ clearTimeout(timer); window.location.assign(HOME_URL); });
+
+      // Por si quiere cerrar con Esc
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ clearTimeout(timer); window.location.assign(HOME_URL); }});
+    })();
+
+    // ===== Accesibilidad global
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ const dOpen=$drawer?.classList.contains('open'); const cOpen=$comments?.classList.contains('open'); if(dOpen) { const $close=qs('#closeDrawer'); $close?.click(); } if(cOpen){ const $closeC=qs('#closeComments'); $closeC?.click(); } }});
   </script>
 </body>
 </html>
+
