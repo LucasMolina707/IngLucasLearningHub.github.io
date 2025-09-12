@@ -2,7 +2,7 @@
 <html lang="es" data-lang="es" dir="ltr">
 <head>
   <!-- ============================================================
-       404 · Ing. Lucas Learning Hub (25s + astronauta en progreso)
+       404 · Gato + Estambre (30s) · Ing. Lucas Learning Hub
        ============================================================ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
   <title>404 · Página no encontrada — Ing. Lucas Learning Hub</title>
-  <meta name="description" content="No encontramos esta página. Mira la animación y vuelve al inicio." />
+  <meta name="description" content="Un gatito curioso está buscando esta página… Te llevaremos al inicio cuando la bola de estambre termine de rodar." />
   <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#0d47a1" />
 
@@ -21,75 +21,40 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/galeria/logo/logoinglucas.png">
 
   <style>
+    /* ========== Diseño base y paleta (estilo sitio) ========== */
     :root{
       --blue-900:#0b1730; --blue-800:#0f2346; --blue-700:#153769; --blue-600:#1c4b8c; --blue-500:#2563eb; --blue-400:#60a5fa;
-      --purple-600:#7c3aed; --cyan-400:#22d3ee; --lime-400:#a3e635;
+      --purple-600:#7c3aed; --cyan-400:#22d3ee;
       --bg:#0e1116; --panel-2:#0f1722; --border:#263349; --text:#ecf3ff; --muted:#b4c2d6;
       --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.35);
       --container:1100px;
-      --logo-url: url("/galeria/logo/logoinglucas.svg");
-      --ship-url: url("/galeria/space/ESPACIAL.svg");
-      --sat-url:  url("/galeria/space/SATELI02.svg");
-      --astro-url:url("/galeria/space/ASTRO.svg");
       --accent-ring: 0 0 0 3px rgba(34,211,238,.25);
-      --pct: 0%; /* porcentaje progreso */
+      --logo-url: url("/galeria/logo/logoinglucas.svg"); /* papel tapiz */
+      --pct: 0%; /* progreso estambre */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg,var(--panel-2),#0b1220);
-      overflow-x:hidden;
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
+      background:linear-gradient(180deg,var(--panel-2),#0b1220); overflow-x:hidden; position:relative;
     }
-    a{color:var(--blue-400); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
+    a{color:var(--blue-400); text-decoration:none}
 
-    /* Patrón de logo */
+    /* Papel tapiz (logo en patrón) */
     body::before{
-      content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+      content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
       background-image: var(--logo-url);
       background-repeat: repeat;
-      background-size: 90px 90px;
+      background-size: 92px 92px;
       opacity:.055; filter:grayscale(1) contrast(1.05);
-    }
-
-    /* Cielo espacial */
-    .sky{position:fixed; inset:0; z-index:0; pointer-events:none}
-    .sky::before{
-      content:""; position:absolute; inset:0;
-      background:
-        radial-gradient(1200px 700px at 50% -10%, rgba(37,99,235,.15), transparent 65%),
-        radial-gradient(800px 500px at 20% 120%, rgba(124,58,237,.12), transparent 70%),
-        radial-gradient(900px 600px at 80% 120%, rgba(34,211,238,.10), transparent 70%);
-      animation: skyPulse 6s ease-in-out infinite alternate;
-    }
-    .sky::after{
-      content:""; position:absolute; inset:0; opacity:.65;
-      background-image:
-        radial-gradient(1px 1px at 10% 20%, #fff 50%, transparent 51%),
-        radial-gradient(1px 1px at 30% 80%, #fff 50%, transparent 51%),
-        radial-gradient(1px 1px at 70% 30%, #fff 50%, transparent 51%),
-        radial-gradient(1px 1px at 80% 60%, #fff 50%, transparent 51%),
-        radial-gradient(1px 1px at 50% 50%, #fff 50%, transparent 51%),
-        radial-gradient(1px 1px at 90% 10%, #fff 50%, transparent 51%),
-        radial-gradient(1px 1px at 20% 50%, #fff 50%, transparent 51%);
-      background-size: 400px 400px, 600px 600px, 500px 500px, 550px 550px, 450px 450px, 650px 650px, 700px 700px;
-      background-repeat: repeat;
-      animation: twinkle 8s linear infinite;
-    }
-    @keyframes skyPulse{ from{filter:brightness(.95)} to{filter:brightness(1.05)} }
-    @keyframes twinkle{
-      0%{opacity:.45; transform:translate3d(0,0,0)}
-      50%{opacity:.75}
-      100%{opacity:.45; transform:translate3d(-20px,-20px,0)}
     }
 
     /* I18N */
     html[data-lang="es"] .i18n-en{display:none!important}
     html[data-lang="en"] .i18n-es{display:none!important}
 
-    /* Topbar */
+    /* Topbar (comentarios / menú / idioma) */
     .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
     .logo{ width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)}
@@ -101,8 +66,7 @@
     .icon-btn{
       --size:40px; width:var(--size); height:var(--size); display:inline-grid; place-items:center;
       border-radius:12px; border:1.5px solid var(--blue-500);
-      background:linear-gradient(180deg,#0f172a,#0b1220);
-      color:#e8f1ff; cursor:pointer; transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      background:linear-gradient(180deg,#0f172a,#0b1220); color:#e8f1ff; cursor:pointer; transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
       box-shadow:0 6px 20px rgba(0,0,0,.25);
     }
     .icon-btn:hover{ transform:translateY(-1px); filter:brightness(1.05)}
@@ -110,7 +74,7 @@
     .icon-btn svg{ width:22px; height:22px; display:block }
     .lang-chip{font-size:12px; font-weight:700; letter-spacing:.3px}
 
-    /* Drawers */
+    /* Drawers (menú y comentarios) */
     .drawer{ position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform }
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
@@ -131,114 +95,125 @@
       .comments-drawer .bd{height:calc(60vh - 50px)}
     }
 
-    /* Escena choque */
-    .stage{ position:relative; z-index:1; display:grid; place-items:center; padding:28px 0 8px}
-    .target{
-      position:relative; width:min(200px,42vw); aspect-ratio:1/1; border-radius:50%;
-      background:radial-gradient(circle at 50% 50%, rgba(37,99,235,.25), rgba(15,23,42,.5) 55%, transparent 56%), rgba(15,23,42,.45);
-      border:1px solid rgba(96,165,250,.35); display:grid; place-items:center; overflow:hidden;
-      box-shadow:0 16px 36px rgba(0,0,0,.35);
-    }
-    .target img{ width:70%; height:70%; object-fit:contain; display:block; filter:drop-shadow(0 6px 14px rgba(37,99,235,.35)); transition:filter .3s ease }
-    .target.nosignal img{ filter:grayscale(1) brightness(1.1) contrast(1.2) }
-    .target::after{
-      content:""; position:absolute; inset:-2px; opacity:0; pointer-events:none;
-      background:
-        repeating-linear-gradient( to bottom, rgba(255,255,255,.05) 0 2px, transparent 2px 4px),
-        repeating-linear-gradient( to right,  rgba(255,255,255,.03) 0 2px, transparent 2px 4px);
-      mix-blend-mode:overlay;
-      animation: scanlines 2s linear infinite;
-    }
-    .target.nosignal::after{ opacity:.8 }
-    @keyframes scanlines{ 0%{ background-position:0 0, 0 0 } 100%{ background-position:0 12px, 12px 0 } }
-    .ship, .sat{ position:absolute; width:84px; height:84px; background-size:contain; background-repeat:no-repeat; filter:drop-shadow(0 6px 12px rgba(0,0,0,.45)) }
-    .ship{ background-image: var(--ship-url); transform-origin:center; animation: shipIn 2.2s cubic-bezier(.19,1,.22,1) .3s forwards }
-    .sat{  background-image: var(--sat-url);  animation: satOrbit 2.6s ease-in-out 0s infinite alternate }
-    @keyframes shipIn{ 0%{ transform:translate(-40vw,-20vh) rotate(18deg) scale(.9) } 60%{ transform:translate(-8vw,-2vh) rotate(12deg) scale(1) } 75%{ transform:translate(0,0) rotate(0deg) } 100%{ transform:translate(6vw,2vh) rotate(-8deg) } }
-    @keyframes satOrbit{ 0%{ transform:translate(18vw,-6vh) rotate(12deg) } 100%{ transform:translate(6vw,10vh) rotate(-10deg) } }
-    .boom{ position:absolute; width:18px; height:18px; border-radius:50%; background:radial-gradient(circle, #fff, #ffd159 45%, rgba(255,0,0,.6) 60%, transparent 62%); opacity:0; transform:scale(.2); pointer-events:none; filter:blur(.5px) }
-    .boom.show{ animation: boomFx .6s ease-out forwards }
-    @keyframes boomFx{ 0%{ opacity:1; transform:scale(.2) } 60%{ opacity:.9; transform:scale(2.6) } 100%{ opacity:0; transform:scale(3.2) } }
-    .shake{ animation: shake .5s ease-in-out 2 }
-    @keyframes shake{ 0%,100%{ transform:translate(0,0) } 20%{ transform:translate(-3px,2px) } 40%{ transform:translate(3px,-2px) } 60%{ transform:translate(-2px,1px) } 80%{ transform:translate(2px,-1px) } }
-
-    /* 404 + grietas */
-    .panel{position:relative; z-index:1}
+    /* ======== Contenido principal ======== */
+    .scene{ position:relative; z-index:1; padding:26px 0 36px }
     .card{ background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px }
-    .hero{text-align:center; display:grid; gap:12px; border:1px dashed var(--border); border-radius:var(--radius); padding:20px}
-    .code404{ font-size: clamp(48px, 9vw, 120px); line-height:1; margin:0; letter-spacing:2px; position:relative; display:inline-block; }
-    .cracks{ position:absolute; left:50%; transform:translateX(-50%); width:min(520px,90vw); height:auto; pointer-events:none; top: 50%; translate: 0 -50%; opacity:0; }
-    .cracks path{ stroke:#cfe3ff; stroke-width:2; fill:none; stroke-dasharray:180; stroke-dashoffset:180; }
-    .crashed .cracks{ opacity:1 }
-    .crashed .cracks path{ animation: drawCracks 1.8s ease-out forwards }
-    @keyframes drawCracks{ to{ stroke-dashoffset:0 } }
-    .lead{color:var(--muted); margin:0}
+    .hero{ display:grid; gap:16px; border:1px dashed var(--border); border-radius:var(--radius); padding:22px; text-align:center }
+
+    .title404{ font-size: clamp(42px, 8vw, 110px); line-height:1; margin:0; letter-spacing:2px; }
+    .lead{ color:var(--muted); margin:0 }
+
     .cta-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px}
     .btn-inline{ padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:var(--text); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px }
-    .btn-inline:hover{transform:translateY(-1px)}
-    .btn-inline.primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
+    .btn-inline:hover{ transform:translateY(-1px) }
+    .btn-inline.primary{ background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent }
 
-    /* Card grid-effect */
-    .card-effect{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:10px }
-    .card__img{ position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--border); background:#0b1220 }
-    .card__img img{ width:100%; display:block; object-fit:cover; opacity:.85; filter:contrast(1.1) saturate(1.05) }
-    .card__grid-effect{ position:absolute; inset:0; display:grid; grid-template-columns:repeat(10,1fr); grid-auto-rows:1fr; }
-    .card__grid-effect-tile{ display:block; position:relative; isolation:isolate; transition: background .15s ease, transform .15s ease; }
-    .card__grid-effect-tile::after{ content:""; position:absolute; inset:1px; border-radius:4px; background:rgba(96,165,250,.08); opacity:0; transition:opacity .15s ease; mix-blend-mode:screen; }
-    .card__grid-effect-tile:hover{ transform:scale(1.015) }
-    .card__grid-effect-tile:hover::after{ opacity:1 }
-    .card__img a.full{ position:absolute; inset:0; z-index:2; }
+    /* ======== Gato (CSS puro) ======== */
+    .cat-wrap{ display:grid; place-items:center; margin:6px 0 2px }
+    .cat{
+      position: relative;
+      height: min(170px, 42vw); /* responsive */
+      width: calc(min(170px, 42vw) * 1.13);
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,.35));
+    }
+    .ear{
+      position: absolute; top: -30%;
+      height: 60%; width: 25%; background: #fff;
+    }
+    .ear::before, .ear::after{
+      content:""; position:absolute; bottom:24%; height:10%; width:5%;
+      border-radius:50%; background:#161616;
+    }
+    .ear--left{
+      left:-7%; border-radius:70% 30% 0 0 / 100% 100% 0 0; transform: rotate(-15deg);
+    }
+    .ear--left::before, .ear--left::after{ right:10% }
+    .ear--left::after{ transform-origin:50% 100%; transform: rotate(-45deg) }
 
-    /* Botón “fizzy” */
-    .fizzy{ display:grid; justify-items:center; gap:6px; margin-top:6px }
-    .fizzy small{ color:var(--muted) }
-    .fizzy input{ display:none }
-    .fizzy label{
-      --btnW: min(270px, 90vw);
-      position:relative; width:var(--btnW); padding:12px 18px; border-radius:14px; cursor:pointer;
-      display:inline-grid; grid-auto-flow:column; align-items:center; justify-content:center; gap:10px;
-      background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); color:#fff; border:1px solid rgba(255,255,255,.06);
-      box-shadow:0 10px 26px rgba(0,0,0,.35);
-      overflow:hidden; user-select:none;
+    .ear--right{
+      right:-7%; border-radius:30% 70% 0 0 / 100% 100% 0 0; transform: rotate(15deg);
     }
-    .fizzy label .t{ font-weight:600 }
-    .fizzy .spots{ position:absolute; inset:0; pointer-events:none }
-    .fizzy .spot{
-      position:absolute; width:6px; height:6px; border-radius:50%;
-      background:radial-gradient(circle, #fff, rgba(255,255,255,.2) 60%, transparent 61%);
-      transform:translate(var(--x,0), var(--y,0)) scale(0);
-      opacity:0; filter:blur(.2px);
-    }
-    .fizzy.go .spot{ animation: pop 700ms ease-out forwards }
-    @keyframes pop{ 0%{ opacity:1; transform:translate(var(--x), var(--y)) scale(.2) } 80%{ opacity:.9; transform:translate(calc(var(--x)*2.2), calc(var(--y)*2.2)) scale(1.8) } 100%{ opacity:0; transform:translate(calc(var(--x)*3), calc(var(--y)*3)) scale(2.1) } }
+    .ear--right::before, .ear--right::after{ left:10% }
+    .ear--right::after{ transform-origin:50% 100%; transform: rotate(45deg) }
 
-    /* Barra de progreso con astronauta (25s) */
-    .progress{ position:relative; height:56px; margin-top:4px }
-    .progress .line{
-      position:absolute; left:0; right:0; bottom:8px; height:10px; border-radius:999px;
-      background:rgba(96,165,250,.12); overflow:hidden; border:1px solid rgba(96,165,250,.25)
+    .face{
+      position:absolute; inset:0; background:#161616; border-radius:50%;
     }
-    .progress .bar{
-      height:100%; width:var(--pct); background:linear-gradient(90deg, rgba(96,165,250,.7), rgba(124,58,237,.7));
-      transition:width .12s linear;
-    }
-    .progress .astro{
-      position:absolute; bottom:22px; left:var(--pct); transform:translateX(-50%);
-      width:38px; height:38px; background-image:var(--astro-url); background-size:contain; background-repeat:no-repeat;
-      filter:drop-shadow(0 6px 10px rgba(0,0,0,.45));
-      animation: astroBob 1.8s ease-in-out infinite alternate;
-    }
-    @keyframes astroBob{ from{ transform:translate(-50%, 0) } to{ transform:translate(-50%, -5px) } }
 
-    /* Reduce motion */
+    .eye{
+      position:absolute; top:35%; height:30%; width:31%; background:#fff;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    }
+    .eye::after{
+      content:""; position:absolute; inset:0 0 auto 0; height:0; width:100%;
+      border-radius:0 0 50% 50% / 0 0 40% 40%; background:#161616;
+      animation: blink 4s infinite ease-in;
+    }
+    @keyframes blink{
+      0%, 90%{ height:0 } 92.5%{ height:100% } 95%{ height:0 } 97.5%{ height:100% } 100%{ height:0 }
+    }
+    .eye::before{ /* brillo inferior */
+      content:""; position:absolute; top:60%; height:10%; width:15%; background:#fff; border-radius:50%;
+    }
+    .eye--left{ left:0 }
+    .eye--left::before{ right:-5% }
+    .eye--right{ right:0 }
+    .eye--right::before{ left:-5% }
+
+    .eye-pupil{
+      --tx: 0%; --ty: 0%;
+      position:absolute; top:25%; height:50%; width:20%; background:#161616; border-radius:50%;
+      transform: translate(var(--tx), var(--ty));
+    }
+    .eye-pupil::after{ /* brillo pupila */
+      content:""; position:absolute; top:30%; right:-5%; height:20%; width:35%; border-radius:50%; background:#fff;
+    }
+    .eye--left .eye-pupil{ right:30% }
+    .eye--right .eye-pupil{ left:30% }
+
+    .muzzle{
+      position:absolute; top:60%; left:50%; height:6%; width:10%; background:#fff;
+      transform:translateX(-50%); border-radius:50% 50% 50% 50% / 30% 30% 70% 70%;
+    }
+
+    /* ======== Estambre (progreso 30s) ======== */
+    .yarn-wrap{ margin:10px 0 0; }
+    .thread{
+      position:relative; height:54px;
+      display:grid; align-items:end;
+    }
+    .thread .line{
+      height:10px; border-radius:999px; background:rgba(96,165,250,.12);
+      border:1px solid rgba(96,165,250,.25); overflow:hidden;
+    }
+    .thread .bar{
+      height:100%; width:var(--pct);
+      background:linear-gradient(90deg, rgba(96,165,250,.7), rgba(124,58,237,.7));
+      transition:width .1s linear;
+    }
+    .yarn{
+      position:absolute; bottom:22px; left:var(--pct); transform:translateX(-50%) rotate(var(--rot,0deg));
+      width:42px; height:42px; border-radius:50%;
+      background:
+        radial-gradient(circle at 40% 35%, #fff2 0 12%, transparent 13%),
+        repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.22) 0 2px, rgba(255,255,255,.06) 2px 4px),
+        radial-gradient(circle at 50% 50%, rgba(96,165,250,.75), rgba(124,58,237,.7));
+      box-shadow:0 10px 16px rgba(0,0,0,.35);
+    }
+    .yarn::after{ /* hebra suelta */
+      content:""; position:absolute; right:-14%; top:55%; width:18px; height:18px; border:2px solid rgba(255,255,255,.4);
+      border-left-color:transparent; border-top-color:transparent; border-radius:50%;
+      transform:rotate(25deg);
+    }
+    .ycount{ margin-top:6px; font-size:14px; color:var(--muted) }
+
+    /* Accesible / reduce motion */
     @media (prefers-reduced-motion: reduce){
-      .ship,.sat,.boom,.sky::before,.sky::after,.fizzy .spot,.target::after,.progress .astro{ animation:none !important }
+      .eye::after{ animation:none !important }
     }
   </style>
 </head>
 <body>
-  <div class="sky" aria-hidden="true"></div>
-
   <!-- Topbar -->
   <div class="topbar">
     <div class="wrap row">
@@ -254,14 +229,17 @@
         <span class="i18n-en">Error 404</span>
       </div>
       <div class="actions">
+        <!-- Comentarios -->
         <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios" aria-expanded="false" aria-controls="commentsDrawer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
         </button>
+        <!-- Menú -->
         <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
         </button>
+        <!-- Idioma -->
         <button class="icon-btn" id="langToggle" title="Cambiar idioma" aria-label="Cambiar idioma" aria-pressed="false">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.73 6h-3.46a15.9 15.9 0 0 0-1.6-3.63A8.03 8.03 0 0 1 19.73 8zM12 4c.88 0 2.39 1.88 3.23 4H8.77C9.61 5.88 11.12 4 12 4zM4.27 8A8.03 8.03 0 0 1 9.33 4.37 15.9 15.9 0 0 0 7.73 8H4.27zM4 10h3.16c-.08.66-.13 1.32-.13 2s.05 1.34.13 2H4a8 8 0 0 1 0-4zm.27 6h3.46c.4 1.28.95 2.49 1.6 3.63A8.03 8.03 0 0 1 4.27 16zM12 20c-.88 0-2.39-1.88-3.23-4h6.46C14.39 18.12 12.88 20 12 20zm2.67-.37c.65-1.14 1.2-2.35 1.6-3.63h3.46a8.03 8 0 0 1-5.06 3.63zM20 14h-3.16c.08-.66.13-1.32.13-2s-.05-1.34-.13-2H20a8 8 0 0 1 0 4z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.73 6h-3.46a15.9 15.9 0 0 0-1.6-3.63A8.03 8.03 0 0 1 19.73 8zM12 4c.88 0 2.39 1.88 3.23 4H8.77C9.61 5.88 11.12 4 12 4zM4.27 8A8.03 8.03 0 0 1 9.33 4.37 15.9 15.9 0 0 0 7.73 8H4.27zM4 10h3.16c-.08.66-.13 1.32-.13 2s-.05 1.34-.13 2H4a8 8 0 0 1 0-4zm.27 6h3.46c.4 1.28.95 2.49 1.6 3.63A8.03 8.03 0 0 1 4.27 16zM12 20c-.88 0-2.39-1.88-3.23-4h6.46C14.39 18.12 12.88 20 12 20zm2.67-.37c.65-1.14 1.2-2.35 1.6-3.63h3.46a8.03 8.03 0 0 1-5.06 3.63zM20 14h-3.16c.08-.66.13-1.32.13-2s-.05-1.34-.13-2H20a8 8 0 0 1 0 4z"/></svg>
           <span class="lang-chip" id="langChip" aria-hidden="true">ES</span>
         </button>
       </div>
@@ -273,7 +251,7 @@
     <div class="hd">
       <strong class="i18n-es">Navegación</strong>
       <strong class="i18n-en">Navigation</strong>
-      <button class="btn" id="closeDrawer" aria-label="Cerrar" style="padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.6); color:#eaf2ff">Cerrar ✕</button>
+      <button class="btn-inline" id="closeDrawer" aria-label="Cerrar">Cerrar ✕</button>
     </div>
     <div class="bd">
       <div class="nav-group">
@@ -294,47 +272,48 @@
     <div class="hd">
       <strong class="i18n-es">Comentarios</strong>
       <strong class="i18n-en">Comments</strong>
-      <button class="btn" id="closeComments" aria-label="Cerrar comentarios" style="padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(18,23,31,.6); color:#eaf2ff">Cerrar ✕</button>
+      <button class="btn-inline" id="closeComments" aria-label="Cerrar comentarios">Cerrar ✕</button>
     </div>
     <div class="bd">
       <div id="commentsMount" aria-live="polite"></div>
     </div>
   </aside>
 
-  <!-- Escena: nave + satélite + logo -->
-  <section class="stage wrap" aria-label="Animación de impacto">
-    <div class="target" id="target">
-      <img src="/galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas">
-      <div class="boom" id="boom"></div>
-    </div>
-    <div class="ship" id="ship" aria-hidden="true"></div>
-    <div class="sat"  id="sat"  aria-hidden="true"></div>
-  </section>
+  <!-- Contenido -->
+  <main class="scene wrap" role="main" aria-label="Contenido principal 404">
+    <section class="card hero">
+      <h1 class="title404">404</h1>
+      <p class="lead i18n-es">Un gatito curioso no encontró esta página…</p>
+      <p class="lead i18n-en">A curious kitty couldn’t find this page…</p>
 
-  <!-- Panel 404 + progreso 25s con astronauta -->
-  <section class="panel wrap" aria-live="polite" aria-atomic="true">
-    <article class="card hero">
-      <h1 class="code404" id="code404">404
-        <svg class="cracks" viewBox="0 0 600 180" role="img" aria-label="Grietas">
-          <path d="M300 10 L320 40 L310 70 L340 90" />
-          <path d="M260 40 L240 70 L260 95 L245 120" />
-          <path d="M350 55 L370 80 L360 105 L380 130" />
-          <path d="M300 95 L290 120 L305 145 L295 165" />
-        </svg>
-      </h1>
+      <!-- Gato -->
+      <div class="cat-wrap" aria-hidden="false">
+        <div class="cat" id="cat">
+          <div class="ear ear--left"></div>
+          <div class="ear ear--right"></div>
+          <div class="face">
+            <div class="eye eye--left"><div class="eye-pupil" id="pL"></div></div>
+            <div class="eye eye--right"><div class="eye-pupil" id="pR"></div></div>
+            <div class="muzzle"></div>
+          </div>
+        </div>
+      </div>
 
-      <p class="lead i18n-es">Parece que esta página se perdió en el espacio…</p>
-      <p class="lead i18n-en">Looks like this page got lost in space…</p>
-
-      <p class="lead i18n-es">Te llevaremos al <strong>inicio</strong> en <b><span id="count">25</span>s</b>.</p>
-      <p class="lead i18n-en">You’ll be taken <strong>home</strong> in <b><span id="count-en">25</span>s</b>.</p>
-
-      <!-- Progreso con astronauta -->
-      <div class="progress" id="progress"
-           role="progressbar" aria-label="Cuenta regresiva hacia inicio (25 segundos)"
-           aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div class="astro" id="astro" role="img" aria-label="Astronauta avanzando hacia la meta"></div>
-        <div class="line"><div class="bar" id="bar"></div></div>
+      <!-- Estambre (30s) -->
+      <div class="yarn-wrap">
+        <div class="thread" id="thread"
+             role="progressbar" aria-label="Cuenta regresiva hacia inicio (30 segundos)"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="yarn" id="yarn" role="img" aria-label="Bola de estambre rodando"></div>
+          <div class="line"><div class="bar" id="bar"></div></div>
+        </div>
+        <div class="ycount">
+          <span class="i18n-es">Te llevaremos al <strong>inicio</strong> en</span>
+          <span class="i18n-en">You’ll go <strong>home</strong> in</span>
+          <b><span id="count">30</span>s</b> ·
+          <a href="/" class="i18n-es">Saltar ahora</a>
+          <a href="/" class="i18n-en">Skip now</a>
+        </div>
       </div>
 
       <div class="cta-row">
@@ -351,30 +330,8 @@
           <span class="i18n-en">Open menu</span>
         </button>
       </div>
-
-      <!-- Card grid-effect -->
-      <div class="card-effect">
-        <div class="card__img">
-          <img src="/galeria/logo/logoinglucas.svg" alt="Ir al inicio">
-          <a class="full" href="/" aria-label="Ir al inicio ahora"></a>
-          <div class="card__grid-effect" id="gridEffect" aria-hidden="true"></div>
-        </div>
-      </div>
-
-      <!-- Botón “fizzy” -->
-      <div class="fizzy" id="fizzyWrap">
-        <small class="i18n-es">O prueba este botón con partículas 👇</small>
-        <small class="i18n-en">Or try this particle button 👇</small>
-        <input id="fizzy" type="checkbox" />
-        <label for="fizzy" id="fizzyBtn" aria-label="Volver al inicio (fizzy)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 17l5-5-5-5v10z"/></svg>
-          <span class="t i18n-es">Volver al inicio</span>
-          <span class="t i18n-en">Go home</span>
-          <div class="spots" id="spots"></div>
-        </label>
-      </div>
-    </article>
-  </section>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer style="border-top:1px solid var(--border); color:var(--muted); padding:22px 0; background:linear-gradient(180deg,#0f1624,#0c121e)">
@@ -387,7 +344,7 @@
   <script>
     // ===== Config
     const HOME_URL = '/';
-    const TOTAL_MS = 25000; // 25 s
+    const TOTAL_MS = 30000; // 30 s
 
     // Año footer
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -504,88 +461,66 @@
       try{ const nav=await fetchNav(); renderList(elPages, nav.pages||[]); renderList(elProjects, nav.projects||[]); }catch(e){}
     })();
 
-    // ===== Card grid-effect (100 tiles)
+    // ===== Ojos siguen el mouse (y touch)
     (function(){
-      const grid = document.getElementById('gridEffect');
-      if(!grid) return;
-      const frag = document.createDocumentFragment();
-      for(let i=0;i<100;i++){
-        const a=document.createElement('a');
-        a.className='card__grid-effect-tile';
-        a.href='/';
-        a.ariaLabel='Ir al inicio';
-        frag.appendChild(a);
+      const cat = document.getElementById('cat');
+      const pL = document.getElementById('pL');
+      const pR = document.getElementById('pR');
+
+      function follow(clientX, clientY){
+        const eyes = cat.querySelectorAll('.eye');
+        eyes.forEach((eye, idx)=>{
+          const pupil = idx===0 ? pL : pR;
+          const rect = eye.getBoundingClientRect();
+          const cx = rect.left + rect.width/2;
+          const cy = rect.top  + rect.height/2;
+          // vector hacia el puntero
+          const dx = clientX - cx;
+          const dy = clientY - cy;
+          // limitar desplazamiento dentro del ojo
+          const maxX = rect.width * 0.18;
+          const maxY = rect.height* 0.18;
+          const len = Math.hypot(dx, dy) || 1;
+          const nx = dx/len, ny = dy/len;
+          const tx = Math.max(-maxX, Math.min(maxX, nx * maxX));
+          const ty = Math.max(-maxY, Math.min(maxY, ny * maxY));
+          pupil.style.setProperty('--tx', tx.toFixed(1)+'px');
+          pupil.style.setProperty('--ty', ty.toFixed(1)+'px');
+        });
       }
-      grid.appendChild(frag);
+      // eventos
+      document.addEventListener('mousemove', (e)=> follow(e.clientX, e.clientY), {passive:true});
+      document.addEventListener('touchmove', (e)=>{ const t=e.touches[0]; if(t) follow(t.clientX, t.clientY); }, {passive:true});
+      // inicial al centro
+      const r = cat.getBoundingClientRect(); follow(r.left+r.width/2, r.top+r.height/2);
     })();
 
-    // ===== Botón “fizzy” (52 spots + go)
+    // ===== Estambre 30s + redirección
     (function(){
-      const wrap = document.getElementById('fizzyWrap');
-      const spots = document.getElementById('spots');
-      if(!wrap || !spots) return;
-      const N=52, W=260, H=44;
-      for(let i=0;i<N;i++){
-        const s=document.createElement('span'); s.className='spot';
-        const x=(Math.random()-.5)*W, y=(Math.random()-.5)*H;
-        s.style.setProperty('--x', x+'px'); s.style.setProperty('--y', y+'px');
-        spots.appendChild(s);
-      }
-      const label = document.getElementById('fizzyBtn');
-      label?.addEventListener('click', (e)=>{
-        e.preventDefault();
-        wrap.classList.remove('go'); void wrap.offsetWidth; wrap.classList.add('go');
-        setTimeout(()=>{ window.location.assign(HOME_URL); }, 650);
-      });
-    })();
-
-    // ===== Escena impacto
-    (function(){
-      const target = document.getElementById('target');
-      const ship   = document.getElementById('ship');
-      const sat    = document.getElementById('sat');
-      const boom   = document.getElementById('boom');
-
-      function positionAround(){
-        const rect = target.getBoundingClientRect();
-        const cx = rect.left + rect.width/2;
-        const cy = rect.top  + rect.height/2;
-        ship.style.left = (cx - rect.width*1.1)+'px';
-        ship.style.top  = (cy - rect.height*1.1)+'px';
-        sat .style.left = (cx + rect.width*0.7)+'px';
-        sat .style.top  = (cy - rect.height*0.7)+'px';
-      }
-      positionAround(); addEventListener('resize', positionAround);
-
-      setTimeout(()=>{ boom.style.left='50%'; boom.style.top='50%'; boom.classList.add('show'); }, 1500);
-      setTimeout(()=>{ target.classList.add('nosignal'); target.classList.add('shake'); document.body.classList.add('crashed'); setTimeout(()=>target.classList.remove('shake'), 900); }, 2000);
-    })();
-
-    // ===== Progreso 25s con astronauta + redirección
-    (function(){
-      const progress = document.getElementById('progress');
+      const thread = document.getElementById('thread');
       const bar = document.getElementById('bar');
-      const countES = document.getElementById('count');
-      const countEN = document.getElementById('count-en');
-
+      const yarn = document.getElementById('yarn');
+      const count = document.getElementById('count');
       const t0 = performance.now();
-      let shownSeconds = 25;
+      let shown = 30;
 
       function update(now){
         const elapsed = now - t0;
         const pct = Math.min(1, elapsed / TOTAL_MS);
-        const pctStr = (pct*100).toFixed(2) + '%';
+        const pctStr = (pct*100).toFixed(2)+'%';
 
-        // CSS var para barra y astronauta
-        progress.style.setProperty('--pct', pctStr);
+        thread.style.setProperty('--pct', pctStr);
         bar.style.width = pctStr;
-        progress.setAttribute('aria-valuenow', Math.round(pct*100));
+        thread.setAttribute('aria-valuenow', Math.round(pct*100));
+
+        // rotación de la bola (rueda según avance)
+        const rot = (pct*720)|0; // vueltas
+        yarn.style.setProperty('--rot', rot+'deg');
 
         const remaining = Math.max(0, Math.ceil((TOTAL_MS - elapsed)/1000));
-        if(remaining !== shownSeconds){
-          shownSeconds = remaining;
-          if(countES) countES.textContent = remaining;
-          if(countEN) countEN.textContent = remaining;
+        if(remaining !== shown){
+          shown = remaining;
+          count.textContent = remaining;
         }
 
         if (elapsed >= TOTAL_MS){
@@ -594,16 +529,13 @@
           requestAnimationFrame(update);
         }
       }
-      // inicial
-      if(countES) countES.textContent = 25;
-      if(countEN) countEN.textContent = 25;
+      count.textContent = 30;
       requestAnimationFrame(update);
 
-      // CTA: ir ya
       document.getElementById('goHome')?.addEventListener('click', (e)=>{ e.preventDefault(); window.location.assign(HOME_URL); });
     })();
 
-    // Accesos rápidos
+    // Accesos rápidos CTA
     qs('#openCta')?.addEventListener('click', (e)=>{ e.preventDefault(); qs('#openComments')?.click(); });
     qs('#openMenu')?.addEventListener('click', ()=> qs('#openDrawer')?.click());
   </script>
