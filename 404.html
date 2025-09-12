@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="es" data-lang="es" dir="ltr">
 <head>
-  <!-- 404 · Splash con cohete estrellándose + “sin señal” -->
+  <!-- ============================================================
+       404 · Ing. Lucas Learning Hub (patrón + cielo + choque 404)
+       ============================================================ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
   <meta name="application-name" content="Ing. Lucas Learning Hub" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
-
   <title>404 · Página no encontrada — Ing. Lucas Learning Hub</title>
-  <meta name="description" content="No encontramos esta página. Verás una animación y te redirigiremos al inicio." />
+  <meta name="description" content="No encontramos esta página. Mira la animación y vuelve al inicio." />
   <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#0d47a1" />
 
+  <!-- Iconos -->
   <link rel="icon" href="/galeria/logo/logoinglucas.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/galeria/logo/logoinglucas.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/galeria/logo/logoinglucas.png">
 
   <style>
+    /* =================== Variables/base =================== */
     :root{
       --blue-900:#0b1730; --blue-800:#0f2346; --blue-700:#153769; --blue-600:#1c4b8c; --blue-500:#2563eb; --blue-400:#60a5fa;
+      --purple-600:#7c3aed; --cyan-400:#22d3ee; --lime-400:#a3e635;
       --bg:#0e1116; --panel-2:#0f1722; --border:#263349; --text:#ecf3ff; --muted:#b4c2d6;
       --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.35);
-      --container:980px;
-      --logo-url: url("/galeria/logo/logoinglucas.svg");
+      --container:1100px;
+      --logo-url: url("/galeria/logo/logoinglucas.svg");      /* patrón + objetivo */
+      --ship-url: url("/galeria/space/ESPACIAL.svg");         /* nave espacial     */
+      --sat-url:  url("/galeria/space/SATELI02.svg");         /* satélite          */
       --accent-ring: 0 0 0 3px rgba(34,211,238,.25);
     }
     *{box-sizing:border-box}
@@ -33,56 +39,91 @@
       margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:linear-gradient(180deg,var(--panel-2),#0b1220);
-      position:relative; overflow-x:hidden;
+      overflow-x:hidden;
     }
     a{color:var(--blue-400); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
-    /* Patrón del logo en fondo */
+    /* =================== Patrón de logo de fondo =================== */
     body::before{
-      content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
       background-image: var(--logo-url);
-      background-repeat: repeat; background-size:96px 96px;
-      opacity:.06; filter:grayscale(1) contrast(1.1);
+      background-repeat: repeat;
+      background-size: 90px 90px;
+      opacity:.055; filter:grayscale(1) contrast(1.05);
     }
 
-    /* I18N */
+    /* =================== Cielo espacial con estrellas =================== */
+    .sky{position:fixed; inset:0; z-index:0; pointer-events:none}
+    /* Capa nebulosa/pulso */
+    .sky::before{
+      content:""; position:absolute; inset:0;
+      background:
+        radial-gradient(1200px 700px at 50% -10%, rgba(37,99,235,.15), transparent 65%),
+        radial-gradient(800px 500px at 20% 120%, rgba(124,58,237,.12), transparent 70%),
+        radial-gradient(900px 600px at 80% 120%, rgba(34,211,238,.10), transparent 70%);
+      animation: skyPulse 6s ease-in-out infinite alternate;
+    }
+    /* Estrellas (patrón punteado animado) */
+    .sky::after{
+      content:""; position:absolute; inset:0; opacity:.65;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 30% 80%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 70% 30%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 80% 60%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 50% 50%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 90% 10%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 20% 50%, #fff 50%, transparent 51%);
+      background-size: 400px 400px, 600px 600px, 500px 500px, 550px 550px, 450px 450px, 650px 650px, 700px 700px;
+      background-repeat: repeat;
+      animation: twinkle 8s linear infinite;
+    }
+    @keyframes skyPulse{ from{filter:brightness(.95)} to{filter:brightness(1.05)} }
+    @keyframes twinkle{
+      0%{opacity:.45; transform:translate3d(0,0,0)}
+      50%{opacity:.75}
+      100%{opacity:.45; transform:translate3d(-20px,-20px,0)}
+    }
+
+    /* =================== I18N =================== */
     html[data-lang="es"] .i18n-en{display:none!important}
     html[data-lang="en"] .i18n-es{display:none!important}
 
-    /* Topbar */
-    .topbar{position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
+    /* =================== Topbar =================== */
+    .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
-    .logo{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)}
+    .logo{ width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)}
     .logo img{width:100%; height:100%; object-fit:cover; display:block}
     .brand{display:flex; flex-direction:column}
     .brand strong{font-size:16px}
     .brand span{font-size:12px; color:var(--muted)}
-    .actions{margin-left:auto; display:flex; gap:10px; align-items:center}
+    .actions{ margin-left:auto; display:flex; gap:10px; align-items:center }
     .icon-btn{
       --size:40px; width:var(--size); height:var(--size); display:inline-grid; place-items:center;
       border-radius:12px; border:1.5px solid var(--blue-500);
-      background:linear-gradient(180deg,#0f172a,#0b1220); color:#e8f1ff; cursor:pointer;
-      transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      background:linear-gradient(180deg,#0f172a,#0b1220);
+      color:#e8f1ff; cursor:pointer; transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
       box-shadow:0 6px 20px rgba(0,0,0,.25);
     }
-    .icon-btn:hover{transform:translateY(-1px); filter:brightness(1.05)}
-    .icon-btn:focus-visible{outline:none; box-shadow:var(--accent-ring)}
-    .icon-btn svg{width:22px; height:22px}
+    .icon-btn:hover{ transform:translateY(-1px); filter:brightness(1.05)}
+    .icon-btn:focus-visible{ outline:none; box-shadow:var(--accent-ring) }
+    .icon-btn svg{ width:22px; height:22px; display:block }
     .lang-chip{font-size:12px; font-weight:700; letter-spacing:.3px}
 
-    /* Drawer / Comentarios */
-    .drawer{position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform}
+    /* =================== Drawers =================== */
+    .drawer{ position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform }
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
     .drawer .bd{padding:12px 16px; display:grid; gap:16px}
     .nav-group{border:1px solid var(--border); border-radius:12px; overflow:hidden}
+    .nav-group h4{margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)}
     .nav{display:grid}
     .nav a{padding:12px 12px; border-top:1px solid var(--border)}
     .nav a:hover{background:rgba(37,99,235,.18)}
 
-    .comments-drawer{position:fixed; z-index:80; inset:0 auto 0 0; width:420px; max-width:92vw; background:linear-gradient(180deg,#0b1626,#0a1220); border-right:2px solid var(--blue-500); box-shadow:20px 0 40px rgba(0,0,0,.45); transform:translateX(-100%); transition:.25s ease transform; display:flex; flex-direction:column}
-    .comments-drawer.open{transform:translateX(0)}
+    .comments-drawer{ position:fixed; z-index:80; inset:0 auto 0 0; width:420px; max-width:92vw; background:linear-gradient(180deg,#0b1626,#0a1220); border-right:2px solid var(--blue-500); box-shadow:20px 0 40px rgba(0,0,0,.45); transform:translateX(-100%); transition:.25s ease transform; display:flex; flex-direction:column; }
+    .comments-drawer.open{ transform:translateX(0) }
     .comments-drawer .hd{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border)}
     .comments-drawer .bd{padding:10px 12px; overflow:auto; height:100%}
     @media (max-width:760px){
@@ -91,159 +132,150 @@
       .comments-drawer .bd{height:calc(60vh - 50px)}
     }
 
-    /* Contenido 404 */
-    .e404{position:relative; z-index:1; display:grid; gap:16px; padding:26px 0 36px}
-    .card{background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
-    .hero{display:grid; gap:14px; text-align:center; padding:22px; border:1px dashed var(--border); border-radius:var(--radius)}
-    .lead{color:var(--muted); margin:0}
-
-    /* Caída 404 (bloques cayendo) */
-    .fall-wrap{position:relative; display:flex; justify-content:center; gap:12px; height:140px; margin-top:4px}
-    .digit{
-      width:90px; height:110px; display:grid; place-items:center; font-size:64px; font-weight:900;
-      background:linear-gradient(180deg,rgba(37,99,235,.18),rgba(37,99,235,.06));
-      border:1px solid rgba(96,165,250,.35); border-radius:18px; color:#eaf2ff;
-      box-shadow:0 10px 24px rgba(0,0,0,.35);
-      transform:translateY(-140vh) rotate(-6deg);
-      animation: fallIn 1100ms cubic-bezier(.2,.85,.25,1) var(--d,0ms) forwards, thud 120ms ease-out calc(var(--d,0ms) + 1100ms) 1;
+    /* =================== Escena de choque =================== */
+    .stage{ position:relative; z-index:1; display:grid; place-items:center; padding:28px 0 8px}
+    .target{
+      position:relative; width:min(200px,42vw); aspect-ratio:1/1; border-radius:50%;
+      background:radial-gradient(circle at 50% 50%, rgba(37,99,235,.25), rgba(15,23,42,.5) 55%, transparent 56%), rgba(15,23,42,.45);
+      border:1px solid rgba(96,165,250,.35); display:grid; place-items:center; overflow:hidden;
+      box-shadow:0 16px 36px rgba(0,0,0,.35);
     }
-    .digit:nth-child(1){ --d: 120ms }
-    .digit:nth-child(2){ --d: 320ms }
-    .digit:nth-child(3){ --d: 520ms }
-    @keyframes fallIn{ 0%{transform:translateY(-140vh) rotate(-6deg)} 85%{transform:translateY(0) rotate(0)} 92%{transform:translateY(-18px)} 100%{transform:translateY(0)} }
-    @keyframes thud{ from{box-shadow:0 10px 24px rgba(0,0,0,.35)} to{box-shadow:0 28px 48px rgba(0,0,0,.5)} }
+    .target img{ width:70%; height:70%; object-fit:contain; display:block; filter:drop-shadow(0 6px 14px rgba(37,99,235,.35)); transition:filter .3s ease }
+    /* “sin señal” tras impacto */
+    .target.nosignal img{ filter:grayscale(1) brightness(1.1) contrast(1.2) }
+    .target::after{
+      content:""; position:absolute; inset:-2px; opacity:0; pointer-events:none;
+      background:
+        repeating-linear-gradient( to bottom, rgba(255,255,255,.05) 0 2px, transparent 2px 4px),
+        repeating-linear-gradient( to right,  rgba(255,255,255,.03) 0 2px, transparent 2px 4px);
+      mix-blend-mode:overlay;
+      animation: scanlines 2s linear infinite;
+    }
+    .target.nosignal::after{ opacity:.8 }
+    @keyframes scanlines{
+      0%{ background-position:0 0, 0 0 }
+      100%{ background-position:0 12px, 12px 0 }
+    }
 
-    /* Glitch título */
-    .glitch{position:relative; display:inline-block}
-    .glitch::before,.glitch::after{content:attr(data-text); position:absolute; inset:0; opacity:.5}
-    .glitch::before{ transform:translate(1px,-1px); color:#60a5fa; animation:gl1 2.4s infinite }
-    .glitch::after{  transform:translate(-1px,1px); color:#7c3aed; animation:gl2 2.4s infinite }
-    @keyframes gl1{0%,100%{clip-path:inset(0)} 10%{clip-path:inset(0 60% 60% 0)} 20%{clip-path:inset(40% 0 0 40%)} 30%{clip-path:inset(0 0 50% 0)} 50%{clip-path:inset(0)}}
-    @keyframes gl2{0%,100%{clip-path:inset(0)} 15%{clip-path:inset(50% 0 0 0)} 25%{clip-path:inset(0 20% 40% 0)} 35%{clip-path:inset(0 0 0 60%)} 55%{clip-path:inset(0)}}
+    /* nave y satélite */
+    .ship, .sat{ position:absolute; width:84px; height:84px; background-size:contain; background-repeat:no-repeat; filter:drop-shadow(0 6px 12px rgba(0,0,0,.45)) }
+    .ship{ background-image: var(--ship-url); transform-origin:center; animation: shipIn 2.2s cubic-bezier(.19,1,.22,1) .3s forwards }
+    .sat{  background-image: var(--sat-url);  animation: satOrbit 2.6s ease-in-out 0s infinite alternate }
 
-    .timer{height:10px; width:100%; border-radius:999px; background:rgba(96,165,250,.12); overflow:hidden; border:1px solid rgba(96,165,250,.25)}
-    .timer .bar{height:100%; width:0%}
+    @keyframes shipIn{
+      0%{ transform:translate(-40vw,-20vh) rotate(18deg) scale(.9) }
+      60%{ transform:translate(-8vw,-2vh) rotate(12deg) scale(1) }
+      75%{ transform:translate(0,0) rotate(0deg) }
+      100%{ transform:translate(6vw,2vh) rotate(-8deg) } /* cerca del objetivo */
+    }
+    @keyframes satOrbit{
+      0%{ transform:translate(18vw,-6vh) rotate(12deg) }
+      100%{ transform:translate(6vw,10vh) rotate(-10deg) }
+    }
 
-    .cta-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+    /* explosión y sacudida */
+    .boom{
+      position:absolute; width:18px; height:18px; border-radius:50%; background:radial-gradient(circle, #fff, #ffd159 45%, rgba(255,0,0,.6) 60%, transparent 62%);
+      opacity:0; transform:scale(.2); pointer-events:none; filter:blur(.5px);
+      animation: none;
+    }
+    .boom.show{ animation: boomFx .6s ease-out forwards }
+    @keyframes boomFx{
+      0%{ opacity:1; transform:scale(.2) }
+      60%{ opacity:.9; transform:scale(2.6) }
+      100%{ opacity:0; transform:scale(3.2) }
+    }
+    .shake{ animation: shake .5s ease-in-out 2 }
+    @keyframes shake{
+      0%,100%{ transform:translate(0,0) }
+      20%{ transform:translate(-3px,2px) }
+      40%{ transform:translate(3px,-2px) }
+      60%{ transform:translate(-2px,1px) }
+      80%{ transform:translate(2px,-1px) }
+    }
+
+    /* =================== 404 con grietas =================== */
+    .panel{position:relative; z-index:1}
+    .card{
+      background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96));
+      border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px;
+    }
+    .hero{text-align:center; display:grid; gap:10px; border:1px dashed var(--border); border-radius:var(--radius); padding:20px}
+    .code404{ font-size: clamp(48px, 9vw, 120px); line-height:1; margin:0; letter-spacing:2px; position:relative; display:inline-block; }
+    .cracks{ position:absolute; left:50%; transform:translateX(-50%); width:min(520px,90vw); height:auto; pointer-events:none; top: 50%; translate: 0 -50%; opacity:0; }
+    .cracks path{ stroke:#cfe3ff; stroke-width:2; fill:none; stroke-dasharray:180; stroke-dashoffset:180; }
+    .crashed .cracks{ opacity:1 }
+    .crashed .cracks path{ animation: drawCracks 1.8s ease-out forwards }
+    @keyframes drawCracks{ to{ stroke-dashoffset:0 } }
+
+    .lead{color:var(--muted); margin:0}
+    .cta-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px}
     .btn-inline{
       padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8);
       color:var(--text); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
     }
-    .btn-inline.primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
     .btn-inline:hover{transform:translateY(-1px)}
+    .btn-inline.primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
 
-    /* SPLASH con cohete y “sin señal” */
-    .splash{
-      position:fixed; inset:0; z-index:999;
-      display:grid; place-items:center;
-      background:radial-gradient(1200px 600px at 50% -10%, rgba(37,99,235,.16), transparent 60%), linear-gradient(180deg,var(--panel-2),#0b1220);
+    /* =================== Card con grid-effect (100 tiles) =================== */
+    .card-effect{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px }
+    .card__img{ position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--border); background:#0b1220 }
+    .card__img img{ width:100%; display:block; object-fit:cover; opacity:.85; filter:contrast(1.1) saturate(1.05) }
+    .card__grid-effect{
+      position:absolute; inset:0; display:grid; grid-template-columns:repeat(10,1fr); grid-auto-rows:1fr;
     }
-    .splash::before{
-      content:""; position:absolute; inset:0; pointer-events:none; opacity:.08;
-      background-image: var(--logo-url); background-repeat:repeat; background-size:110px 110px;
-      filter:grayscale(1) contrast(1.1);
+    .card__grid-effect-tile{
+      display:block; position:relative; isolation:isolate;
+      transition: background .15s ease, transform .15s ease;
     }
-    .splash-logo{
-      width:min(170px,42vw); height:min(170px,42vw);
-      display:grid; place-items:center; border-radius:26px; position:relative; isolate:isolate;
-      background:rgba(15,23,42,.35); border:1px solid rgba(96,165,250,.25);
-      box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(96,165,250,.35);
-      animation: popIn 350ms ease-out forwards, glowPulse 2.1s ease-in-out 0.35s 1 forwards;
-      overflow:hidden;
+    .card__grid-effect-tile::after{
+      content:""; position:absolute; inset:1px; border-radius:4px;
+      background:rgba(96,165,250,.08); opacity:0; transition:opacity .15s ease;
+      mix-blend-mode:screen;
     }
-    .splash-logo img{
-      width:72%; height:72%; object-fit:contain; display:block;
-      transform:scale(.92) rotate(-6deg);
-      animation: logoDance 1.9s cubic-bezier(.19,1,.22,1) .15s 1 forwards;
-      filter:drop-shadow(0 6px 18px rgba(37,99,235,.35));
-    }
-    @keyframes popIn{ from{transform:scale(.8); opacity:0} to{transform:scale(1); opacity:1} }
-    @keyframes glowPulse{ 0%{box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(96,165,250,.35)} 50%{box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 40px 10px rgba(96,165,250,.28)} 100%{box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(96,165,250,0)} }
-    @keyframes logoDance{ 0%{transform:scale(.92) rotate(-6deg)} 30%{transform:scale(1.08) rotate(3deg)} 60%{transform:scale(1) rotate(0)} 100%{transform:scale(1) rotate(0)} }
+    .card__grid-effect-tile:hover{ transform:scale(1.015) }
+    .card__grid-effect-tile:hover::after{ opacity:1 }
+    .card__img a.full{ position:absolute; inset:0; z-index:2; }
 
-    /* Cohete */
-    .rocket{
-      position:absolute; left:-14vw; top:-22vh; width:78px; height:78px; z-index:3;
-      transform:rotate(35deg);
-      filter: drop-shadow(0 10px 24px rgba(0,0,0,.45));
-      animation: rocketFly 1.6s cubic-bezier(.2,.7,.2,1) 600ms forwards;
+    /* =================== Botón “fizzy” =================== */
+    .fizzy{ display:grid; justify-items:center; gap:6px; margin-top:10px }
+    .fizzy small{ color:var(--muted) }
+    .fizzy input{ display:none }
+    .fizzy label{
+      --btnW: min(270px, 90vw);
+      position:relative; width:var(--btnW); padding:12px 18px; border-radius:14px; cursor:pointer;
+      display:inline-grid; grid-auto-flow:column; align-items:center; justify-content:center; gap:10px;
+      background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); color:#fff; border:1px solid rgba(255,255,255,.06);
+      box-shadow:0 10px 26px rgba(0,0,0,.35);
+      overflow:hidden; user-select:none;
     }
-    @keyframes rocketFly{
-      0%{ left:-14vw; top:-22vh; transform:rotate(35deg) scale(.9) }
-      60%{ transform:rotate(60deg) scale(1.05) }
-      100%{ left:calc(50% - 39px); top:calc(50% - 39px); transform:rotate(90deg) scale(1.2) }
+    .fizzy label .t{ font-weight:600 }
+    .fizzy .spots{ position:absolute; inset:0; pointer-events:none }
+    .fizzy .spot{
+      position:absolute; width:6px; height:6px; border-radius:50%;
+      background:radial-gradient(circle, #fff, rgba(255,255,255,.2) 60%, transparent 61%);
+      transform:translate(var(--x,0), var(--y,0)) scale(0);
+      opacity:0; filter:blur(.2px);
     }
-    .rocket .flame{
-      position:absolute; bottom:-10px; left:50%; width:14px; height:22px; transform:translateX(-50%);
-      background:conic-gradient(from 180deg, #f59e0b, #ef4444, #f59e0b);
-      filter:blur(1px) brightness(1.2); border-radius:10px 10px 50% 50%;
-      animation: flame 120ms ease-in-out infinite alternate;
+    /* explosión de partículas al click (con clase .go) */
+    .fizzy.go .spot{ animation: pop 700ms ease-out forwards }
+    @keyframes pop{
+      0%{ opacity:1; transform:translate(var(--x), var(--y)) scale(.2) }
+      80%{ opacity:.9; transform:translate(calc(var(--x)*2.2), calc(var(--y)*2.2)) scale(1.8) }
+      100%{ opacity:0; transform:translate(calc(var(--x)*3), calc(var(--y)*3)) scale(2.1) }
     }
-    @keyframes flame{ from{transform:translateX(-50%) scaleY(.9)} to{transform:translateX(-50%) scaleY(1.15)} }
 
-    /* Impacto en el logo */
-    .splash-logo.hit{ animation: shake .7s cubic-bezier(.36,.07,.19,.97) 1 both }
-    .splash-logo.hit::after{
-      content:""; position:absolute; inset:0; margin:auto; width:12px; height:12px; border-radius:50%;
-      box-shadow:0 0 0 0 rgba(96,165,250,.6);
-      animation: shock 900ms ease-out 1 forwards;
-    }
-    @keyframes shake{
-      10%,90%{transform:translate(-1px,0)}
-      20%,80%{transform:translate(2px,0)}
-      30%,50%,70%{transform:translate(-4px,0)}
-      40%,60%{transform:translate(4px,0)}
-      100%{transform:translate(0,0)}
-    }
-    @keyframes shock{ from{box-shadow:0 0 0 0 rgba(96,165,250,.6)} to{box-shadow:0 0 0 70vmax rgba(96,165,250,0)} }
-
-    /* Capa “SIN SEÑAL” */
-    .tv{ position:absolute; inset:0; z-index:2; display:none; mix-blend-mode:screen; }
-    .splash.nosignal .tv{ display:block }
-    .tv .noise, .tv .scan, .tv .tint{ position:absolute; inset:0 }
-    .tv .noise{
-      background:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 2px, rgba(0,0,0,.05) 2px 4px),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 1px, rgba(0,0,0,.02) 1px 2px);
-      animation: noiseShift 220ms steps(2) infinite, flick 1.4s ease-in-out infinite;
-      opacity:.6;
-    }
-    .tv .scan{
-      background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.25) 50%, rgba(0,0,0,0) 100%);
-      background-size: 100% 8px;
-      animation: scan 6s linear infinite;
-      opacity:.35;
-    }
-    .tv .tint{ background: radial-gradient(1200px 700px at 50% 0%, rgba(0,0,0,.35), transparent 60%); }
-    .tv .label{
-      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:3;
-      padding:8px 14px; border:2px solid rgba(255,255,255,.6); color:#fff; letter-spacing:.12em;
-      background:rgba(0,0,0,.35); text-shadow:0 0 6px rgba(255,255,255,.5);
-      font-weight:800; border-radius:8px; font-size:14px; filter:contrast(1.25);
-      animation: labelBlink 1.2s steps(2) infinite;
-    }
-    @keyframes noiseShift{ 50%{background-position: 0 2px, 2px 0} 100%{background-position: 0 0, 0 0} }
-    @keyframes flick{ 0%,100%{opacity:.55} 45%{opacity:.75} 55%{opacity:.45} }
-    @keyframes scan{ 0%{background-position:0 0} 100%{background-position:0 100%} }
-    @keyframes labelBlink{ 0%,100%{opacity:1} 50%{opacity:.35} }
-
-    /* Botón saltar */
-    .skip{
-      position:absolute; bottom:18px; right:18px; font-size:13px; color:#e6f0ff; opacity:.85;
-      border:1px solid rgba(96,165,250,.35); background:rgba(15,23,42,.5); padding:8px 12px; border-radius:10px; cursor:pointer; z-index:4;
-    }
-    .skip:hover{ filter:brightness(1.05) }
-
-    /* Reduce motion */
+    /* =================== Accesibilidad movimiento =================== */
     @media (prefers-reduced-motion: reduce){
-      .splash-logo, .splash-logo img, .digit, .glitch::before, .glitch::after, .rocket{ animation:none !important }
-      .digit{ transform:none }
+      .ship,.sat,.boom,.sky::before,.sky::after,.card__grid-effect-tile,.fizzy .spot,.target::after{ animation:none !important }
     }
   </style>
 </head>
-
 <body>
-  <!-- Topbar -->
+  <!-- Cielo y patrón -->
+  <div class="sky" aria-hidden="true"></div>
+
+  <!-- =================== Topbar =================== -->
   <div class="topbar">
     <div class="wrap row">
       <a class="logo" href="/" aria-label="Inicio · Ing. Lucas Learning Hub">
@@ -275,7 +307,7 @@
     </div>
   </div>
 
-  <!-- Drawer Menú -->
+  <!-- =================== Drawer Menú =================== -->
   <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
     <div class="hd">
       <strong class="i18n-es">Navegación</strong>
@@ -284,19 +316,19 @@
     </div>
     <div class="bd">
       <div class="nav-group">
-        <h4 class="i18n-es" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Páginas</h4>
-        <h4 class="i18n-en" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Pages</h4>
+        <h4 class="i18n-es">Páginas</h4>
+        <h4 class="i18n-en">Pages</h4>
         <nav class="nav" id="nav-pages"></nav>
       </div>
       <div class="nav-group">
-        <h4 class="i18n-es" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Ventanas / Proyectos</h4>
-        <h4 class="i18n-en" style="margin:0; padding:10px 12px; font-size:13px; color:var(--muted); background:#111826; border-bottom:1px solid var(--border)">Windows / Projects</h4>
+        <h4 class="i18n-es">Ventanas / Proyectos</h4>
+        <h4 class="i18n-en">Windows / Projects</h4>
         <nav class="nav" id="nav-projects"></nav>
       </div>
     </div>
   </aside>
 
-  <!-- Drawer Comentarios -->
+  <!-- =================== Drawer Comentarios =================== -->
   <aside class="comments-drawer" id="commentsDrawer" aria-label="Comentarios" aria-hidden="true">
     <div class="hd">
       <strong class="i18n-es">Comentarios</strong>
@@ -308,27 +340,36 @@
     </div>
   </aside>
 
-  <!-- Contenido 404 (detrás del splash) -->
-  <div class="wrap e404" aria-live="polite" aria-atomic="true">
-    <section class="card hero">
-      <div class="fall-wrap" aria-hidden="true">
-        <div class="digit">4</div>
-        <div class="digit">0</div>
-        <div class="digit">4</div>
-      </div>
+  <!-- =================== Escena: nave + satélite + logo =================== -->
+  <section class="stage wrap" aria-label="Animación de impacto">
+    <div class="target" id="target">
+      <img src="/galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas">
+      <div class="boom" id="boom"></div>
+    </div>
+    <!-- posiciones relativas — se ajustan via JS al centro -->
+    <div class="ship" id="ship" aria-hidden="true"></div>
+    <div class="sat"  id="sat"  aria-hidden="true"></div>
+  </section>
 
-      <h1 class="i18n-es"><span class="glitch" data-text="Página no encontrada">Página no encontrada</span></h1>
-      <h1 class="i18n-en"><span class="glitch" data-text="Page not found">Page not found</span></h1>
+  <!-- =================== Panel 404 =================== -->
+  <section class="panel wrap" aria-live="polite" aria-atomic="true">
+    <article class="card hero">
+      <h1 class="code404" id="code404">404
+        <!-- grietas SVG -->
+        <svg class="cracks" viewBox="0 0 600 180" role="img" aria-label="Grietas">
+          <path d="M300 10 L320 40 L310 70 L340 90" />
+          <path d="M260 40 L240 70 L260 95 L245 120" />
+          <path d="M350 55 L370 80 L360 105 L380 130" />
+          <path d="M300 95 L290 120 L305 145 L295 165" />
+        </svg>
+      </h1>
+      <p class="lead i18n-es">Parece que esta página se perdió en el espacio…</p>
+      <p class="lead i18n-en">Looks like this page got lost in space…</p>
 
-      <p class="lead i18n-es">Te llevaremos al <strong>inicio</strong> en <b><span id="count">25</span>s</b>…</p>
-      <p class="lead i18n-en">You’ll be redirected to <strong>home</strong> in <b><span id="count-en">25</span>s</b>…</p>
-
-      <div class="timer" aria-hidden="true"><div class="bar" id="bar"></div></div>
-
-      <div class="cta-row" style="margin-top:10px">
-        <a class="btn-inline primary" href="/" id="goNow">
-          <span class="i18n-es">Ir al inicio ahora</span>
-          <span class="i18n-en">Go to home now</span>
+      <div class="cta-row">
+        <a class="btn-inline primary" href="/" id="goHome">
+          <span class="i18n-es">Volver al inicio</span>
+          <span class="i18n-en">Go to home</span>
         </a>
         <a class="btn-inline" href="#" id="openCta">
           💬 <span class="i18n-es">Abrir comentarios</span>
@@ -339,40 +380,34 @@
           <span class="i18n-en">Open menu</span>
         </button>
       </div>
-    </section>
-  </div>
 
-  <!-- SPLASH con cohete -->
-  <div class="splash" id="splash" role="dialog" aria-label="Animación de inicio">
-    <div class="splash-logo" id="splashLogo">
-      <img src="/galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas" width="170" height="170">
-    </div>
+      <!-- Card con grid-effect que también lleva al inicio -->
+      <div class="card-effect">
+        <div class="card__img">
+          <!-- Puedes reemplazar por cualquier imagen/cover (ej: un banner del hub) -->
+          <img src="/galeria/logo/logoinglucas.svg" alt="Ir al inicio">
+          <a class="full" href="/" aria-label="Ir al inicio ahora"></a>
+          <div class="card__grid-effect" id="gridEffect" aria-hidden="true"></div>
+        </div>
+      </div>
 
-    <!-- Cohete (SVG inline) -->
-    <div class="rocket" id="rocket" aria-hidden="true">
-      <svg viewBox="0 0 128 128" width="78" height="78" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
-        <path d="M84 20c10 22-2 56-18 72S18 120 18 120s6-30 22-46S74 10 84 20Z" fill="#94a3b8"/>
-        <path d="M74 30c6 14-2 40-14 52S22 100 22 100s4-22 16-34S68 16 74 30Z" fill="#cbd5e1"/>
-        <circle cx="70" cy="58" r="12" fill="#0ea5e9"/>
-        <circle cx="70" cy="58" r="7" fill="#38bdf8"/>
-        <path d="M22 100 10 118l22-8z" fill="#ef4444"/>
-        <path d="M22 100 8 112l18-4z" fill="#f59e0b"/>
-      </svg>
-      <span class="flame" aria-hidden="true"></span>
-    </div>
+      <!-- Botón “fizzy” con partículas -->
+      <div class="fizzy" id="fizzyWrap">
+        <small class="i18n-es">O prueba este botón con partículas 👇</small>
+        <small class="i18n-en">Or try this particle button 👇</small>
+        <input id="fizzy" type="checkbox" />
+        <label for="fizzy" id="fizzyBtn" aria-label="Volver al inicio (fizzy)">
+          <!-- icono simple -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 17l5-5-5-5v10z"/></svg>
+          <span class="t i18n-es">Volver al inicio</span>
+          <span class="t i18n-en">Go home</span>
+          <div class="spots" id="spots"></div>
+        </label>
+      </div>
+    </article>
+  </section>
 
-    <!-- Capa “SIN SEÑAL” -->
-    <div class="tv" id="tv">
-      <div class="noise"></div>
-      <div class="scan"></div>
-      <div class="tint"></div>
-      <div class="label">SIN SEÑAL · NO SIGNAL</div>
-    </div>
-
-    <button class="skip" id="skipBtn" type="button">Saltar ▶</button>
-  </div>
-
-  <!-- Footer simple -->
+  <!-- =================== Footer =================== -->
   <footer style="border-top:1px solid var(--border); color:var(--muted); padding:22px 0; background:linear-gradient(180deg,#0f1624,#0c121e)">
     <div class="wrap" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
       <div>© <span id="y"></span> <strong>IngLucas</strong> · Colombia</div>
@@ -380,13 +415,12 @@
     </div>
   </footer>
 
+  <!-- =================== Scripts =================== -->
   <script>
-    // ===== Config
-    const HOME_URL = '/';
-    const ANIM_MS  = 25000; // 25 s
+    // Año footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // ===== Helpers
+    // Helpers
     const qs = s => document.querySelector(s);
     const $drawer = qs('#drawer');
     const $comments = qs('#commentsDrawer');
@@ -394,17 +428,14 @@
     const $btnComments = qs('#openComments');
     const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
     const isMobile  = matchMedia('(hover:none) and (pointer:coarse)').matches;
+
     function setOpen(el, btn, open){
       el.classList.toggle('open', open);
       el.setAttribute('aria-hidden', open ? 'false' : 'true');
       btn?.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
-    // Accesos rápidos desde CTA
-    qs('#openCta')?.addEventListener('click', (e)=>{ e.preventDefault(); qs('#openComments')?.click(); });
-    qs('#openMenu')?.addEventListener('click', ()=> qs('#openDrawer')?.click());
-
-    // Drawer
+    // ===== Menú
     const $closeDrawer = qs('#closeDrawer'); let drawerTimer = null;
     function openDrawer(){ setOpen($drawer,$btnDrawer,true); if(isMobile){ clearTimeout(drawerTimer); drawerTimer=setTimeout(()=>closeDrawer(),5000);} }
     function closeDrawer(){ setOpen($drawer,$btnDrawer,false); clearTimeout(drawerTimer); }
@@ -413,7 +444,7 @@
     if(isDesktop){ $btnDrawer?.addEventListener('mouseenter', openDrawer); $drawer?.addEventListener('mouseleave', closeDrawer); }
     document.addEventListener('click', e=>{ if($drawer.classList.contains('open') && !e.composedPath().includes($drawer) && !e.composedPath().includes($btnDrawer)) closeDrawer(); }, {passive:true});
 
-    // Comentarios (Utterances on demand)
+    // ===== Comentarios (Utterances on demand)
     const $closeComments = qs('#closeComments');
     const $commentsMount = qs('#commentsMount');
     let commentsLoaded=false, inactivityTimer=null, lastActivity=Date.now();
@@ -421,7 +452,7 @@
       if(commentsLoaded) return;
       const s=document.createElement('script');
       s.src='https://utteranc.es/client.js';
-      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io');
+      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io'); // <-- ajusta si usas otro repo
       s.setAttribute('issue-term','pathname');
       s.setAttribute('theme','icy-dark');
       s.setAttribute('crossorigin','anonymous');
@@ -438,31 +469,31 @@
     function stopInactivityWatcher(){ clearInterval(inactivityTimer); inactivityTimer=null; }
     ['mousemove','keydown','wheel','touchstart','touchmove'].forEach(evt=>document.addEventListener(evt,()=>{ lastActivity=Date.now(); },{passive:true}));
 
-    // I18N toggle (ES ↔ EN)
+    // ===== I18N toggle (ES ↔ EN)
     (function(){
       const LANG_KEY='hubLang'; const $btn=qs('#langToggle'); const $chip=qs('#langChip');
       function setAriaForLang(L){
-        const btnC=qs('#openComments'); if(btnC){ const t=L==='en'?'Open comments':'Abrir comentarios'; btnC.title=t; btnC.setAttribute('aria-label',t); }
-        const btnD=qs('#openDrawer'); if(btnD){ const t=L==='en'?'Open menu':'Abrir menú'; btnD.title=t; btnD.setAttribute('aria-label',t); }
-        const cD=qs('#closeDrawer'); if(cD){ cD.setAttribute('aria-label', L==='en'?'Close':'Cerrar'); cD.textContent = L==='en'?'Close ✕':'Cerrar ✕'; }
-        const cC=qs('#closeComments'); if(cC){ cC.setAttribute('aria-label', L==='en'?'Close comments':'Cerrar comentarios'); cC.textContent = L==='en'?'Close ✕':'Cerrar ✕'; }
+        const openCommentsBtn=qs('#openComments'); if(openCommentsBtn){ const t=L==='en'?'Open comments':'Abrir comentarios'; openCommentsBtn.title=t; openCommentsBtn.setAttribute('aria-label',t); }
+        const openDrawerBtn=qs('#openDrawer'); if(openDrawerBtn){ const t=L==='en'?'Open menu':'Abrir menú'; openDrawerBtn.title=t; openDrawerBtn.setAttribute('aria-label',t); }
+        const closeDrawerBtn=qs('#closeDrawer'); if(closeDrawerBtn){ closeDrawerBtn.setAttribute('aria-label', L==='en'?'Close':'Cerrar'); closeDrawerBtn.textContent = L==='en'?'Close ✕':'Cerrar ✕'; }
+        const closeCommentsBtn=qs('#closeComments'); if(closeCommentsBtn){ closeCommentsBtn.setAttribute('aria-label', L==='en'?'Close comments':'Cerrar comentarios'); closeCommentsBtn.textContent = L==='en'?'Close ✕':'Cerrar ✕'; }
       }
       function applyLang(lang){
-        const L = (lang==='en')?'en':'es';
+        const L=(lang==='en')?'en':'es';
         document.documentElement.setAttribute('data-lang',L);
         document.documentElement.setAttribute('lang',L);
         localStorage.setItem(LANG_KEY,L);
-        $chip.textContent = L.toUpperCase();
+        $chip.textContent=L.toUpperCase();
         $btn.setAttribute('aria-label', L==='en'?'Switch language to Spanish':'Cambiar idioma a inglés');
         $btn.setAttribute('title', L==='en'?'Switch to Spanish':'Cambiar a English');
         $btn.setAttribute('aria-pressed', L==='en');
         setAriaForLang(L);
       }
-      const saved = localStorage.getItem(LANG_KEY)||'es'; applyLang(saved);
+      const saved=localStorage.getItem(LANG_KEY)||'es'; applyLang(saved);
       $btn?.addEventListener('click',()=>{ const cur=document.documentElement.getAttribute('data-lang')||'es'; applyLang(cur==='es'?'en':'es'); });
     })();
 
-    // Menú sugerido (nav.json con fallback GitHub)
+    // ===== Auto-menu desde /nav.json con fallback GitHub
     (async function initAutoMenu(){
       const elPages = document.getElementById('nav-pages');
       const elProjects = document.getElementById('nav-projects');
@@ -501,58 +532,83 @@
       try{ const nav=await fetchNav(); renderList(elPages, nav.pages||[]); renderList(elProjects, nav.projects||[]); }catch(e){}
     })();
 
-    // ===== Splash + cohete + “sin señal” + redirección
+    // ===== Card grid-effect: crear 100 tiles
     (function(){
-      const splash = document.getElementById('splash');
-      const splashLogo = document.getElementById('splashLogo');
-      const rocket = document.getElementById('rocket');
-      const skip   = document.getElementById('skipBtn');
-      const tv     = document.getElementById('tv');
-
-      const countES = document.getElementById('count');
-      const countEN = document.getElementById('count-en');
-      const bar     = document.getElementById('bar');
-      const goNow   = document.getElementById('goNow');
-
-      // Contador
-      let remaining = Math.ceil(ANIM_MS/1000);
-      function tick(){
-        remaining--; if(remaining<0) remaining=0;
-        if(countES) countES.textContent = remaining;
-        if(countEN) countEN.textContent = remaining;
-        const pct = ((ANIM_MS - remaining*1000)/ANIM_MS)*100;
-        if(bar) bar.style.width = Math.min(100,Math.max(0,pct))+'%';
+      const grid = document.getElementById('gridEffect');
+      if(!grid) return;
+      const frag = document.createDocumentFragment();
+      for(let i=0;i<100;i++){
+        const a=document.createElement('a');
+        a.className='card__grid-effect-tile';
+        a.href='/';
+        a.ariaLabel='Ir al inicio';
+        frag.appendChild(a);
       }
-      if(countES) countES.textContent = remaining;
-      if(countEN) countEN.textContent = remaining;
-      if(bar){ bar.style.width='0%'; bar.style.background='linear-gradient(90deg, rgba(96,165,250,.6), rgba(124,58,237,.6))'; }
-      const interval = setInterval(tick,1000);
-
-      let timer = setTimeout(()=>{ clearInterval(interval); window.location.assign(HOME_URL); }, ANIM_MS);
-
-      function go(){ clearInterval(interval); clearTimeout(timer); window.location.assign(HOME_URL); }
-      skip?.addEventListener('click', go);
-      goNow?.addEventListener('click', (e)=>{ e.preventDefault(); go(); });
-
-      // Impacto: cuando termine el vuelo del cohete
-      rocket?.addEventListener('animationend', (e)=>{
-        if(e.animationName !== 'rocketFly') return;
-        splashLogo?.classList.add('hit');    // sacudida + onda
-        splash?.classList.add('nosignal');   // aparece capa “SIN SEÑAL”
-        // atenúa logo tras el golpe
-        setTimeout(()=>{ if(splashLogo) splashLogo.style.opacity = .15; }, 300);
-      }, {passive:true});
-
-      // fallback si imagen del logo no carga
-      const img = splash.querySelector('img');
-      img?.addEventListener('error', go, {passive:true});
-
-      // Tecla Esc => ir al inicio
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ go(); }});
+      grid.appendChild(frag);
     })();
 
-    // Cerrar paneles con Esc cuando no estamos saltando
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ const dOpen=$drawer?.classList.contains('open'); const cOpen=$comments?.classList.contains('open'); if(dOpen){ qs('#closeDrawer')?.click(); } if(cOpen){ qs('#closeComments')?.click(); } }});
+    // ===== Botón “fizzy”: 52 spots aleatorios + navegación
+    (function(){
+      const wrap = document.getElementById('fizzyWrap');
+      const spots = document.getElementById('spots');
+      if(!wrap || !spots) return;
+      const N=52, W=260, H=44; // base aprox
+      for(let i=0;i<N;i++){
+        const s=document.createElement('span'); s.className='spot';
+        const x=(Math.random()-.5)*W, y=(Math.random()-.5)*H;
+        s.style.setProperty('--x', x+'px'); s.style.setProperty('--y', y+'px');
+        spots.appendChild(s);
+      }
+      const label = document.getElementById('fizzyBtn');
+      label?.addEventListener('click', (e)=>{
+        e.preventDefault();
+        wrap.classList.remove('go'); // reset
+        void wrap.offsetWidth;       // reflow
+        wrap.classList.add('go');    // dispara anim
+        // navega al final del efecto
+        setTimeout(()=>{ window.location.assign('/'); }, 650);
+      });
+    })();
+
+    // ===== Escena de impacto: coordinar nave, satélite y objetivo
+    (function(){
+      const target = document.getElementById('target');
+      const ship   = document.getElementById('ship');
+      const sat    = document.getElementById('sat');
+      const boom   = document.getElementById('boom');
+      const code   = document.getElementById('code404');
+
+      if(!target || !ship || !sat || !boom || !code) return;
+
+      // coloca nave/sat relativos al centro del objetivo
+      function positionAround(){
+        const rect = target.getBoundingClientRect();
+        const cx = rect.left + rect.width/2;
+        const cy = rect.top  + rect.height/2;
+        // posiciones iniciales (coinciden con keyframes)
+        ship.style.left = (cx - rect.width*1.1)+'px';
+        ship.style.top  = (cy - rect.height*1.1)+'px';
+        sat.style.left  = (cx + rect.width*0.7)+'px';
+        sat.style.top   = (cy - rect.height*0.7)+'px';
+      }
+      positionAround();
+      addEventListener('resize', positionAround);
+
+      // timeline del choque
+      setTimeout(()=>{ // 1) colisión nave-satélite
+        boom.style.left='50%'; boom.style.top='50%'; boom.classList.add('show');
+      }, 1500);
+
+      setTimeout(()=>{ // 2) golpea el logo -> sin señal + grietas + shake
+        target.classList.add('nosignal'); target.classList.add('shake');
+        document.body.classList.add('crashed');
+        setTimeout(()=>target.classList.remove('shake'), 900);
+      }, 2000);
+    })();
+
+    // Accesos rápidos desde CTA
+    qs('#openCta')?.addEventListener('click', (e)=>{ e.preventDefault(); qs('#openComments')?.click(); });
+    qs('#openMenu')?.addEventListener('click', ()=> qs('#openDrawer')?.click());
   </script>
 </body>
 </html>
