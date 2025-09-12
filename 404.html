@@ -2,7 +2,7 @@
 <html lang="es" data-lang="es" dir="ltr">
 <head>
   <!-- ============================================================
-       404 · Ing. Lucas Learning Hub (patrón + cielo + choque 404)
+       404 · Ing. Lucas Learning Hub (25s + astronauta en progreso)
        ============================================================ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,17 +21,18 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/galeria/logo/logoinglucas.png">
 
   <style>
-    /* =================== Variables/base =================== */
     :root{
       --blue-900:#0b1730; --blue-800:#0f2346; --blue-700:#153769; --blue-600:#1c4b8c; --blue-500:#2563eb; --blue-400:#60a5fa;
       --purple-600:#7c3aed; --cyan-400:#22d3ee; --lime-400:#a3e635;
       --bg:#0e1116; --panel-2:#0f1722; --border:#263349; --text:#ecf3ff; --muted:#b4c2d6;
       --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.35);
       --container:1100px;
-      --logo-url: url("/galeria/logo/logoinglucas.svg");      /* patrón + objetivo */
-      --ship-url: url("/galeria/space/ESPACIAL.svg");         /* nave espacial     */
-      --sat-url:  url("/galeria/space/SATELI02.svg");         /* satélite          */
+      --logo-url: url("/galeria/logo/logoinglucas.svg");
+      --ship-url: url("/galeria/space/ESPACIAL.svg");
+      --sat-url:  url("/galeria/space/SATELI02.svg");
+      --astro-url:url("/galeria/space/ASTRO.svg");
       --accent-ring: 0 0 0 3px rgba(34,211,238,.25);
+      --pct: 0%; /* porcentaje progreso */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -44,7 +45,7 @@
     a{color:var(--blue-400); text-decoration:none}
     .wrap{max-width:var(--container); margin:0 auto; padding:0 20px}
 
-    /* =================== Patrón de logo de fondo =================== */
+    /* Patrón de logo */
     body::before{
       content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
       background-image: var(--logo-url);
@@ -53,9 +54,8 @@
       opacity:.055; filter:grayscale(1) contrast(1.05);
     }
 
-    /* =================== Cielo espacial con estrellas =================== */
+    /* Cielo espacial */
     .sky{position:fixed; inset:0; z-index:0; pointer-events:none}
-    /* Capa nebulosa/pulso */
     .sky::before{
       content:""; position:absolute; inset:0;
       background:
@@ -64,7 +64,6 @@
         radial-gradient(900px 600px at 80% 120%, rgba(34,211,238,.10), transparent 70%);
       animation: skyPulse 6s ease-in-out infinite alternate;
     }
-    /* Estrellas (patrón punteado animado) */
     .sky::after{
       content:""; position:absolute; inset:0; opacity:.65;
       background-image:
@@ -86,11 +85,11 @@
       100%{opacity:.45; transform:translate3d(-20px,-20px,0)}
     }
 
-    /* =================== I18N =================== */
+    /* I18N */
     html[data-lang="es"] .i18n-en{display:none!important}
     html[data-lang="en"] .i18n-es{display:none!important}
 
-    /* =================== Topbar =================== */
+    /* Topbar */
     .topbar{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(1.1) blur(8px); background:rgba(13,18,30,.75); border-bottom:1px solid var(--border)}
     .topbar .row{display:flex; align-items:center; gap:12px; padding:12px 0}
     .logo{ width:36px; height:36px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:linear-gradient(180deg,#0f172a,#0b1220); border:1px solid rgba(96,165,250,.25)}
@@ -111,7 +110,7 @@
     .icon-btn svg{ width:22px; height:22px; display:block }
     .lang-chip{font-size:12px; font-weight:700; letter-spacing:.3px}
 
-    /* =================== Drawers =================== */
+    /* Drawers */
     .drawer{ position:fixed; z-index:70; inset:0 0 0 auto; width:320px; max-width:86vw; background:linear-gradient(180deg,#0e223a,#0a1729); border-left:2px solid var(--blue-500); box-shadow:-20px 0 40px rgba(0,0,0,.45); transform:translateX(100%); transition:.25s ease transform }
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--border)}
@@ -132,7 +131,7 @@
       .comments-drawer .bd{height:calc(60vh - 50px)}
     }
 
-    /* =================== Escena de choque =================== */
+    /* Escena choque */
     .stage{ position:relative; z-index:1; display:grid; place-items:center; padding:28px 0 8px}
     .target{
       position:relative; width:min(200px,42vw); aspect-ratio:1/1; border-radius:50%;
@@ -141,7 +140,6 @@
       box-shadow:0 16px 36px rgba(0,0,0,.35);
     }
     .target img{ width:70%; height:70%; object-fit:contain; display:block; filter:drop-shadow(0 6px 14px rgba(37,99,235,.35)); transition:filter .3s ease }
-    /* “sin señal” tras impacto */
     .target.nosignal img{ filter:grayscale(1) brightness(1.1) contrast(1.2) }
     .target::after{
       content:""; position:absolute; inset:-2px; opacity:0; pointer-events:none;
@@ -152,93 +150,47 @@
       animation: scanlines 2s linear infinite;
     }
     .target.nosignal::after{ opacity:.8 }
-    @keyframes scanlines{
-      0%{ background-position:0 0, 0 0 }
-      100%{ background-position:0 12px, 12px 0 }
-    }
-
-    /* nave y satélite */
+    @keyframes scanlines{ 0%{ background-position:0 0, 0 0 } 100%{ background-position:0 12px, 12px 0 } }
     .ship, .sat{ position:absolute; width:84px; height:84px; background-size:contain; background-repeat:no-repeat; filter:drop-shadow(0 6px 12px rgba(0,0,0,.45)) }
     .ship{ background-image: var(--ship-url); transform-origin:center; animation: shipIn 2.2s cubic-bezier(.19,1,.22,1) .3s forwards }
     .sat{  background-image: var(--sat-url);  animation: satOrbit 2.6s ease-in-out 0s infinite alternate }
-
-    @keyframes shipIn{
-      0%{ transform:translate(-40vw,-20vh) rotate(18deg) scale(.9) }
-      60%{ transform:translate(-8vw,-2vh) rotate(12deg) scale(1) }
-      75%{ transform:translate(0,0) rotate(0deg) }
-      100%{ transform:translate(6vw,2vh) rotate(-8deg) } /* cerca del objetivo */
-    }
-    @keyframes satOrbit{
-      0%{ transform:translate(18vw,-6vh) rotate(12deg) }
-      100%{ transform:translate(6vw,10vh) rotate(-10deg) }
-    }
-
-    /* explosión y sacudida */
-    .boom{
-      position:absolute; width:18px; height:18px; border-radius:50%; background:radial-gradient(circle, #fff, #ffd159 45%, rgba(255,0,0,.6) 60%, transparent 62%);
-      opacity:0; transform:scale(.2); pointer-events:none; filter:blur(.5px);
-      animation: none;
-    }
+    @keyframes shipIn{ 0%{ transform:translate(-40vw,-20vh) rotate(18deg) scale(.9) } 60%{ transform:translate(-8vw,-2vh) rotate(12deg) scale(1) } 75%{ transform:translate(0,0) rotate(0deg) } 100%{ transform:translate(6vw,2vh) rotate(-8deg) } }
+    @keyframes satOrbit{ 0%{ transform:translate(18vw,-6vh) rotate(12deg) } 100%{ transform:translate(6vw,10vh) rotate(-10deg) } }
+    .boom{ position:absolute; width:18px; height:18px; border-radius:50%; background:radial-gradient(circle, #fff, #ffd159 45%, rgba(255,0,0,.6) 60%, transparent 62%); opacity:0; transform:scale(.2); pointer-events:none; filter:blur(.5px) }
     .boom.show{ animation: boomFx .6s ease-out forwards }
-    @keyframes boomFx{
-      0%{ opacity:1; transform:scale(.2) }
-      60%{ opacity:.9; transform:scale(2.6) }
-      100%{ opacity:0; transform:scale(3.2) }
-    }
+    @keyframes boomFx{ 0%{ opacity:1; transform:scale(.2) } 60%{ opacity:.9; transform:scale(2.6) } 100%{ opacity:0; transform:scale(3.2) } }
     .shake{ animation: shake .5s ease-in-out 2 }
-    @keyframes shake{
-      0%,100%{ transform:translate(0,0) }
-      20%{ transform:translate(-3px,2px) }
-      40%{ transform:translate(3px,-2px) }
-      60%{ transform:translate(-2px,1px) }
-      80%{ transform:translate(2px,-1px) }
-    }
+    @keyframes shake{ 0%,100%{ transform:translate(0,0) } 20%{ transform:translate(-3px,2px) } 40%{ transform:translate(3px,-2px) } 60%{ transform:translate(-2px,1px) } 80%{ transform:translate(2px,-1px) } }
 
-    /* =================== 404 con grietas =================== */
+    /* 404 + grietas */
     .panel{position:relative; z-index:1}
-    .card{
-      background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96));
-      border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px;
-    }
-    .hero{text-align:center; display:grid; gap:10px; border:1px dashed var(--border); border-radius:var(--radius); padding:20px}
+    .card{ background:linear-gradient(180deg,rgba(25,31,45,.96),rgba(18,23,33,.96)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px }
+    .hero{text-align:center; display:grid; gap:12px; border:1px dashed var(--border); border-radius:var(--radius); padding:20px}
     .code404{ font-size: clamp(48px, 9vw, 120px); line-height:1; margin:0; letter-spacing:2px; position:relative; display:inline-block; }
     .cracks{ position:absolute; left:50%; transform:translateX(-50%); width:min(520px,90vw); height:auto; pointer-events:none; top: 50%; translate: 0 -50%; opacity:0; }
     .cracks path{ stroke:#cfe3ff; stroke-width:2; fill:none; stroke-dasharray:180; stroke-dashoffset:180; }
     .crashed .cracks{ opacity:1 }
     .crashed .cracks path{ animation: drawCracks 1.8s ease-out forwards }
     @keyframes drawCracks{ to{ stroke-dashoffset:0 } }
-
     .lead{color:var(--muted); margin:0}
-    .cta-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px}
-    .btn-inline{
-      padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8);
-      color:var(--text); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
-    }
+    .cta-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px}
+    .btn-inline{ padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(18,23,31,.8); color:var(--text); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px }
     .btn-inline:hover{transform:translateY(-1px)}
     .btn-inline.primary{background:linear-gradient(180deg,var(--blue-600),var(--blue-500)); border-color:transparent}
 
-    /* =================== Card con grid-effect (100 tiles) =================== */
-    .card-effect{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px }
+    /* Card grid-effect */
+    .card-effect{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:10px }
     .card__img{ position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--border); background:#0b1220 }
     .card__img img{ width:100%; display:block; object-fit:cover; opacity:.85; filter:contrast(1.1) saturate(1.05) }
-    .card__grid-effect{
-      position:absolute; inset:0; display:grid; grid-template-columns:repeat(10,1fr); grid-auto-rows:1fr;
-    }
-    .card__grid-effect-tile{
-      display:block; position:relative; isolation:isolate;
-      transition: background .15s ease, transform .15s ease;
-    }
-    .card__grid-effect-tile::after{
-      content:""; position:absolute; inset:1px; border-radius:4px;
-      background:rgba(96,165,250,.08); opacity:0; transition:opacity .15s ease;
-      mix-blend-mode:screen;
-    }
+    .card__grid-effect{ position:absolute; inset:0; display:grid; grid-template-columns:repeat(10,1fr); grid-auto-rows:1fr; }
+    .card__grid-effect-tile{ display:block; position:relative; isolation:isolate; transition: background .15s ease, transform .15s ease; }
+    .card__grid-effect-tile::after{ content:""; position:absolute; inset:1px; border-radius:4px; background:rgba(96,165,250,.08); opacity:0; transition:opacity .15s ease; mix-blend-mode:screen; }
     .card__grid-effect-tile:hover{ transform:scale(1.015) }
     .card__grid-effect-tile:hover::after{ opacity:1 }
     .card__img a.full{ position:absolute; inset:0; z-index:2; }
 
-    /* =================== Botón “fizzy” =================== */
-    .fizzy{ display:grid; justify-items:center; gap:6px; margin-top:10px }
+    /* Botón “fizzy” */
+    .fizzy{ display:grid; justify-items:center; gap:6px; margin-top:6px }
     .fizzy small{ color:var(--muted) }
     .fizzy input{ display:none }
     .fizzy label{
@@ -257,25 +209,37 @@
       transform:translate(var(--x,0), var(--y,0)) scale(0);
       opacity:0; filter:blur(.2px);
     }
-    /* explosión de partículas al click (con clase .go) */
     .fizzy.go .spot{ animation: pop 700ms ease-out forwards }
-    @keyframes pop{
-      0%{ opacity:1; transform:translate(var(--x), var(--y)) scale(.2) }
-      80%{ opacity:.9; transform:translate(calc(var(--x)*2.2), calc(var(--y)*2.2)) scale(1.8) }
-      100%{ opacity:0; transform:translate(calc(var(--x)*3), calc(var(--y)*3)) scale(2.1) }
-    }
+    @keyframes pop{ 0%{ opacity:1; transform:translate(var(--x), var(--y)) scale(.2) } 80%{ opacity:.9; transform:translate(calc(var(--x)*2.2), calc(var(--y)*2.2)) scale(1.8) } 100%{ opacity:0; transform:translate(calc(var(--x)*3), calc(var(--y)*3)) scale(2.1) } }
 
-    /* =================== Accesibilidad movimiento =================== */
+    /* Barra de progreso con astronauta (25s) */
+    .progress{ position:relative; height:56px; margin-top:4px }
+    .progress .line{
+      position:absolute; left:0; right:0; bottom:8px; height:10px; border-radius:999px;
+      background:rgba(96,165,250,.12); overflow:hidden; border:1px solid rgba(96,165,250,.25)
+    }
+    .progress .bar{
+      height:100%; width:var(--pct); background:linear-gradient(90deg, rgba(96,165,250,.7), rgba(124,58,237,.7));
+      transition:width .12s linear;
+    }
+    .progress .astro{
+      position:absolute; bottom:22px; left:var(--pct); transform:translateX(-50%);
+      width:38px; height:38px; background-image:var(--astro-url); background-size:contain; background-repeat:no-repeat;
+      filter:drop-shadow(0 6px 10px rgba(0,0,0,.45));
+      animation: astroBob 1.8s ease-in-out infinite alternate;
+    }
+    @keyframes astroBob{ from{ transform:translate(-50%, 0) } to{ transform:translate(-50%, -5px) } }
+
+    /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
-      .ship,.sat,.boom,.sky::before,.sky::after,.card__grid-effect-tile,.fizzy .spot,.target::after{ animation:none !important }
+      .ship,.sat,.boom,.sky::before,.sky::after,.fizzy .spot,.target::after,.progress .astro{ animation:none !important }
     }
   </style>
 </head>
 <body>
-  <!-- Cielo y patrón -->
   <div class="sky" aria-hidden="true"></div>
 
-  <!-- =================== Topbar =================== -->
+  <!-- Topbar -->
   <div class="topbar">
     <div class="wrap row">
       <a class="logo" href="/" aria-label="Inicio · Ing. Lucas Learning Hub">
@@ -290,24 +254,21 @@
         <span class="i18n-en">Error 404</span>
       </div>
       <div class="actions">
-        <!-- Comentarios -->
         <button class="icon-btn" id="openComments" title="Abrir comentarios" aria-label="Abrir comentarios" aria-expanded="false" aria-controls="commentsDrawer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
         </button>
-        <!-- Menú -->
         <button class="icon-btn" id="openDrawer" title="Abrir menú" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
         </button>
-        <!-- Idioma -->
         <button class="icon-btn" id="langToggle" title="Cambiar idioma" aria-label="Cambiar idioma" aria-pressed="false">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.73 6h-3.46a15.9 15.9 0 0 0-1.6-3.63A8.03 8.03 0 0 1 19.73 8zM12 4c.88 0 2.39 1.88 3.23 4H8.77C9.61 5.88 11.12 4 12 4zM4.27 8A8.03 8.03 0 0 1 9.33 4.37 15.9 15.9 0 0 0 7.73 8H4.27zM4 10h3.16c-.08.66-.13 1.32-.13 2s.05 1.34.13 2H4a8 8 0 0 1 0-4zm.27 6h3.46c.4 1.28.95 2.49 1.6 3.63A8.03 8.03 0 0 1 4.27 16zM12 20c-.88 0-2.39-1.88-3.23-4h6.46C14.39 18.12 12.88 20 12 20zm2.67-.37c.65-1.14 1.2-2.35 1.6-3.63h3.46a8.03 8.03 0 0 1-5.06 3.63zM20 14h-3.16c.08-.66.13-1.32.13-2s-.05-1.34-.13-2H20a8 8 0 0 1 0 4z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.73 6h-3.46a15.9 15.9 0 0 0-1.6-3.63A8.03 8.03 0 0 1 19.73 8zM12 4c.88 0 2.39 1.88 3.23 4H8.77C9.61 5.88 11.12 4 12 4zM4.27 8A8.03 8.03 0 0 1 9.33 4.37 15.9 15.9 0 0 0 7.73 8H4.27zM4 10h3.16c-.08.66-.13 1.32-.13 2s.05 1.34.13 2H4a8 8 0 0 1 0-4zm.27 6h3.46c.4 1.28.95 2.49 1.6 3.63A8.03 8.03 0 0 1 4.27 16zM12 20c-.88 0-2.39-1.88-3.23-4h6.46C14.39 18.12 12.88 20 12 20zm2.67-.37c.65-1.14 1.2-2.35 1.6-3.63h3.46a8.03 8 0 0 1-5.06 3.63zM20 14h-3.16c.08-.66.13-1.32.13-2s-.05-1.34-.13-2H20a8 8 0 0 1 0 4z"/></svg>
           <span class="lang-chip" id="langChip" aria-hidden="true">ES</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- =================== Drawer Menú =================== -->
+  <!-- Drawer Menú -->
   <aside class="drawer" id="drawer" aria-label="Menú de navegación" aria-hidden="true">
     <div class="hd">
       <strong class="i18n-es">Navegación</strong>
@@ -328,7 +289,7 @@
     </div>
   </aside>
 
-  <!-- =================== Drawer Comentarios =================== -->
+  <!-- Drawer Comentarios -->
   <aside class="comments-drawer" id="commentsDrawer" aria-label="Comentarios" aria-hidden="true">
     <div class="hd">
       <strong class="i18n-es">Comentarios</strong>
@@ -340,22 +301,20 @@
     </div>
   </aside>
 
-  <!-- =================== Escena: nave + satélite + logo =================== -->
+  <!-- Escena: nave + satélite + logo -->
   <section class="stage wrap" aria-label="Animación de impacto">
     <div class="target" id="target">
       <img src="/galeria/logo/logoinglucas.svg" alt="Logo Ing. Lucas">
       <div class="boom" id="boom"></div>
     </div>
-    <!-- posiciones relativas — se ajustan via JS al centro -->
     <div class="ship" id="ship" aria-hidden="true"></div>
     <div class="sat"  id="sat"  aria-hidden="true"></div>
   </section>
 
-  <!-- =================== Panel 404 =================== -->
+  <!-- Panel 404 + progreso 25s con astronauta -->
   <section class="panel wrap" aria-live="polite" aria-atomic="true">
     <article class="card hero">
       <h1 class="code404" id="code404">404
-        <!-- grietas SVG -->
         <svg class="cracks" viewBox="0 0 600 180" role="img" aria-label="Grietas">
           <path d="M300 10 L320 40 L310 70 L340 90" />
           <path d="M260 40 L240 70 L260 95 L245 120" />
@@ -363,8 +322,20 @@
           <path d="M300 95 L290 120 L305 145 L295 165" />
         </svg>
       </h1>
+
       <p class="lead i18n-es">Parece que esta página se perdió en el espacio…</p>
       <p class="lead i18n-en">Looks like this page got lost in space…</p>
+
+      <p class="lead i18n-es">Te llevaremos al <strong>inicio</strong> en <b><span id="count">25</span>s</b>.</p>
+      <p class="lead i18n-en">You’ll be taken <strong>home</strong> in <b><span id="count-en">25</span>s</b>.</p>
+
+      <!-- Progreso con astronauta -->
+      <div class="progress" id="progress"
+           role="progressbar" aria-label="Cuenta regresiva hacia inicio (25 segundos)"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="astro" id="astro" role="img" aria-label="Astronauta avanzando hacia la meta"></div>
+        <div class="line"><div class="bar" id="bar"></div></div>
+      </div>
 
       <div class="cta-row">
         <a class="btn-inline primary" href="/" id="goHome">
@@ -381,23 +352,21 @@
         </button>
       </div>
 
-      <!-- Card con grid-effect que también lleva al inicio -->
+      <!-- Card grid-effect -->
       <div class="card-effect">
         <div class="card__img">
-          <!-- Puedes reemplazar por cualquier imagen/cover (ej: un banner del hub) -->
           <img src="/galeria/logo/logoinglucas.svg" alt="Ir al inicio">
           <a class="full" href="/" aria-label="Ir al inicio ahora"></a>
           <div class="card__grid-effect" id="gridEffect" aria-hidden="true"></div>
         </div>
       </div>
 
-      <!-- Botón “fizzy” con partículas -->
+      <!-- Botón “fizzy” -->
       <div class="fizzy" id="fizzyWrap">
         <small class="i18n-es">O prueba este botón con partículas 👇</small>
         <small class="i18n-en">Or try this particle button 👇</small>
         <input id="fizzy" type="checkbox" />
         <label for="fizzy" id="fizzyBtn" aria-label="Volver al inicio (fizzy)">
-          <!-- icono simple -->
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 17l5-5-5-5v10z"/></svg>
           <span class="t i18n-es">Volver al inicio</span>
           <span class="t i18n-en">Go home</span>
@@ -407,7 +376,7 @@
     </article>
   </section>
 
-  <!-- =================== Footer =================== -->
+  <!-- Footer -->
   <footer style="border-top:1px solid var(--border); color:var(--muted); padding:22px 0; background:linear-gradient(180deg,#0f1624,#0c121e)">
     <div class="wrap" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
       <div>© <span id="y"></span> <strong>IngLucas</strong> · Colombia</div>
@@ -415,8 +384,11 @@
     </div>
   </footer>
 
-  <!-- =================== Scripts =================== -->
   <script>
+    // ===== Config
+    const HOME_URL = '/';
+    const TOTAL_MS = 25000; // 25 s
+
     // Año footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
@@ -452,7 +424,7 @@
       if(commentsLoaded) return;
       const s=document.createElement('script');
       s.src='https://utteranc.es/client.js';
-      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io'); // <-- ajusta si usas otro repo
+      s.setAttribute('repo','LucasMolina707/IngLucasLearningHub.github.io'); // cambia si usas otro repo
       s.setAttribute('issue-term','pathname');
       s.setAttribute('theme','icy-dark');
       s.setAttribute('crossorigin','anonymous');
@@ -493,7 +465,7 @@
       $btn?.addEventListener('click',()=>{ const cur=document.documentElement.getAttribute('data-lang')||'es'; applyLang(cur==='es'?'en':'es'); });
     })();
 
-    // ===== Auto-menu desde /nav.json con fallback GitHub
+    // ===== Auto-menú (nav.json + fallback GitHub)
     (async function initAutoMenu(){
       const elPages = document.getElementById('nav-pages');
       const elProjects = document.getElementById('nav-projects');
@@ -532,7 +504,7 @@
       try{ const nav=await fetchNav(); renderList(elPages, nav.pages||[]); renderList(elProjects, nav.projects||[]); }catch(e){}
     })();
 
-    // ===== Card grid-effect: crear 100 tiles
+    // ===== Card grid-effect (100 tiles)
     (function(){
       const grid = document.getElementById('gridEffect');
       if(!grid) return;
@@ -547,12 +519,12 @@
       grid.appendChild(frag);
     })();
 
-    // ===== Botón “fizzy”: 52 spots aleatorios + navegación
+    // ===== Botón “fizzy” (52 spots + go)
     (function(){
       const wrap = document.getElementById('fizzyWrap');
       const spots = document.getElementById('spots');
       if(!wrap || !spots) return;
-      const N=52, W=260, H=44; // base aprox
+      const N=52, W=260, H=44;
       for(let i=0;i<N;i++){
         const s=document.createElement('span'); s.className='spot';
         const x=(Math.random()-.5)*W, y=(Math.random()-.5)*H;
@@ -562,53 +534,79 @@
       const label = document.getElementById('fizzyBtn');
       label?.addEventListener('click', (e)=>{
         e.preventDefault();
-        wrap.classList.remove('go'); // reset
-        void wrap.offsetWidth;       // reflow
-        wrap.classList.add('go');    // dispara anim
-        // navega al final del efecto
-        setTimeout(()=>{ window.location.assign('/'); }, 650);
+        wrap.classList.remove('go'); void wrap.offsetWidth; wrap.classList.add('go');
+        setTimeout(()=>{ window.location.assign(HOME_URL); }, 650);
       });
     })();
 
-    // ===== Escena de impacto: coordinar nave, satélite y objetivo
+    // ===== Escena impacto
     (function(){
       const target = document.getElementById('target');
       const ship   = document.getElementById('ship');
       const sat    = document.getElementById('sat');
       const boom   = document.getElementById('boom');
-      const code   = document.getElementById('code404');
 
-      if(!target || !ship || !sat || !boom || !code) return;
-
-      // coloca nave/sat relativos al centro del objetivo
       function positionAround(){
         const rect = target.getBoundingClientRect();
         const cx = rect.left + rect.width/2;
         const cy = rect.top  + rect.height/2;
-        // posiciones iniciales (coinciden con keyframes)
         ship.style.left = (cx - rect.width*1.1)+'px';
         ship.style.top  = (cy - rect.height*1.1)+'px';
-        sat.style.left  = (cx + rect.width*0.7)+'px';
-        sat.style.top   = (cy - rect.height*0.7)+'px';
+        sat .style.left = (cx + rect.width*0.7)+'px';
+        sat .style.top  = (cy - rect.height*0.7)+'px';
       }
-      positionAround();
-      addEventListener('resize', positionAround);
+      positionAround(); addEventListener('resize', positionAround);
 
-      // timeline del choque
-      setTimeout(()=>{ // 1) colisión nave-satélite
-        boom.style.left='50%'; boom.style.top='50%'; boom.classList.add('show');
-      }, 1500);
-
-      setTimeout(()=>{ // 2) golpea el logo -> sin señal + grietas + shake
-        target.classList.add('nosignal'); target.classList.add('shake');
-        document.body.classList.add('crashed');
-        setTimeout(()=>target.classList.remove('shake'), 900);
-      }, 2000);
+      setTimeout(()=>{ boom.style.left='50%'; boom.style.top='50%'; boom.classList.add('show'); }, 1500);
+      setTimeout(()=>{ target.classList.add('nosignal'); target.classList.add('shake'); document.body.classList.add('crashed'); setTimeout(()=>target.classList.remove('shake'), 900); }, 2000);
     })();
 
-    // Accesos rápidos desde CTA
+    // ===== Progreso 25s con astronauta + redirección
+    (function(){
+      const progress = document.getElementById('progress');
+      const bar = document.getElementById('bar');
+      const countES = document.getElementById('count');
+      const countEN = document.getElementById('count-en');
+
+      const t0 = performance.now();
+      let shownSeconds = 25;
+
+      function update(now){
+        const elapsed = now - t0;
+        const pct = Math.min(1, elapsed / TOTAL_MS);
+        const pctStr = (pct*100).toFixed(2) + '%';
+
+        // CSS var para barra y astronauta
+        progress.style.setProperty('--pct', pctStr);
+        bar.style.width = pctStr;
+        progress.setAttribute('aria-valuenow', Math.round(pct*100));
+
+        const remaining = Math.max(0, Math.ceil((TOTAL_MS - elapsed)/1000));
+        if(remaining !== shownSeconds){
+          shownSeconds = remaining;
+          if(countES) countES.textContent = remaining;
+          if(countEN) countEN.textContent = remaining;
+        }
+
+        if (elapsed >= TOTAL_MS){
+          window.location.assign(HOME_URL);
+        } else {
+          requestAnimationFrame(update);
+        }
+      }
+      // inicial
+      if(countES) countES.textContent = 25;
+      if(countEN) countEN.textContent = 25;
+      requestAnimationFrame(update);
+
+      // CTA: ir ya
+      document.getElementById('goHome')?.addEventListener('click', (e)=>{ e.preventDefault(); window.location.assign(HOME_URL); });
+    })();
+
+    // Accesos rápidos
     qs('#openCta')?.addEventListener('click', (e)=>{ e.preventDefault(); qs('#openComments')?.click(); });
     qs('#openMenu')?.addEventListener('click', ()=> qs('#openDrawer')?.click());
   </script>
 </body>
 </html>
+
